@@ -1,0 +1,49 @@
+# Todos
+
+- Control Flow
+  - [ ] Start Screen
+  - [ ] Save & Load Profiles (with localStorage)
+  - [ ] Intro Animation
+  - [ ] Pause Menu
+  - [ ] Game Over
+  - [ ] Credits
+- Game Logics
+  - [ ] Basic Game Physics
+    - [ ] Gravity
+    - [ ] Collision
+      - [ ] Player Collision
+      - [ ] Fallable Collision
+  - [ ] Player Control
+    - [ ] Jump & Walk
+    - [ ] Interact with Objects
+    - [ ] Change hyalumen color
+  - [ ] "Hyalumen" Logic
+    - [ ] Change Color
+    - [ ] Collision disableing for same color objects
+  - [ ] Interactable Objects
+    - Contraptions
+      - [ ] Pressure Plate
+      - [ ] Door
+      - [ ] Button
+      - [ ] Lever
+      - [ ] Pulley (軸車)
+      - [ ] Plinth (燈座)
+    - [ ] Entrance
+    - [ ] Map Item with Lore
+- UI
+  - [ ] Change hyalumen color
+  - [ ] Inventory Display
+- Graphics & Animations
+  - Game Sprites
+  - [ ] Shader
+- Game Design
+  - [ ] Tutorial
+  - Levels
+    - [ ] Red
+    - [ ] Green
+    - [ ] Blue
+- Story & Lore
+  - [ ] Background Setting
+  - [ ] Intro
+  - [ ] Main Story
+  - [ ] Finale

@@ -2,9 +2,6 @@
   "name": "prisma-game",
   "uuid": "51e0563b-f946-417e-b5f8-eeb61b7356cc",
   "creator": {
-    "version": "3.8.2"
-  },
-  "dependencies": {
-    "firebase": "^10.11.1"
+    "version": "3.8.3"
   }
 }
