@@ -65,7 +65,6 @@ export class AudioManager {
         this._audioSource.volume = volume
     }
 
-
     /**
      * Stop the current background music.
      */
@@ -115,10 +114,7 @@ export class AudioManager {
             this.doNotReplay = false
             return
         }
-        this._audioSource.stop()
-        this._audioSource.clip = audioClip
-        this._audioSource.play()
-        this._audioSource.volume = 0
+        this.playBGM(audioClip, 0)
         tween(this._audioSource).to(duration, { volume: volume }).start()
     }
 
@@ -140,10 +136,7 @@ export class AudioManager {
         }
         tween(this._audioSource)
             .to(durationOut, { volume: 0 })
-            .call(() => {
-                this._audioSource.clip = audioClip
-                this._audioSource.play()
-            })
+            .call(() => this.playBGM(audioClip, 0))
             .to(durationIn, { volume: volume })
             .start()
     }
