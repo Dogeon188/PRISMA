@@ -1,6 +1,7 @@
 import {
     _decorator,
     Animation,
+    clamp,
     Collider2D,
     Color,
     Component,
@@ -37,9 +38,10 @@ interface KeyBind {
 export class Player extends Component {
     //#region Constants
 
-    private static readonly WALK_SPEED = 12
+    private static readonly WALK_ACC = 80
+    private static readonly WALK_SPEED = 10
     private static readonly JUMP_SPEED = 20
-    private static readonly GRAVITY = 6
+    private static readonly GRAVITY = 5
     private static readonly KEYBINDS: KeyBind = {
         up: KeyCode.KEY_W,
         down: KeyCode.KEY_S,
@@ -117,24 +119,35 @@ export class Player extends Component {
     //#region Physics
 
     private updateMovement(dt: number): void {
+        // Apply movement forces
         if (this.movement.left) {
-            this.rigidBody.linearVelocity = new Vec2(
-                -Player.WALK_SPEED,
-                this.rigidBody.linearVelocity.y,
+            this.rigidBody.applyForceToCenter(
+                new Vec2(-Player.WALK_ACC, 0),
+                true,
             )
         }
         if (this.movement.right) {
-            this.rigidBody.linearVelocity = new Vec2(
-                Player.WALK_SPEED,
-                this.rigidBody.linearVelocity.y,
+            this.rigidBody.applyForceToCenter(
+                new Vec2(Player.WALK_ACC, 0),
+                true,
             )
         }
+        // Apply friction when not moving
         if (this.movement.static) {
-            this.rigidBody.linearVelocity = new Vec2(
-                0,
-                this.rigidBody.linearVelocity.y,
+            this.rigidBody.linearVelocity = this.rigidBody.linearVelocity.lerp(
+                new Vec2(0, this.rigidBody.linearVelocity.y),
+                0.1,
             )
         }
+        // Clamp horizontal speed
+        this.rigidBody.linearVelocity = new Vec2(
+            clamp(
+                this.rigidBody.linearVelocity.x,
+                -Player.WALK_SPEED,
+                Player.WALK_SPEED,
+            ),
+            this.rigidBody.linearVelocity.y,
+        )
         if (this.movement.up) {
             this.jump()
         }

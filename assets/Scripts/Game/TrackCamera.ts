@@ -18,45 +18,27 @@ const { ccclass, property } = _decorator
 
 @ccclass("TrackCamera")
 export class TrackCamera extends Component {
-    @property(Label)
-    debugLabel: Label = null
-
-    @property({ type: Node })
-    focused: Node = null
-
-    _min: Vec2
-    _max: Vec2
+    private _min: Vec2
+    private _max: Vec2
 
     @property({
         type: Vec2,
-        group: "Boundary",
-        tooltip: "The minimum coordinate (before scaling) the camera can reach",
+        tooltip: "The minimum coordinate the camera can show",
     })
-    min: Vec2 = new Vec2(0, 0)
+    private min: Vec2 = new Vec2(0, 0)
 
     @property({
         type: Vec2,
-        group: "Boundary",
-        tooltip: "The maximum coordinate (before scaling) the camera can reach",
+        tooltip: "The maximum coordinate the camera can show",
     })
-    max: Vec2 = new Vec2(0, 0)
+    private max: Vec2 = new Vec2(0, 0)
 
-    @property({
-        type: Vec2,
-        group: "Boundary",
-        tooltip: "The padding of the center of camera from the boundary",
-    })
-    padding: Vec2 = new Vec2(0, 0)
-
-    @property({ type: Vec2, group: "Offset" })
-    offset: Vec2 = new Vec2(0, 0)
-
-    // @property({ type: Size})
+    @property({ type: Node, tooltip: "The node to focus on" })
+    private focus: Node = null
     private cameraSize: Size = new Size(0, 0)
     private target: Vec3 = new Vec3(0, 0, 0)
 
-    onLoad() {
-        // this.cameraSize = View.instance.getVisibleSizeInPixel()
+    onLoad(): void {
         this.cameraSize = screen.resolution.lerp(
             Size.ZERO,
             1 / screen.devicePixelRatio,
@@ -68,14 +50,17 @@ export class TrackCamera extends Component {
         )
     }
 
-    focus(node: Node) {
-        this.focused = node
+    /**
+     * Change the focus of the camera
+     */
+    focusOn(node: Node): void {
+        this.focus = node
     }
 
-    update(deltaTime: number) {
-        if (!this.focused) return
+    protected update(deltaTime: number): void {
+        if (!this.focus) return
 
-        this.focused.getWorldPosition(this.target)
+        this.focus.getWorldPosition(this.target)
 
         this.target.x = clamp(
             this.target.x - this.cameraSize.width / 2,

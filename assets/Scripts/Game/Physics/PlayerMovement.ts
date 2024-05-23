@@ -95,8 +95,10 @@ export class Movement {
     get static(): boolean {
         return (
             this.movement === Direction.STATIC ||
-            this.movement === (Direction.UP ^ Direction.DOWN) ||
-            this.movement === (Direction.LEFT ^ Direction.RIGHT)
+            ((this.movement & Direction.UP) === Direction.UP &&
+                (this.movement & Direction.DOWN) === Direction.DOWN) ||
+            ((this.movement & Direction.LEFT) === Direction.LEFT &&
+                (this.movement & Direction.RIGHT) === Direction.RIGHT)
         )
     }
 
