@@ -11,58 +11,96 @@
 - Name your variables and functions with meaningful names.
   - Use `camelCase` for variable names.
   - Use `PascalCase` for class names and node names.
+  - Full, descriptive names are preferred over short, cryptic names.
 - `private` and `protected` are preferred than `public`.
-  - Add a `_` prefix for private variables, except for cocos component properties.
+  - Add a `_` prefix for private variables with public getter/setter.
 - Always specify the type of the function's return value and parameters.
-- Use `/** */` for documentation comments if the function will be used by other developers.
+- Use [JSDoc](https://jsdoc.app) for documentation comments if the function will be used by other developers.
 - When adding many properties to a cocos component, make use of the [grouping feature](https://docs.cocos.com/creator/manual/zh/scripting/decorator.html#group) in the editor.
 
 ## Todo List
 
-- Control Flow
-  - [ ] Start Screen
-  - [ ] Save & Load Profiles (with localStorage)
-  - [ ] Intro Animation
-  - [ ] Pause Menu
+Optional tasks are marked with `*`.
+
+- Game Flow **(10%)**
+  - [ ] * Intro Animation
+  - [ ] Main Menu
+  - [ ] Config Menu
+    - Volume Control
+    - ...
+  - [ ] * Level Selection
+  - [ ] Start Game
+  - [ ] Pause & Resume
   - [ ] Game Over
-  - [ ] Credits
-- Game Logics
-  - [ ] Basic Game Physics
-    - [ ] Gravity
+  - [ ] Game Win
+  - [ ] Back to Main Menu or Level Selection
+  - [ ] * Inventory Display
+  - [ ] * Credits
+  - Should finish all above
+- Technical **(60%)**
+  - [ ] Account System **(7%)**
+    - [ ] Register, Login, Logout **(4%)**
+    - [ ] Leaderboard **(3%)**
+  - [ ] Save & Load with Firebase **(6%)**
+    - Account based
+  - [ ] Physics **(13%)**
+    - [V] Gravity
     - [ ] Collision
-      - [ ] Player Collision
-      - [ ] Fallable Collision
-  - [ ] Player Control
-    - [ ] Jump & Walk
-    - [ ] Interact with Objects
-    - [ ] Change hyalumen color
-  - [ ] "Hyalumen" Logic
+  - [ ] Sound **(7%)**
+    - [V] Background Music **(2%)**
+    - [ ] Sound Effects **(1\*5%)**
+      - ...
+  - [ ] Control **(13%)**
+    - [ ] Movement **(4%)**
+    - Other controls **(3\*3%)**
+      - [ ] * Interact with Objects
+      - [ ] * Change Lucinite (晶輝石) color
+  - [ ] Animation **(12%)**
+    - [ ] Character Animation **(4%)**
+    - [ ] Change Scene **(2%)**
+    - [ ] Opening Animation **(2%)**
+    - [ ] Game Over Animation **(2%)**
+    - [ ] Action System **(2%)** <!-- TODO (can we use tween?) -->
+  - [ ] Particle **(1*5%)**
+    - ...
+  - [V] Version Control **(7%)**
+- Advanced **(20%)**
+  - [ ] Enemy Pathfinding **(~6%)**
+  - [ ] Node Pooling **(~4%)**
+  - Effects
+    - [ ] Shader **(~4%)**
+    - [ ] 2.5D **(~2%)**
+    - [ ] 打擊感 **(~3%)**
+    - [ ] 運鏡 **(~4%)**
+  - [ ] Special Physics **(~4%)**
+    - Zero-Gravity, etc.
+  - Level Design
+    - [ ] Level Editor **(~8%)**
+    - [ ] Procedural Generation **(~4%)**
+    - [ ] Infinite Level **(~3%)**
+    - [ ] Boss Fight **(~2%)**
+    - \* Levels
+      - [ ] Tutorial
+      - [ ] Red
+      - [ ] Green
+      - [ ] Blue
+    - \* Interactable Objects
+      - Contraptions
+        - [ ] Pressure Plate
+        - [ ] Door
+        - [ ] Button
+        - [ ] Lever
+        - [ ] Pulley (軸車)
+        - [ ] Plinth (燈座)
+      - [ ] Entrance
+      - [ ] Stage Item with Lore
+  - [ ] Real-time Multiplayer **(~8%)**
+  - [ ] * Lucinite Logic
     - [ ] Change Color
     - [ ] Collision disableing for same color objects
-  - [ ] Interactable Objects
-    - Contraptions
-      - [ ] Pressure Plate
-      - [ ] Door
-      - [ ] Button
-      - [ ] Lever
-      - [ ] Pulley (軸車)
-      - [ ] Plinth (燈座)
-    - [ ] Entrance
-    - [ ] Map Item with Lore
-- UI
-  - [ ] Change hyalumen color
-  - [ ] Inventory Display
-- Graphics & Animations
-  - Game Sprites
-  - [ ] Shader
-- Game Design
-  - [ ] Tutorial
-  - Levels
-    - [ ] Red
-    - [ ] Green
-    - [ ] Blue
-- Story & Lore
-  - [ ] Background Setting
-  - [ ] Intro
-  - [ ] Main Story
-  - [ ] Finale
+  - \* Story & Lore
+    - [ ] Background Setting
+    - [ ] Intro
+    - [ ] Main Story
+    - [ ] Finale
+  - ...

@@ -2,7 +2,7 @@ import { AudioClip, AudioSource, Node, director, tween } from "cc"
 
 /**
  * A simple audio manager that plays sound effects and background music. \
- * It is a singleton, and you should only use `AudioManager.inst` to access it. \
+ * It is a singleton, and you should only use {@linkcode AudioManager.inst} to access it. \
  * Don't create it manually.
  */
 export class AudioManager {
@@ -42,7 +42,7 @@ export class AudioManager {
     }
 
     /**
-     * `AudioManager::playBGM()` will not have effect the next time it is called. \
+     * {@linkcode AudioManager.playBGM} will not have effect the next time it is called. \
      * This is useful when you want to play a BGM when the game starts, but you don't want to replay it when the scene is reloaded
      */
     doNotReplayNextTime(): void {
@@ -74,7 +74,7 @@ export class AudioManager {
 
     /**
      * Pause the current background music. \
-     * Call `resumeBGM()` to resume.
+     * Call {@linkcode AudioManager.resumeBGM} to resume.
      */
     pauseBGM(): void {
         this._audioSource.pause()
@@ -121,6 +121,7 @@ export class AudioManager {
     /**
      * Fade out the current background music, then fade in a new background music. \
      * Replace the current background music if there is one.
+     * 
      * @param durationOut The time it takes for the music to fade out completely.
      * @param durationIn The time it takes for the music to fade in completely.
      */
