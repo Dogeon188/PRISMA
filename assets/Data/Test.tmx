@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="1">
+ <tileset firstgid="1" source="Dragonheart.tsx"/>
+ <layer id="1" name="Ground" width="60" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAE+2ZsQ2AMAwEDQwADAAMAAxAgJ6xGJ1PEQmlSWVFsr/4IkIiufzhhiDyBoZ3QAfoAB2gA3SADtABOkAH6AAdoAPGHXhExFMa8LZO0oGzRwYnGclruusa/a5waq/0/dTgPcB6GubN+8x58+easzP2OyGzYhJf2qO01jzLAs5NOTfef/32KK01zxPnBv4tuEmcG+S1ewce+/0A/R5noCAcAAA=
+  </data>
+ </layer>
+ <objectgroup id="3" name="Objects"/>
+</map>
