@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="1">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="9">
  <tileset firstgid="1" source="Dragonheart.tsx"/>
  <layer id="1" name="Ground" width="60" height="30">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAE+2ZsQ2AMAwEDQwADAAMAAxAgJ6xGJ1PEQmlSWVFsr/4IkIiufzhhiDyBoZ3QAfoAB2gA3SADtABOkAH6AAdoAPGHXhExFMa8LZO0oGzRwYnGclruusa/a5waq/0/dTgPcB6GubN+8x58+easzP2OyGzYhJf2qO01jzLAs5NOTfef/32KK01zxPnBv4tuEmcG+S1ewce+/0A/R5noCAcAAA=
   </data>
  </layer>
+ <objectgroup id="4" name="Barriers">
+  <object id="1" name="Wall" x="-16" y="256" width="16" height="160"/>
+  <object id="2" name="Ground1" x="-16" y="400" width="976" height="16"/>
+  <object id="6" name="Block3" x="512" y="368" width="32" height="48"/>
+  <object id="3" name="Block2" x="448" y="336" width="32" height="80"/>
+  <object id="5" name="Block1" x="384" y="368" width="32" height="48"/>
+  <object id="7" name="Ceiling" x="-16" y="256" width="976" height="16"/>
+  <object id="8" name="Wall" x="960" y="256" width="16" height="160"/>
+ </objectgroup>
  <objectgroup id="3" name="Objects"/>
 </map>
