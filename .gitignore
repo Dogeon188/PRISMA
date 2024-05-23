@@ -8,6 +8,7 @@ local/
 build/
 profiles/
 native
+settings/v2/packages/cocos-service.json
 #//////////////////////////
 # NPM
 #//////////////////////////
