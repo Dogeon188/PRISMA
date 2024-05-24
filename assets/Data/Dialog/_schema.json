@@ -1,0 +1,38 @@
+{
+  "properties": {
+    "once": {
+      "description": "If true, the dialog can only be triggered once.",
+      "type": "boolean",
+      "default": false
+    },
+    "entries": {
+      "description": "The dialog entries.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "description": "The text to display. Please keep it within 2 lines.",
+            "type": "string"
+          },
+          "duration": {
+            "description": "The duration to display the text.",
+            "type": "number",
+            "minimum": 0
+          },
+          "voice": {
+            "description": "The path to voice resource, to play at the beginning of the dialog.",
+            "type": "string"
+          },
+          "postDelay": {
+            "description": "The delay after the dialog is finished till next dialog.",
+            "type": "number",
+            "minimum": 0,
+            "default": 0
+          }
+        },
+        "required": ["text", "duration"]
+      }
+    }
+  }
+}

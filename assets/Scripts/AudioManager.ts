@@ -1,4 +1,4 @@
-import { AudioClip, AudioSource, Node, director, tween } from "cc"
+import { AudioClip, AudioSource, Node, director, resources, tween } from "cc"
 
 /**
  * A simple audio manager that plays sound effects and background music. \
@@ -21,7 +21,7 @@ export class AudioManager {
     constructor() {
         if (AudioManager._inst != null) {
             throw new Error(
-                "AudioManager is a singleton, don't create it twice."
+                "AudioManager is a singleton, don't create it twice.",
             )
         }
         const audioNode = new Node("__AudioManager__")
@@ -33,6 +33,28 @@ export class AudioManager {
     get audioSource(): AudioSource {
         return this._audioSource
     }
+
+    //#region Load Resources
+
+    /**
+     * Load an audio clip from the resources folder.
+     * @param path The path to the audio clip, always prefixed with "Audios/"
+     */
+    getAudioClip(path: string): Promise<AudioClip> {
+        return new Promise<AudioClip>((resolve, reject) => {
+            resources.load("Audios/" + path, AudioClip, (err, clip) => {
+                if (err) {
+                    console.error("Failed to load audio clip", err)
+                    resolve(null)
+                }
+                resolve(clip)
+            })
+        })
+    }
+
+    //#endregion
+
+    //#region Play Sounds
 
     /**
      * Play a sound effect once.
@@ -108,7 +130,7 @@ export class AudioManager {
     fadeInBGM(
         audioClip: AudioClip,
         duration: number,
-        volume: number = 1
+        volume: number = 1,
     ): void {
         if (this.doNotReplay) {
             this.doNotReplay = false
@@ -121,7 +143,7 @@ export class AudioManager {
     /**
      * Fade out the current background music, then fade in a new background music. \
      * Replace the current background music if there is one.
-     * 
+     *
      * @param durationOut The time it takes for the music to fade out completely.
      * @param durationIn The time it takes for the music to fade in completely.
      */
@@ -129,7 +151,7 @@ export class AudioManager {
         audioClip: AudioClip,
         durationOut: number,
         durationIn: number,
-        volume: number = 1
+        volume: number = 1,
     ): void {
         if (this.doNotReplay) {
             this.doNotReplay = false
@@ -148,4 +170,6 @@ export class AudioManager {
     setVolume(volume: number): void {
         this._audioSource.volume = volume
     }
+
+    //#endregion
 }

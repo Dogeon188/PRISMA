@@ -1,0 +1,30 @@
+{
+  "$schema": "./_schema.json",
+  "once": false,
+  "entries": [
+    {
+      "text": "Hello, World!",
+      "duration": 1,
+      "postDelay": 1,
+      "voice": "Voice/Question1"
+    },
+    {
+      "text": "Hello World, again!",
+      "duration": 1,
+      "postDelay": 1,
+      "voice": "Voice/Confirmation2"
+    },
+    {
+      "text": "Behold a long text!",
+      "duration": 1,
+      "postDelay": 1,
+      "voice": "Voice/Question3"
+    },
+    {
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
+      "duration": 3,
+      "postDelay": 1,
+      "voice": "Voice/Confirmation4"
+    }
+  ]
+}
