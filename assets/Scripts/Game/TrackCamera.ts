@@ -22,13 +22,11 @@ export class TrackCamera extends Component {
     private _max: Vec2
 
     @property({
-        type: Vec2,
         tooltip: "The minimum coordinate the camera can show",
     })
     private min: Vec2 = new Vec2(0, 0)
 
     @property({
-        type: Vec2,
         tooltip: "The maximum coordinate the camera can show",
     })
     private max: Vec2 = new Vec2(0, 0)

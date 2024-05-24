@@ -1,4 +1,4 @@
-import { _decorator, Component, JsonAsset, Node } from "cc"
+import { _decorator, JsonAsset, Node } from "cc"
 import { AudioManager } from "../../AudioManager"
 import { DialogEntry } from "../../Interface/DialogBox"
 import { GameManager } from "../GameManager"
@@ -15,16 +15,13 @@ type RawDialogEntry = DialogEntry & {
     voice?: string
 }
 
-type RawDialogData = DialogData & {
-    entries: RawDialogEntry[]
-}
-
 @ccclass("Dialog")
 export class Dialog extends Entity {
     @property({ type: JsonAsset })
     dialogData: JsonAsset = null
-    
+
     private played: boolean = false
+    private active: boolean = false
     private once: boolean = false
     private loadedEntries: DialogEntry[] = []
 
@@ -43,17 +40,22 @@ export class Dialog extends Entity {
                     postDelay: rawEntry.postDelay,
                 } as DialogEntry
             }),
-        ).then((entries) => {
-            this.loadedEntries = entries
-            this.once = data.once
-        }).catch((err) => {
-            console.error("Failed to load dialog data", err)
-        })
+        )
+            .then((entries) => {
+                this.loadedEntries = entries
+                this.once = data.once
+            })
+            .catch((err) => {
+                console.error("Failed to load dialog data", err)
+            })
     }
 
     onCollide(other: Node): void {
-        if (this.once && this.played) return
+        if (this.active || (this.once && this.played)) return
         this.played = true
-        GameManager.inst.dialogBox.playDialog(this.loadedEntries)
+        this.active = true
+        GameManager.inst.dialogBox.playDialog(this.loadedEntries, () => {
+            this.active = false
+        })
     }
 }

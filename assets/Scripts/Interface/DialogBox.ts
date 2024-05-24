@@ -19,7 +19,7 @@ export type DialogEntry = {
 @ccclass("DialogBox")
 export class DialogBox extends Component {
     private uiTransform: UITransform = null
-    private queue: DialogEntry[] = []
+    private queue: (DialogEntry & { _postCallback?: Function })[] = []
     private width: number = 0
     private isPlaying: boolean = false
 
@@ -29,10 +29,13 @@ export class DialogBox extends Component {
     /**
      * Play a sequence of dialogs
      */
-    playDialog(data: DialogEntry[]): void {
+    playDialog(data: DialogEntry[], then?: Function): void {
         this.queue.push(...data)
         if (!this.isPlaying) {
             this.startDialog()
+        }
+        if (then) {
+            this.queue.push({ text: "", duration: 0, _postCallback: then })
         }
     }
 
@@ -49,6 +52,7 @@ export class DialogBox extends Component {
     protected onLoad(): void {
         this.uiTransform = this.node.getComponent(UITransform)
         this.width = this.uiTransform.width
+        this.node.active = false
         this.scheduleOnce(() => {
             this.uiTransform.width = 0
             this.label.string = ""
@@ -56,6 +60,7 @@ export class DialogBox extends Component {
     }
 
     private startDialog(): void {
+        this.node.active = true
         tween(this.uiTransform)
             .set({ width: 0 })
             .to(1, { width: this.width }, { easing: "cubicInOut" })
@@ -67,19 +72,28 @@ export class DialogBox extends Component {
     }
 
     private endDialog(): void {
+        if (this.queue.length > 0 && this.queue[0]._postCallback) {
+            this.queue.shift()._postCallback()
+        }
         tween(this.uiTransform)
             .call(() => (this.label.string = ""))
             .to(1, { width: 0 }, { easing: "cubicInOut" })
             .call(() => {
                 if (this.queue.length > 0) {
                     this.startDialog()
-                } else this.isPlaying = false
+                } else {
+                    this.isPlaying = false
+                    this.node.active = false
+                }
             })
             .start()
     }
 
     private playNext(): void {
-        if (this.queue.length === 0) {
+        if (
+            this.queue.length === 0 ||
+            this.queue[0]._postCallback !== undefined
+        ) {
             this.endDialog()
             return
         }
