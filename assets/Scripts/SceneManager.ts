@@ -1,14 +1,6 @@
-import {
-    Component,
-    Director,
-    Scene,
-    UIOpacity,
-    _decorator,
-    director,
-    tween,
-} from "cc"
+import { Director, Scene, UIOpacity, _decorator, director, tween } from "cc"
 
-export class SceneManager extends Component {
+export class SceneManager {
     private static _getOrAddOpacity(scene: Scene): UIOpacity {
         const canvas = scene.getChildByName("Canvas")!
         let opacity = canvas.getComponent(UIOpacity)
@@ -30,7 +22,7 @@ export class SceneManager extends Component {
         sceneName: string,
         outDuration: number = 0.5,
         inDuration: number = 0.5,
-        loadDuration: number = 0.2
+        loadDuration: number = 0.2,
     ): void {
         const nextIn: Director.OnSceneLaunched = (_, scene) => {
             const opacity = SceneManager._getOrAddOpacity(scene)
