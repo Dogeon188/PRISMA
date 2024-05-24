@@ -29,7 +29,7 @@ export class DialogBox extends Component {
     /**
      * Play a sequence of dialogs
      */
-    playDialog(data: DialogEntry[]) {
+    playDialog(data: DialogEntry[]): void {
         this.queue.push(...data)
         if (!this.isPlaying) {
             this.startDialog()
@@ -39,7 +39,8 @@ export class DialogBox extends Component {
     /**
      * Skip the current dialog
      */
-    skipDialog() {
+    skipDialog(): void {
+        console.error("Not implemented")
         // TODO: stop current dialog and play next
     }
 
@@ -54,7 +55,7 @@ export class DialogBox extends Component {
         })
     }
 
-    private startDialog() {
+    private startDialog(): void {
         tween(this.uiTransform)
             .set({ width: 0 })
             .to(1, { width: this.width }, { easing: "cubicInOut" })
@@ -65,8 +66,9 @@ export class DialogBox extends Component {
             .start()
     }
 
-    private endDialog() {
+    private endDialog(): void {
         tween(this.uiTransform)
+            .call(() => (this.label.string = ""))
             .to(1, { width: 0 }, { easing: "cubicInOut" })
             .call(() => {
                 if (this.queue.length > 0) {
@@ -76,7 +78,7 @@ export class DialogBox extends Component {
             .start()
     }
 
-    private playNext() {
+    private playNext(): void {
         if (this.queue.length === 0) {
             this.endDialog()
             return
@@ -87,16 +89,17 @@ export class DialogBox extends Component {
         const secondPerChar = data.duration / data.text.length
         if (data.voice) AudioManager.inst.playOneShot(data.voice)
 
+        let i = 0
         tween(this.label)
-            .set({ string: data.text })
-            .delay(data.duration)
             .set({ string: "" })
+            .repeat(
+                data.text.length,
+                tween(this.label)
+                    .call(() => (this.label.string += data.text[i++]))
+                    .delay(secondPerChar),
+            )
             .call(() => {
-                if (data.postDelay) {
-                    this.scheduleOnce(() => this.playNext(), data.postDelay)
-                } else {
-                    this.playNext()
-                }
+                this.scheduleOnce(() => this.playNext(), data.postDelay || 0)
             })
             .start()
     }
