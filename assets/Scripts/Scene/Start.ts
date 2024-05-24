@@ -18,6 +18,6 @@ export class Start extends Component {
 
     protected startGame(): void {
         AudioManager.inst.fadeOutBGM(1)
-        SceneManager.loadScene("LevelTutorial")
+        SceneManager.loadScene("LevelTest")
     }
 }

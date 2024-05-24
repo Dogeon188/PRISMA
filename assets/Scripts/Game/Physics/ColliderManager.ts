@@ -35,7 +35,7 @@ export const ColliderType = Enum({
     /** the player */
     PLAYER: -1,
     /** interactable items, sensor only */
-    ITEM: -1,
+    ENTITY: -1,
 })
 
 /**
@@ -78,9 +78,9 @@ export class ColliderManager extends Component {
                     rigidBody.enabledContactListener = true
                     rigidBody.fixedRotation = true
                     break
-                case ColliderType.ITEM:
-                    rigidBody.type = ERigidBody2DType.Dynamic
-                    // collider.sensor = true
+                case ColliderType.ENTITY:
+                    rigidBody.type = ERigidBody2DType.Static
+                    collider.sensor = true
                     break
             }
         }

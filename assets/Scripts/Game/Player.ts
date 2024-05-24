@@ -15,6 +15,7 @@ import {
     Sprite,
     Vec2,
 } from "cc"
+import { Entity } from "./Entities/Entity"
 import { GameManager } from "./GameManager"
 import { ColliderType } from "./Physics/ColliderManager"
 import {
@@ -172,8 +173,8 @@ export class Player extends Component {
             case ColliderType.SPIKE:
                 // this.gameManager.hurt()
                 break
-            case ColliderType.ITEM:
-                // other.getComponent(Item).onTouch()
+            case ColliderType.ENTITY:
+                other.getComponent(Entity).onCollide(self.node)
                 contact.disabled = true
                 break
         }
