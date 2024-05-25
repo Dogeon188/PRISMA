@@ -23,8 +23,11 @@ export class Login extends Component {
             .auth()
             .signInWithEmailAndPassword(email, password)
             .then((user) => {
-                alert("User signed in successfully")
-                console.log(firebase.auth().currentUser.displayName)
+                alert(
+                    `User ${
+                        firebase.auth().currentUser.displayName
+                    } logged in successfully`,
+                )
             })
             .catch((error) => {
                 alert(error.message)

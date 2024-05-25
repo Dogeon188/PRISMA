@@ -26,12 +26,19 @@ export class Register extends Component {
         firebase
             .auth()
             .createUserWithEmailAndPassword(email, password)
-            .then((user) => {
-                alert("User created successfully")
-                firebase.auth().currentUser.updateProfile({
-                    displayName: username,
-                })
-                console.log(firebase.auth().currentUser.displayName)
+            .then(() => {
+                firebase
+                    .auth()
+                    .currentUser.updateProfile({
+                        displayName: username.toUpperCase(),
+                    })
+                    .then(() => {
+                        alert(
+                            `User ${
+                                firebase.auth().currentUser.displayName
+                            } created successfully`,
+                        )
+                    })
             })
             .catch((error) => {
                 alert(error.message)
