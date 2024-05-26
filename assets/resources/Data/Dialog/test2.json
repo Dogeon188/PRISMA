@@ -1,0 +1,12 @@
+{
+  "$schema": "./_schema.json",
+  "once": true,
+  "entries": [
+    {
+      "text": "I'm the king of the world!!!!!",
+      "duration": 1,
+      "postDelay": 3,
+      "voice": "Voice/confirmation1"
+    }
+  ]
+}

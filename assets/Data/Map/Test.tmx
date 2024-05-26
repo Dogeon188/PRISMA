@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="9">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="11">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <layer id="1" name="Ground" width="60" height="30">
   <data encoding="base64" compression="gzip">
@@ -15,5 +15,20 @@
   <object id="7" name="Ceiling" x="-16" y="256" width="976" height="16"/>
   <object id="8" name="Wall" x="960" y="256" width="16" height="160"/>
  </objectgroup>
- <objectgroup id="3" name="Objects"/>
+ <objectgroup id="3" name="Objects">
+  <object id="10" name="test2" type="dialog" x="464" y="320">
+   <properties>
+    <property name="class" value="dialog"/>
+    <property name="dialog" value="Dialog/test2"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="9" name="test1" type="dialog" x="320" y="384">
+   <properties>
+    <property name="class" value="dialog"/>
+    <property name="dialog" value="Dialog/test1"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
 </map>

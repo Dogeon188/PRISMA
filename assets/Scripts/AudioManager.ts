@@ -34,26 +34,6 @@ export class AudioManager {
         return this._audioSource
     }
 
-    //#region Load Resources
-
-    /**
-     * Load an audio clip from the resources folder.
-     * @param path The path to the audio clip, always prefixed with "Audios/"
-     */
-    getAudioClip(path: string): Promise<AudioClip> {
-        return new Promise<AudioClip>((resolve, reject) => {
-            resources.load("Audios/" + path, AudioClip, (err, clip) => {
-                if (err) {
-                    console.error("Failed to load audio clip", err)
-                    resolve(null)
-                }
-                resolve(clip)
-            })
-        })
-    }
-
-    //#endregion
-
     //#region Play Sounds
 
     /**

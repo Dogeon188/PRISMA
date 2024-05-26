@@ -9,5 +9,5 @@ export class Entity extends Component {
      * Normally should be called in {@linkcode Player.onBeginContact}
      * @param other The other entity collided with, usually a {@linkcode Player}
      */
-    onCollide(other: Node) {}
+    public onCollide(other: Node) {}
 }
