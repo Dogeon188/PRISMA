@@ -9,8 +9,9 @@
   - `const` is preferred over `let`. Don't use `var`.
   - Always use `const` for [pure functions](https://medium.com/frochu/純粹的好-pure-function-知道-574d5c0d7819).
 - Name your variables and functions with meaningful names.
+  - Use `snake_case` for assets and file names.
   - Use `camelCase` for variable names.
-  - Use `PascalCase` for class names and node names.
+  - Use `PascalCase` for class names, node names, and folder names.
   - Full, descriptive names are preferred over short, cryptic names.
 - `private` and `protected` are preferred than `public`.
   - Add a `_` prefix for private variables with public getter/setter.

@@ -1,4 +1,5 @@
-import { _decorator, Component, director, EditBox, Node } from "cc"
+import { _decorator, AudioClip, Component, director, EditBox, Node } from "cc"
+import { AudioManager } from "../AudioManager"
 
 const { ccclass, property } = _decorator
 
@@ -6,6 +7,9 @@ declare const firebase: any
 
 @ccclass("Register")
 export class Register extends Component {
+    @property(AudioClip)
+    private bgm: AudioClip = null
+
     @property({ type: EditBox })
     private email: EditBox = null
 
@@ -15,7 +19,12 @@ export class Register extends Component {
     @property({ type: EditBox })
     private password: EditBox = null
 
+    protected onLoad(): void {
+        AudioManager.inst.fadeInBGM(this.bgm, 0.5)
+    }
+
     protected navigateToLogin(): void {
+        AudioManager.inst.doNotReplayNextTime()
         director.loadScene("Login")
     }
 
