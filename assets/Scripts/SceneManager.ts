@@ -20,6 +20,7 @@ export class SceneManager {
      */
     static loadScene(
         sceneName: string,
+        noLoading: boolean = false,
         outDuration: number = 0.5,
         inDuration: number = 0.5,
         loadDuration: number = 0.2,
@@ -56,7 +57,13 @@ export class SceneManager {
 
         tween(prevOpacity)
             .to(outDuration, { opacity: 0 }, { easing: "cubicOut" })
-            .call(() => director.loadScene("Loading", loadIn))
+            .call(() => {
+                if (noLoading) {
+                    director.loadScene(sceneName, nextIn)
+                    return
+                }
+                director.loadScene("Loading", loadIn)
+            })
             .start()
     }
 }

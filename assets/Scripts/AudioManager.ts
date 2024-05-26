@@ -60,6 +60,10 @@ export class AudioManager {
      * Play a sound effect once.
      */
     playOneShot(audioClip: AudioClip, volume: number = 1): void {
+        if (audioClip == null) {
+            console.error("Audio clip is null")
+            return
+        }
         this._audioSource.playOneShot(audioClip, volume)
     }
 
@@ -76,6 +80,10 @@ export class AudioManager {
      * Replace the current background music if there is one.
      */
     playBGM(audioClip: AudioClip, volume: number = 1): void {
+        if (audioClip == null) {
+            console.error("Audio clip is null")
+            return
+        }
         if (this.doNotReplay) {
             this.doNotReplay = false
             return
