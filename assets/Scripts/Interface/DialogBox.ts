@@ -92,7 +92,8 @@ export class DialogBox extends Component {
     private playNext(): void {
         if (
             this.queue.length === 0 ||
-            this.queue[0]._postCallback !== undefined
+            (this.queue[0]._postCallback !== undefined &&
+                this.queue.length === 1)
         ) {
             this.endDialog()
             return
