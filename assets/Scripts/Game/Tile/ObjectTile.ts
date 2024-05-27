@@ -2,6 +2,7 @@ import {
     _decorator,
     Component,
     instantiate,
+    Node,
     Prefab,
     TiledObjectGroup,
     UITransform,
@@ -27,8 +28,8 @@ type TileObjectTypes = {
     /** Portal to another node in the same scene */
     nodePortal: {
         class: "nodePortal"
-        /** The node name to move to */
-        node: string
+        /** The object id (in Tiled) to move to, usually a dummy node */
+        destination: number
     }
     /** Dummy object just for reference */
     dummy: {
@@ -57,26 +58,43 @@ export class ObjectTile extends Component {
             TiledObjectGroup,
         ).getObjects() as TileObject<keyof TileObjectTypes>[]
 
+        const objectNodes: Map<string | number, Node> = new Map()
+        const nodePortals: Map<string | number, string | number> = new Map()
+
         for (const object of objects) {
             switch (object.class) {
                 case "dialog":
-                    this.createDialog(object)
+                    objectNodes.set(object.id, this.createDialog(object))
                     break
                 case "scenePortal":
-                    this.createScenePortal(object)
+                    objectNodes.set(object.id, this.createScenePortal(object))
                     break
                 case "nodePortal":
-                    console.warn("Node portal not implemented")
+                    const portal = this.createNodePortal(object)
+                    objectNodes.set(object.id, portal)
+                    nodePortals.set(object.id, object.destination)
+                    break
+                case "dummy":
+                    objectNodes.set(object.id, this.createDummy(object))
                     break
                 default:
                     console.warn(
                         `Unknown object class: ${(object as any).class}`,
+                        object,
                     )
+            }
+        }
+
+        for (const [portal, destination] of nodePortals) {
+            const portalNode = objectNodes.get(portal)
+            const destinationNode = objectNodes.get(destination)
+            if (portalNode && destinationNode) {
+                portalNode.getComponent(Portal)!.toNode = destinationNode
             }
         }
     }
 
-    private createDialog(object: TileObject<"dialog">): void {
+    private createDialog(object: TileObject<"dialog">): Node {
         const dialogNode = instantiate(this.dialogPrefab)
         dialogNode.name = object.name
         dialogNode.setPosition(object.x, object.y)
@@ -84,9 +102,10 @@ export class ObjectTile extends Component {
             dialogNode.getComponent(Dialog)!.dialogData = asset
         })
         this.node.addChild(dialogNode)
+        return dialogNode
     }
 
-    private createScenePortal(object: TileObject<"scenePortal">): void {
+    private createScenePortal(object: TileObject<"scenePortal">): Node {
         const portalNode = instantiate(this.portalPrefab)
         portalNode.name = object.name
         portalNode.setPosition(object.x, object.y)
@@ -94,5 +113,24 @@ export class ObjectTile extends Component {
         portal.portalType = PortalType.SCENE
         portal.toScene = object.scene
         this.node.addChild(portalNode)
+        return portalNode
+    }
+
+    private createNodePortal(object: TileObject<"nodePortal">): Node {
+        const portalNode = instantiate(this.portalPrefab)
+        portalNode.name = object.name
+        portalNode.setPosition(object.x, object.y)
+        const portal = portalNode.getComponent(Portal)
+        portal.portalType = PortalType.NODE
+        // destination node id set 
+        this.node.addChild(portalNode)
+        return portalNode
+    }
+
+    private createDummy(object: TileObject<"dummy">): Node {
+        const dummyNode = new Node(object.name)
+        dummyNode.setPosition(object.x, object.y)
+        this.node.addChild(dummyNode)
+        return dummyNode
     }
 }

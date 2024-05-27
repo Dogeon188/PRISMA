@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="13">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="21">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <layer id="1" name="Ground" width="60" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAE+2ZsQ2AMAwEDQwADAAMAAxAgJ6xGJ1PEQmlSWVFsr/4IkIiufzhhiDyBoZ3QAfoAB2gA3SADtABOkAH6AAdoAPGHXhExFMa8LZO0oGzRwYnGclruusa/a5waq/0/dTgPcB6GubN+8x58+easzP2OyGzYhJf2qO01jzLAs5NOTfef/32KK01zxPnBv4tuEmcG+S1ewce+/0A/R5noCAcAAA=
+   H4sIAAAAAAAAE+1XQQ7CMAwL8ADgAcADgAewwZ1n8XScwyTUA6s8TVFaH3yo1rRx43bxYPYZBJ2BNJBeAxsz2xLYISbjG7BH3gcCR/FNoXXVt07fWfV8wj08E7gkvb8Z31jlrP5YGpAGWtXAG/+SnsB6BMZXRMe4r2F7SMZXRMd4Hyi+dT1zdK2Y/SPqe4Wm7gCT79KYCL4PcB0b5lvWs+Rbfl9aw3/xXl/WA9b6xonfNH9uXLsuM899621lvLD+82ePufGa+fi7gb6xG/i7Ib7tnkGP9f0CQI7BiyAcAAA=
   </data>
  </layer>
  <objectgroup id="4" name="Barriers">
@@ -14,9 +14,13 @@
   <object id="5" name="Block1" x="384" y="368" width="32" height="48"/>
   <object id="7" name="Ceiling" x="-16" y="256" width="976" height="16"/>
   <object id="8" name="Wall" x="960" y="256" width="16" height="160"/>
+  <object id="17" name="SecretFloor" x="48" y="160" width="240" height="16"/>
+  <object id="18" name="SecretWall" x="32" y="64" width="16" height="96"/>
+  <object id="19" name="SecretWall" x="288" y="64" width="16" height="96"/>
+  <object id="20" name="SecretCeil" x="48" y="48" width="240" height="16"/>
  </objectgroup>
  <objectgroup id="3" name="Objects">
-  <object id="10" name="test2" type="dialog" x="464" y="320">
+  <object id="10" name="test2" type="dialog" x="168" y="144">
    <properties>
     <property name="class" value="dialog"/>
     <property name="dialog" value="Dialog/test2"/>
@@ -37,9 +41,29 @@
    </properties>
    <point/>
   </object>
-  <object id="12" name="Portal" type="nodePortal" x="752" y="384">
+  <object id="16" name="SecretOutDest" type="dummy" x="688" y="384">
+   <properties>
+    <property name="class" value="dummy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="14" name="SecretOut" type="nodePortal" x="256" y="144">
    <properties>
     <property name="class" value="nodePortal"/>
+    <property name="destination" value="16"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="13" name="SecretInDest" type="dummy" x="80" y="144">
+   <properties>
+    <property name="class" value="dummy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="12" name="SecretIn" type="nodePortal" x="752" y="384">
+   <properties>
+    <property name="class" value="nodePortal"/>
+    <property name="destination" value="13"/>
    </properties>
    <point/>
   </object>
