@@ -33,9 +33,15 @@ export const ColliderType = Enum({
     /** kills player on touch */
     SPIKE: -1,
     /** the player */
-    PLAYER: -1,
-    /** interactable items, sensor only */
-    ENTITY: -1,
+    PLAYER: 32,
+    /**
+     * A range of halo around player.
+     * Collider of colored objects will be affected when within the halo. */
+    HALO: -1,
+    /** Interactable sensor entity. */
+    SENSOR: 64,
+    /** Interactable items, not a sensor */
+    OBJECT: -1,
 })
 
 /**
@@ -51,7 +57,8 @@ export class ColliderManager extends Component {
         type: ColliderType,
         visible: true,
         displayName: "Collider Type",
-        tooltip: "Type of collider. See <code>ColliderType</code> in <code>ColliderManager.ts</code> for details",
+        tooltip:
+            "Type of collider. See <code>ColliderType</code> in <code>ColliderManager.ts</code> for details",
     })
     private _type: number = ColliderType.NONE
 
@@ -78,7 +85,7 @@ export class ColliderManager extends Component {
                     rigidBody.enabledContactListener = true
                     rigidBody.fixedRotation = true
                     break
-                case ColliderType.ENTITY:
+                case ColliderType.SENSOR:
                     rigidBody.type = ERigidBody2DType.Static
                     collider.sensor = true
                     break
