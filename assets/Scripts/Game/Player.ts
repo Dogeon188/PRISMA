@@ -237,6 +237,7 @@ export class Player extends Component {
         contact: IPhysics2DContact,
     ): void {
         if (other.tag === ColliderType.OBJECT) {
+            console.log("Begin contact with box")
             other.node.getComponent(Box).onCollisionEnter()
         }
     }
@@ -246,9 +247,10 @@ export class Player extends Component {
         other: Collider2D,
         contact: IPhysics2DContact,
     ): void {
-        // if (other.tag === ColliderType.OBJECT) {
-        //     other.node.getComponent(Box).onCollisionExit()
-        // }
+        if (other.tag === ColliderType.OBJECT) {
+            console.log("End contact with box")
+            other.node.getComponent(Box).onCollisionExit()
+        }
     }
 
     //#endregion

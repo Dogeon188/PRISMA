@@ -36,7 +36,15 @@ export class Box extends Entity {
     }
 
     public onCollisionEnter(): void {
-        console.log("Collision Enter")
+        this.scheduleOnce(() => {
+            this.node.getComponent(Sprite).enabled = false
+        }, 0.1)
+    }
+
+    public onCollisionExit(): void {
+        this.scheduleOnce(() => {
+            this.node.getComponent(Sprite).enabled = true
+        }, 0.1)
     }
 
     public onBeginInteract(player: Player): void {
