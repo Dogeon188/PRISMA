@@ -32,6 +32,7 @@ interface KeyBind {
     down: import("cc").KeyCode
     left: import("cc").KeyCode
     right: import("cc").KeyCode
+    interact: import("cc").KeyCode
 }
 
 @ccclass("Player")
@@ -48,6 +49,7 @@ export class Player extends Component {
         down: KeyCode.KEY_S,
         left: KeyCode.KEY_A,
         right: KeyCode.KEY_D,
+        interact: KeyCode.KEY_E,
     }
 
     //#endregion
@@ -55,6 +57,20 @@ export class Player extends Component {
     //#region References
 
     private rigidBody: RigidBody2D
+
+    /**
+     * Set of UUIDs of nodes that the player is standing on. \
+     * This works in practice based on the assumption that no two nodes have the same UUID,
+     * and that a player won't be standing on too many nodes at once. \
+     * Dirty trick... but it works.
+     */
+    private standingOn: Set<string> = new Set()
+
+    /** Most recently collided/touched entity */
+    private recentCollidedWith: Entity
+
+    /** Entity that the player is currently interacting with */
+    private interactingWith: Entity
 
     /** Reference to animation component of sprite node */
     private animation: Animation
@@ -69,14 +85,6 @@ export class Player extends Component {
     //#endregion
 
     //#region Properties
-
-    /**
-     * Set of UUIDs of nodes that the player is standing on. \
-     * This works in practice based on the assumption that no two nodes have the same UUID,
-     * and that a player won't be standing on too many nodes at once. \
-     * Dirty trick... but it works.
-     */
-    private standingOn: Set<string> = new Set()
 
     private get onGround(): boolean {
         return this.standingOn.size > 0
@@ -173,9 +181,13 @@ export class Player extends Component {
             case ColliderType.SPIKE:
                 // this.gameManager.hurt()
                 break
-            case ColliderType.ENTITY:
+            case ColliderType.SENSOR:
                 other.getComponent(Entity).onCollide(self.node)
+                this.recentCollidedWith = other.getComponent(Entity)
                 contact.disabled = true
+                break
+            case ColliderType.OBJECT:
+                this.recentCollidedWith = other.getComponent(Entity)
                 break
         }
     }
@@ -259,6 +271,12 @@ export class Player extends Component {
             case Player.KEYBINDS.right:
                 this.movement.right = true
                 break
+            case Player.KEYBINDS.interact:
+                if (this.recentCollidedWith) {
+                    this.interactingWith = this.recentCollidedWith
+                    this.interactingWith.onBeginInteract(this)
+                }
+                break
         }
     }
 
@@ -275,6 +293,12 @@ export class Player extends Component {
                 break
             case Player.KEYBINDS.right:
                 this.movement.right = false
+                break
+            case Player.KEYBINDS.interact:
+                if (this.interactingWith) {
+                    this.interactingWith.onEndInteract(this)
+                    this.interactingWith = null
+                }
                 break
         }
     }
