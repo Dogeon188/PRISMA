@@ -230,6 +230,12 @@ export class Player extends Component {
             case ColliderType.ONEWAY:
                 this.standingOn.delete(other.uuid)
                 break
+            case ColliderType.SENSOR:
+            case ColliderType.OBJECT:
+                if (this.recentCollidedWith === other.getComponent(Entity)) {
+                    this.recentCollidedWith = null
+                }
+                break
         }
     }
 
