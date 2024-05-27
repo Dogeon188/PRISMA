@@ -1,4 +1,4 @@
-import { AudioClip, AudioSource, Node, director, resources, tween } from "cc"
+import { AudioClip, AudioSource, Node, director, tween } from "cc"
 
 /**
  * A simple audio manager that plays sound effects and background music. \

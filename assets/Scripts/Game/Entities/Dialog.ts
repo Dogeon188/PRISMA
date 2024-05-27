@@ -1,11 +1,4 @@
-import {
-    _decorator,
-    JsonAsset,
-    Node,
-    ParticleSystem2D,
-    tween,
-    UIOpacity,
-} from "cc"
+import { _decorator, JsonAsset, Node, ParticleSystem2D } from "cc"
 import { DialogEntry } from "../../Interface/DialogBox"
 import { ResourceManager } from "../../ResourceManager"
 import { GameManager } from "../GameManager"
