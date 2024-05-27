@@ -35,13 +35,11 @@ export class TrackCamera extends Component {
             Size.ZERO,
             1 - 1 / screen.devicePixelRatio,
         )
-        console.log(this.cameraSize)
         this._min = this.min.clone()
         this._max = new Vec2(
             this.max.x - this.cameraSize.width,
             this.max.y - this.cameraSize.height,
         )
-        console.log(this._min, this._max)
     }
 
     /**

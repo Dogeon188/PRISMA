@@ -19,7 +19,6 @@ export class PlayerHalo extends Component {
 
     onLoad() {
         const collider = this.node.getComponent(Collider2D)
-        console.log(collider)
         if (collider) {
             collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this)
         }
@@ -35,7 +34,6 @@ export class PlayerHalo extends Component {
         contact: IPhysics2DContact,
     ): void {
         // const normal = getCorrectNormal(self, other, contact)
-        console.log(self, other)
         if (other.tag === ColliderType.OBJECT) {
             other.node.getComponent(Box).onCollisionEnter()
         }

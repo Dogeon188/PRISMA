@@ -48,13 +48,11 @@ export class Box extends Entity {
     }
 
     public onBeginInteract(player: Player): void {
-        console.log("Begin Interact")
         this.bindedTo = player.node
         this.bindOffsetX = this.node.position.x - player.node.position.x
     }
 
     public onEndInteract(player: Player): void {
-        console.log("End Interact")
         this.bindedTo = null
     }
 }
