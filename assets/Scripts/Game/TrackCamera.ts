@@ -31,9 +31,9 @@ export class TrackCamera extends Component {
     private target: Vec3 = new Vec3(0, 0, 0)
 
     onLoad(): void {
-        this.cameraSize = Size.ZERO.lerp(
-            screen.resolution,
-            1 / screen.devicePixelRatio,
+        this.cameraSize = screen.resolution.lerp(
+            Size.ZERO,
+            1 - 1 / screen.devicePixelRatio,
         )
         console.log(this.cameraSize)
         this._min = this.min.clone()
@@ -41,6 +41,7 @@ export class TrackCamera extends Component {
             this.max.x - this.cameraSize.width,
             this.max.y - this.cameraSize.height,
         )
+        console.log(this._min, this._max)
     }
 
     /**

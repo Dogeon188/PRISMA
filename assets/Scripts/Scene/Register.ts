@@ -47,6 +47,7 @@ export class Register extends Component {
                                 firebase.auth().currentUser.displayName
                             } created successfully`,
                         )
+                        director.loadScene("Start")
                     })
             })
             .catch((error) => {

@@ -37,6 +37,7 @@ export class Login extends Component {
                         firebase.auth().currentUser.displayName
                     } logged in successfully`,
                 )
+                director.loadScene("Start")
             })
             .catch((error) => {
                 alert(error.message)
