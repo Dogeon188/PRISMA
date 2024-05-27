@@ -187,7 +187,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 360,
+    "_orthoHeight": 442.11699164345407,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -457,7 +457,7 @@
     "_string": "PRISMA",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 158.33333333333334,
+    "_actualFontSize": 134.625,
     "_fontSize": 120,
     "_fontFamily": "Arial",
     "_lineHeight": 120,
@@ -672,8 +672,8 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 92.81214149876645,
-      "height": 75.6
+      "width": 92.8165123389624,
+      "height": 75.60000000000001
     }
   },
   {
@@ -762,10 +762,6 @@
     "__prefab": null,
     "bgm": {
       "__uuid__": "adca6da8-92f4-4230-ada1-0d00ef16a089",
-      "__expectedType__": "cc.AudioClip"
-    },
-    "click": {
-      "__uuid__": "658bcb8f-0ef9-4df7-ba52-48da5504327b",
       "__expectedType__": "cc.AudioClip"
     },
     "startButton": null,

@@ -17,6 +17,7 @@ import {
 } from "cc"
 import { Box } from "./Entities/Box"
 import { Entity } from "./Entities/Entity"
+import { PlayerHalo } from "./Entities/PlayerHalo"
 import { GameManager } from "./GameManager"
 import { ColliderGroup, ColliderType } from "./Physics/ColliderManager"
 import {
@@ -25,7 +26,6 @@ import {
     NormalDirection,
 } from "./Physics/PhysicsFixer"
 import { Movement } from "./Physics/PlayerMovement"
-import { PlayerHalo } from "./Entities/PlayerHalo"
 
 const { ccclass, property, requireComponent } = _decorator
 
@@ -139,10 +139,6 @@ export class Player extends Component {
     protected update(dt: number): void {
         this.updateMovement(dt)
         this.updateAnimation(dt)
-
-        this.sprite.color = this.onGround
-            ? new Color(255, 255, 255)
-            : new Color(255, 0, 0)
     }
 
     //#endregion
@@ -190,15 +186,13 @@ export class Player extends Component {
         contact: IPhysics2DContact,
     ): void {
         const normal = getCorrectNormal(self, other, contact)
+        const isOnTop = fuzzyEqual(normal.y, NormalDirection.ON_TOP)
 
         switch (other.tag) {
             case ColliderType.ONEWAY:
-                if (!fuzzyEqual(normal.y, NormalDirection.ON_TOP))
-                    contact.disabled = true // Disable collision if not on top
+                if (!isOnTop) contact.disabled = true // Disable collision if not on top
             case ColliderType.GROUND: // Fall through
-                if (fuzzyEqual(normal.y, NormalDirection.ON_TOP)) {
-                    this.standingOn.add(other.uuid)
-                }
+                if (isOnTop) this.standingOn.add(other.uuid)
                 break
             case ColliderType.SPIKE:
                 // this.gameManager.hurt()
@@ -210,6 +204,7 @@ export class Player extends Component {
                 break
             case ColliderType.OBJECT:
                 this.recentCollidedWith = other.getComponent(Entity)
+                if (isOnTop) this.standingOn.add(other.uuid)
                 break
         }
     }
@@ -230,8 +225,9 @@ export class Player extends Component {
             case ColliderType.ONEWAY:
                 this.standingOn.delete(other.uuid)
                 break
-            case ColliderType.SENSOR:
             case ColliderType.OBJECT:
+                this.standingOn.delete(other.uuid)
+            case ColliderType.SENSOR:
                 if (this.recentCollidedWith === other.getComponent(Entity)) {
                     this.recentCollidedWith = null
                 }
