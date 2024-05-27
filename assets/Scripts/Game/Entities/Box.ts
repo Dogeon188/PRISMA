@@ -1,8 +1,8 @@
-import { _decorator, Collider, Color, Component, Node, Sprite, Vec3 } from "cc"
-const { ccclass, property } = _decorator
+import { _decorator, Collider2D, Color, Node, Sprite, Vec3 } from "cc"
 import { ColliderGroup } from "../Physics/ColliderManager"
-import { Entity } from "./Entity"
 import { Player } from "../Player"
+import { Entity } from "./Entity"
+const { ccclass, property } = _decorator
 
 @ccclass("Box")
 export class Box extends Entity {
@@ -12,15 +12,17 @@ export class Box extends Entity {
     private bindedTo: Node | null = null
     private bindOffsetX: number = 0
 
+    private static readonly COLOR_MAP = {
+        [ColliderGroup.RED]: Color.RED,
+        [ColliderGroup.GREEN]: Color.GREEN,
+        [ColliderGroup.BLUE]: Color.BLUE,
+    }
+
     protected onLoad(): void {
-        const target_color =
-            this.color === ColliderGroup.RED
-                ? Color.RED
-                : this.color === ColliderGroup.GREEN
-                ? Color.GREEN
-                : Color.BLUE
         // Set the color of the box
-        this.node.getComponent(Sprite).color = target_color
+        this.node.getComponent(Sprite).color = Box.COLOR_MAP[this.color]
+        // Set the group of the collider
+        this.node.getComponent(Collider2D).group = this.color
     }
 
     protected start() {}
@@ -35,18 +37,28 @@ export class Box extends Entity {
         }
     }
 
-    public onCollisionEnter(): void {
-        console.log("Collision Enter")
+    public onCollisionEnter(playerHaloColor: number): void {
+        if (playerHaloColor === this.color) {
+            this.scheduleOnce(() => {
+                this.node.getComponent(Sprite).enabled = false
+            }, 0.1)
+        }
+    }
+
+    public onCollisionExit(playerHaloColor: number): void {
+        if (playerHaloColor === this.color) {
+            this.scheduleOnce(() => {
+                this.node.getComponent(Sprite).enabled = true
+            }, 0.1)
+        }
     }
 
     public onBeginInteract(player: Player): void {
-        console.log("Begin Interact")
         this.bindedTo = player.node
         this.bindOffsetX = this.node.position.x - player.node.position.x
     }
 
     public onEndInteract(player: Player): void {
-        console.log("End Interact")
         this.bindedTo = null
     }
 }
