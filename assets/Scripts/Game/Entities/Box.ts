@@ -37,16 +37,20 @@ export class Box extends Entity {
         }
     }
 
-    public onCollisionEnter(): void {
-        this.scheduleOnce(() => {
-            this.node.getComponent(Sprite).enabled = false
-        }, 0.1)
+    public onCollisionEnter(playerHaloColor: number): void {
+        if (playerHaloColor === this.color) {
+            this.scheduleOnce(() => {
+                this.node.getComponent(Sprite).enabled = false
+            }, 0.1)
+        }
     }
 
-    public onCollisionExit(): void {
-        this.scheduleOnce(() => {
-            this.node.getComponent(Sprite).enabled = true
-        }, 0.1)
+    public onCollisionExit(playerHaloColor: number): void {
+        if (playerHaloColor === this.color) {
+            this.scheduleOnce(() => {
+                this.node.getComponent(Sprite).enabled = true
+            }, 0.1)
+        }
     }
 
     public onBeginInteract(player: Player): void {

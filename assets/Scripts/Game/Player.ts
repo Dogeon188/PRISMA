@@ -25,6 +25,7 @@ import {
     NormalDirection,
 } from "./Physics/PhysicsFixer"
 import { Movement } from "./Physics/PlayerMovement"
+import { PlayerHalo } from "./Entities/PlayerHalo"
 
 const { ccclass, property, requireComponent } = _decorator
 
@@ -238,7 +239,9 @@ export class Player extends Component {
         contact: IPhysics2DContact,
     ): void {
         if (other.tag === ColliderType.OBJECT) {
-            other.node.getComponent(Box).onCollisionEnter()
+            other.node
+                .getComponent(Box)
+                .onCollisionEnter(self.node.getComponent(PlayerHalo).color)
         }
     }
 
@@ -248,7 +251,9 @@ export class Player extends Component {
         contact: IPhysics2DContact,
     ): void {
         if (other.tag === ColliderType.OBJECT) {
-            other.node.getComponent(Box).onCollisionExit()
+            other.node
+                .getComponent(Box)
+                .onCollisionExit(self.node.getComponent(PlayerHalo).color)
         }
     }
 
