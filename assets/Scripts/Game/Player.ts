@@ -15,16 +15,16 @@ import {
     Sprite,
     Vec2,
 } from "cc"
+import { Box } from "./Entities/Box"
 import { Entity } from "./Entities/Entity"
 import { GameManager } from "./GameManager"
-import { ColliderType } from "./Physics/ColliderManager"
+import { ColliderGroup, ColliderType } from "./Physics/ColliderManager"
 import {
     fuzzyEqual,
     getCorrectNormal,
     NormalDirection,
 } from "./Physics/PhysicsFixer"
 import { Movement } from "./Physics/PlayerMovement"
-import { Box } from "./Entities/Box"
 
 const { ccclass, property, requireComponent } = _decorator
 
@@ -111,6 +111,7 @@ export class Player extends Component {
 
         for (const collider of this.node.getComponents(Collider2D)) {
             if (collider.tag === ColliderType.PLAYER) {
+                collider.group = ColliderGroup.RED // TODO dynamic change group
                 collider.on(
                     Contact2DType.BEGIN_CONTACT,
                     this.onBeginContact,
@@ -129,7 +130,7 @@ export class Player extends Component {
                     this,
                 )
             } else {
-                alert("Player collider type not set to PLAYER or HALO!")
+                console.error("Player collider type not set to PLAYER or HALO!")
             }
         }
     }
