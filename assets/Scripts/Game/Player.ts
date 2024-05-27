@@ -24,6 +24,7 @@ import {
     NormalDirection,
 } from "./Physics/PhysicsFixer"
 import { Movement } from "./Physics/PlayerMovement"
+import { Box } from "./Entities/Box"
 
 const { ccclass, property, requireComponent } = _decorator
 
@@ -107,16 +108,35 @@ export class Player extends Component {
         // Register input events
         input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this)
         input.on(Input.EventType.KEY_UP, this.onKeyUp, this)
+
+        for (const collider of this.node.getComponents(Collider2D)) {
+            if (collider.tag === ColliderType.PLAYER) {
+                collider.on(
+                    Contact2DType.BEGIN_CONTACT,
+                    this.onBeginContact,
+                    this,
+                )
+                collider.on(Contact2DType.END_CONTACT, this.onEndContact, this)
+            } else if (collider.tag === ColliderType.HALO) {
+                collider.on(
+                    Contact2DType.BEGIN_CONTACT,
+                    this.onBeginContactHalo,
+                    this,
+                )
+                collider.on(
+                    Contact2DType.END_CONTACT,
+                    this.onEndContactHalo,
+                    this,
+                )
+            } else {
+                alert("Player collider type not set to PLAYER or HALO!")
+            }
+        }
     }
 
     protected update(dt: number): void {
         this.updateMovement(dt)
         this.updateAnimation(dt)
-
-        for (const collider of this.node.getComponents(Collider2D)) {
-            collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this)
-            collider.on(Contact2DType.END_CONTACT, this.onEndContact, this)
-        }
 
         this.sprite.color = this.onGround
             ? new Color(255, 255, 255)
@@ -209,6 +229,26 @@ export class Player extends Component {
                 this.standingOn.delete(other.uuid)
                 break
         }
+    }
+
+    private onBeginContactHalo(
+        self: Collider2D,
+        other: Collider2D,
+        contact: IPhysics2DContact,
+    ): void {
+        if (other.tag === ColliderType.OBJECT) {
+            other.node.getComponent(Box).onCollisionEnter()
+        }
+    }
+
+    private onEndContactHalo(
+        self: Collider2D,
+        other: Collider2D,
+        contact: IPhysics2DContact,
+    ): void {
+        // if (other.tag === ColliderType.OBJECT) {
+        //     other.node.getComponent(Box).onCollisionExit()
+        // }
     }
 
     //#endregion
