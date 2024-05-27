@@ -1,18 +1,12 @@
 import {
     _decorator,
-    Canvas,
-    CCFloat,
     clamp,
     Component,
-    director,
-    Label,
     Node,
     screen,
     Size,
-    tween,
     Vec2,
     Vec3,
-    View,
 } from "cc"
 const { ccclass, property } = _decorator
 
@@ -37,10 +31,11 @@ export class TrackCamera extends Component {
     private target: Vec3 = new Vec3(0, 0, 0)
 
     onLoad(): void {
-        this.cameraSize = screen.resolution.lerp(
-            Size.ZERO,
+        this.cameraSize = Size.ZERO.lerp(
+            screen.resolution,
             1 / screen.devicePixelRatio,
         )
+        console.log(this.cameraSize)
         this._min = this.min.clone()
         this._max = new Vec2(
             this.max.x - this.cameraSize.width,
