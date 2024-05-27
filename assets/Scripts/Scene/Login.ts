@@ -1,4 +1,4 @@
-import { AudioClip, Component, EditBox, Node, _decorator, director } from "cc"
+import { AudioClip, Component, EditBox, _decorator, director } from "cc"
 import { AudioManager } from "../AudioManager"
 
 const { ccclass, property } = _decorator

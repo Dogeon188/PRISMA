@@ -1,5 +1,5 @@
-import { _decorator, Color, Component, Node, Sprite } from "cc"
-const { ccclass, property } = _decorator
+import { _decorator, Color, Component, Sprite } from "cc"
+const { ccclass } = _decorator
 
 @ccclass("TextBox")
 export class TextBox extends Component {
