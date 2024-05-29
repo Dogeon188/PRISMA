@@ -37,4 +37,9 @@ export class Auth {
             this._userData = snapshot.val()
         }
     }
+
+    public static async updateUserData(data: Partial<UserData>): Promise<void> {
+        this.userDataRef.update(data)
+        this._userData = { ...this._userData, ...data }
+    }
 }

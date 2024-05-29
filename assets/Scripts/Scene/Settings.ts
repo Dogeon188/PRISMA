@@ -10,6 +10,7 @@ import {
     Label,
     Node,
 } from "cc"
+import { Auth } from "../Auth"
 import { SceneManager } from "../SceneManager"
 const { ccclass, property } = _decorator
 
@@ -57,13 +58,7 @@ const keyCodes = {
 
 @ccclass("Settings")
 export class Settings extends Component {
-    static keybinds: KeyBind = {
-        jump: KeyCode.KEY_W,
-        down: KeyCode.KEY_S,
-        left: KeyCode.KEY_A,
-        right: KeyCode.KEY_D,
-        interact: KeyCode.KEY_E,
-    }
+    static keybinds: KeyBind = null
 
     //#region Properties
 
@@ -109,10 +104,10 @@ export class Settings extends Component {
 
     protected onLoad() {
         // back button
-        this.backButton.node.on(Button.EventType.CLICK, () => {
-            SceneManager.loadScene("Start", true)
-        })
+        this.backButton.node.on(Button.EventType.CLICK, this.saveAndLeave, this)
         // keybinds
+        Settings.keybinds = Auth.data.keybinds
+
         input.on(Input.EventType.KEY_UP, this.onKeyUp, this)
 
         this.buttons.jump = this.jumpButton
@@ -136,6 +131,11 @@ export class Settings extends Component {
                 this,
             )
         }
+    }
+
+    private saveAndLeave(): void {
+        Auth.updateUserData({ keybinds: Settings.keybinds })
+        SceneManager.loadScene("Start", true)
     }
 
     //#endregion

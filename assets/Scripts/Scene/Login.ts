@@ -27,21 +27,19 @@ export class Login extends Component {
         director.loadScene("Register")
     }
 
-    protected login(): void {
+    protected async login(): Promise<void> {
         const email = this.email.string
         const password = this.password.string
 
-        const auth = firebase.auth()
-        auth.signInWithEmailAndPassword(email, password)
-            .then((user) => {
-                Auth.loadUserData() // load user data from realtime database after successful login
-                alert(
-                    `User ${auth.currentUser.displayName} logged in successfully`,
-                )
-                SceneManager.loadScene("Start", true)
-            })
-            .catch((error) => {
-                alert(error.message)
-            })
+        try {
+            const auth = firebase.auth()
+            await auth.signInWithEmailAndPassword(email, password)
+
+            await Auth.loadUserData() // load user data from realtime database after successful login
+            alert(`User ${auth.currentUser.displayName} logged in successfully`)
+            SceneManager.loadScene("Start", true)
+        } catch (error) {
+            alert(error.message)
+        }
     }
 }
