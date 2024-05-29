@@ -5,3 +5,9 @@ interface KeyBind {
     right: import("cc").KeyCode
     interact: import("cc").KeyCode
 }
+
+interface UserData {
+    keybinds: KeyBind
+}
+
+declare const firebase: any

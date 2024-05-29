@@ -1,5 +1,7 @@
 import { _decorator, AudioClip, Component, director, EditBox } from "cc"
 import { AudioManager } from "../AudioManager"
+import { Auth } from "../Auth"
+import { SceneManager } from "../SceneManager"
 
 const { ccclass, property } = _decorator
 
@@ -32,22 +34,19 @@ export class Register extends Component {
         const email = this.email.string
         const password = this.password.string
         const username = this.username.string
-        firebase
-            .auth()
-            .createUserWithEmailAndPassword(email, password)
+        const auth = firebase.auth()
+        auth.createUserWithEmailAndPassword(email, password)
             .then(() => {
-                firebase
-                    .auth()
-                    .currentUser.updateProfile({
+                Auth.data = Auth.data // create & initialize default user data
+                auth.currentUser
+                    .updateProfile({
                         displayName: username.toUpperCase(),
                     })
                     .then(() => {
                         alert(
-                            `User ${
-                                firebase.auth().currentUser.displayName
-                            } created successfully`,
+                            `User ${auth.currentUser.displayName} created successfully`,
                         )
-                        director.loadScene("Start")
+                        SceneManager.loadScene("Start", true)
                     })
             })
             .catch((error) => {

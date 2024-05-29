@@ -1,5 +1,7 @@
 import { AudioClip, Component, EditBox, _decorator, director } from "cc"
 import { AudioManager } from "../AudioManager"
+import { Auth } from "../Auth"
+import { SceneManager } from "../SceneManager"
 
 const { ccclass, property } = _decorator
 
@@ -28,16 +30,15 @@ export class Login extends Component {
     protected login(): void {
         const email = this.email.string
         const password = this.password.string
-        firebase
-            .auth()
-            .signInWithEmailAndPassword(email, password)
+
+        const auth = firebase.auth()
+        auth.signInWithEmailAndPassword(email, password)
             .then((user) => {
+                Auth.loadUserData() // load user data from realtime database after successful login
                 alert(
-                    `User ${
-                        firebase.auth().currentUser.displayName
-                    } logged in successfully`,
+                    `User ${auth.currentUser.displayName} logged in successfully`,
                 )
-                director.loadScene("Start")
+                SceneManager.loadScene("Start", true)
             })
             .catch((error) => {
                 alert(error.message)
