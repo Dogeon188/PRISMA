@@ -195,7 +195,7 @@ export class Player extends Component {
                 if (isOnTop) this.standingOn.add(other.uuid)
                 break
             case ColliderType.SPIKE:
-                // this.gameManager.hurt()
+                // TODO this.gameManager.hurt()
                 break
             case ColliderType.SENSOR:
                 other.getComponent(Entity).onCollide(self.node)

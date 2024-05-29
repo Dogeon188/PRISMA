@@ -6,7 +6,7 @@ import {
     RigidBody2D,
     _decorator,
 } from "cc"
-const { ccclass, property, requireComponent } = _decorator
+const { ccclass, property, requireComponent, executionOrder } = _decorator
 
 /**
  * Group of colliders, applied to {@linkcode Collider2D.group}
@@ -52,6 +52,7 @@ export const ColliderType = Enum({
  */
 @ccclass("ColliderManager")
 @requireComponent(RigidBody2D)
+@executionOrder(100)
 export class ColliderManager extends Component {
     @property({
         type: ColliderType,

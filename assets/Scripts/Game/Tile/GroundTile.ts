@@ -2,20 +2,18 @@ import {
     _decorator,
     BoxCollider2D,
     Component,
-    instantiate,
-    Node,
-    Prefab,
     RigidBody2D,
     Size,
     TiledObjectGroup,
     UITransform,
     Vec2,
 } from "cc"
-const { ccclass, property, requireComponent } = _decorator
+import { ColliderManager } from "../Physics/ColliderManager"
+const { ccclass, requireComponent } = _decorator
 
-@ccclass("TiledBarrier")
-@requireComponent([TiledObjectGroup, RigidBody2D])
-export class TiledBarrier extends Component {
+@ccclass("GroundTile")
+@requireComponent([TiledObjectGroup, ColliderManager])
+export class GroundTile extends Component {
     protected onLoad(): void {
         // Cocos resets anchor and position everytime Tiled file reloaded
         this.node.getComponent(UITransform).setAnchorPoint(0, 0)
