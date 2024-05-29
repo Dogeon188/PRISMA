@@ -6,7 +6,7 @@ import {
     RigidBody2D,
     _decorator,
 } from "cc"
-const { ccclass, property, requireComponent } = _decorator
+const { ccclass, property, requireComponent, executionOrder } = _decorator
 
 /**
  * Group of colliders, applied to {@linkcode Collider2D.group}
@@ -52,6 +52,7 @@ export const ColliderType = Enum({
  */
 @ccclass("ColliderManager")
 @requireComponent(RigidBody2D)
+@executionOrder(100)
 export class ColliderManager extends Component {
     @property({
         type: ColliderType,
@@ -80,6 +81,15 @@ export class ColliderManager extends Component {
                     rigidBody.type = ERigidBody2DType.Static
                     rigidBody.fixedRotation = true
                     break
+                case ColliderType.ONEWAY:
+                    rigidBody.type = ERigidBody2DType.Static
+                    rigidBody.fixedRotation = true
+                    break
+                case ColliderType.SPIKE:
+                    rigidBody.type = ERigidBody2DType.Static
+                    rigidBody.fixedRotation = true
+                    collider.sensor = true
+                    break
                 case ColliderType.PLAYER:
                     rigidBody.type = ERigidBody2DType.Dynamic
                     rigidBody.enabledContactListener = true
@@ -87,7 +97,12 @@ export class ColliderManager extends Component {
                     break
                 case ColliderType.SENSOR:
                     rigidBody.type = ERigidBody2DType.Static
+                    rigidBody.fixedRotation = true
                     collider.sensor = true
+                    break
+                case ColliderType.OBJECT:
+                    rigidBody.type = ERigidBody2DType.Dynamic
+                    rigidBody.fixedRotation = true
                     break
             }
         }
