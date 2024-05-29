@@ -11,9 +11,12 @@ import {
     input,
     IPhysics2DContact,
     KeyCode,
+    Quat,
     RigidBody2D,
     Sprite,
+    tween,
     Vec2,
+    Vec3,
 } from "cc"
 import { Box } from "./Entities/Box"
 import { Entity } from "./Entities/Entity"
@@ -79,6 +82,10 @@ export class Player extends Component {
 
     private gameManager: GameManager
 
+    private spawnPoint: Vec3
+
+    private dead: boolean = false
+
     private movement: Movement = new Movement()
 
     @property({ type: Sprite, tooltip: "Reference to sprite node" })
@@ -141,11 +148,18 @@ export class Player extends Component {
         this.updateAnimation(dt)
     }
 
+    public initialize(gameManager: GameManager, spawnPoint: Vec3): void {
+        this.gameManager = gameManager
+        this.spawnPoint = spawnPoint
+    }
+
     //#endregion
 
     //#region Physics
 
     private updateMovement(dt: number): void {
+        if (this.dead) return
+
         // Apply movement forces
         if (this.movement.left) {
             this.rigidBody.applyForceToCenter(
@@ -195,7 +209,7 @@ export class Player extends Component {
                 if (isOnTop) this.standingOn.add(other.uuid)
                 break
             case ColliderType.SPIKE:
-                // TODO this.gameManager.hurt()
+                this.hurt()
                 break
             case ColliderType.SENSOR:
                 other.getComponent(Entity).onCollide(self.node)
@@ -264,6 +278,10 @@ export class Player extends Component {
     //#region Animation
 
     private updateAnimation(dt: number): void {
+        if (this.dead) {
+            // this.changeAnimation("Hurt")
+            return
+        }
         if (this.movement.left) {
             this.sprite.node.setScale(-1, 1)
             // this.changeAnimation("Walk")
@@ -299,6 +317,29 @@ export class Player extends Component {
                 Player.JUMP_SPEED,
             )
         }
+    }
+
+    private static readonly HURT_QUATS = {
+        [1]: Quat.fromEuler(new Quat(), 0, 0, -90),
+        [-1]: Quat.fromEuler(new Quat(), 0, 0, 90),
+    }
+    private hurt(): void {
+        // TODO play animation & sound
+        this.dead = true
+        tween(this.node)
+            .to(0.5, {
+                rotation:
+                    Player.HURT_QUATS[this.sprite.node.scale.x > 0 ? 1 : -1],
+            })
+            .delay(2)
+            .call(() => this.respawn())
+            .start()
+    }
+
+    private respawn(): void {
+        this.node.rotation = Quat.IDENTITY
+        this.node.setPosition(this.spawnPoint)
+        this.dead = false
     }
 
     //#endregion

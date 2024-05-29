@@ -2,6 +2,7 @@ import { AudioClip, Component, Node, Prefab, _decorator } from "cc"
 import { AudioManager } from "../AudioManager"
 import { DialogBox } from "../Interface/DialogBox"
 import { SceneManager } from "../SceneManager"
+import { Player } from "./Player"
 const { ccclass, property } = _decorator
 
 @ccclass("GameManager")
@@ -53,12 +54,17 @@ export class GameManager extends Component {
     @property({ type: Prefab, group: "Prefabs" })
     playerPrefab: Prefab = null
 
+    /** @deprecated Only for test purpose. Please use {@linkcode playerPrefab} instead. */
+    @property(Player)
+    player: Player = null
+
     //#endregion
 
     //#region Callbacks
 
     protected onLoad(): void {
         AudioManager.inst.fadeInBGM(this.bgm, 1)
+        this.player.initialize(this, this.startNode.position)
     }
 
     backToStart(): void {

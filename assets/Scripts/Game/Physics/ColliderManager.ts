@@ -81,6 +81,15 @@ export class ColliderManager extends Component {
                     rigidBody.type = ERigidBody2DType.Static
                     rigidBody.fixedRotation = true
                     break
+                case ColliderType.ONEWAY:
+                    rigidBody.type = ERigidBody2DType.Static
+                    rigidBody.fixedRotation = true
+                    break
+                case ColliderType.SPIKE:
+                    rigidBody.type = ERigidBody2DType.Static
+                    rigidBody.fixedRotation = true
+                    collider.sensor = true
+                    break
                 case ColliderType.PLAYER:
                     rigidBody.type = ERigidBody2DType.Dynamic
                     rigidBody.enabledContactListener = true
@@ -88,7 +97,12 @@ export class ColliderManager extends Component {
                     break
                 case ColliderType.SENSOR:
                     rigidBody.type = ERigidBody2DType.Static
+                    rigidBody.fixedRotation = true
                     collider.sensor = true
+                    break
+                case ColliderType.OBJECT:
+                    rigidBody.type = ERigidBody2DType.Dynamic
+                    rigidBody.fixedRotation = true
                     break
             }
         }
