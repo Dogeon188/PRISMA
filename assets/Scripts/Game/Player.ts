@@ -9,7 +9,6 @@ import {
     Input,
     input,
     IPhysics2DContact,
-    KeyCode,
     Quat,
     RigidBody2D,
     Sprite,
@@ -324,6 +323,7 @@ export class Player extends Component {
     private respawn(): void {
         this.node.rotation = Quat.IDENTITY
         this.node.setPosition(this.spawnPoint)
+        this.rigidBody.applyLinearImpulseToCenter(new Vec2(0, 0), true) // wake up rigid body, update collisions
         this.dead = false
     }
 

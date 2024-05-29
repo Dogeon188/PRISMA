@@ -2507,8 +2507,8 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 40,
-      "y": 112,
+      "x": 96,
+      "y": 92,
       "z": 0
     },
     "_lrot": {
@@ -2546,8 +2546,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 32,
-      "height": 32
+      "width": 16,
+      "height": 24
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",

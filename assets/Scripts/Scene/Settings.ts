@@ -63,7 +63,13 @@ const keyCodes = {
 export class Settings extends Component {
     //#region Settings
 
-    static keybinds: KeyBind = null
+    static keybinds: KeyBind = {
+        jump: KeyCode.KEY_W,
+        down: KeyCode.KEY_S,
+        left: KeyCode.KEY_A,
+        right: KeyCode.KEY_D,
+        interact: KeyCode.KEY_E,
+    }
 
     static _volumeSFX: number = 1
 
