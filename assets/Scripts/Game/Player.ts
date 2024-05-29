@@ -3,7 +3,6 @@ import {
     Animation,
     clamp,
     Collider2D,
-    Color,
     Component,
     Contact2DType,
     EventKeyboard,
@@ -29,6 +28,7 @@ import { Movement } from "./Physics/PlayerMovement"
 
 const { ccclass, property, requireComponent } = _decorator
 
+/** @deprecated */
 interface KeyBind {
     up: import("cc").KeyCode
     down: import("cc").KeyCode
@@ -46,6 +46,7 @@ export class Player extends Component {
     private static readonly WALK_SPEED = 10
     private static readonly JUMP_SPEED = 20
     private static readonly GRAVITY = 5
+    /** @deprecated */
     private static readonly KEYBINDS: KeyBind = {
         up: KeyCode.KEY_W,
         down: KeyCode.KEY_S,
