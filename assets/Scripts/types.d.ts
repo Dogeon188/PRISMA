@@ -8,6 +8,8 @@ interface KeyBind {
 
 interface UserData {
     keybinds: KeyBind
+    volumeSFX: number
+    volumeBGM: number
 }
 
 declare const firebase: any

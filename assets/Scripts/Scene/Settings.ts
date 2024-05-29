@@ -1,5 +1,6 @@
 import {
     _decorator,
+    AudioClip,
     Button,
     Color,
     Component,
@@ -9,7 +10,9 @@ import {
     KeyCode,
     Label,
     Node,
+    Slider,
 } from "cc"
+import { AudioManager } from "../AudioManager"
 import { Auth } from "../Auth"
 import { SceneManager } from "../SceneManager"
 const { ccclass, property } = _decorator
@@ -58,7 +61,31 @@ const keyCodes = {
 
 @ccclass("Settings")
 export class Settings extends Component {
+    //#region Settings
+
     static keybinds: KeyBind = null
+
+    static _volumeSFX: number = 1
+
+    static get volumeSFX(): number {
+        return this._volumeSFX
+    }
+
+    static set volumeSFX(value: number) {
+        this._volumeSFX = value
+        AudioManager.inst.volumeSFX = value
+    }
+
+    static _volumeBGM: number = 1
+
+    static get volumeBGM(): number {
+        return this._volumeBGM
+    }
+
+    static set volumeBGM(value: number) {
+        this._volumeBGM = value
+        AudioManager.inst.volumeBGM = value
+    }
 
     //#region Properties
 
@@ -79,6 +106,12 @@ export class Settings extends Component {
 
     @property({ type: Button, group: "Keybinds" })
     private interactButton: Button = null
+
+    @property({ type: Slider, group: "Volume" })
+    private volumeSFXBar: Slider = null
+
+    @property({ type: Slider, group: "Volume" })
+    private volumeBGMBar: Slider = null
 
     private buttons: { [key in keyof KeyBind]: Button } = {
         jump: null,
@@ -105,9 +138,8 @@ export class Settings extends Component {
     protected onLoad() {
         // back button
         this.backButton.node.on(Button.EventType.CLICK, this.saveAndLeave, this)
-        // keybinds
-        Settings.keybinds = Auth.data.keybinds
 
+        // keybinds
         input.on(Input.EventType.KEY_UP, this.onKeyUp, this)
 
         this.buttons.jump = this.jumpButton
@@ -131,10 +163,31 @@ export class Settings extends Component {
                 this,
             )
         }
+
+        // volume
+        this.volumeSFXBar.progress = Settings.volumeSFX
+        this.volumeBGMBar.progress = Settings.volumeBGM
+
+        this.volumeSFXBar.node.on(
+            "slide",
+            (slider: Slider) => (Settings.volumeSFX = slider.progress),
+            this,
+        )
+
+        this.volumeBGMBar.node.on(
+            "slide",
+            (slider: Slider) => (Settings.volumeBGM = slider.progress),
+            this,
+        )
     }
 
     private saveAndLeave(): void {
-        Auth.updateUserData({ keybinds: Settings.keybinds })
+        Auth.updateUserData({
+            keybinds: Settings.keybinds,
+            volumeSFX: Settings.volumeSFX,
+            volumeBGM: Settings.volumeBGM,
+        })
+        AudioManager.inst.doNotReplayNextTime()
         SceneManager.loadScene("Start", true)
     }
 

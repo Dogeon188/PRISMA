@@ -1,4 +1,5 @@
 import { KeyCode } from "cc"
+import { Settings } from "./Scene/Settings"
 
 export class Auth {
     private static _userDataRef: any = null
@@ -20,6 +21,8 @@ export class Auth {
             right: KeyCode.KEY_D,
             interact: KeyCode.KEY_E,
         },
+        volumeSFX: 1,
+        volumeBGM: 1,
     }
 
     public static get data(): UserData {
@@ -35,6 +38,9 @@ export class Auth {
         const snapshot = await this.userDataRef.once("value")
         if (snapshot.exists()) {
             this._userData = snapshot.val()
+            Settings.keybinds = this._userData.keybinds
+            Settings.volumeSFX = this._userData.volumeSFX
+            Settings.volumeBGM = this._userData.volumeBGM
         }
     }
 
