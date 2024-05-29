@@ -1,4 +1,5 @@
 import { _decorator, Component, Sprite, tween, UIOpacity } from "cc"
+import { Auth } from "../Auth"
 import { SceneManager } from "../SceneManager"
 const { ccclass, property } = _decorator
 
@@ -17,6 +18,11 @@ export class Splash extends Component {
             .delay(2)
             .to(1, { opacity: 0 }, { easing: "sineOut" })
             .call(() => {
+                if (firebase.auth().currentUser) {
+                    Auth.loadUserData()
+                    SceneManager.loadScene("Start", true)
+                    return
+                }
                 SceneManager.loadScene("Register", true)
             })
             .start()
