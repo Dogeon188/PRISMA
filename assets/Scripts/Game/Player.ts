@@ -14,6 +14,7 @@ import {
     Sprite,
     Vec2,
 } from "cc"
+import { Settings } from "../Scene/Settings"
 import { Box } from "./Entities/Box"
 import { Entity } from "./Entities/Entity"
 import { PlayerHalo } from "./Entities/PlayerHalo"
@@ -28,15 +29,6 @@ import { Movement } from "./Physics/PlayerMovement"
 
 const { ccclass, property, requireComponent } = _decorator
 
-/** @deprecated */
-interface KeyBind {
-    up: import("cc").KeyCode
-    down: import("cc").KeyCode
-    left: import("cc").KeyCode
-    right: import("cc").KeyCode
-    interact: import("cc").KeyCode
-}
-
 @ccclass("Player")
 @requireComponent(RigidBody2D)
 export class Player extends Component {
@@ -46,14 +38,6 @@ export class Player extends Component {
     private static readonly WALK_SPEED = 10
     private static readonly JUMP_SPEED = 20
     private static readonly GRAVITY = 5
-    /** @deprecated */
-    private static readonly KEYBINDS: KeyBind = {
-        up: KeyCode.KEY_W,
-        down: KeyCode.KEY_S,
-        left: KeyCode.KEY_A,
-        right: KeyCode.KEY_D,
-        interact: KeyCode.KEY_E,
-    }
 
     //#endregion
 
@@ -308,19 +292,19 @@ export class Player extends Component {
 
     private onKeyDown(event: EventKeyboard): void {
         switch (event.keyCode) {
-            case Player.KEYBINDS.up:
+            case Settings.keybinds.jump:
                 this.movement.up = true
                 break
-            case Player.KEYBINDS.down:
+            case Settings.keybinds.down:
                 this.movement.down = true
                 break
-            case Player.KEYBINDS.left:
+            case Settings.keybinds.left:
                 this.movement.left = true
                 break
-            case Player.KEYBINDS.right:
+            case Settings.keybinds.right:
                 this.movement.right = true
                 break
-            case Player.KEYBINDS.interact:
+            case Settings.keybinds.interact:
                 if (this.recentCollidedWith) {
                     this.interactingWith = this.recentCollidedWith
                     this.interactingWith.onBeginInteract(this)
@@ -331,19 +315,19 @@ export class Player extends Component {
 
     onKeyUp(event: EventKeyboard): void {
         switch (event.keyCode) {
-            case Player.KEYBINDS.up:
+            case Settings.keybinds.jump:
                 this.movement.up = false
                 break
-            case Player.KEYBINDS.down:
+            case Settings.keybinds.down:
                 this.movement.down = false
                 break
-            case Player.KEYBINDS.left:
+            case Settings.keybinds.left:
                 this.movement.left = false
                 break
-            case Player.KEYBINDS.right:
+            case Settings.keybinds.right:
                 this.movement.right = false
                 break
-            case Player.KEYBINDS.interact:
+            case Settings.keybinds.interact:
                 if (this.interactingWith) {
                     this.interactingWith.onEndInteract(this)
                     this.interactingWith = null

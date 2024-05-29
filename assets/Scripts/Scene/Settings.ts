@@ -13,14 +13,6 @@ import {
 import { SceneManager } from "../SceneManager"
 const { ccclass, property } = _decorator
 
-interface KeyBind {
-    jump: import("cc").KeyCode
-    down: import("cc").KeyCode
-    left: import("cc").KeyCode
-    right: import("cc").KeyCode
-    interact: import("cc").KeyCode
-}
-
 function getKeyCodeName(keyCode: KeyCode): string | null {
     if (
         (keyCode >= KeyCode.DIGIT_0 && keyCode <= KeyCode.DIGIT_9) ||
@@ -73,6 +65,8 @@ export class Settings extends Component {
         interact: KeyCode.KEY_E,
     }
 
+    //#region Properties
+
     @property(Button)
     private backButton: Button = null
 
@@ -100,6 +94,18 @@ export class Settings extends Component {
     }
 
     private isChangingKeybind: string = ""
+
+    private keybindCollided: { [key in keyof KeyBind]: boolean } = {
+        jump: false,
+        down: false,
+        left: false,
+        right: false,
+        interact: false,
+    }
+
+    //#endregion
+
+    //#region Lifecycle
 
     protected onLoad() {
         // back button
@@ -132,24 +138,56 @@ export class Settings extends Component {
         }
     }
 
+    //#endregion
+
+    //#region Keybinds
+
     private onKeyUp(event: EventKeyboard): void {
         if (this.isChangingKeybind) {
             this.changeKeybind(this.isChangingKeybind, event.keyCode)
         }
     }
 
+    private checkCollision(): void {
+        for (const keyA in this.keybindCollided) {
+            let collided = false
+            for (const keyB in this.keybindCollided) {
+                if (keyA === keyB) continue
+                if (Settings.keybinds[keyA] === Settings.keybinds[keyB]) {
+                    this.keybindCollided[keyA] = true
+                    this.keybindCollided[keyB] = true
+                    collided = true
+                }
+            }
+            if (!collided) this.keybindCollided[keyA] = false
+        }
+
+        for (const key in this.keybindCollided) {
+            const label = this.buttons[key].node
+                .getChildByName("Label")
+                .getComponent(Label)
+            label.color = this.keybindCollided[key] ? Color.RED : Color.BLACK
+        }
+
+        this.backButton.interactable = !Object.values(
+            this.keybindCollided,
+        ).some((v) => v)
+    }
+
     private changeKeybind(key: string, keyCode: KeyCode): void {
         const keyCodeName = getKeyCodeName(keyCode)
         if (!keyCodeName) return
         const label = this.buttons[key].node
-        .getChildByName("Label")
-        .getComponent(Label)
-        
+            .getChildByName("Label")
+            .getComponent(Label)
+
         Settings.keybinds[key] = keyCode
         label.string = keyCodeName
         label.color = Color.BLACK
 
         // TODO keybind collision check
+        this.checkCollision()
+
         this.isChangingKeybind = ""
     }
 }

@@ -709,7 +709,7 @@
     "propertyPath": [
       "_name"
     ],
-    "value": "BackButton"
+    "value": "ApplyButton"
   },
   {
     "__type__": "CCPropertyOverrideInfo",
@@ -752,7 +752,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 79.19702896500696,
+      "width": 84.23682592705433,
       "height": 75.60000000000001
     }
   },
@@ -770,7 +770,7 @@
     "propertyPath": [
       "_string"
     ],
-    "value": "BACK"
+    "value": "APPLY"
   },
   {
     "__type__": "cc.TargetInfo",
