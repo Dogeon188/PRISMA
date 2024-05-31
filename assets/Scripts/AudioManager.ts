@@ -34,17 +34,49 @@ export class AudioManager {
         return this._audioSource
     }
 
+    //#region Volume
+
+    private _volumeSFX: number = 1
+
+    /**
+     * The general volume of sound effects.
+     * The volume of sound effects is multiplied by this value.
+     */
+    get volumeSFX(): number {
+        return this._volumeSFX
+    }
+
+    set volumeSFX(value: number) {
+        this._volumeSFX = value
+    }
+
+    private _volumeBGM: number = 1
+
+    /**
+     * The general volume of background music.
+     * The volume of the current background music is multiplied by this value.
+     */
+    get volumeBGM(): number {
+        return this._volumeBGM
+    }
+
+    set volumeBGM(value: number) {
+        this._volumeBGM = value
+        this._audioSource.volume = value
+    }
+
     //#region Play Sounds
 
     /**
-     * Play a sound effect once.
+     * Play a sound effect once. \
+     * The volume is multiplied by {@linkcode AudioManager.volumeSFX}.
      */
     playOneShot(audioClip: AudioClip, volume: number = 1): void {
         if (audioClip == null) {
             console.error("Audio clip is null")
             return
         }
-        this._audioSource.playOneShot(audioClip, volume)
+        this._audioSource.playOneShot(audioClip, volume * this._volumeSFX)
     }
 
     /**
@@ -72,7 +104,7 @@ export class AudioManager {
         this._audioSource.clip = audioClip
         this._audioSource.loop = true
         this._audioSource.play()
-        this._audioSource.volume = volume
+        this._audioSource.volume = volume * this._volumeBGM
     }
 
     /**
@@ -104,9 +136,7 @@ export class AudioManager {
     fadeOutBGM(duration: number): void {
         tween(this._audioSource)
             .to(duration, { volume: 0 })
-            .call(() => {
-                this._audioSource.stop()
-            })
+            .call(() => this._audioSource.stop())
             .start()
     }
 
@@ -125,7 +155,9 @@ export class AudioManager {
             return
         }
         this.playBGM(audioClip, 0)
-        tween(this._audioSource).to(duration, { volume: volume }).start()
+        tween(this._audioSource)
+            .to(duration, { volume: volume * this._volumeBGM })
+            .start()
     }
 
     /**
@@ -148,7 +180,7 @@ export class AudioManager {
         tween(this._audioSource)
             .to(durationOut, { volume: 0 })
             .call(() => this.playBGM(audioClip, 0))
-            .to(durationIn, { volume: volume })
+            .to(durationIn, { volume: volume * this._volumeBGM })
             .start()
     }
 
@@ -156,7 +188,7 @@ export class AudioManager {
      * Set the volume of the current background music.
      */
     setVolume(volume: number): void {
-        this._audioSource.volume = volume
+        this._audioSource.volume = volume * this._volumeBGM
     }
 
     //#endregion

@@ -3,20 +3,23 @@ import {
     Animation,
     clamp,
     Collider2D,
-    Color,
     Component,
     Contact2DType,
     EventKeyboard,
     Input,
     input,
     IPhysics2DContact,
-    KeyCode,
+    Quat,
     RigidBody2D,
     Sprite,
+    tween,
     Vec2,
+    Vec3,
 } from "cc"
+import { Settings } from "../Scene/Settings"
 import { Box } from "./Entities/Box"
 import { Entity } from "./Entities/Entity"
+import { PlayerHalo } from "./Entities/PlayerHalo"
 import { GameManager } from "./GameManager"
 import { ColliderGroup, ColliderType } from "./Physics/ColliderManager"
 import {
@@ -25,17 +28,8 @@ import {
     NormalDirection,
 } from "./Physics/PhysicsFixer"
 import { Movement } from "./Physics/PlayerMovement"
-import { PlayerHalo } from "./Entities/PlayerHalo"
 
 const { ccclass, property, requireComponent } = _decorator
-
-interface KeyBind {
-    up: import("cc").KeyCode
-    down: import("cc").KeyCode
-    left: import("cc").KeyCode
-    right: import("cc").KeyCode
-    interact: import("cc").KeyCode
-}
 
 @ccclass("Player")
 @requireComponent(RigidBody2D)
@@ -46,13 +40,6 @@ export class Player extends Component {
     private static readonly WALK_SPEED = 10
     private static readonly JUMP_SPEED = 20
     private static readonly GRAVITY = 5
-    private static readonly KEYBINDS: KeyBind = {
-        up: KeyCode.KEY_W,
-        down: KeyCode.KEY_S,
-        left: KeyCode.KEY_A,
-        right: KeyCode.KEY_D,
-        interact: KeyCode.KEY_E,
-    }
 
     //#endregion
 
@@ -78,6 +65,10 @@ export class Player extends Component {
     private animation: Animation
 
     private gameManager: GameManager
+
+    private spawnPoint: Vec3
+
+    private dead: boolean = false
 
     private movement: Movement = new Movement()
 
@@ -139,10 +130,11 @@ export class Player extends Component {
     protected update(dt: number): void {
         this.updateMovement(dt)
         this.updateAnimation(dt)
+    }
 
-        this.sprite.color = this.onGround
-            ? new Color(255, 255, 255)
-            : new Color(255, 0, 0)
+    public initialize(gameManager: GameManager, spawnPoint: Vec3): void {
+        this.gameManager = gameManager
+        this.spawnPoint = spawnPoint
     }
 
     //#endregion
@@ -150,6 +142,8 @@ export class Player extends Component {
     //#region Physics
 
     private updateMovement(dt: number): void {
+        if (this.dead) return
+
         // Apply movement forces
         if (this.movement.left) {
             this.rigidBody.applyForceToCenter(
@@ -190,18 +184,16 @@ export class Player extends Component {
         contact: IPhysics2DContact,
     ): void {
         const normal = getCorrectNormal(self, other, contact)
+        const isOnTop = fuzzyEqual(normal.y, NormalDirection.ON_TOP)
 
         switch (other.tag) {
             case ColliderType.ONEWAY:
-                if (!fuzzyEqual(normal.y, NormalDirection.ON_TOP))
-                    contact.disabled = true // Disable collision if not on top
+                if (!isOnTop) contact.disabled = true // Disable collision if not on top
             case ColliderType.GROUND: // Fall through
-                if (fuzzyEqual(normal.y, NormalDirection.ON_TOP)) {
-                    this.standingOn.add(other.uuid)
-                }
+                if (isOnTop) this.standingOn.add(other.uuid)
                 break
             case ColliderType.SPIKE:
-                // this.gameManager.hurt()
+                this.hurt()
                 break
             case ColliderType.SENSOR:
                 other.getComponent(Entity).onCollide(self.node)
@@ -210,6 +202,7 @@ export class Player extends Component {
                 break
             case ColliderType.OBJECT:
                 this.recentCollidedWith = other.getComponent(Entity)
+                if (isOnTop) this.standingOn.add(other.uuid)
                 break
         }
     }
@@ -229,6 +222,13 @@ export class Player extends Component {
             case ColliderType.GROUND:
             case ColliderType.ONEWAY:
                 this.standingOn.delete(other.uuid)
+                break
+            case ColliderType.OBJECT:
+                this.standingOn.delete(other.uuid)
+            case ColliderType.SENSOR:
+                if (this.recentCollidedWith === other.getComponent(Entity)) {
+                    this.recentCollidedWith = null
+                }
                 break
         }
     }
@@ -262,6 +262,10 @@ export class Player extends Component {
     //#region Animation
 
     private updateAnimation(dt: number): void {
+        if (this.dead) {
+            // this.changeAnimation("Hurt")
+            return
+        }
         if (this.movement.left) {
             this.sprite.node.setScale(-1, 1)
             // this.changeAnimation("Walk")
@@ -299,25 +303,49 @@ export class Player extends Component {
         }
     }
 
+    private static readonly HURT_QUATS = {
+        [1]: Quat.fromEuler(new Quat(), 0, 0, -90),
+        [-1]: Quat.fromEuler(new Quat(), 0, 0, 90),
+    }
+    private hurt(): void {
+        // TODO play animation & sound
+        this.dead = true
+        tween(this.node)
+            .to(0.5, {
+                rotation:
+                    Player.HURT_QUATS[this.sprite.node.scale.x > 0 ? 1 : -1],
+            })
+            .delay(2)
+            .call(() => this.respawn())
+            .start()
+    }
+
+    private respawn(): void {
+        this.node.rotation = Quat.IDENTITY
+        this.node.setPosition(this.spawnPoint)
+        this.rigidBody.applyLinearImpulseToCenter(new Vec2(0, 0), true) // wake up rigid body, update collisions
+        this.dead = false
+    }
+
     //#endregion
 
     //#region Input
 
     private onKeyDown(event: EventKeyboard): void {
         switch (event.keyCode) {
-            case Player.KEYBINDS.up:
+            case Settings.keybinds.jump:
                 this.movement.up = true
                 break
-            case Player.KEYBINDS.down:
+            case Settings.keybinds.down:
                 this.movement.down = true
                 break
-            case Player.KEYBINDS.left:
+            case Settings.keybinds.left:
                 this.movement.left = true
                 break
-            case Player.KEYBINDS.right:
+            case Settings.keybinds.right:
                 this.movement.right = true
                 break
-            case Player.KEYBINDS.interact:
+            case Settings.keybinds.interact:
                 if (this.recentCollidedWith) {
                     this.interactingWith = this.recentCollidedWith
                     this.interactingWith.onBeginInteract(this)
@@ -328,19 +356,19 @@ export class Player extends Component {
 
     onKeyUp(event: EventKeyboard): void {
         switch (event.keyCode) {
-            case Player.KEYBINDS.up:
+            case Settings.keybinds.jump:
                 this.movement.up = false
                 break
-            case Player.KEYBINDS.down:
+            case Settings.keybinds.down:
                 this.movement.down = false
                 break
-            case Player.KEYBINDS.left:
+            case Settings.keybinds.left:
                 this.movement.left = false
                 break
-            case Player.KEYBINDS.right:
+            case Settings.keybinds.right:
                 this.movement.right = false
                 break
-            case Player.KEYBINDS.interact:
+            case Settings.keybinds.interact:
                 if (this.interactingWith) {
                     this.interactingWith.onEndInteract(this)
                     this.interactingWith = null

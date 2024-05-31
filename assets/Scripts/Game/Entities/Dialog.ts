@@ -34,8 +34,8 @@ export class Dialog extends Entity {
     private loadedEntries: DialogEntry[] = []
 
     protected onLoad() {
-        const data: DialogData = this.dialogData.json as DialogData
-        this.resolveDialogData(data)
+        const data: DialogData = this.dialogData?.json as DialogData
+        if (data) this.resolveDialogData(data)
     }
 
     private resolveDialogData(data: DialogData): void {
