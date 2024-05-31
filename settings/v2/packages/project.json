@@ -13,18 +13,26 @@
       {
         "index": 3,
         "name": "BLUE"
+      },
+      {
+        "index": 4,
+        "name": "ACTIVE"
+      },
+      {
+        "index": 5,
+        "name": "INACTIVE"
       }
     ],
     "collisionMatrix": {
-      "0": 15,
+      "0": 63,
       "1": 13,
       "2": 11,
       "3": 7,
-      "4": 0
+      "4": 17,
+      "5": 33
     }
   },
   "script": {
     "sortingPlugin": []
-  },
-  "custom_joint_texture_layouts": []
+  }
 }

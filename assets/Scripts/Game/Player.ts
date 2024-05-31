@@ -103,7 +103,7 @@ export class Player extends Component {
 
         for (const collider of this.node.getComponents(Collider2D)) {
             if (collider.tag === ColliderType.PLAYER) {
-                collider.group = ColliderGroup.RED // TODO dynamic change group
+                collider.group = ColliderGroup.ACTIVE
                 collider.on(
                     Contact2DType.BEGIN_CONTACT,
                     this.onBeginContact,

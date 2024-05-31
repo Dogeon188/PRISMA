@@ -5,7 +5,11 @@ import {
     Color,
     Component,
     Contact2DType,
+    EventKeyboard,
+    Input,
+    input,
     IPhysics2DContact,
+    KeyCode,
     Node,
     Sprite,
     Vec3,
@@ -26,6 +30,27 @@ export class PlayerHalo extends Component {
     }
 
     protected onLoad(): void {
+        input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this)
+        /*this.node.getChildByName("Halo").getComponent(Sprite).color =
+            PlayerHalo.COLOR_MAP[this.color]*/
+    }
+
+    private onKeyDown(event: EventKeyboard): void {
+        switch (event.keyCode) {
+            case KeyCode.KEY_J:
+                this.changeColor(ColliderGroup.RED)
+                break
+            case KeyCode.KEY_K:
+                this.changeColor(ColliderGroup.GREEN)
+                break
+            case KeyCode.KEY_L:
+                this.changeColor(ColliderGroup.BLUE)
+                break
+        }
+    }
+
+    private changeColor(color: number): void {
+        this.color = color
         /*this.node.getChildByName("Halo").getComponent(Sprite).color =
             PlayerHalo.COLOR_MAP[this.color]*/
     }

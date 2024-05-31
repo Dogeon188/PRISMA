@@ -22,7 +22,7 @@ export class Box extends Entity {
         // Set the color of the box
         this.node.getComponent(Sprite).color = Box.COLOR_MAP[this.color]
         // Set the group of the collider
-        this.node.getComponent(Collider2D).group = this.color
+        this.node.getComponent(Collider2D).group = ColliderGroup.ACTIVE
     }
 
     protected start() {}
@@ -41,6 +41,8 @@ export class Box extends Entity {
         if (playerHaloColor === this.color) {
             this.scheduleOnce(() => {
                 this.node.getComponent(Sprite).enabled = false
+                this.node.getComponent(Collider2D).group =
+                    ColliderGroup.INACTIVE
             }, 0.1)
         }
     }
@@ -49,6 +51,7 @@ export class Box extends Entity {
         if (playerHaloColor === this.color) {
             this.scheduleOnce(() => {
                 this.node.getComponent(Sprite).enabled = true
+                this.node.getComponent(Collider2D).group = ColliderGroup.ACTIVE
             }, 0.1)
         }
     }
