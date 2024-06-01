@@ -12,7 +12,7 @@ import { ResourceManager } from "../../ResourceManager"
 import { Box } from "../Entities/Box"
 import { Dialog } from "../Entities/Dialog"
 import { Portal, PortalType } from "../Entities/Portal"
-import { ColliderGroup } from "../Physics/ColliderManager"
+import { ColorStringToGroupMap } from "../Physics/ColliderManager"
 const { ccclass, property, requireComponent } = _decorator
 
 type TileObjectTypes = {
@@ -142,16 +142,11 @@ export class ObjectTile extends Component {
         return portalNode
     }
 
-    private static readonly BOX_COLOR_MAP = {
-        red: ColliderGroup.RED,
-        green: ColliderGroup.GREEN,
-        blue: ColliderGroup.BLUE,
-    }
-
     private createBox(object: TileObject<"box">): Node {
         const boxNode = instantiate(this.boxPrefab)
         boxNode.name = object.name
         boxNode.setPosition(object.x, object.y)
+        console.log(object)
         boxNode
             .getComponent(UITransform)
             .setContentSize(object.width, object.height)
@@ -159,7 +154,7 @@ export class ObjectTile extends Component {
             boxNode.getComponent(UITransform).contentSize
         boxNode
             .getComponent(Box)
-            .initialize(ObjectTile.BOX_COLOR_MAP[object.color])
+            .initialize(ColorStringToGroupMap[object.color])
         this.node.addChild(boxNode)
         return boxNode
     }

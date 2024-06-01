@@ -18,6 +18,7 @@ import {
 } from "cc"
 import { Settings } from "../Scene/Settings"
 import { Box } from "./Entities/Box"
+import { Brick } from "./Entities/Brick"
 import { Entity } from "./Entities/Entity"
 import { PlayerHalo } from "./Entities/PlayerHalo"
 import { GameManager } from "./GameManager"
@@ -238,6 +239,10 @@ export class Player extends Component {
         other: Collider2D,
         contact: IPhysics2DContact,
     ): void {
+        const entity = other.getComponent(Entity)
+        if (entity) {
+            entity.onEnterHalo(this, self.node.getComponent(PlayerHalo).color)
+        }
         if (other.tag === ColliderType.OBJECT) {
             other.node
                 .getComponent(Box)
@@ -250,6 +255,10 @@ export class Player extends Component {
         other: Collider2D,
         contact: IPhysics2DContact,
     ): void {
+        const entity = other.getComponent(Entity)
+        if (entity) {
+            entity.onLeaveHalo(this, self.node.getComponent(PlayerHalo).color)
+        }
         if (other.tag === ColliderType.OBJECT) {
             other.node
                 .getComponent(Box)

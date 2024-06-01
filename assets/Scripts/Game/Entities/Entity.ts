@@ -1,4 +1,5 @@
 import { _decorator, Component, Node } from "cc"
+import { ColliderGroup } from "../Physics/ColliderManager"
 import { Player } from "../Player"
 const { ccclass } = _decorator
 
@@ -24,11 +25,13 @@ export class Entity extends Component {
 
     /**
      * Called when the entity enters the player's halo
+     * @param color The color of the halo, of type {@linkcode ColliderGroup}
      */
-    public onEnterHalo(player: Player) {}
+    public onEnterHalo(player: Player, color: number) {}
 
     /**
      * Called when the entity leaves the player's halo
+     * @param color The color of the halo, of type {@linkcode ColliderGroup}
      */
-    public onLeaveHalo(player: Player) {}
+    public onLeaveHalo(player: Player, color: number) {}
 }

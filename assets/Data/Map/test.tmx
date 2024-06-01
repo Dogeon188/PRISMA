@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="8" nextobjectid="33">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="9" nextobjectid="39">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <layer id="1" name="Tiles" width="60" height="30">
   <data encoding="base64" compression="gzip">
@@ -79,6 +79,23 @@
   <object id="31" name="BlueBox" type="box" x="608" y="336" width="32" height="64">
    <properties>
     <property name="class" value="box"/>
+    <property name="color" value="blue"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="8" name="Bricks">
+  <object id="33" name="Red" type="red" x="448" y="272" width="32" height="64">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="34" name="Green" type="green" x="384" y="304" width="32" height="64">
+   <properties>
+    <property name="color" value="green"/>
+   </properties>
+  </object>
+  <object id="35" name="Blue" type="blue" x="512" y="304" width="32" height="64">
+   <properties>
     <property name="color" value="blue"/>
    </properties>
   </object>
