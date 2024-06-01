@@ -268,15 +268,8 @@ export class Player extends Component {
             const ret = other.node
                 .getComponent(Box)
                 .onLeaveHalo(self.node.getComponent(PlayerHalo))
-            if (ret) {
-                this.collidedInactiveNodeSet.delete(
-                    other.node.getComponent(Entity),
-                )
-            } else {
-                this.collidedActiveNodeSet.delete(
-                    other.node.getComponent(Entity),
-                )
-            }
+            this.collidedInactiveNodeSet.delete(other.node.getComponent(Entity))
+            this.collidedActiveNodeSet.delete(other.node.getComponent(Entity))
         }
     }
 
