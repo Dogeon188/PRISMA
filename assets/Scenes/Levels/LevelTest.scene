@@ -868,7 +868,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": -30.333
+      "z": -30.333000000000002
     },
     "_id": "0abjm2GsNK3Il/Q1nSfSTe"
   },
@@ -2974,7 +2974,6 @@
     "__type__": "8929eKL5vJEIavUYyt14PrL",
     "_name": "",
     "_objFlags": 0,
-    "__editorExtras__": {},
     "node": {
       "__id__": 42
     },

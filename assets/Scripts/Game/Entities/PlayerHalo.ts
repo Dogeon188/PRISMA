@@ -6,6 +6,7 @@ import {
     Color,
     Component,
     Contact2DType,
+    director,
     EventKeyboard,
     EventMouse,
     find,
@@ -15,6 +16,7 @@ import {
     KeyCode,
     Label,
     Node,
+    PhysicsSystem2D,
     screen,
     Size,
     Sprite,
@@ -33,10 +35,17 @@ export class PlayerHalo extends Component {
 
     private mouseDown: boolean = false
 
-    private targetColor: number = ColliderGroup.RED
+    private targetColor: number = null
 
     @property(Node)
     private palette: Node = null
+
+    private RedSector: Node = null
+    private GreenSector: Node = null
+    private BlueSector: Node = null
+    private RedNum: Node = null
+    private GreenNum: Node = null
+    private BlueNum: Node = null
 
     private static readonly COLOR_MAP = {
         [ColliderGroup.RED]: Color.RED,
@@ -50,6 +59,10 @@ export class PlayerHalo extends Component {
         [ColliderGroup.BLUE]: 1,
     }
 
+    private SectorDict = {}
+
+    private NumDict = {}
+
     protected onLoad(): void {
         const target_color = PlayerHalo.COLOR_MAP[this.color]
         this.node.getChildByName("Halo").getComponent(Sprite).color = new Color(
@@ -61,17 +74,44 @@ export class PlayerHalo extends Component {
         input.on(Input.EventType.MOUSE_DOWN, this.onMouseDown, this)
         input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this)
         input.on(Input.EventType.MOUSE_MOVE, this.onMouseMove, this)
-        for (const sprite of this.palette.getComponentsInChildren(Sprite)) {
-            sprite.enabled = false
+    }
+
+    protected start(): void {
+        this.RedSector = this.palette.getChildByName("RedSector")
+        this.GreenSector = this.palette.getChildByName("GreenSector")
+        this.BlueSector = this.palette.getChildByName("BlueSector")
+        this.RedNum = this.palette.getChildByName("RedNum")
+        this.GreenNum = this.palette.getChildByName("GreenNum")
+        this.BlueNum = this.palette.getChildByName("BlueNum")
+
+        this.SectorDict = {
+            [ColliderGroup.RED]: this.RedSector,
+            [ColliderGroup.GREEN]: this.GreenSector,
+            [ColliderGroup.BLUE]: this.BlueSector,
         }
-        this.palette.getChildByName("RedNum").getComponent(Label).string =
+
+        this.NumDict = {
+            [ColliderGroup.RED]: this.RedNum,
+            [ColliderGroup.GREEN]: this.GreenNum,
+            [ColliderGroup.BLUE]: this.BlueNum,
+        }
+        this.palette.children.forEach((child) => {
+            child.setSiblingIndex(0)
+        })
+        this.RedNum.getComponent(Label).string =
             this.colorNumDict[ColliderGroup.RED].toString()
-        this.palette.getChildByName("GreenNum").getComponent(Label).string =
+        this.RedNum.setSiblingIndex(5)
+        this.GreenNum.getComponent(Label).string =
             this.colorNumDict[ColliderGroup.GREEN].toString()
-        this.palette.getChildByName("BlueNum").getComponent(Label).string =
+        this.GreenNum.setSiblingIndex(5)
+        this.BlueNum.getComponent(Label).string =
             this.colorNumDict[ColliderGroup.BLUE].toString()
+        this.BlueNum.setSiblingIndex(5)
         for (const label of this.palette.getComponentsInChildren(Label)) {
             label.enabled = false
+        }
+        for (const sprite of this.palette.getComponentsInChildren(Sprite)) {
+            sprite.enabled = false
         }
     }
 
@@ -111,6 +151,8 @@ export class PlayerHalo extends Component {
             label.enabled = true
         }
         this.mouseDown = true
+        // director.stopAnimation()
+        director.pause()
     }
 
     private onMouseUp(): void {
@@ -122,6 +164,8 @@ export class PlayerHalo extends Component {
         }
         this.mouseDown = false
         this.changeColor(this.targetColor)
+        // director.startAnimation()
+        director.resume()
     }
 
     private onMouseMove(event: EventMouse): void {
@@ -140,22 +184,49 @@ export class PlayerHalo extends Component {
                 (Vec3.angle(Vec3.UNIT_Y, mousePosition) * 180) / Math.PI
 
             if (mousePosition.x >= 0 && angle < 120) {
-                this.targetColor = ColliderGroup.RED
+                if (this.targetColor !== ColliderGroup.RED) {
+                    if (this.targetColor !== null)
+                        this.deemphasizeSector(this.targetColor)
+                    this.targetColor = ColliderGroup.RED
+                    this.emphasizeSector(ColliderGroup.RED)
+                }
             } else if (mousePosition.x < 0 && angle < 120) {
-                this.targetColor = ColliderGroup.GREEN
+                if (this.targetColor !== ColliderGroup.GREEN) {
+                    if (this.targetColor !== null)
+                        this.deemphasizeSector(this.targetColor)
+                    this.targetColor = ColliderGroup.GREEN
+                    this.emphasizeSector(ColliderGroup.GREEN)
+                }
             } else {
-                this.targetColor = ColliderGroup.BLUE
+                if (this.targetColor !== ColliderGroup.BLUE) {
+                    if (this.targetColor !== null)
+                        this.deemphasizeSector(this.targetColor)
+                    this.targetColor = ColliderGroup.BLUE
+                    this.emphasizeSector(ColliderGroup.BLUE)
+                }
             }
         }
     }
 
+    private emphasizeSector(color: number): void {
+        this.SectorDict[color].scale = new Vec3(1.1, 1.1, 0)
+        this.SectorDict[color].setSiblingIndex(3)
+        this.NumDict[color].setSiblingIndex(5)
+    }
+
+    private deemphasizeSector(color: number): void {
+        this.SectorDict[color].scale = new Vec3(1, 1, 0)
+        this.SectorDict[color].setSiblingIndex(0)
+        this.NumDict[color].setSiblingIndex(5)
+    }
+
     public addGem(color: number): void {
         this.colorNumDict[color]++
-        this.palette.getChildByName("RedNum").getComponent(Label).string =
+        this.RedNum.getComponent(Label).string =
             this.colorNumDict[ColliderGroup.RED].toString()
-        this.palette.getChildByName("GreenNum").getComponent(Label).string =
+        this.GreenNum.getComponent(Label).string =
             this.colorNumDict[ColliderGroup.GREEN].toString()
-        this.palette.getChildByName("BlueNum").getComponent(Label).string =
+        this.BlueNum.getComponent(Label).string =
             this.colorNumDict[ColliderGroup.BLUE].toString()
     }
 }
