@@ -10,6 +10,7 @@ import {
     Vec2,
     Vec3,
 } from "cc"
+import { Settings } from "../../Scene/Settings"
 import { GameManager } from "../GameManager"
 import { ColliderGroup } from "../Physics/ColliderManager"
 import { Player } from "../Player"
@@ -68,6 +69,13 @@ export class Box extends Entity {
         }
     }
 
+    public showPrompt(): void {
+        GameManager.inst.interactPrompt.showPrompt(
+            Settings.keybinds.interact,
+            "Interact",
+        )
+    }
+
     public onEnterHalo(playerHalo: PlayerHalo): boolean {
         if (playerHalo.color === this.color) {
             this.scheduleOnce(() => {
@@ -102,7 +110,6 @@ export class Box extends Entity {
     }
 
     public onEndInteract(player: Player): void {
-        
         this.bindedTo = null
     }
 }

@@ -1,4 +1,5 @@
-import { _decorator, Component, Node } from "cc"
+import { _decorator, Component, KeyCode, Node } from "cc"
+import { GameManager } from "../GameManager"
 import { ColliderGroup } from "../Physics/ColliderManager"
 import { Player } from "../Player"
 import { PlayerHalo } from "./PlayerHalo"
@@ -12,6 +13,15 @@ export class Entity extends Component {
      * @param other The other entity collided with, usually a {@linkcode Player}
      */
     public onCollide(other: Node) {}
+
+    /**
+     * Called when this entity is collided with the player
+     * Normally should be called in {@linkcode Player.onBeginContact}
+     * Hides the prompt by default
+     */
+    public showPrompt(): void {
+        GameManager.inst.interactPrompt.hidePrompt()
+    }
 
     /**
      * Called when the player starts interacting with this entity (by pressing the interact button)

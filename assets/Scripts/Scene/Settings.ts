@@ -17,7 +17,7 @@ import { Auth } from "../Auth"
 import { SceneManager } from "../SceneManager"
 const { ccclass, property } = _decorator
 
-function getKeyCodeName(keyCode: KeyCode): string | null {
+export function getKeyCodeName(keyCode: KeyCode): string | null {
     if (
         (keyCode >= KeyCode.DIGIT_0 && keyCode <= KeyCode.DIGIT_9) ||
         (keyCode >= KeyCode.KEY_A && keyCode <= KeyCode.KEY_Z)

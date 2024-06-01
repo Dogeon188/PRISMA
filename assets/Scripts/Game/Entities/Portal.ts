@@ -1,5 +1,7 @@
 import { Enum, Node, _decorator } from "cc"
+import { Settings } from "../../Scene/Settings"
 import { SceneManager } from "../../SceneManager"
+import { GameManager } from "../GameManager"
 import { Player } from "../Player"
 import { Entity } from "./Entity"
 const { ccclass, property } = _decorator
@@ -61,5 +63,12 @@ export class Portal extends Entity {
         } else if (this.portalType === PortalType.NODE) {
             player.node.position = this.toNode.position
         }
+    }
+
+    public showPrompt(): void {
+        GameManager.inst.interactPrompt.showPrompt(
+            Settings.keybinds.interact,
+            "Enter",
+        )
     }
 }

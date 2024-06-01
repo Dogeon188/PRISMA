@@ -4,6 +4,7 @@ import {
     Component,
     Contact2DType,
     EventKeyboard,
+    Game,
     IPhysics2DContact,
     Input,
     Node,
@@ -208,11 +209,11 @@ export class Player extends Component {
                 break
             case ColliderType.OBJECT:
                 this.recentCollidedWith = other.getComponent(Entity)
-                this.handleInteractPrompt(other.node)
             case ColliderType.BRICK: // Fall through
                 if (isOnTop) this.standingOn.add(other.uuid)
                 break
         }
+        other.getComponent(Entity)?.showPrompt()
     }
 
     private onEndContact(
@@ -232,7 +233,7 @@ export class Player extends Component {
                 this.standingOn.delete(other.uuid)
                 break
             case ColliderType.OBJECT:
-                this.hideInteractPrompt()
+                GameManager.inst.interactPrompt.hidePrompt()
             case ColliderType.BRICK:
                 this.standingOn.delete(other.uuid)
             case ColliderType.SENSOR: // Fall through
@@ -241,6 +242,10 @@ export class Player extends Component {
                 }
                 break
         }
+        // FIXME problematic when player is touching multiple objects
+        // could fix by using a set of collided objects
+        if (other.getComponent(Entity))
+            GameManager.inst.interactPrompt.hidePrompt()
     }
 
     private onBeginContactHalo(
@@ -342,29 +347,6 @@ export class Player extends Component {
         this.node.setPosition(this.spawnPoint)
         this.rigidBody.applyLinearImpulseToCenter(new Vec2(0, 0), true) // wake up rigid body, update collisions
         this.dead = false
-    }
-
-    //#endregion
-
-    //#region Interaction
-    /**
-     * Pass keycode and text based on the type of node.
-     * It's using name of the node to determine the type yet.
-     * Will be replaced with a better method.
-     * @param node Node to interact with
-     */
-    private handleInteractPrompt(node: Node): void {
-        switch (node.name) {
-            case "boxG":
-                GameManager.inst.interactPrompt.showPrompt("E", "To interact")
-                break
-            default:
-                GameManager.inst.interactPrompt.hidePrompt()
-        }
-    }
-
-    private hideInteractPrompt(): void {
-        GameManager.inst.interactPrompt.hidePrompt()
     }
 
     //#endregion

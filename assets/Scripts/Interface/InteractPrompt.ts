@@ -1,6 +1,6 @@
-import { _decorator, AudioClip, Component, Label, tween, UITransform, log } from "cc"
+import { _decorator, Component, KeyCode, Label, log } from "cc"
+import { getKeyCodeName } from "../Scene/Settings"
 const { ccclass, property } = _decorator
-
 
 @ccclass("InteractPrompt")
 export class InteractPrompt extends Component {
@@ -13,11 +13,11 @@ export class InteractPrompt extends Component {
     private rightDescription: Label = null
 
     /**
-     * Play a sequence of dialogs
+     * Will show a prompt with the given keyCode and text \
+     * like "Press [E] to interact"
      */
-    showPrompt(keyCode: string, text: string, then?: Function): void {
-        this.setText([keyCode, text])
-        log("showPrompt with keyCode: " + keyCode + " and text: " + text)
+    showPrompt(keyCode: KeyCode, text: string, then?: Function): void {
+        this.setText(keyCode, text)
         if (!this.isPlaying) {
             this.node.active = true
             this.isPlaying = true
@@ -41,10 +41,8 @@ export class InteractPrompt extends Component {
         })
     }
 
-
-    private setText([keyCode, text]): void {
-        this.keyCode.string = keyCode
+    private setText(keyCode: KeyCode, text: string): void {
+        this.keyCode.string = getKeyCodeName(keyCode)
         this.rightDescription.string = text
     }
-
 }
