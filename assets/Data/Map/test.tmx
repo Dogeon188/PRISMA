@@ -29,6 +29,12 @@
   <object id="29" x="832" y="304" width="80" height="8"/>
  </objectgroup>
  <objectgroup id="3" name="Objects">
+  <object id="31" name="BlueBox" type="box" x="304" y="368" width="32" height="32">
+   <properties>
+    <property name="class" value="box"/>
+    <property name="color" value="blue"/>
+   </properties>
+  </object>
   <object id="10" name="test2" type="dialog" x="168" y="144">
    <properties>
     <property name="class" value="dialog"/>
@@ -75,18 +81,6 @@
     <property name="destination" value="13"/>
    </properties>
    <point/>
-  </object>
-  <object id="31" name="BlueBox" type="box" x="352" y="368.534" width="32" height="32">
-   <properties>
-    <property name="class" value="box"/>
-    <property name="color" value="blue"/>
-   </properties>
-  </object>
-  <object id="39" name="BlueBox" type="box" x="607.264" y="335.977" width="32" height="64">
-   <properties>
-    <property name="class" value="box"/>
-    <property name="color" value="blue"/>
-   </properties>
   </object>
  </objectgroup>
  <objectgroup id="8" name="Bricks">

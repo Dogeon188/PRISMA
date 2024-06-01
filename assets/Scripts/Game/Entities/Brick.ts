@@ -48,7 +48,7 @@ export class Brick extends Entity {
         this.color = color
         this.node.getComponent(Sprite).color = Brick.COLOR_MAP[this.color]
         // Set the collision group of the collider
-        this.node.getComponent(Collider2D).group = this.color
+        this.node.getComponent(Collider2D).group = ColliderGroup.ACTIVE
     }
 
     public onEnterHalo(playerHalo: PlayerHalo): boolean {
