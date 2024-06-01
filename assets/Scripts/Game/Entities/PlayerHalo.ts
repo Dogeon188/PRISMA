@@ -13,7 +13,10 @@ import {
     input,
     IPhysics2DContact,
     KeyCode,
+    Label,
     Node,
+    screen,
+    Size,
     Sprite,
     UITransform,
     Vec3,
@@ -32,14 +35,22 @@ export class PlayerHalo extends Component {
 
     private targetColor: number = ColliderGroup.RED
 
+    @property(Node)
+    private palette: Node = null
+
     private static readonly COLOR_MAP = {
         [ColliderGroup.RED]: Color.RED,
         [ColliderGroup.GREEN]: Color.GREEN,
         [ColliderGroup.BLUE]: Color.BLUE,
     }
 
+    private colorNumDict = {
+        [ColliderGroup.RED]: 1,
+        [ColliderGroup.GREEN]: 0,
+        [ColliderGroup.BLUE]: 1,
+    }
+
     protected onLoad(): void {
-        input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this)
         const target_color = PlayerHalo.COLOR_MAP[this.color]
         this.node.getChildByName("Halo").getComponent(Sprite).color = new Color(
             target_color.r,
@@ -49,26 +60,23 @@ export class PlayerHalo extends Component {
         )
         input.on(Input.EventType.MOUSE_DOWN, this.onMouseDown, this)
         input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this)
-        input.on(Input.EventType.MOUSE_WHEEL, this.onMouseWheel, this)
-        this.node.getChildByName("Palette").getComponent(Sprite).enabled = false
-    }
-
-    private onKeyDown(event: EventKeyboard): void {
-        switch (event.keyCode) {
-            case KeyCode.KEY_J:
-                this.changeColor(ColliderGroup.RED)
-                break
-            case KeyCode.KEY_K:
-                this.changeColor(ColliderGroup.GREEN)
-                break
-            case KeyCode.KEY_L:
-                this.changeColor(ColliderGroup.BLUE)
-                break
+        input.on(Input.EventType.MOUSE_MOVE, this.onMouseMove, this)
+        for (const sprite of this.palette.getComponentsInChildren(Sprite)) {
+            sprite.enabled = false
+        }
+        this.palette.getChildByName("RedNum").getComponent(Label).string =
+            this.colorNumDict[ColliderGroup.RED].toString()
+        this.palette.getChildByName("GreenNum").getComponent(Label).string =
+            this.colorNumDict[ColliderGroup.GREEN].toString()
+        this.palette.getChildByName("BlueNum").getComponent(Label).string =
+            this.colorNumDict[ColliderGroup.BLUE].toString()
+        for (const label of this.palette.getComponentsInChildren(Label)) {
+            label.enabled = false
         }
     }
 
     private changeColor(color: number): void {
-        if (this.color === color) {
+        if (this.color === color || this.colorNumDict[color] === 0) {
             return
         }
         this.color = color
@@ -96,82 +104,58 @@ export class PlayerHalo extends Component {
     }
 
     private onMouseDown(): void {
-        this.node.getChildByName("Palette").getComponent(Sprite).enabled = true
+        for (const sprite of this.palette.getComponentsInChildren(Sprite)) {
+            sprite.enabled = true
+        }
+        for (const label of this.palette.getComponentsInChildren(Label)) {
+            label.enabled = true
+        }
         this.mouseDown = true
     }
 
     private onMouseUp(): void {
-        this.node.getChildByName("Palette").getComponent(Sprite).enabled = false
+        for (const sprite of this.palette.getComponentsInChildren(Sprite)) {
+            sprite.enabled = false
+        }
+        for (const label of this.palette.getComponentsInChildren(Label)) {
+            label.enabled = false
+        }
         this.mouseDown = false
         this.changeColor(this.targetColor)
     }
 
-    private onMouseWheel(event: EventMouse): void {
-        if (event.getScrollY() > 0) {
-            // this.changeColor((this.color + 1) % 3)
-            switch (this.color) {
-                case ColliderGroup.RED:
-                    this.targetColor = ColliderGroup.BLUE
-                    break
-                case ColliderGroup.GREEN:
-                    this.targetColor = ColliderGroup.RED
-                    break
-                case ColliderGroup.BLUE:
-                    this.targetColor = ColliderGroup.GREEN
-                    break
-            }
-        } else {
-            // this.changeColor((this.color - 1) % 3)
-            switch (this.color) {
-                case ColliderGroup.RED:
-                    this.targetColor = ColliderGroup.GREEN
-                    break
-                case ColliderGroup.GREEN:
-                    this.targetColor = ColliderGroup.BLUE
-                    break
-                case ColliderGroup.BLUE:
-                    this.targetColor = ColliderGroup.RED
-                    break
+    private onMouseMove(event: EventMouse): void {
+        if (this.mouseDown) {
+            const cameraSize = screen.resolution.lerp(
+                Size.ZERO,
+                1 - 1 / screen.devicePixelRatio,
+            )
+            const mousePosition = new Vec3(
+                event.getLocationX() - cameraSize.width / 2,
+                event.getLocationY() - cameraSize.height / 2,
+                0,
+            )
+
+            const angle =
+                (Vec3.angle(Vec3.UNIT_Y, mousePosition) * 180) / Math.PI
+
+            if (mousePosition.x >= 0 && angle < 120) {
+                this.targetColor = ColliderGroup.RED
+            } else if (mousePosition.x < 0 && angle < 120) {
+                this.targetColor = ColliderGroup.GREEN
+            } else {
+                this.targetColor = ColliderGroup.BLUE
             }
         }
     }
 
-    /*private onMouseMove(event: EventMouse): void {
-        if (this.mouseDown) {
-            const ScrrenPositionOfPlayer = new Vec3()
-            this.camera.camera.worldToScreen(
-                ScrrenPositionOfPlayer,
-                this.node.position,
-            )
-            console.log(ScrrenPositionOfPlayer)
-
-            const worldPositionOfMouse = new Vec3()
-            this.camera.camera.screenToWorld(
-                worldPositionOfMouse,
-                new Vec3(event.getLocationX(), event.getLocationY()),
-            )
-
-            // get World Position of the player
-            const playerWorldPosition = this.node.position
-
-            // get the direction vector
-            const mouseRelativePosition =
-                worldPositionOfMouse.subtract(playerWorldPosition)
-
-            const uiTransform = this.node.getComponent(UITransform)
-            const mouseRelativePosition = uiTransform.convertToNodeSpaceAR(
-                new Vec3(event.getUILocationX(), event.getUILocationY()),
-            )
-            const angle =
-                (Vec3.angle(Vec3.UNIT_Y, mouseRelativePosition) * 180) / Math.PI
-            // console.log(angle)
-            if (mouseRelativePosition.x >= 0 && angle < 120) {
-                this.targetColor = ColliderGroup.RED
-            } else if (mouseRelativePosition.x < 0 && angle < 120) {
-                this.targetColor = ColliderGroup.BLUE
-            } else {
-                this.targetColor = ColliderGroup.GREEN
-            }
-        }
-    }*/
+    public addGem(color: number): void {
+        this.colorNumDict[color]++
+        this.palette.getChildByName("RedNum").getComponent(Label).string =
+            this.colorNumDict[ColliderGroup.RED].toString()
+        this.palette.getChildByName("GreenNum").getComponent(Label).string =
+            this.colorNumDict[ColliderGroup.GREEN].toString()
+        this.palette.getChildByName("BlueNum").getComponent(Label).string =
+            this.colorNumDict[ColliderGroup.BLUE].toString()
+    }
 }
