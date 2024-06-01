@@ -85,7 +85,6 @@ export class ColliderManager extends Component {
         const rigidBody = this.getComponent(RigidBody2D)
         for (const collider of this.node.getComponents(Collider2D)) {
             collider.tag = this._type
-            // collider.group = this._type
             switch (this._type) {
                 case ColliderType.GROUND:
                     rigidBody.type = ERigidBody2DType.Static

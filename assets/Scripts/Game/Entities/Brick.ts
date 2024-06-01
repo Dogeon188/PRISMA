@@ -9,8 +9,8 @@ import {
     Vec2,
 } from "cc"
 import { ColliderGroup } from "../Physics/ColliderManager"
-import { Player } from "../Player"
 import { Entity } from "./Entity"
+import { PlayerHalo } from "./PlayerHalo"
 const { ccclass, property } = _decorator
 
 @ccclass("Brick")
@@ -51,19 +51,29 @@ export class Brick extends Entity {
         this.node.getComponent(Collider2D).group = this.color
     }
 
-    public onEnterHalo(player: Player, color: number): void {
-        if (color === this.color) {
+    public onEnterHalo(playerHalo: PlayerHalo): boolean {
+        if (playerHalo.color === this.color) {
             this.scheduleOnce(() => {
                 this.node.getComponent(Sprite).enabled = false
+                this.node.getComponent(Collider2D).group =
+                    ColliderGroup.INACTIVE
             }, 0.1)
+            return true
         }
+        return false
     }
 
-    public onLeaveHalo(player: Player, color: number): void {
-        if (color === this.color) {
+    public onLeaveHalo(
+        playerHalo: PlayerHalo,
+        force: boolean = false,
+    ): boolean {
+        if (force || playerHalo.color === this.color) {
             this.scheduleOnce(() => {
                 this.node.getComponent(Sprite).enabled = true
+                this.node.getComponent(Collider2D).group = ColliderGroup.ACTIVE
             }, 0.1)
+            return true
         }
+        return false
     }
 }

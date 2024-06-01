@@ -248,10 +248,9 @@ export class Player extends Component {
         other: Collider2D,
         contact: IPhysics2DContact,
     ): void {
-        if (other.tag === ColliderType.OBJECT) {
-            const ret = other.node
-                .getComponent(Box)
-                .onEnterHalo(self.node.getComponent(PlayerHalo))
+        const entity = other.node.getComponent(Entity)
+        if (entity) {
+            const ret = entity.onEnterHalo(self.node.getComponent(PlayerHalo))
             if (ret) {
                 this.collidedInactiveNodeSet.add(
                     other.node.getComponent(Entity),
@@ -267,10 +266,9 @@ export class Player extends Component {
         other: Collider2D,
         contact: IPhysics2DContact,
     ): void {
-        if (other.tag === ColliderType.OBJECT) {
-            const ret = other.node
-                .getComponent(Box)
-                .onLeaveHalo(self.node.getComponent(PlayerHalo))
+        const entity = other.node.getComponent(Entity)
+        if (entity) {
+            const ret = entity.onLeaveHalo(self.node.getComponent(PlayerHalo))
             this.collidedInactiveNodeSet.delete(other.node.getComponent(Entity))
             this.collidedActiveNodeSet.delete(other.node.getComponent(Entity))
         }

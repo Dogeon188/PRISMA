@@ -27,10 +27,14 @@ export class Entity extends Component {
     /**
      * Called when the entity enters the player's halo
      */
-    public onEnterHalo(playerHalo: PlayerHalo) {}
+    public onEnterHalo(halo: PlayerHalo): boolean {
+        return false
+    }
 
     /**
      * Called when the entity leaves the player's halo
      */
-    public onLeaveHalo(playerHalo: PlayerHalo, force: boolean = false) {}
+    public onLeaveHalo(halo: PlayerHalo, force: boolean = false): boolean {
+        return false
+    }
 }
