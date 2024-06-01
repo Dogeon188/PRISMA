@@ -17,6 +17,8 @@ export const ColliderGroup = Enum({
     RED: 1 << 1,
     GREEN: 1 << 2,
     BLUE: 1 << 3,
+    ACTIVE: 1 << 4,
+    INACTIVE: 1 << 5,
 })
 
 /**

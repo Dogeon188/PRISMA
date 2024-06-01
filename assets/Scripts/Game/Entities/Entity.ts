@@ -1,5 +1,6 @@
 import { _decorator, Component, Node } from "cc"
 import { Player } from "../Player"
+import { PlayerHalo } from "./PlayerHalo"
 const { ccclass } = _decorator
 
 @ccclass("Entity")
@@ -25,10 +26,10 @@ export class Entity extends Component {
     /**
      * Called when the entity enters the player's halo
      */
-    public onEnterHalo(player: Player) {}
+    public onEnterHalo(playerHalo: PlayerHalo) {}
 
     /**
      * Called when the entity leaves the player's halo
      */
-    public onLeaveHalo(player: Player) {}
+    public onLeaveHalo(playerHalo: PlayerHalo, force: boolean = false) {}
 }
