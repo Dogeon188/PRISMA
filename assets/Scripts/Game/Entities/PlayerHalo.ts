@@ -56,9 +56,11 @@ export class PlayerHalo extends Component {
             .getComponent(Player)
             .collidedInactiveNodeSet.forEach((node) => {
                 node.onLeaveHalo(this, true)
+                this.node.getComponent(Player).collidedActiveNodeSet.add(node)
             })
         this.node.getComponent(Player).collidedActiveNodeSet.forEach((node) => {
             node.onEnterHalo(this)
+            this.node.getComponent(Player).collidedInactiveNodeSet.add(node)
         })
         // this.node.scale = new Vec3(-1, 1, 1)
         // this.node.scale = new Vec3(1, 1, 1)
