@@ -5,8 +5,10 @@ import {
     instantiate,
     Node,
     Prefab,
+    Size,
     TiledObjectGroup,
     UITransform,
+    Vec2,
 } from "cc"
 import { ResourceManager } from "../../ResourceManager"
 import { Box } from "../Entities/Box"
@@ -145,16 +147,13 @@ export class ObjectTile extends Component {
     private createBox(object: TileObject<"box">): Node {
         const boxNode = instantiate(this.boxPrefab)
         boxNode.name = object.name
-        boxNode.setPosition(object.x, object.y)
-        console.log(object)
-        boxNode
-            .getComponent(UITransform)
-            .setContentSize(object.width, object.height)
-        boxNode.getComponent(BoxCollider2D).size =
-            boxNode.getComponent(UITransform).contentSize
         boxNode
             .getComponent(Box)
-            .initialize(ColorStringToGroupMap[object.color])
+            .initialize(
+                ColorStringToGroupMap[object.color],
+                new Vec2(object.x, object.y),
+                new Size(object.width, object.height),
+            )
         this.node.addChild(boxNode)
         return boxNode
     }

@@ -243,11 +243,6 @@ export class Player extends Component {
         if (entity) {
             entity.onEnterHalo(this, self.node.getComponent(PlayerHalo).color)
         }
-        if (other.tag === ColliderType.OBJECT) {
-            other.node
-                .getComponent(Box)
-                .onCollisionEnter(self.node.getComponent(PlayerHalo).color)
-        }
     }
 
     private onEndContactHalo(
@@ -258,11 +253,6 @@ export class Player extends Component {
         const entity = other.getComponent(Entity)
         if (entity) {
             entity.onLeaveHalo(this, self.node.getComponent(PlayerHalo).color)
-        }
-        if (other.tag === ColliderType.OBJECT) {
-            other.node
-                .getComponent(Box)
-                .onCollisionExit(self.node.getComponent(PlayerHalo).color)
         }
     }
 

@@ -7,7 +7,6 @@ import {
     Sprite,
     UITransform,
     Vec2,
-    Vec3,
 } from "cc"
 import { ColliderGroup } from "../Physics/ColliderManager"
 import { Player } from "../Player"
@@ -35,13 +34,12 @@ export class Brick extends Entity {
 
     public initialize(color: number, position: Vec2, size: Size): void {
         // set position
-        // need to shift the position by half of the size
-        console.log(position, size)
+        // need to shift the position by quarter (why?) of the size
         this.node.position.set(
             position.x + size.width / 4,
             position.y - size.height / 4,
         )
-        // this.node.position.set(position.x, position.y)
+
         // set size
         this.node.getComponent(UITransform).setContentSize(size)
         this.node.getComponent(BoxCollider2D).size = size
@@ -49,7 +47,7 @@ export class Brick extends Entity {
         // Set the color of the box
         this.color = color
         this.node.getComponent(Sprite).color = Brick.COLOR_MAP[this.color]
-        // Set the group of the collider
+        // Set the collision group of the collider
         this.node.getComponent(Collider2D).group = this.color
     }
 

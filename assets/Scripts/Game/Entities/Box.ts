@@ -1,4 +1,15 @@
-import { _decorator, Collider2D, Color, Node, Sprite, Vec3 } from "cc"
+import {
+    _decorator,
+    BoxCollider2D,
+    Collider2D,
+    Color,
+    Node,
+    Size,
+    Sprite,
+    UITransform,
+    Vec2,
+    Vec3,
+} from "cc"
 import { ColliderGroup } from "../Physics/ColliderManager"
 import { Player } from "../Player"
 import { Entity } from "./Entity"
@@ -19,12 +30,27 @@ export class Box extends Entity {
     }
 
     protected onLoad(): void {
-        this.initialize(this.color)
+        this.initialize(
+            this.color,
+            new Vec2(this.node.position.x, this.node.position.y),
+            this.node.getComponent(UITransform).contentSize,
+        )
     }
 
-    public initialize(color: number): void {
-        this.color = color
+    public initialize(color: number, position: Vec2, size: Size): void {
+        // set position
+        // need to shift the position by quarter (why?) of the size
+        this.node.position.set(
+            position.x + size.width / 4,
+            position.y - size.height / 4,
+        )
+
+        // set size
+        this.node.getComponent(UITransform).setContentSize(size)
+        this.node.getComponent(BoxCollider2D).size = size
+
         // Set the color of the box
+        this.color = color
         this.node.getComponent(Sprite).color = Box.COLOR_MAP[this.color]
         // Set the group of the collider
         this.node.getComponent(Collider2D).group = this.color
@@ -40,16 +66,16 @@ export class Box extends Entity {
         }
     }
 
-    public onCollisionEnter(playerHaloColor: number): void {
-        if (playerHaloColor === this.color) {
+    public onEnterHalo(player: Player, color: number): void {
+        if (color === this.color) {
             this.scheduleOnce(() => {
                 this.node.getComponent(Sprite).enabled = false
             }, 0.1)
         }
     }
 
-    public onCollisionExit(playerHaloColor: number): void {
-        if (playerHaloColor === this.color) {
+    public onLeaveHalo(player: Player, color: number): void {
+        if (color === this.color) {
             this.scheduleOnce(() => {
                 this.node.getComponent(Sprite).enabled = true
             }, 0.1)
