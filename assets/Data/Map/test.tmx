@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="8" nextobjectid="30">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="8" nextobjectid="33">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <layer id="1" name="Tiles" width="60" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAE+1WSQ6DMAw05QG0DwAeAH1AWe68iDMn3s3kgFRZqoqCosjJRJqDBcEz9sRkENkGgjWgB8x7oBCRhwdK7LE4AyrwfnrgRb0mvM7+XvO3VT/XOIeNB1qj59fijCVn3o/pAXogVQ8s+JfkBMjlYgXMVGAFUw0z5BMg2kHDO6AO3VsXx1wfJB9jEgicW/dT69XP79KJ3d9T3w4hDr/iuzqv7u/xYkjM+P70leNfHJKLmxu4N2YDNzeoN90a5NjfA9PpPpUgHAAA
+   H4sIAAAAAAAAE+1WQQqAMAzrf9QHOPXuizx78t22B0EK4mCUbmsGOQynTZpQl4jOBKAHyEDzGaCC1eIMKJBL0Fv/3Ie/+R1AnuvPc4segTNyhQwgA71mYOdfbCTk3yhwEh3w78DBFDT8WcVhMLDUyVCu9lb2nmvm4osnAePa2k+tVz8vpePt76PvYiGCr32pztz3Rz5oiY2/v75q/O0tucjc4HtjGMjcgN5+exDR3xssNqrOIBwAAA==
   </data>
  </layer>
  <objectgroup id="4" name="Grounds">
@@ -75,6 +75,12 @@
     <property name="destination" value="13"/>
    </properties>
    <point/>
+  </object>
+  <object id="31" name="BlueBox" type="box" x="608" y="336" width="32" height="64">
+   <properties>
+    <property name="class" value="box"/>
+    <property name="color" value="blue"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

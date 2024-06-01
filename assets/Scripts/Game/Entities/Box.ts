@@ -19,13 +19,16 @@ export class Box extends Entity {
     }
 
     protected onLoad(): void {
+        this.initialize(this.color)
+    }
+
+    public initialize(color: number): void {
+        this.color = color
         // Set the color of the box
         this.node.getComponent(Sprite).color = Box.COLOR_MAP[this.color]
         // Set the group of the collider
         this.node.getComponent(Collider2D).group = this.color
     }
-
-    protected start() {}
 
     protected update(deltaTime: number) {
         if (this.bindedTo) {
