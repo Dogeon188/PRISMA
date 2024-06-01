@@ -32,8 +32,13 @@ export class PlayerHalo extends Component {
 
     protected onLoad(): void {
         input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this)
-        /*this.node.getChildByName("Halo").getComponent(Sprite).color =
-            PlayerHalo.COLOR_MAP[this.color]*/
+        const target_color = PlayerHalo.COLOR_MAP[this.color]
+        this.node.getChildByName("Halo").getComponent(Sprite).color = new Color(
+            target_color.r,
+            target_color.g,
+            target_color.b,
+            66,
+        )
     }
 
     private onKeyDown(event: EventKeyboard): void {
@@ -52,6 +57,13 @@ export class PlayerHalo extends Component {
 
     private changeColor(color: number): void {
         this.color = color
+        const target_color = PlayerHalo.COLOR_MAP[this.color]
+        this.node.getChildByName("Halo").getComponent(Sprite).color = new Color(
+            target_color.r,
+            target_color.g,
+            target_color.b,
+            66,
+        )
         this.node
             .getComponent(Player)
             .collidedInactiveNodeSet.forEach((node) => {
