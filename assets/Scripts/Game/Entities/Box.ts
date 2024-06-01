@@ -10,6 +10,7 @@ import {
     Vec2,
     Vec3,
 } from "cc"
+import { GameManager } from "../GameManager"
 import { ColliderGroup } from "../Physics/ColliderManager"
 import { Player } from "../Player"
 import { Entity } from "./Entity"
@@ -94,11 +95,14 @@ export class Box extends Entity {
     }
 
     public onBeginInteract(player: Player): void {
+        // GameManager.inst.interactPrompt.playPrompt("E", "To interact")
+        GameManager.inst.interactPrompt.hidePrompt()
         this.bindedTo = player.node
         this.bindOffsetX = this.node.position.x - player.node.position.x
     }
 
     public onEndInteract(player: Player): void {
+        
         this.bindedTo = null
     }
 }

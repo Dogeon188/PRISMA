@@ -1,33 +1,31 @@
 import {
-    _decorator,
     Animation,
-    clamp,
     Collider2D,
     Component,
     Contact2DType,
     EventKeyboard,
-    Input,
-    input,
     IPhysics2DContact,
+    Input,
     Node,
     Quat,
     RigidBody2D,
     Sprite,
-    tween,
     Vec2,
     Vec3,
+    _decorator,
+    clamp,
+    input,
+    tween,
 } from "cc"
 import { Settings } from "../Scene/Settings"
-import { Box } from "./Entities/Box"
-import { Brick } from "./Entities/Brick"
 import { Entity } from "./Entities/Entity"
 import { PlayerHalo } from "./Entities/PlayerHalo"
 import { GameManager } from "./GameManager"
 import { ColliderGroup, ColliderType } from "./Physics/ColliderManager"
 import {
+    NormalDirection,
     fuzzyEqual,
     getCorrectNormal,
-    NormalDirection,
 } from "./Physics/PhysicsFixer"
 import { Movement } from "./Physics/PlayerMovement"
 
@@ -210,6 +208,7 @@ export class Player extends Component {
                 break
             case ColliderType.OBJECT:
                 this.recentCollidedWith = other.getComponent(Entity)
+                this.handleInteractPrompt(other.node)
             case ColliderType.BRICK: // Fall through
                 if (isOnTop) this.standingOn.add(other.uuid)
                 break
@@ -233,6 +232,7 @@ export class Player extends Component {
                 this.standingOn.delete(other.uuid)
                 break
             case ColliderType.OBJECT:
+                this.hideInteractPrompt()
             case ColliderType.BRICK:
                 this.standingOn.delete(other.uuid)
             case ColliderType.SENSOR: // Fall through
@@ -342,6 +342,29 @@ export class Player extends Component {
         this.node.setPosition(this.spawnPoint)
         this.rigidBody.applyLinearImpulseToCenter(new Vec2(0, 0), true) // wake up rigid body, update collisions
         this.dead = false
+    }
+
+    //#endregion
+
+    //#region Interaction
+    /**
+     * Pass keycode and text based on the type of node.
+     * It's using name of the node to determine the type yet.
+     * Will be replaced with a better method.
+     * @param node Node to interact with
+     */
+    private handleInteractPrompt(node: Node): void {
+        switch (node.name) {
+            case "boxG":
+                GameManager.inst.interactPrompt.showPrompt("E", "To interact")
+                break
+            default:
+                GameManager.inst.interactPrompt.hidePrompt()
+        }
+    }
+
+    private hideInteractPrompt(): void {
+        GameManager.inst.interactPrompt.hidePrompt()
     }
 
     //#endregion

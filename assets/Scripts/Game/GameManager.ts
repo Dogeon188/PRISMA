@@ -3,6 +3,7 @@ import { AudioManager } from "../AudioManager"
 import { DialogBox } from "../Interface/DialogBox"
 import { SceneManager } from "../SceneManager"
 import { Player } from "./Player"
+import { InteractPrompt } from "../Interface/InteractPrompt"
 const { ccclass, property } = _decorator
 
 @ccclass("GameManager")
@@ -50,6 +51,13 @@ export class GameManager extends Component {
         tooltip: "The dialog box node",
     })
     dialogBox: DialogBox = null
+
+    @property({
+        type: InteractPrompt,
+        group: "References",
+        tooltip: "The interact prompt node",
+    })
+    interactPrompt: InteractPrompt = null
 
     @property({ type: Prefab, group: "Prefabs" })
     playerPrefab: Prefab = null
