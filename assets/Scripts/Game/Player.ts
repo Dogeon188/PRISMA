@@ -203,6 +203,7 @@ export class Player extends Component {
                 break
             case ColliderType.OBJECT:
                 this.recentCollidedWith = other.getComponent(Entity)
+            case ColliderType.BRICK: // Fall through
                 if (isOnTop) this.standingOn.add(other.uuid)
                 break
         }
@@ -225,8 +226,9 @@ export class Player extends Component {
                 this.standingOn.delete(other.uuid)
                 break
             case ColliderType.OBJECT:
+            case ColliderType.BRICK:
                 this.standingOn.delete(other.uuid)
-            case ColliderType.SENSOR:
+            case ColliderType.SENSOR: // Fall through
                 if (this.recentCollidedWith === other.getComponent(Entity)) {
                     this.recentCollidedWith = null
                 }
