@@ -19,6 +19,7 @@ import {
 } from "cc"
 import { Settings } from "../Scene/Settings"
 import { Box } from "./Entities/Box"
+import { Brick } from "./Entities/Brick"
 import { Entity } from "./Entities/Entity"
 import { PlayerHalo } from "./Entities/PlayerHalo"
 import { GameManager } from "./GameManager"
@@ -209,6 +210,7 @@ export class Player extends Component {
                 break
             case ColliderType.OBJECT:
                 this.recentCollidedWith = other.getComponent(Entity)
+            case ColliderType.BRICK: // Fall through
                 if (isOnTop) this.standingOn.add(other.uuid)
                 break
         }
@@ -231,8 +233,9 @@ export class Player extends Component {
                 this.standingOn.delete(other.uuid)
                 break
             case ColliderType.OBJECT:
+            case ColliderType.BRICK:
                 this.standingOn.delete(other.uuid)
-            case ColliderType.SENSOR:
+            case ColliderType.SENSOR: // Fall through
                 if (this.recentCollidedWith === other.getComponent(Entity)) {
                     this.recentCollidedWith = null
                 }

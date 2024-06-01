@@ -1,15 +1,20 @@
 import {
     _decorator,
+    BoxCollider2D,
     Component,
     instantiate,
     Node,
     Prefab,
+    Size,
     TiledObjectGroup,
     UITransform,
+    Vec2,
 } from "cc"
 import { ResourceManager } from "../../ResourceManager"
+import { Box } from "../Entities/Box"
 import { Dialog } from "../Entities/Dialog"
 import { Portal, PortalType } from "../Entities/Portal"
+import { ColorStringToGroupMap } from "../Physics/ColliderManager"
 const { ccclass, property, requireComponent } = _decorator
 
 type TileObjectTypes = {
@@ -31,6 +36,11 @@ type TileObjectTypes = {
         /** The object id (in Tiled) to move to, usually a dummy node */
         destination: number
     }
+    /** Box that can be pushed/pulled by the player */
+    box: {
+        class: "box"
+        color: "red" | "green" | "blue"
+    }
     /** Dummy object just for reference */
     dummy: {
         class: "dummy"
@@ -48,6 +58,9 @@ export class ObjectTile extends Component {
 
     @property({ type: Prefab, group: "Prefabs" })
     private portalPrefab: Prefab = null
+
+    @property({ type: Prefab, group: "Prefabs" })
+    private boxPrefab: Prefab = null
 
     protected onLoad(): void {
         // Cocos resets anchor and position everytime Tiled file reloaded
@@ -73,6 +86,10 @@ export class ObjectTile extends Component {
                     const portal = this.createNodePortal(object)
                     objectNodes.set(object.id, portal)
                     nodePortals.set(object.id, object.destination)
+                    break
+                case "box":
+                    const box = this.createBox(object)
+                    objectNodes.set(object.id, box)
                     break
                 case "dummy":
                     objectNodes.set(object.id, this.createDummy(object))
@@ -122,9 +139,23 @@ export class ObjectTile extends Component {
         portalNode.setPosition(object.x, object.y)
         const portal = portalNode.getComponent(Portal)
         portal.portalType = PortalType.NODE
-        // destination node id set 
+        // destination node id set
         this.node.addChild(portalNode)
         return portalNode
+    }
+
+    private createBox(object: TileObject<"box">): Node {
+        const boxNode = instantiate(this.boxPrefab)
+        boxNode.name = object.name
+        boxNode
+            .getComponent(Box)
+            .initialize(
+                ColorStringToGroupMap[object.color],
+                new Vec2(object.x, object.y),
+                new Size(object.width, object.height),
+            )
+        this.node.addChild(boxNode)
+        return boxNode
     }
 
     private createDummy(object: TileObject<"dummy">): Node {

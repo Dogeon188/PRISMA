@@ -1,4 +1,5 @@
 import { _decorator, Component, Node } from "cc"
+import { ColliderGroup } from "../Physics/ColliderManager"
 import { Player } from "../Player"
 import { PlayerHalo } from "./PlayerHalo"
 const { ccclass } = _decorator

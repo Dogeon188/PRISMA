@@ -13,13 +13,19 @@ const { ccclass, property, requireComponent, executionOrder } = _decorator
  * @see {@link https://docs.cocos.com/creator/manual/zh/physics/physics-group-mask.html|Physics Group & Mask}
  */
 export const ColliderGroup = Enum({
-    DEFAULT: 1 << 0,
+    DEFAULT: 1 << 0, // white
     RED: 1 << 1,
     GREEN: 1 << 2,
     BLUE: 1 << 3,
     ACTIVE: 1 << 4,
     INACTIVE: 1 << 5,
 })
+
+export const ColorStringToGroupMap = {
+    red: ColliderGroup.RED,
+    green: ColliderGroup.GREEN,
+    blue: ColliderGroup.BLUE,
+}
 
 /**
  * Type of collider, applied to {@linkcode Collider2D.tag} \
@@ -34,6 +40,8 @@ export const ColliderType = Enum({
     ONEWAY: -1,
     /** kills player on touch */
     SPIKE: -1,
+    /** colored barriers */
+    BRICK: -1,
     /** the player */
     PLAYER: 32,
     /**
@@ -91,6 +99,10 @@ export class ColliderManager extends Component {
                     rigidBody.type = ERigidBody2DType.Static
                     rigidBody.fixedRotation = true
                     collider.sensor = true
+                    break
+                case ColliderType.BRICK:
+                    rigidBody.type = ERigidBody2DType.Static
+                    rigidBody.fixedRotation = true
                     break
                 case ColliderType.PLAYER:
                     rigidBody.type = ERigidBody2DType.Dynamic
