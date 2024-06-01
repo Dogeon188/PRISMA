@@ -9,6 +9,7 @@ import {
     Input,
     input,
     IPhysics2DContact,
+    Node,
     Quat,
     RigidBody2D,
     Sprite,
@@ -85,6 +86,12 @@ export class Player extends Component {
 
     /** Name of current animation being played */
     private currentAnimation: string
+
+    /** collider set that contain inactive object which is collide with Halos */
+    public collidedInactiveNodeSet: Set<Entity> = new Set()
+
+    /** collider set  that contain active object which is collide with Halos*/
+    public collidedActiveNodeSet: Set<Entity> = new Set()
 
     //#endregion
 
@@ -239,9 +246,16 @@ export class Player extends Component {
         contact: IPhysics2DContact,
     ): void {
         if (other.tag === ColliderType.OBJECT) {
-            other.node
+            const ret = other.node
                 .getComponent(Box)
-                .onCollisionEnter(self.node.getComponent(PlayerHalo).color)
+                .onEnterHalo(self.node.getComponent(PlayerHalo))
+            if (ret) {
+                this.collidedInactiveNodeSet.add(
+                    other.node.getComponent(Entity),
+                )
+            } else {
+                this.collidedActiveNodeSet.add(other.node.getComponent(Entity))
+            }
         }
     }
 
@@ -251,9 +265,18 @@ export class Player extends Component {
         contact: IPhysics2DContact,
     ): void {
         if (other.tag === ColliderType.OBJECT) {
-            other.node
+            const ret = other.node
                 .getComponent(Box)
-                .onCollisionExit(self.node.getComponent(PlayerHalo).color)
+                .onLeaveHalo(self.node.getComponent(PlayerHalo))
+            if (ret) {
+                this.collidedInactiveNodeSet.delete(
+                    other.node.getComponent(Entity),
+                )
+            } else {
+                this.collidedActiveNodeSet.delete(
+                    other.node.getComponent(Entity),
+                )
+            }
         }
     }
 

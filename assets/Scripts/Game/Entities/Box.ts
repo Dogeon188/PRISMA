@@ -2,6 +2,7 @@ import { _decorator, Collider2D, Color, Node, Sprite, Vec3 } from "cc"
 import { ColliderGroup } from "../Physics/ColliderManager"
 import { Player } from "../Player"
 import { Entity } from "./Entity"
+import { PlayerHalo } from "./PlayerHalo"
 const { ccclass, property } = _decorator
 
 @ccclass("Box")
@@ -37,23 +38,30 @@ export class Box extends Entity {
         }
     }
 
-    public onCollisionEnter(playerHaloColor: number): void {
-        if (playerHaloColor === this.color) {
+    public onEnterHalo(playerHalo: PlayerHalo): boolean {
+        if (playerHalo.color === this.color) {
             this.scheduleOnce(() => {
                 this.node.getComponent(Sprite).enabled = false
                 this.node.getComponent(Collider2D).group =
                     ColliderGroup.INACTIVE
             }, 0.1)
+            return true
         }
+        return false
     }
 
-    public onCollisionExit(playerHaloColor: number): void {
-        if (playerHaloColor === this.color) {
+    public onLeaveHalo(
+        playerHalo: PlayerHalo,
+        force: boolean = false,
+    ): boolean {
+        if (force || playerHalo.color === this.color) {
             this.scheduleOnce(() => {
                 this.node.getComponent(Sprite).enabled = true
                 this.node.getComponent(Collider2D).group = ColliderGroup.ACTIVE
             }, 0.1)
+            return true
         }
+        return false
     }
 
     public onBeginInteract(player: Player): void {

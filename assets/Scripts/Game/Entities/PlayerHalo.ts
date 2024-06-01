@@ -17,6 +17,7 @@ import {
 import { getCorrectNormal } from "../Physics/PhysicsFixer"
 import { ColliderGroup, ColliderType } from "../Physics/ColliderManager"
 import { Box } from "./Box"
+import { Player } from "../Player"
 const { ccclass, property } = _decorator
 
 @ccclass("PlayerHalo")
@@ -51,6 +52,16 @@ export class PlayerHalo extends Component {
 
     private changeColor(color: number): void {
         this.color = color
+        this.node
+            .getComponent(Player)
+            .collidedInactiveNodeSet.forEach((node) => {
+                node.onLeaveHalo(this, true)
+            })
+        this.node.getComponent(Player).collidedActiveNodeSet.forEach((node) => {
+            node.onEnterHalo(this)
+        })
+        // this.node.scale = new Vec3(-1, 1, 1)
+        // this.node.scale = new Vec3(1, 1, 1)
         /*this.node.getChildByName("Halo").getComponent(Sprite).color =
             PlayerHalo.COLOR_MAP[this.color]*/
     }
