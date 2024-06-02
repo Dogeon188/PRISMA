@@ -1,5 +1,7 @@
-import { _decorator, AudioClip, Button, Component, director } from "cc"
+import { _decorator, AudioClip, Button, Component, director, find } from "cc"
 import { AudioManager } from "../AudioManager"
+import { Toast } from "../Interface/Toast"
+import { ToastManager } from "../Interface/ToastManager"
 import { SceneManager } from "../SceneManager"
 const { ccclass, property } = _decorator
 
@@ -21,8 +23,11 @@ export class Start extends Component {
     }
 
     protected startGame(): void {
+        // find("Canvas/Toast").getComponent(Toast).setText("Start Game")
+        // find("Canvas/Toast").getComponent(Toast).show(Toast.LENGTH_SHORT)
+        ToastManager.inst.show("Start Game", Toast.LENGTH_SHORT)
         AudioManager.inst.fadeOutBGM(1)
-        SceneManager.loadScene("LevelTest")
+        //SceneManager.loadScene("LevelTest")
     }
 
     protected openSettings(): void {
