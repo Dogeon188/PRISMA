@@ -253,7 +253,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 605.2367688022284,
+    "_orthoHeight": 474.4186046511628,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -523,7 +523,7 @@
     "_string": "PRISMA",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 134.625,
+    "_actualFontSize": 129,
     "_fontSize": 120,
     "_fontFamily": "Arial",
     "_lineHeight": 120,
@@ -738,8 +738,8 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 92.8165123389624,
-      "height": 75.60000000000001
+      "width": 92.81993777252907,
+      "height": 75.6
     }
   },
   {
@@ -878,8 +878,8 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 151.61430677663648,
-      "height": 75.60000000000001
+      "width": 151.61991562954216,
+      "height": 75.6
     }
   },
   {
