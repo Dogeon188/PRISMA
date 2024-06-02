@@ -22,9 +22,7 @@ export class ToastManager {
     private static _inst: ToastManager = null
     private toastPool: Node[] = []
     private toastContainer: Node = null
-
-    @property(Prefab)
-    toastPrefab: Prefab = null
+    private toastPrefab: Prefab = null
 
     static get inst(): ToastManager {
         if (this._inst == null) {
@@ -47,7 +45,6 @@ export class ToastManager {
                 return
             }
             this.toastPrefab = prefab
-            console.log(prefab)
             // Create a toast pool
             for (let i = 0; i < 5; i++) {
                 const toast = instantiate(this.toastPrefab)
@@ -58,7 +55,7 @@ export class ToastManager {
         director.addPersistRootNode(this.toastContainer)
     }
 
-    show(message: string, duration: number = Toast.LENGTH_SHORT): void {
+    private _show(message: string, duration: number = Toast.LENGTH_SHORT): void {
         let toast = this.toastPool.pop()
         if (toast == null) {
             log("Toast pool is empty, instantiate a new toast")
@@ -70,6 +67,10 @@ export class ToastManager {
         toast.getComponent(Toast).show(duration)
         this.toastPool.push(toast)
         director.getScene().removeChild(toast)
+    }
+
+    static show(message: string, duration: number = Toast.LENGTH_SHORT): void {
+        this.inst._show(message, duration)
     }
 }
 

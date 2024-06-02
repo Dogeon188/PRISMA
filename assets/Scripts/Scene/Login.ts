@@ -1,6 +1,7 @@
 import { AudioClip, Component, EditBox, _decorator, director } from "cc"
 import { AudioManager } from "../AudioManager"
 import { Auth } from "../Auth"
+import { ToastManager } from "../Interface/ToastManager"
 import { SceneManager } from "../SceneManager"
 
 const { ccclass, property } = _decorator
@@ -31,15 +32,20 @@ export class Login extends Component {
         const email = this.email.string
         const password = this.password.string
 
-        try {
-            const auth = firebase.auth()
-            await auth.signInWithEmailAndPassword(email, password)
-
-            await Auth.loadUserData() // load user data from realtime database after successful login
-            alert(`User ${auth.currentUser.displayName} logged in successfully`)
-            SceneManager.loadScene("Start", true)
-        } catch (error) {
-            alert(error.message)
-        }
+        const auth = firebase.auth()
+        auth.signInWithEmailAndPassword(email, password)
+            .then(async () => {
+                await Auth.loadUserData() // load user data from realtime database after successful login
+                ToastManager.show(
+                    `Welcome back, ${auth.currentUser.displayName}!`,
+                )
+                SceneManager.loadScene("Start", true)
+            })
+            .catch((error: any) => {
+                console.error(error)
+                ToastManager.show(
+                    "Failed to login, please check your email and password.",
+                )
+            })
     }
 }

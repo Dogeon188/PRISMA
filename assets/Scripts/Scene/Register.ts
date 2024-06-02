@@ -1,6 +1,7 @@
 import { _decorator, AudioClip, Component, director, EditBox } from "cc"
 import { AudioManager } from "../AudioManager"
 import { Auth } from "../Auth"
+import { ToastManager } from "../Interface/ToastManager"
 import { SceneManager } from "../SceneManager"
 
 const { ccclass, property } = _decorator
@@ -34,18 +35,21 @@ export class Register extends Component {
         const email = this.email.string
         const password = this.password.string
         const username = this.username.string
-        const auth = firebase.auth()
-        try {
-            await auth.createUserWithEmailAndPassword(email, password)
-            Auth.data = Auth.data // create & initialize default user data
-            await auth.currentUser.updateProfile({
-                displayName: username.toUpperCase(),
-            })
 
-            alert(`User ${auth.currentUser.displayName} created successfully`)
-            SceneManager.loadScene("Start", true)
-        } catch (error) {
-            alert(error.message)
-        }
+        const auth = firebase.auth()
+        auth.createUserWithEmailAndPassword(email, password)
+            .then(async () => {
+                Auth.data = Auth.data // create & initialize default user data
+                await auth.currentUser.updateProfile({
+                    displayName: username.toUpperCase(),
+                })
+
+                ToastManager.show("Successfully registered!")
+                SceneManager.loadScene("Start", true)
+            })
+            .catch((error: any) => {
+                console.error(error)
+                ToastManager.show("Failed to register, please try again.")
+            })
     }
 }
