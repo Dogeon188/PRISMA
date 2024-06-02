@@ -163,7 +163,11 @@ export class PlayerHalo extends Component {
             label.enabled = false
         }
         this.mouseDown = false
-        this.changeColor(this.targetColor)
+        if (this.targetColor !== null) {
+            this.deemphasizeSector(this.targetColor)
+            this.changeColor(this.targetColor)
+            this.targetColor = null
+        }
         // director.startAnimation()
         director.resume()
     }
