@@ -26,6 +26,8 @@ export class Box extends Entity {
     private bindedTo: Node | null = null
     private bindOffsetX: number = 0
 
+    private collidedHaloSet: Set<string> = new Set()
+
     private static readonly COLOR_MAP = {
         [ColliderGroup.RED]: Color.RED,
         [ColliderGroup.GREEN]: Color.GREEN,
