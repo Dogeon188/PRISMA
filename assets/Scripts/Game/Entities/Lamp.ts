@@ -19,7 +19,7 @@ const { ccclass, property } = _decorator
 
 @ccclass("Lamp")
 export class Lamp extends Entity {
-    private color: number = null
+    public color: number = null
 
     private static readonly COLOR_MAP = {
         [ColliderGroup.RED]: Color.RED,
@@ -29,14 +29,15 @@ export class Lamp extends Entity {
 
     protected onLoad(): void {
         this.drawColor()
-        this.node
+        const haloCollider = this.node
             .getChildByName("Halo")
             .getComponent(Collider2D)
-            .on(Contact2DType.BEGIN_CONTACT, this.onBeginContactHalo, this)
-        this.node
-            .getChildByName("Halo")
-            .getComponent(Collider2D)
-            .on(Contact2DType.END_CONTACT, this.onEndContactHalo, this)
+        haloCollider.on(
+            Contact2DType.BEGIN_CONTACT,
+            this.onBeginContactHalo,
+            this,
+        )
+        haloCollider.on(Contact2DType.END_CONTACT, this.onEndContactHalo, this)
     }
 
     public onCollide(other: Node): void {}
@@ -71,11 +72,16 @@ export class Lamp extends Entity {
             this.color = null
             this.drawColor()
         }
-        this.node.getChildByName("Halo").scale = new Vec3(-1, 1, 1)
+        // this.node.getChildByName("Halo").scale = new Vec3(-1, 1, 1)
+        this.node.getChildByName("Halo").getComponent(Collider2D).enabled =
+            false
+        this.scheduleOnce(() => {
+            this.node.getChildByName("Halo").getComponent(Collider2D).enabled =
+                true
+        }, 0.5)
     }
 
     public onBeginInteract(player: Player): void {
-        // GameManager.inst.interactPrompt.playPrompt("E", "To interact")
         GameManager.inst.interactPrompt.hidePrompt()
         this.changeColor(player)
     }
@@ -87,10 +93,10 @@ export class Lamp extends Entity {
         other: Collider2D,
         contact: IPhysics2DContact,
     ): void {
-        console.log("onBeginContactHalo")
         const entity = other.node.getComponent(Entity)
+        console.log(other.node)
         if (entity) {
-            const ret = entity.onEnterHalo(self.node.getComponent(PlayerHalo))
+            entity.onEnterLampHalo(this)
         }
     }
 
@@ -101,7 +107,7 @@ export class Lamp extends Entity {
     ): void {
         const entity = other.node.getComponent(Entity)
         if (entity) {
-            const ret = entity.onLeaveHalo(self.node.getComponent(PlayerHalo))
+            entity.onLeaveLampHalo(this)
         }
     }
 }

@@ -3,6 +3,7 @@ import { GameManager } from "../GameManager"
 import { ColliderGroup } from "../Physics/ColliderManager"
 import { Player } from "../Player"
 import { PlayerHalo } from "./PlayerHalo"
+import { Lamp } from "./Lamp"
 const { ccclass } = _decorator
 
 @ccclass("Entity")
@@ -37,14 +38,14 @@ export class Entity extends Component {
     /**
      * Called when the entity enters the player's halo
      */
-    public onEnterHalo(halo: PlayerHalo): boolean {
-        return false
-    }
+    public onEnterHalo(halo: PlayerHalo): void {}
 
     /**
      * Called when the entity leaves the player's halo
      */
-    public onLeaveHalo(halo: PlayerHalo, force: boolean = false): boolean {
-        return false
-    }
+    public onLeaveHalo(halo: PlayerHalo, force: boolean = false): void {}
+
+    public onEnterLampHalo(lamp: Lamp): void {}
+
+    public onLeaveLampHalo(lamp: Lamp): void {}
 }
