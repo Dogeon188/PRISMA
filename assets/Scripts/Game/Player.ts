@@ -4,10 +4,8 @@ import {
     Component,
     Contact2DType,
     EventKeyboard,
-    Game,
     IPhysics2DContact,
     Input,
-    Node,
     Quat,
     RigidBody2D,
     Sprite,
@@ -207,7 +205,7 @@ export class Player extends Component {
                 this.recentCollidedWith = other.getComponent(Entity)
                 contact.disabled = true
                 break
-            case ColliderType.OBJECT:
+            case ColliderType.BOX:
                 this.recentCollidedWith = other.getComponent(Entity)
             case ColliderType.BRICK: // Fall through
                 if (isOnTop) this.standingOn.add(other.uuid)
@@ -232,7 +230,7 @@ export class Player extends Component {
             case ColliderType.ONEWAY:
                 this.standingOn.delete(other.uuid)
                 break
-            case ColliderType.OBJECT:
+            case ColliderType.BOX:
                 GameManager.inst.interactPrompt.hidePrompt()
             case ColliderType.BRICK:
                 this.standingOn.delete(other.uuid)

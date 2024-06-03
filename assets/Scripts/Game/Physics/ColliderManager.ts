@@ -50,8 +50,8 @@ export const ColliderType = Enum({
     HALO: -1,
     /** Interactable sensor entity. */
     SENSOR: 64,
-    /** Interactable items, not a sensor */
-    OBJECT: -1,
+    /** Movable box. */
+    BOX: -1,
 })
 
 /**
@@ -113,7 +113,7 @@ export class ColliderManager extends Component {
                     rigidBody.fixedRotation = true
                     collider.sensor = true
                     break
-                case ColliderType.OBJECT:
+                case ColliderType.BOX:
                     rigidBody.type = ERigidBody2DType.Dynamic
                     rigidBody.fixedRotation = true
                     break
