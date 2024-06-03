@@ -1,10 +1,13 @@
 import {
     _decorator,
+    BoxCollider2D,
     Collider2D,
     Contact2DType,
     IPhysics2DContact,
+    Size,
     Sprite,
     tween,
+    UITransform,
     Vec2,
     Vec3,
 } from "cc"
@@ -31,6 +34,23 @@ export class Plate extends Entity {
         const collider = this.getComponent(Collider2D)!
         collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this)
         collider.on(Contact2DType.END_CONTACT, this.onEndContact, this)
+    }
+
+    public initialize(position: Vec2, size: Size): void {
+        // set position
+        // need to shift the position by half of the size
+        this.node.position.set(
+            position.x + size.x / 2,
+            position.y - size.y / 2,
+        )
+
+        // set size
+        this.node.getComponent(UITransform).setContentSize(size)
+        this.getComponent(BoxCollider2D).size = size
+    }
+
+    public addConnectedEntity(entity: PlateTriggerable): void {
+        this.connectedEntities.push(entity)
     }
 
     private onBeginContact(
@@ -74,18 +94,16 @@ export class Plate extends Entity {
     }
 
     private press(): void {
-        console.log("Plate pressed")
         this.connectedEntities.forEach((entity) => entity.onTriggered())
         tween(this.sprite.node)
-            .to(1, { position: new Vec3(0, -2.5, 0) })
+            .to(1, { position: new Vec3(0, -5, 0) })
             .start()
     }
 
     private release(): void {
-        console.log("Plate released")
         this.connectedEntities.forEach((entity) => entity.onReleased())
         tween(this.sprite.node)
-            .to(1, { position: new Vec3(0, 2.5, 0) })
+            .to(1, { position: Vec3.ZERO })
             .start()
     }
 }

@@ -6,6 +6,7 @@ import {
     Size,
     tween,
     UITransform,
+    Vec2,
     Vec3,
 } from "cc"
 import { Entity } from "./Entity"
@@ -14,8 +15,8 @@ const { ccclass, property } = _decorator
 
 @ccclass("Gate")
 export class Gate extends Entity implements PlateTriggerable {
-    @property(Vec3)
-    private triggeredOffset: Vec3 = new Vec3(0, 0, 0)
+    @property(Vec2)
+    private triggeredOffset: Vec2 = new Vec2(0, 0)
 
     @property
     transitionDuration: number = 0.5
@@ -24,36 +25,29 @@ export class Gate extends Entity implements PlateTriggerable {
 
     private triggeredPosition: Vec3 = new Vec3(0, 0, 0)
 
-    onLoad() {
-        this.initialize(
-            new Vec3(this.node.position),
-            this.node.getComponent(UITransform).contentSize,
-            this.triggeredOffset,
-        )
-    }
-
-    initialize(
-        position: Vec3,
+    public initialize(
+        position: Vec2,
         size: Size,
-        triggeredOffset: Vec3,
+        triggeredOffset: Vec2,
         transitionDuration: number = 0.5,
     ): void {
         // set position
-        // need to shift the position by quarter (why?) of the size
+        // need to shift the position by half of the size
         this.node.position.set(
-            position.x + size.width / 4,
-            position.y - size.height / 4,
+            position.x + size.width / 2,
+            position.y - size.height / 2,
         )
 
         // set size
         this.node.getComponent(UITransform).setContentSize(size)
         this.getComponent(BoxCollider2D).size = size
-        
+
         // set the transition duration and positions
+        console.log(triggeredOffset)
         this.transitionDuration = transitionDuration
         this.normalPosition = new Vec3(this.node.position)
         this.triggeredPosition = new Vec3(this.normalPosition).add(
-            triggeredOffset,
+            new Vec3(triggeredOffset.x, triggeredOffset.y, 0),
         )
     }
 

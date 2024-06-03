@@ -13,9 +13,14 @@ import {
 import { ResourceManager } from "../../ResourceManager"
 import { Box } from "../Entities/Box"
 import { Dialog } from "../Entities/Dialog"
+import { Entity } from "../Entities/Entity"
+import { Gate } from "../Entities/Gate"
+import { Plate, PlateTriggerable } from "../Entities/Plate"
 import { Portal, PortalType } from "../Entities/Portal"
 import { ColorStringToGroupMap } from "../Physics/ColliderManager"
 const { ccclass, property, requireComponent } = _decorator
+
+type ObjectId = string | number
 
 type TileObjectTypes = {
     /** Shows dialog when touched */
@@ -34,12 +39,27 @@ type TileObjectTypes = {
     nodePortal: {
         class: "nodePortal"
         /** The object id (in Tiled) to move to, usually a dummy node */
-        destination: number
+        destination: ObjectId
     }
     /** Box that can be pushed/pulled by the player */
     box: {
         class: "box"
         color: "red" | "green" | "blue"
+    }
+    /** Pressure plate, should always be 5px in height */
+    plate: {
+        class: "plate"
+    }
+    /** Gate triggered by pressure plate */
+    gate: {
+        class: "gate"
+        /** The offset to move when triggered */
+        offsetX: number
+        offsetY: number
+        /** The duration of the transition */
+        transition: number
+        /** The object id (in Tiled) of the trigger plate */
+        trigger: ObjectId
     }
     /** Color gem */
     gem: {
@@ -55,6 +75,8 @@ type TileObjectTypes = {
 type TileObject<T extends keyof TileObjectTypes> = TileObjectTypes[T] &
     ReturnType<TiledObjectGroup["getObject"]>
 
+type TriggerableType = Entity & PlateTriggerable
+
 @ccclass("ObjectTile")
 @requireComponent(TiledObjectGroup)
 export class ObjectTile extends Component {
@@ -66,6 +88,12 @@ export class ObjectTile extends Component {
 
     @property({ type: Prefab, group: "Prefabs" })
     private boxPrefab: Prefab = null
+
+    @property({ type: Prefab, group: "Prefabs" })
+    private platePrefab: Prefab = null
+
+    @property({ type: Prefab, group: "Prefabs" })
+    private gatePrefab: Prefab = null
 
     @property({ type: Prefab, group: "Prefabs" })
     private gemRedPrefab: Prefab = null
@@ -85,8 +113,9 @@ export class ObjectTile extends Component {
             TiledObjectGroup,
         ).getObjects() as TileObject<keyof TileObjectTypes>[]
 
-        const objectNodes: Map<string | number, Node> = new Map()
-        const nodePortals: Map<string | number, string | number> = new Map()
+        const objectNodes: Map<ObjectId, Node> = new Map()
+        const nodePortals: Map<ObjectId, ObjectId> = new Map() // <portal, destination>
+        const triggerables: Map<ObjectId, ObjectId> = new Map() // <triggered, trigger>
 
         for (const object of objects) {
             switch (object.class) {
@@ -104,6 +133,15 @@ export class ObjectTile extends Component {
                 case "box":
                     const box = this.createBox(object)
                     objectNodes.set(object.id, box)
+                    break
+                case "plate":
+                    const plate = this.createPlate(object)
+                    objectNodes.set(object.id, plate)
+                    break
+                case "gate":
+                    const gate = this.createGate(object)
+                    objectNodes.set(object.id, gate)
+                    triggerables.set(object.id, object.trigger)
                     break
                 case "gem":
                     const gem = this.createGem(object)
@@ -125,6 +163,18 @@ export class ObjectTile extends Component {
             const destinationNode = objectNodes.get(destination)
             if (portalNode && destinationNode) {
                 portalNode.getComponent(Portal)!.toNode = destinationNode
+            }
+        }
+
+        for (const [triggered, trigger] of triggerables) {
+            const triggeredNode = objectNodes.get(triggered)
+            const triggerNode = objectNodes.get(trigger)
+            if (triggeredNode && triggerNode) {
+                triggerNode
+                    .getComponent(Plate)!
+                    .addConnectedEntity(
+                        triggeredNode.getComponent(Entity) as TriggerableType,
+                    )
             }
         }
     }
@@ -157,7 +207,6 @@ export class ObjectTile extends Component {
         portalNode.setPosition(object.x, object.y)
         const portal = portalNode.getComponent(Portal)
         portal.portalType = PortalType.NODE
-        // destination node id set
         this.node.addChild(portalNode)
         return portalNode
     }
@@ -174,6 +223,32 @@ export class ObjectTile extends Component {
             )
         this.node.addChild(boxNode)
         return boxNode
+    }
+
+    private createPlate(object: TileObject<"plate">): Node {
+        const plateNode = instantiate(this.platePrefab)
+        plateNode
+            .getComponent(Plate)!
+            .initialize(
+                new Vec2(object.x, object.y),
+                new Size(object.width, object.height),
+            )
+        this.node.addChild(plateNode)
+        return plateNode
+    }
+
+    private createGate(object: TileObject<"gate">): Node {
+        const gateNode = instantiate(this.gatePrefab)
+        gateNode
+            .getComponent(Gate)!
+            .initialize(
+                new Vec2(object.x, object.y),
+                new Size(object.width, object.height),
+                new Vec2(object.offsetX, object.offsetY),
+                object.transition,
+            )
+        this.node.addChild(gateNode)
+        return gateNode
     }
 
     private createGem(object: TileObject<"gem">): Node {

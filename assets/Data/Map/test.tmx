@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="9" nextobjectid="42">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="9" nextobjectid="45">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <layer id="1" name="Tiles" width="60" height="30">
   <data encoding="base64" compression="gzip">
@@ -29,7 +29,7 @@
   <object id="29" x="832" y="304" width="80" height="8"/>
  </objectgroup>
  <objectgroup id="3" name="Objects">
-  <object id="31" name="BlueBox" type="box" x="256.2" y="366.409" width="32" height="32">
+  <object id="31" name="BlueBox" type="box" x="208" y="368" width="32" height="32">
    <properties>
     <property name="class" value="box"/>
     <property name="color" value="blue"/>
@@ -65,7 +65,7 @@
   <object id="14" name="SecretOut" type="nodePortal" x="256" y="144">
    <properties>
     <property name="class" value="nodePortal"/>
-    <property name="destination" value="16"/>
+    <property name="destination" type="object" value="16"/>
    </properties>
    <point/>
   </object>
@@ -78,7 +78,7 @@
   <object id="12" name="SecretIn" type="nodePortal" x="752" y="384">
    <properties>
     <property name="class" value="nodePortal"/>
-    <property name="destination" value="13"/>
+    <property name="destination" type="object" value="13"/>
    </properties>
    <point/>
   </object>
@@ -88,6 +88,20 @@
     <property name="color" value="green"/>
    </properties>
    <point/>
+  </object>
+  <object id="42" name="Plate" type="plate" x="128" y="395" width="48" height="5">
+   <properties>
+    <property name="class" value="plate"/>
+   </properties>
+  </object>
+  <object id="43" name="Gate" type="gate" x="272" y="304" width="16" height="96">
+   <properties>
+    <property name="class" value="gate"/>
+    <property name="offsetX" type="float" value="0"/>
+    <property name="offsetY" type="float" value="64"/>
+    <property name="transition" type="float" value="2"/>
+    <property name="trigger" type="object" value="42"/>
+   </properties>
   </object>
  </objectgroup>
  <objectgroup id="8" name="Bricks">
