@@ -1,5 +1,6 @@
 import {
     Animation,
+    BoxCollider2D,
     Collider2D,
     Component,
     Contact2DType,
@@ -137,9 +138,14 @@ export class Player extends Component {
         this.updateAnimation(dt)
     }
 
-    public initialize(gameManager: GameManager, spawnPoint: Vec3): void {
+    public initialize(gameManager: GameManager, spawnPoint: Vec2): void {
         this.gameManager = gameManager
-        this.spawnPoint = spawnPoint
+        this.spawnPoint = new Vec3(
+            spawnPoint.x,
+            spawnPoint.y + this.getComponent(BoxCollider2D).size.height / 2,
+            this.node.position.z,
+        )
+        this.node.setPosition(this.spawnPoint)
     }
 
     //#endregion

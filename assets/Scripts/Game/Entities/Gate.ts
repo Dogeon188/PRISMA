@@ -43,7 +43,6 @@ export class Gate extends Entity implements PlateTriggerable {
         this.getComponent(BoxCollider2D).size = size
 
         // set the transition duration and positions
-        console.log(triggeredOffset)
         this.transitionDuration = transitionDuration
         this.normalPosition = new Vec3(this.node.position)
         this.triggeredPosition = new Vec3(this.normalPosition).add(
