@@ -100,6 +100,7 @@ export class Box extends Entity {
         if (force || playerHalo.color === this.color) {
             this.collidedHaloSet.delete(playerHalo.node.uuid)
         }
+        this.determineActive()
     }
 
     public onEnterLampHalo(lamp: Lamp): void {

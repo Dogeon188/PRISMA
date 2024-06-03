@@ -1,12 +1,16 @@
 import {
     _decorator,
+    CircleCollider2D,
     Collider2D,
     Color,
     Component,
     Contact2DType,
     IPhysics2DContact,
     Node,
+    Size,
     Sprite,
+    tween,
+    UITransform,
     Vec3,
 } from "cc"
 import { Entity } from "./Entity"
@@ -31,13 +35,18 @@ export class Lamp extends Entity {
         this.drawColor()
         const haloCollider = this.node
             .getChildByName("Halo")
-            .getComponent(Collider2D)
+            .getComponent(CircleCollider2D)
         haloCollider.on(
             Contact2DType.BEGIN_CONTACT,
             this.onBeginContactHalo,
             this,
         )
         haloCollider.on(Contact2DType.END_CONTACT, this.onEndContactHalo, this)
+        haloCollider.radius = 0
+        this.node
+            .getChildByName("Halo")
+            .getComponent(UITransform)
+            .setContentSize(new Size(0, 0))
     }
 
     public onCollide(other: Node): void {}
@@ -72,13 +81,20 @@ export class Lamp extends Entity {
             this.color = null
             this.drawColor()
         }
-        // this.node.getChildByName("Halo").scale = new Vec3(-1, 1, 1)
-        this.node.getChildByName("Halo").getComponent(Collider2D).enabled =
-            false
-        this.scheduleOnce(() => {
-            this.node.getChildByName("Halo").getComponent(Collider2D).enabled =
-                true
-        }, 0.5)
+        // use twin to make radius grow from 0 to 200.9 with animation
+        // tween(this.node.getChildByName("Halo").getComponent(CircleCollider2D))
+        //     .to(5, { radius: this.color ? 200.9 : 0 })
+        //     .start()
+        const nextColor = player.node.getComponent(PlayerHalo).color
+        tween(this.node.getChildByName("Halo").getComponent(UITransform))
+            .to(5, {
+                width: nextColor ? 401.8 : 0,
+                height: this.color ? 401.8 : 0,
+            })
+            .call(() => {
+                this.drawColor()
+            })
+            .start()
     }
 
     public onBeginInteract(player: Player): void {
