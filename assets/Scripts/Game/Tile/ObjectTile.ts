@@ -41,6 +41,11 @@ type TileObjectTypes = {
         class: "box"
         color: "red" | "green" | "blue"
     }
+    /** Color gem */
+    gem: {
+        class: "gem"
+        color: "red" | "green" | "blue"
+    }
     /** Dummy object just for reference */
     dummy: {
         class: "dummy"
@@ -61,6 +66,15 @@ export class ObjectTile extends Component {
 
     @property({ type: Prefab, group: "Prefabs" })
     private boxPrefab: Prefab = null
+
+    @property({ type: Prefab, group: "Prefabs" })
+    private gemRedPrefab: Prefab = null
+
+    @property({ type: Prefab, group: "Prefabs" })
+    private gemGreenPrefab: Prefab = null
+
+    @property({ type: Prefab, group: "Prefabs" })
+    private gemBluePrefab: Prefab = null
 
     protected onLoad(): void {
         // Cocos resets anchor and position everytime Tiled file reloaded
@@ -90,6 +104,10 @@ export class ObjectTile extends Component {
                 case "box":
                     const box = this.createBox(object)
                     objectNodes.set(object.id, box)
+                    break
+                case "gem":
+                    const gem = this.createGem(object)
+                    objectNodes.set(object.id, gem)
                     break
                 case "dummy":
                     objectNodes.set(object.id, this.createDummy(object))
@@ -156,6 +174,28 @@ export class ObjectTile extends Component {
             )
         this.node.addChild(boxNode)
         return boxNode
+    }
+
+    private createGem(object: TileObject<"gem">): Node {
+        let gemPrefab: Prefab
+        switch (object.color) {
+            case "red":
+                gemPrefab = this.gemRedPrefab
+                break
+            case "green":
+                gemPrefab = this.gemGreenPrefab
+                break
+            case "blue":
+                gemPrefab = this.gemBluePrefab
+                break
+            default:
+                throw new Error(`Unknown gem color: ${object.color}`)
+        }
+        const gemNode = instantiate(gemPrefab)
+        gemNode.name = object.name
+        gemNode.setPosition(object.x, object.y)
+        this.node.addChild(gemNode)
+        return gemNode
     }
 
     private createDummy(object: TileObject<"dummy">): Node {
