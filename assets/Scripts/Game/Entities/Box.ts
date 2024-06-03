@@ -103,7 +103,6 @@ export class Box extends Entity {
     }
 
     public onBeginInteract(player: Player): void {
-        // GameManager.inst.interactPrompt.playPrompt("E", "To interact")
         GameManager.inst.interactPrompt.hidePrompt()
         this.bindedTo = player.node
         this.bindOffsetX = this.node.position.x - player.node.position.x
