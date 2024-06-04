@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="11" nextobjectid="58">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="11" nextobjectid="62">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <layer id="1" name="Tiles" width="60" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAE+1WQQqAMAzrf9QHOPXuizx78t22B0EK4mCUbmsGOQynTZpQl4jOBKAHyEDzGaCC1eIMKJBL0Fv/3Ie/+R1AnuvPc4segTNyhQwgA71mYOdfbCTk3yhwEh3w78DBFDT8WcVhMLDUyVCu9lb2nmvm4osnAePa2k+tVz8vpePt76PvYiGCr32pztz3Rz5oiY2/v75q/O0tucjc4HtjGMjcgN5+exDR3xssNqrOIBwAAA==
+   H4sIAAAAAAAACu1WQQqAMAzrf9QHOPXuizx78t22B0EK4mCUbmsGOQynTZpQl4jOBKAHyEDzGaCC1eIMKJBL0Fv/3Ie/+R1AnuvPc4segTNyhQwgA71mYOdfbCTk3yhwEh3w78DBFDT8WcVhMLDUyVCu9lb2nmvm4osnAePa2k+tVz8vpePt76PvYiGCr32pztz3Rz5oiY2/v75q/O0tucjc4HtjGMjcgN5+exDR3xssNqrOIBwAAA==
   </data>
  </layer>
  <objectgroup id="4" name="Grounds">
@@ -90,7 +90,7 @@
    </properties>
    <point/>
   </object>
-  <object id="40" name="Gem" type="gem" x="351.025" y="351.256">
+  <object id="40" name="Gem" type="gem" x="587.692" y="389.923">
    <properties>
     <property name="class" value="gem"/>
     <property name="color" value="green"/>
@@ -130,13 +130,13 @@
   </object>
  </objectgroup>
  <objectgroup id="9" name="Start">
-  <object id="45" name="Start" x="64" y="400">
+  <object id="45" name="Start" x="566.909" y="388">
    <point/>
   </object>
  </objectgroup>
  <layer id="1" name="Tiles" width="60" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAE+1XQQ6DMAzrf9geAIP7XrTzTryb9IBgQdWamqiCGimHlsaOnSqCIYTvwKAHvAOXvwMBeEpmAECXTLXUkQTJeGHhWc9mwJqPWOowg+8SLDzUizj9m2vxHWG18LC/iNPl/S3pEZJznsoNCanHO7c1vd5+Ep//Rne/A28ZGi2Fx4wkJh3wcuAjwDq8uIh7dKCTredx+7Qd3du4rvn0Qv6qWYAzt+6n1qvfo+XU7u+qbxYhMVJrVGdu/kMOesYk+OOO49/as5Y4N+T7sZmIc4N67+tBi/1dAEbU0yIgHAAA
+   H4sIAAAAAAAACu1XQQ6DMAzrf9geAIP7XrTzTryb9IBgQdWamqiCGimHlsaOnSqCIYTvwKAHvAOXvwMBeEpmAECXTLXUkQTJeGHhWc9mwJqPWOowg+8SLDzUizj9m2vxHWG18LC/iNPl/S3pEZJznsoNCanHO7c1vd5+Ep//Rne/A28ZGi2Fx4wkJh3wcuAjwDq8uIh7dKCTredx+7Qd3du4rvn0Qv6qWYAzt+6n1qvfo+XU7u+qbxYhMVJrVGdu/kMOesYk+OOO49/as5Y4N+T7sZmIc4N67+tBi/1dAEbU0yIgHAAA
   </data>
  </layer>
 </map>

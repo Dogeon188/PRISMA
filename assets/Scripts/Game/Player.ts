@@ -1,6 +1,7 @@
 import {
     Animation,
     BoxCollider2D,
+    CircleCollider2D,
     Collider2D,
     Component,
     Contact2DType,
@@ -216,6 +217,23 @@ export class Player extends Component {
             case ColliderType.BRICK: // Fall through
                 if (isOnTop) this.standingOn.add(other.uuid)
                 break
+            case ColliderType.STONE:
+                if (isOnTop) this.standingOn.add(other.uuid)
+                if (isOnTop) {
+                    this.standingOn.add(other.uuid)
+                } else {
+                    // check if the stone has velocity
+                    const stoneMoving =
+                        other
+                            .getComponent(RigidBody2D)
+                            .linearVelocity.length() > 2
+
+                    if (stoneMoving) {
+                        this.hurt()
+                    }
+                }
+
+                break
         }
         other.getComponent(Entity)?.showPrompt()
     }
@@ -244,6 +262,9 @@ export class Player extends Component {
                 if (this.recentCollidedWith === other.getComponent(Entity)) {
                     this.recentCollidedWith = null
                 }
+                break
+            case ColliderType.STONE:
+                this.standingOn.delete(other.uuid)
                 break
         }
         // FIXME problematic when player is touching multiple objects

@@ -67,7 +67,6 @@ export class Brick extends Entity {
     }
 
     private determineActive(): void {
-        console.log(this.collidedHaloSet)
         if (this.collidedHaloSet.size === 0) {
             this.node.getComponent(Sprite).enabled = true
             this.node.getComponent(Collider2D).group = ColliderGroup.ACTIVE
