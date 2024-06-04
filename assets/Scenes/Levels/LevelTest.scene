@@ -4125,6 +4125,10 @@
       "__uuid__": "01f7cb47-8516-44dc-9134-8fadce8ac4f5",
       "__expectedType__": "cc.Prefab"
     },
+    "laserPrefab": {
+      "__uuid__": "d9c4c992-cf26-4b01-bb26-af7f2d355b79",
+      "__expectedType__": "cc.Prefab"
+    },
     "gemRedPrefab": {
       "__uuid__": "724b41c0-56af-42fd-8ea6-cddd239ea4b5",
       "__expectedType__": "cc.Prefab"

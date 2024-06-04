@@ -15,12 +15,14 @@ import { Box } from "../Entities/Box"
 import { Dialog } from "../Entities/Dialog"
 import { Entity } from "../Entities/Entity"
 import { Gate } from "../Entities/Gate"
+import { Laser } from "../Entities/Laser"
 import { Plate, PlateTriggerable } from "../Entities/Plate"
 import { Portal, PortalType } from "../Entities/Portal"
 import { ColorStringToGroupMap } from "../Physics/ColliderManager"
 const { ccclass, property, requireComponent } = _decorator
 
 type ObjectId = string | number
+type RGBString = "red" | "green" | "blue"
 
 type TileObjectTypes = {
     /** Shows dialog when touched */
@@ -44,7 +46,7 @@ type TileObjectTypes = {
     /** Box that can be pushed/pulled by the player */
     box: {
         class: "box"
-        color: "red" | "green" | "blue"
+        color: RGBString
     }
     /** Pressure plate, should always be 5px in height */
     plate: {
@@ -61,10 +63,15 @@ type TileObjectTypes = {
         /** The object id (in Tiled) of the trigger plate */
         trigger: ObjectId
     }
+    /** Laser beam. Die when touched, can't be blocked by boxes */
+    laser: {
+        class: "laser"
+        color: RGBString
+    }
     /** Color gem */
     gem: {
         class: "gem"
-        color: "red" | "green" | "blue"
+        color: RGBString
     }
     /** Dummy object just for reference */
     dummy: {
@@ -94,6 +101,9 @@ export class ObjectTile extends Component {
 
     @property({ type: Prefab, group: "Prefabs" })
     private gatePrefab: Prefab = null
+
+    @property({ type: Prefab, group: "Prefabs" })
+    private laserPrefab: Prefab = null
 
     @property({ type: Prefab, group: "Prefabs" })
     private gemRedPrefab: Prefab = null
@@ -142,6 +152,10 @@ export class ObjectTile extends Component {
                     const gate = this.createGate(object)
                     objectNodes.set(object.id, gate)
                     triggerables.set(object.id, object.trigger)
+                    break
+                case "laser":
+                    const laser = this.createLaser(object)
+                    objectNodes.set(object.id, laser)
                     break
                 case "gem":
                     const gem = this.createGem(object)
@@ -249,6 +263,18 @@ export class ObjectTile extends Component {
             )
         this.node.addChild(gateNode)
         return gateNode
+    }
+
+    private createLaser(object: TileObject<"laser">): Node {
+        const laserNode = instantiate(this.laserPrefab)
+        laserNode.name = object.name
+        laserNode.getComponent(Laser)!.initialize(
+            ColorStringToGroupMap[object.color],
+            new Vec2(object.x, object.y),
+            new Size(object.width, object.height),
+        )
+        this.node.addChild(laserNode)
+        return laserNode
     }
 
     private createGem(object: TileObject<"gem">): Node {
