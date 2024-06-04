@@ -1,5 +1,4 @@
-import { _decorator, Node, Sprite, SpriteFrame } from "cc"
-import { EDITOR_NOT_IN_PREVIEW } from "cc/env"
+import { _decorator, Node } from "cc"
 import { ColliderGroup } from "../Physics/ColliderManager"
 import { Entity } from "./Entity"
 import { PlayerHalo } from "./PlayerHalo"

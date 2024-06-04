@@ -3,21 +3,22 @@ import {
     CircleCollider2D,
     Collider2D,
     Color,
-    Component,
     Contact2DType,
     IPhysics2DContact,
+    math,
     Node,
     Size,
     Sprite,
+    SpriteFrame,
     tween,
     UITransform,
-    Vec3,
+    Vec2,
 } from "cc"
-import { Entity } from "./Entity"
-import { Player } from "../Player"
-import { GameManager } from "../GameManager"
 import { Settings } from "../../Scene/Settings"
+import { GameManager } from "../GameManager"
 import { ColliderGroup } from "../Physics/ColliderManager"
+import { Player } from "../Player"
+import { Entity } from "./Entity"
 import { PlayerHalo } from "./PlayerHalo"
 const { ccclass, property } = _decorator
 
@@ -27,8 +28,20 @@ export class Lamp extends Entity {
 
     private collidedSet: Set<Entity> = new Set()
 
+    private haloNode: Node = null
+    private gemNode: Node = null
+
     @property
     private haloRadius: number = 200
+
+    @property(SpriteFrame)
+    private redGem: SpriteFrame = null
+
+    @property(SpriteFrame)
+    private greenGem: SpriteFrame = null
+
+    @property(SpriteFrame)
+    private blueGem: SpriteFrame = null
 
     private static readonly COLOR_MAP = {
         [ColliderGroup.RED]: Color.RED,
@@ -37,10 +50,10 @@ export class Lamp extends Entity {
     }
 
     protected onLoad(): void {
-        this.drawColor()
-        const haloCollider = this.node
-            .getChildByName("Halo")
-            .getComponent(CircleCollider2D)
+        this.haloNode = this.node.getChildByName("Halo")
+        this.gemNode = this.node.getChildByName("Gem")
+
+        const haloCollider = this.haloNode.getComponent(CircleCollider2D)
         haloCollider.on(
             Contact2DType.BEGIN_CONTACT,
             this.onBeginContactHalo,
@@ -48,30 +61,30 @@ export class Lamp extends Entity {
         )
         haloCollider.on(Contact2DType.END_CONTACT, this.onEndContactHalo, this)
         this.scheduleOnce(() => {
-            this.node
-                .getChildByName("Halo")
-                .getComponent(UITransform).contentSize = new Size(0, 0)
+            this.haloNode.getComponent(UITransform).contentSize = new Size(0, 0)
         }, 0)
-        haloCollider.radius = this.haloRadius
     }
 
-    public onCollide(other: Node): void {}
+    public initialize(position: Vec2, radius: number): void {
+        this.drawColor()
+        this.haloRadius = radius
+        this.haloNode.getComponent(CircleCollider2D).radius = radius
+    }
 
     public showPrompt(): void {
         GameManager.inst.interactPrompt.showPrompt(
             Settings.keybinds.interact,
-            "Interact",
+            this.color === null ? "Light Up" : "Pick Up",
         )
     }
 
     private drawColor(): void {
         if (this.color === null) {
-            this.node.getChildByName("Halo").getComponent(Sprite).color =
-                new Color(0, 0, 0, 0)
+            this.haloNode.getComponent(Sprite).color = new Color(0, 0, 0, 0)
             return
         }
         const color = Lamp.COLOR_MAP[this.color]
-        this.node.getChildByName("Halo").getComponent(Sprite).color = new Color(
+        this.haloNode.getComponent(Sprite).color = new Color(
             color.r,
             color.g,
             color.b,
@@ -82,36 +95,57 @@ export class Lamp extends Entity {
     private changeColor(player: Player): void {
         if (this.color === null) {
             this.color = player.node.getComponent(PlayerHalo).color
+            // Set the gem color
+            switch (this.color) {
+                case ColliderGroup.RED:
+                    this.gemNode.getComponent(Sprite).spriteFrame = this.redGem
+                    break
+                case ColliderGroup.GREEN:
+                    this.gemNode.getComponent(Sprite).spriteFrame =
+                        this.greenGem
+                    break
+                case ColliderGroup.BLUE:
+                    this.gemNode.getComponent(Sprite).spriteFrame = this.blueGem
+                    break
+            }
+
             this.drawColor()
-            tween(this.node.getChildByName("Halo").getComponent(UITransform))
-                .to(0.5, {
-                    width: this.haloRadius * 2,
-                    height: this.haloRadius * 2,
-                })
+            tween(this.haloNode.getComponent(UITransform))
+                .to(
+                    0.5,
+                    { width: this.haloRadius * 2, height: this.haloRadius * 2 },
+                    { easing: "sineOut" },
+                )
                 .start()
         } else {
             this.color = null
-            tween(this.node.getChildByName("Halo").getComponent(UITransform))
-                .to(0.5, {
-                    width: 0,
-                    height: 0,
-                })
+            this.gemNode.getComponent(Sprite).spriteFrame = null
+            tween(this.haloNode.getComponent(UITransform))
+                .to(0.5, { width: 0, height: 0 }, { easing: "sineIn" })
                 .call(() => {
                     this.drawColor()
                 })
                 .start()
         }
-        // this.node.getChildByName("Halo").scale = new Vec3(-1, 1, 1)
-        // this.node.getChildByName("Halo").scale = new Vec3(1, 1, 1)
         this.collidedSet.forEach((entity) => {
             entity.onLeaveLampHalo(this)
             entity.onEnterLampHalo(this)
         })
     }
 
+    public canInteract(player: Player, normal: math.Vec2): boolean {
+        return (
+            this.color !== null ||
+            player.node.getComponent(PlayerHalo).color !== null
+        )
+    }
+
     public onBeginInteract(player: Player): void {
         const target_color = this.color
         GameManager.inst.interactPrompt.hidePrompt()
+        this.scheduleOnce(() => {
+            if (this.canInteract(player, null)) this.showPrompt()
+        }, 0)
         player.collidedHaloNodeSet.forEach((node) => {
             // check if node position is in the lamp's halo
             // dont change readonly vec3
@@ -127,8 +161,6 @@ export class Lamp extends Entity {
         this.changeColor(player)
         player.node.getComponent(PlayerHalo).interactWithLamp(target_color)
     }
-
-    public onEndInteract(player: Player): void {}
 
     private onBeginContactHalo(
         self: Collider2D,
