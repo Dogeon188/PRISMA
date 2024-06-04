@@ -131,13 +131,13 @@
   </object>
  </objectgroup>
  <objectgroup id="9" name="Start">
-  <object id="45" name="Start" x="68.0457" y="393.052">
+  <object id="45" name="Start" x="577.046" y="390.052">
    <point/>
   </object>
  </objectgroup>
  <layer id="1" name="Tiles" width="60" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAE+1XQQ6DMAzrf9geAIP7XrTzTryb9IBgQdWamqiCGimHlsaOnSqCIYTvwKAHvAOXvwMBeEpmAECXTLXUkQTJeGHhWc9mwJqPWOowg+8SLDzUizj9m2vxHWG18LC/iNPl/S3pEZJznsoNCanHO7c1vd5+Ep//Rne/A28ZGi2Fx4wkJh3wcuAjwDq8uIh7dKCTredx+7Qd3du4rvn0Qv6qWYAzt+6n1qvfo+XU7u+qbxYhMVJrVGdu/kMOesYk+OOO49/as5Y4N+T7sZmIc4N67+tBi/1dAEbU0yIgHAAA
+   H4sIAAAAAAAACu1XQQ6DMAzrf9geAIP7XrTzTryb9IBgQdWamqiCGimHlsaOnSqCIYTvwKAHvAOXvwMBeEpmAECXTLXUkQTJeGHhWc9mwJqPWOowg+8SLDzUizj9m2vxHWG18LC/iNPl/S3pEZJznsoNCanHO7c1vd5+Ep//Rne/A28ZGi2Fx4wkJh3wcuAjwDq8uIh7dKCTredx+7Qd3du4rvn0Qv6qWYAzt+6n1qvfo+XU7u+qbxYhMVJrVGdu/kMOesYk+OOO49/as5Y4N+T7sZmIc4N67+tBi/1dAEbU0yIgHAAA
   </data>
  </layer>
 </map>

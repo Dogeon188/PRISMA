@@ -31,7 +31,7 @@ const { ccclass, property } = _decorator
 
 @ccclass("PlayerHalo")
 export class PlayerHalo extends Component {
-    public color: number = ColliderGroup.RED
+    public color: number = null
 
     private mouseDown: boolean = false
 
@@ -64,12 +64,12 @@ export class PlayerHalo extends Component {
     private NumDict = {}
 
     protected onLoad(): void {
-        const target_color = PlayerHalo.COLOR_MAP[this.color]
+        // const target_color = PlayerHalo.COLOR_MAP[this.color]
         this.node.getChildByName("Halo").getComponent(Sprite).color = new Color(
-            target_color.r,
-            target_color.g,
-            target_color.b,
-            66,
+            0,
+            0,
+            0,
+            0,
         )
         input.on(Input.EventType.MOUSE_DOWN, this.onMouseDown, this)
         input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this)
@@ -222,5 +222,24 @@ export class PlayerHalo extends Component {
             this.colorNumDict[ColliderGroup.GREEN].toString()
         this.BlueNum.getComponent(Label).string =
             this.colorNumDict[ColliderGroup.BLUE].toString()
+    }
+
+    public interactWithLamp(color: number): void {
+        if (color === null) {
+            // minus 1 of the color
+            this.colorNumDict[this.color]--
+            this.RedNum.getComponent(Label).string =
+                this.colorNumDict[ColliderGroup.RED].toString()
+            this.GreenNum.getComponent(Label).string =
+                this.colorNumDict[ColliderGroup.GREEN].toString()
+            this.BlueNum.getComponent(Label).string =
+                this.colorNumDict[ColliderGroup.BLUE].toString()
+            // change the color of the halo to null
+            this.node.getChildByName("Halo").getComponent(Sprite).color =
+                new Color(0, 0, 0, 0)
+            this.color = null
+        } else {
+            this.addGem(color)
+        }
     }
 }

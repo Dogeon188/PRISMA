@@ -27,6 +27,9 @@ export class Lamp extends Entity {
 
     private collidedSet: Set<Entity> = new Set()
 
+    @property
+    private haloRadius: number = 200
+
     private static readonly COLOR_MAP = {
         [ColliderGroup.RED]: Color.RED,
         [ColliderGroup.GREEN]: Color.GREEN,
@@ -49,6 +52,7 @@ export class Lamp extends Entity {
                 .getChildByName("Halo")
                 .getComponent(UITransform).contentSize = new Size(0, 0)
         }, 0)
+        haloCollider.radius = this.haloRadius
     }
 
     public onCollide(other: Node): void {}
@@ -76,14 +80,13 @@ export class Lamp extends Entity {
     }
 
     private changeColor(player: Player): void {
-        console.log(this.collidedSet)
         if (this.color === null) {
             this.color = player.node.getComponent(PlayerHalo).color
             this.drawColor()
             tween(this.node.getChildByName("Halo").getComponent(UITransform))
                 .to(0.5, {
-                    width: 401.8,
-                    height: 401.8,
+                    width: this.haloRadius * 2,
+                    height: this.haloRadius * 2,
                 })
                 .start()
         } else {
@@ -107,11 +110,22 @@ export class Lamp extends Entity {
     }
 
     public onBeginInteract(player: Player): void {
+        const target_color = this.color
         GameManager.inst.interactPrompt.hidePrompt()
         player.collidedHaloNodeSet.forEach((node) => {
+            // check if node position is in the lamp's halo
+            // dont change readonly vec3
+            const distance = node.node.position
+                .clone()
+                .subtract(this.node.position)
+                .length()
+            if (distance > this.haloRadius) {
+                return
+            }
             this.collidedSet.add(node)
         })
         this.changeColor(player)
+        player.node.getComponent(PlayerHalo).interactWithLamp(target_color)
     }
 
     public onEndInteract(player: Player): void {}
