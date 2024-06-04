@@ -76,7 +76,6 @@ export class Lamp extends Entity {
     }
 
     private changeColor(player: Player): void {
-        console.log(this.collidedSet)
         if (this.color === null) {
             this.color = player.node.getComponent(PlayerHalo).color
             this.drawColor()
@@ -107,11 +106,13 @@ export class Lamp extends Entity {
     }
 
     public onBeginInteract(player: Player): void {
+        const target_color = this.color
         GameManager.inst.interactPrompt.hidePrompt()
         player.collidedHaloNodeSet.forEach((node) => {
             this.collidedSet.add(node)
         })
         this.changeColor(player)
+        player.node.getComponent(PlayerHalo).interactWithLamp(target_color)
     }
 
     public onEndInteract(player: Player): void {}
