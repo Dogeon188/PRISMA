@@ -34,12 +34,12 @@ export class Laser extends Entity {
         )
     }
 
-    private initialize(color: number, position: Vec2, size: Size): void {
+    public initialize(color: number, position: Vec2, size: Size): void {
         // Set position
         // need to shift the position by half of the size
         this.node.position.set(
-            position.x + size.width / 2,
-            position.y - size.height / 2,
+            position.x + size.width / 4,
+            position.y - size.height / 4,
         )
 
         // Set size
