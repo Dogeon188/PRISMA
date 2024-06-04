@@ -48,6 +48,13 @@ type TileObjectTypes = {
         class: "box"
         color: RGBString
     }
+    /**
+     * Rolling stone. Can hurt player when at high speed.
+     * Always 32x32 in size.
+     */
+    stone: {
+        class: "stone"
+    }
     /** Pressure plate, should always be 5px in height */
     plate: {
         class: "plate"
@@ -103,6 +110,9 @@ export class ObjectTile extends Component {
     private boxPrefab: Prefab = null
 
     @property({ type: Prefab, group: "Prefabs" })
+    private stonePrefab: Prefab = null
+
+    @property({ type: Prefab, group: "Prefabs" })
     private platePrefab: Prefab = null
 
     @property({ type: Prefab, group: "Prefabs" })
@@ -152,6 +162,10 @@ export class ObjectTile extends Component {
                 case "box":
                     const box = this.createBox(object)
                     objectNodes.set(object.id, box)
+                    break
+                case "stone":
+                    const stone = this.createStone(object)
+                    objectNodes.set(object.id, stone)
                     break
                 case "plate":
                     const plate = this.createPlate(object)
@@ -250,6 +264,13 @@ export class ObjectTile extends Component {
             )
         this.node.addChild(boxNode)
         return boxNode
+    }
+
+    private createStone(object: TileObject<"stone">): Node {
+        const stoneNode = instantiate(this.stonePrefab)
+        stoneNode.setPosition(object.x, object.y)
+        this.node.addChild(stoneNode)
+        return stoneNode
     }
 
     private createPlate(object: TileObject<"plate">): Node {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="11" nextobjectid="62">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="11" nextobjectid="64">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <objectgroup id="4" name="Grounds">
   <object id="1" name="Wall" x="-16" y="256" width="16" height="160"/>
@@ -128,6 +128,12 @@
    </properties>
    <point/>
   </object>
+  <object id="63" name="Stone" type="stone" x="538.387" y="67.704" width="32" height="32">
+   <properties>
+    <property name="class" value="stone"/>
+   </properties>
+   <ellipse/>
+  </object>
  </objectgroup>
  <objectgroup id="8" name="Bricks">
   <object id="33" name="Red" type="red" x="384" y="336" width="32" height="32">
@@ -147,7 +153,7 @@
   </object>
  </objectgroup>
  <objectgroup id="9" name="Start">
-  <object id="45" name="Start" x="577.046" y="390.052">
+  <object id="45" name="Start" x="572.589" y="394.426">
    <point/>
   </object>
  </objectgroup>
