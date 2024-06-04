@@ -52,6 +52,8 @@ export const ColliderType = Enum({
     SENSOR: 64,
     /** Movable box. */
     BOX: -1,
+    /** colored stone */
+    STONE: -1,
 })
 
 /**
@@ -116,6 +118,10 @@ export class ColliderManager extends Component {
                 case ColliderType.BOX:
                     rigidBody.type = ERigidBody2DType.Dynamic
                     rigidBody.fixedRotation = true
+                    break
+                case ColliderType.STONE:
+                    rigidBody.type = ERigidBody2DType.Dynamic
+                    rigidBody.fixedRotation = false
                     break
             }
         }

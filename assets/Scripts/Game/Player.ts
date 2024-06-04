@@ -1,6 +1,7 @@
 import {
     Animation,
     BoxCollider2D,
+    CircleCollider2D,
     Collider2D,
     Component,
     Contact2DType,
@@ -86,11 +87,8 @@ export class Player extends Component {
     /** Name of current animation being played */
     private currentAnimation: string
 
-    /** collider set that contain inactive object which is collide with Halos */
-    public collidedInactiveNodeSet: Set<Entity> = new Set()
-
-    /** collider set  that contain active object which is collide with Halos*/
-    public collidedActiveNodeSet: Set<Entity> = new Set()
+    /** collider set that contain object which is collide with Halos */
+    public collidedHaloNodeSet: Set<Entity> = new Set()
 
     //#endregion
 
@@ -219,6 +217,23 @@ export class Player extends Component {
             case ColliderType.BRICK: // Fall through
                 if (isOnTop) this.standingOn.add(other.uuid)
                 break
+            case ColliderType.STONE:
+                if (isOnTop) this.standingOn.add(other.uuid)
+                if (isOnTop) {
+                    this.standingOn.add(other.uuid)
+                } else {
+                    // check if the stone has velocity
+                    const stoneMoving =
+                        other
+                            .getComponent(RigidBody2D)
+                            .linearVelocity.length() > 2
+
+                    if (stoneMoving) {
+                        this.hurt()
+                    }
+                }
+
+                break
         }
         other.getComponent(Entity)?.showPrompt()
     }
@@ -248,6 +263,9 @@ export class Player extends Component {
                     this.recentCollidedWith = null
                 }
                 break
+            case ColliderType.STONE:
+                this.standingOn.delete(other.uuid)
+                break
         }
         // FIXME problematic when player is touching multiple objects
         // could fix by using a set of collided objects
@@ -262,14 +280,8 @@ export class Player extends Component {
     ): void {
         const entity = other.node.getComponent(Entity)
         if (entity) {
-            const ret = entity.onEnterHalo(self.node.getComponent(PlayerHalo))
-            if (ret) {
-                this.collidedInactiveNodeSet.add(
-                    other.node.getComponent(Entity),
-                )
-            } else {
-                this.collidedActiveNodeSet.add(other.node.getComponent(Entity))
-            }
+            entity.onEnterHalo(self.node.getComponent(PlayerHalo))
+            this.collidedHaloNodeSet.add(other.node.getComponent(Entity))
         }
     }
 
@@ -280,9 +292,8 @@ export class Player extends Component {
     ): void {
         const entity = other.node.getComponent(Entity)
         if (entity) {
-            const ret = entity.onLeaveHalo(self.node.getComponent(PlayerHalo))
-            this.collidedInactiveNodeSet.delete(other.node.getComponent(Entity))
-            this.collidedActiveNodeSet.delete(other.node.getComponent(Entity))
+            entity.onLeaveHalo(self.node.getComponent(PlayerHalo))
+            this.collidedHaloNodeSet.delete(other.node.getComponent(Entity))
         }
     }
 
