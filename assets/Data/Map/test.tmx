@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="11" nextobjectid="46">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="11" nextobjectid="58">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <objectgroup id="4" name="Grounds">
   <object id="1" name="Wall" x="-16" y="256" width="16" height="160"/>
@@ -13,6 +13,14 @@
   <object id="18" name="SecretWall" x="32" y="64" width="16" height="96"/>
   <object id="19" name="SecretWall" x="288" y="64" width="16" height="96"/>
   <object id="20" name="SecretCeil" x="48" y="48" width="240" height="16"/>
+  <object id="52" x="496.56" y="100" width="64" height="16"/>
+  <object id="53" x="477.674" y="62.7907" width="18.6047" height="131.628"/>
+  <object id="54" x="494.884" y="42.3256" width="349.767" height="21.8605"/>
+  <object id="55" x="832.093" y="46.5116" width="22.7907" height="157.674"/>
+  <object id="56" x="488.643" y="192.798" width="349.584" height="19.9446"/>
+  <object id="57" x="560.193" y="100.274">
+   <polygon points="0,0 238.082,89.6308 -2.80096,90.191"/>
+  </object>
  </objectgroup>
  <objectgroup id="5" name="Spikes">
   <object id="21" x="480" y="395" width="32" height="5"/>
@@ -57,20 +65,20 @@
    </properties>
    <point/>
   </object>
-  <object id="14" name="SecretOut" type="nodePortal" x="256" y="144">
+  <object id="14" name="SecretOut" type="nodePortal" x="813.448" y="174.395">
    <properties>
     <property name="class" value="nodePortal"/>
     <property name="destination" type="object" value="16"/>
    </properties>
    <point/>
   </object>
-  <object id="13" name="SecretInDest" type="dummy" x="80" y="144">
+  <object id="13" name="SecretInDest" type="dummy" x="528.699" y="95.391">
    <properties>
     <property name="class" value="dummy"/>
    </properties>
    <point/>
   </object>
-  <object id="12" name="SecretIn" type="nodePortal" x="752" y="384">
+  <object id="12" name="SecretIn" type="nodePortal" x="153.016" y="383.371">
    <properties>
     <property name="class" value="nodePortal"/>
     <property name="destination" type="object" value="13"/>
@@ -123,7 +131,7 @@
  </objectgroup>
  <layer id="1" name="Tiles" width="60" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAE+1WQQqAMAzrf9QHOPXuizx78t22B0EK4mCUbmsGOQynTZpQl4jOBKAHyEDzGaCC1eIMKJBL0Fv/3Ie/+R1AnuvPc4segTNyhQwgA71mYOdfbCTk3yhwEh3w78DBFDT8WcVhMLDUyVCu9lb2nmvm4osnAePa2k+tVz8vpePt76PvYiGCr32pztz3Rz5oiY2/v75q/O0tucjc4HtjGMjcgN5+exDR3xssNqrOIBwAAA==
+   H4sIAAAAAAAAE+1XQQ6DMAzrf9geAIP7XrTzTryb9IBgQdWamqiCGimHlsaOnSqCIYTvwKAHvAOXvwMBeEpmAECXTLXUkQTJeGHhWc9mwJqPWOowg+8SLDzUizj9m2vxHWG18LC/iNPl/S3pEZJznsoNCanHO7c1vd5+Ep//Rne/A28ZGi2Fx4wkJh3wcuAjwDq8uIh7dKCTredx+7Qd3du4rvn0Qv6qWYAzt+6n1qvfo+XU7u+qbxYhMVJrVGdu/kMOesYk+OOO49/as5Y4N+T7sZmIc4N67+tBi/1dAEbU0yIgHAAA
   </data>
  </layer>
 </map>
