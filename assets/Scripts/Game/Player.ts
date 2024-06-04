@@ -196,12 +196,15 @@ export class Player extends Component {
     ): void {
         const normal = getCorrectNormal(self, other, contact)
         const isOnTop = fuzzyEqual(normal.y, NormalDirection.ON_TOP)
+        const isAbove = normal.y > 0
 
         switch (other.tag) {
             case ColliderType.ONEWAY:
                 if (!isOnTop) contact.disabled = true // Disable collision if not on top
-            case ColliderType.GROUND: // Fall through
                 if (isOnTop) this.standingOn.add(other.uuid)
+                break
+            case ColliderType.GROUND:
+                if (isAbove) this.standingOn.add(other.uuid)
                 break
             case ColliderType.SPIKE:
                 this.hurt()
