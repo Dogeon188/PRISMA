@@ -12,8 +12,10 @@ import {
     Vec3,
     _decorator,
     director,
+    easing,
     log,
     tween,
+    UIOpacity,
 } from "cc"
 
 const { ccclass, property } = _decorator
@@ -70,18 +72,31 @@ export class Toast extends Component {
         }
         this.toastText.getComponent(Label).string = text
     }
-
+    /**
+     * show the toast with easing effect
+     * @param duration the duration of the toast
+     */
     show(duration: number = 2): void {
-        log("showing toast")
         this.setOverFlow()
-        this.node.setPosition(-61, 500)
+        this.node.setPosition(-60, 300)
         this._duration = duration
         this.node.active = true
-        tween(this.node)
-            .to(0.3, { position: new Vec3(-61, 300, 0) })
+        const uiOpacity = this.node.getComponent(UIOpacity)
+        log("showing toast")
+        tween(uiOpacity)
+            .to(0.5, {opacity: 255 }, {easing: "sineOut"})
             .delay(1)
-            .call(() => (this.node.active = false))
+            .call(() => {
+                log("hiding toast")
+                tween(uiOpacity)
+                    .to(0.5, {opacity: 0}, {easing: "sineIn"})
+                    .call(() => {
+                        this.node.active = false
+                    })
+                    .start()
+            })
             .start()
+        log("toast shown")
     }
 
     private setOverFlow(): void {

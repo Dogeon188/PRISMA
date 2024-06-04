@@ -46,7 +46,7 @@ export class ToastManager {
             }
             this.toastPrefab = prefab
             // Create a toast pool
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 20; i++) {
                 const toast = instantiate(this.toastPrefab)
                 toast.parent = this.toastContainer
                 this.toastPool.push(toast)

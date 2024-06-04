@@ -1,6 +1,7 @@
 import { _decorator, AudioClip, Button, Component, director, find } from "cc"
 import { AudioManager } from "../AudioManager"
 import { SceneManager } from "../SceneManager"
+import { ToastManager } from "../Interface/ToastManager"
 const { ccclass, property } = _decorator
 
 @ccclass("Start")
