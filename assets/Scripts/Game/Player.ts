@@ -1,7 +1,6 @@
 import {
     Animation,
     BoxCollider2D,
-    CircleCollider2D,
     Collider2D,
     Component,
     Contact2DType,
@@ -19,6 +18,7 @@ import {
     tween,
 } from "cc"
 import { Settings } from "../Scene/Settings"
+import { Box } from "./Entities/Box"
 import { Entity } from "./Entities/Entity"
 import { PlayerHalo } from "./Entities/PlayerHalo"
 import { GameManager } from "./GameManager"
@@ -39,6 +39,7 @@ export class Player extends Component {
 
     private static readonly WALK_ACC = 80
     private static readonly WALK_SPEED = 10
+    private static readonly MOVE_BOX_SPEED = 5
     private static readonly JUMP_SPEED = 20
     private static readonly GRAVITY = 5
 
@@ -61,6 +62,13 @@ export class Player extends Component {
 
     /** Entity that the player is currently interacting with */
     private interactingWith: Entity
+
+    /**
+     * Whether the player is currently moving a box
+     */
+    private isMovingBox: boolean = false
+
+    private movementSpeed: number = Player.WALK_SPEED
 
     /** Reference to animation component of sprite node */
     private animation: Animation
@@ -177,8 +185,8 @@ export class Player extends Component {
         this.rigidBody.linearVelocity = new Vec2(
             clamp(
                 this.rigidBody.linearVelocity.x,
-                -Player.WALK_SPEED,
-                Player.WALK_SPEED,
+                -this.movementSpeed,
+                this.movementSpeed
             ),
             this.rigidBody.linearVelocity.y,
         )
@@ -209,11 +217,11 @@ export class Player extends Component {
                 break
             case ColliderType.SENSOR:
                 other.getComponent(Entity).onCollide(self.node)
-                this.recentCollidedWith = other.getComponent(Entity)
+                this.attemptRegisterInteractable(other, normal)
                 contact.disabled = true
                 break
             case ColliderType.BOX:
-                this.recentCollidedWith = other.getComponent(Entity)
+                this.attemptRegisterInteractable(other, normal)
             case ColliderType.BRICK: // Fall through
                 if (isOnTop) this.standingOn.add(other.uuid)
                 break
@@ -235,7 +243,14 @@ export class Player extends Component {
 
                 break
         }
-        other.getComponent(Entity)?.showPrompt()
+    }
+
+    private attemptRegisterInteractable(other: Collider2D, normal: Vec2): void {
+        const entity = other.getComponent(Entity)
+        if (entity && entity.canInteract(this, normal) && !this.interactingWith) {
+            this.recentCollidedWith = entity
+            entity.showPrompt()
+        }
     }
 
     private onEndContact(
@@ -335,7 +350,7 @@ export class Player extends Component {
     //#region Actions
 
     private jump(): void {
-        if (this.onGround) {
+        if (this.onGround && !this.isMovingBox) {
             this.rigidBody.linearVelocity = new Vec2(
                 this.rigidBody.linearVelocity.x,
                 Player.JUMP_SPEED,
@@ -365,6 +380,16 @@ export class Player extends Component {
         this.node.setPosition(this.spawnPoint)
         this.rigidBody.applyLinearImpulseToCenter(new Vec2(0, 0), true) // wake up rigid body, update collisions
         this.dead = false
+    }
+
+    public startMovingBox(box: Box) {
+        this.isMovingBox = true
+        this.movementSpeed = Player.MOVE_BOX_SPEED
+    }
+
+    public endMovingBox(box: Box) {
+        this.isMovingBox = false
+        this.movementSpeed = Player.WALK_SPEED
     }
 
     //#endregion
