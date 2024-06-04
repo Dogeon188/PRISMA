@@ -8,6 +8,7 @@ import {
     _decorator,
     TiledObjectGroup,
     Vec2,
+    spriteAssembler,
 } from "cc"
 import { PREVIEW } from "cc/env"
 import { AudioManager } from "../AudioManager"
@@ -78,6 +79,9 @@ export class GameManager extends Component {
     @property(Player)
     player: Player = null
 
+    @property({ type: Node})
+    background: Node = null
+
     //#endregion
 
     //#region Callbacks
@@ -86,6 +90,7 @@ export class GameManager extends Component {
         AudioManager.inst.fadeInBGM(this.bgm, 1)
         const startObject = this.startObjectGroup.getObjects()[0]
         this.player.initialize(this, new Vec2(startObject.x, startObject.y))
+        this.background.setSiblingIndex(0);
     }
 
     protected start(): void {
