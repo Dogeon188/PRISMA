@@ -86,11 +86,8 @@ export class Player extends Component {
     /** Name of current animation being played */
     private currentAnimation: string
 
-    /** collider set that contain inactive object which is collide with Halos */
-    public collidedInactiveNodeSet: Set<Entity> = new Set()
-
-    /** collider set  that contain active object which is collide with Halos*/
-    public collidedActiveNodeSet: Set<Entity> = new Set()
+    /** collider set that contain object which is collide with Halos */
+    public collidedHaloNodeSet: Set<Entity> = new Set()
 
     //#endregion
 
@@ -262,14 +259,8 @@ export class Player extends Component {
     ): void {
         const entity = other.node.getComponent(Entity)
         if (entity) {
-            const ret = entity.onEnterHalo(self.node.getComponent(PlayerHalo))
-            if (ret) {
-                this.collidedInactiveNodeSet.add(
-                    other.node.getComponent(Entity),
-                )
-            } else {
-                this.collidedActiveNodeSet.add(other.node.getComponent(Entity))
-            }
+            entity.onEnterHalo(self.node.getComponent(PlayerHalo))
+            this.collidedHaloNodeSet.add(other.node.getComponent(Entity))
         }
     }
 
@@ -280,9 +271,8 @@ export class Player extends Component {
     ): void {
         const entity = other.node.getComponent(Entity)
         if (entity) {
-            const ret = entity.onLeaveHalo(self.node.getComponent(PlayerHalo))
-            this.collidedInactiveNodeSet.delete(other.node.getComponent(Entity))
-            this.collidedActiveNodeSet.delete(other.node.getComponent(Entity))
+            entity.onLeaveHalo(self.node.getComponent(PlayerHalo))
+            this.collidedHaloNodeSet.delete(other.node.getComponent(Entity))
         }
     }
 

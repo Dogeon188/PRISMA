@@ -127,20 +127,10 @@ export class PlayerHalo extends Component {
             target_color.b,
             66,
         )
-        this.node
-            .getComponent(Player)
-            .collidedInactiveNodeSet.forEach((node) => {
-                node.onLeaveHalo(this, true)
-                this.node.getComponent(Player).collidedActiveNodeSet.add(node)
-            })
-        this.node.getComponent(Player).collidedActiveNodeSet.forEach((node) => {
+        this.node.getComponent(Player).collidedHaloNodeSet.forEach((node) => {
+            node.onLeaveHalo(this, true)
             node.onEnterHalo(this)
-            this.node.getComponent(Player).collidedInactiveNodeSet.add(node)
         })
-        // this.node.scale = new Vec3(-1, 1, 1)
-        // this.node.scale = new Vec3(1, 1, 1)
-        /*this.node.getChildByName("Halo").getComponent(Sprite).color =
-            PlayerHalo.COLOR_MAP[this.color]*/
     }
 
     private onMouseDown(): void {

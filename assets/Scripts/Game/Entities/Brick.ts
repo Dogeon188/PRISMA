@@ -11,12 +11,15 @@ import {
 import { ColliderGroup } from "../Physics/ColliderManager"
 import { Entity } from "./Entity"
 import { PlayerHalo } from "./PlayerHalo"
+import { Lamp } from "./Lamp"
 const { ccclass, property } = _decorator
 
 @ccclass("Brick")
 export class Brick extends Entity {
     @property({ type: ColliderGroup })
     private color: number = ColliderGroup.RED
+
+    private collidedHaloSet: Set<string> = new Set()
 
     private static readonly COLOR_MAP = {
         [ColliderGroup.RED]: Color.RED,
@@ -51,29 +54,38 @@ export class Brick extends Entity {
         this.node.getComponent(Collider2D).group = ColliderGroup.ACTIVE
     }
 
-    public onEnterHalo(playerHalo: PlayerHalo): boolean {
+    public onEnterHalo(playerHalo: PlayerHalo): void {
         if (playerHalo.color === this.color) {
-            this.scheduleOnce(() => {
-                this.node.getComponent(Sprite).enabled = false
-                this.node.getComponent(Collider2D).group =
-                    ColliderGroup.INACTIVE
-            }, 0.1)
-            return true
+            this.collidedHaloSet.add(playerHalo.node.uuid)
         }
-        return false
+        this.determineActive()
     }
 
-    public onLeaveHalo(
-        playerHalo: PlayerHalo,
-        force: boolean = false,
-    ): boolean {
-        if (force || playerHalo.color === this.color) {
-            this.scheduleOnce(() => {
-                this.node.getComponent(Sprite).enabled = true
-                this.node.getComponent(Collider2D).group = ColliderGroup.ACTIVE
-            }, 0.1)
-            return true
+    public onLeaveHalo(playerHalo: PlayerHalo, force: boolean = false): void {
+        this.collidedHaloSet.delete(playerHalo.node.uuid)
+        this.determineActive()
+    }
+
+    private determineActive(): void {
+        console.log(this.collidedHaloSet)
+        if (this.collidedHaloSet.size === 0) {
+            this.node.getComponent(Sprite).enabled = true
+            this.node.getComponent(Collider2D).group = ColliderGroup.ACTIVE
+        } else {
+            this.node.getComponent(Sprite).enabled = false
+            this.node.getComponent(Collider2D).group = ColliderGroup.INACTIVE
         }
-        return false
+    }
+
+    public onEnterLampHalo(lamp: Lamp): void {
+        if (lamp.color === this.color) {
+            this.collidedHaloSet.add(lamp.node.uuid)
+        }
+        this.determineActive()
+    }
+
+    public onLeaveLampHalo(lamp: Lamp, force: boolean = false): void {
+        this.collidedHaloSet.delete(lamp.node.uuid)
+        this.determineActive()
     }
 }

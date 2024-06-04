@@ -1,12 +1,15 @@
 import {
     AudioClip,
     Component,
+    EPhysics2DDrawFlags,
     Node,
+    PhysicsSystem2D,
     Prefab,
+    _decorator,
     TiledObjectGroup,
     Vec2,
-    _decorator,
 } from "cc"
+import { PREVIEW } from "cc/env"
 import { AudioManager } from "../AudioManager"
 import { DialogBox } from "../Interface/DialogBox"
 import { InteractPrompt } from "../Interface/InteractPrompt"
@@ -83,6 +86,12 @@ export class GameManager extends Component {
         AudioManager.inst.fadeInBGM(this.bgm, 1)
         const startObject = this.startObjectGroup.getObjects()[0]
         this.player.initialize(this, new Vec2(startObject.x, startObject.y))
+    }
+
+    protected start(): void {
+        if (PREVIEW) {
+            PhysicsSystem2D.instance.debugDrawFlags = EPhysics2DDrawFlags.Aabb
+        }
     }
 
     backToStart(): void {

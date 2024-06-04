@@ -2448,8 +2448,8 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 637.783,
-      "y": 104.082,
+      "x": 0,
+      "y": 0,
       "z": 0
     },
     "_lrot": {
@@ -3581,7 +3581,7 @@
       "__id__": 5
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 102
