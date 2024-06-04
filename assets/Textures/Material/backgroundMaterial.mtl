@@ -8,7 +8,7 @@
     "__uuid__": "908a8531-6410-451e-9630-16b81c75ab0f",
     "__expectedType__": "cc.EffectAsset"
   },
-  "_techIdx": 1,
+  "_techIdx": 0,
   "_defines": [
     {}
   ],
@@ -25,6 +25,11 @@
   ],
   "_props": [
     {
+      "EffectPosition": {
+        "__type__": "cc.Vec2",
+        "x": 0.5,
+        "y": 0.5
+      },
       "EffectRadius": 0.5
     }
   ]
