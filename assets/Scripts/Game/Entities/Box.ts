@@ -4,6 +4,7 @@ import {
     Collider2D,
     Color,
     Node,
+    RigidBody2D,
     Size,
     Sprite,
     UITransform,
@@ -13,10 +14,11 @@ import {
 import { Settings } from "../../Scene/Settings"
 import { GameManager } from "../GameManager"
 import { ColliderGroup } from "../Physics/ColliderManager"
+import { fuzzyEqual } from "../Physics/PhysicsFixer"
 import { Player } from "../Player"
 import { Entity } from "./Entity"
-import { PlayerHalo } from "./PlayerHalo"
 import { Lamp } from "./Lamp"
+import { PlayerHalo } from "./PlayerHalo"
 const { ccclass, property } = _decorator
 
 @ccclass("Box")
@@ -26,6 +28,10 @@ export class Box extends Entity {
 
     private bindedTo: Node | null = null
     private bindOffsetX: number = 0
+
+    private static readonly DENSITY: number = 20
+    private static readonly DENSITY_MOVING: number = 0
+    private static readonly GRAVITY: number = 5
 
     private collidedHaloSet: Set<string> = new Set()
 
@@ -59,17 +65,24 @@ export class Box extends Entity {
         this.color = color
         this.node.getComponent(Sprite).color = Box.COLOR_MAP[this.color]
         // Set the group of the collider
-        this.node.getComponent(Collider2D).group = ColliderGroup.ACTIVE
+        const collider = this.node.getComponent(Collider2D)
+        collider.group = ColliderGroup.ACTIVE
+        collider.density = Box.DENSITY
     }
 
     protected update(deltaTime: number) {
-        if (this.bindedTo) {
-            this.node.position = new Vec3(
-                this.bindedTo.position.x + this.bindOffsetX,
-                this.node.position.y,
-                this.node.position.z,
-            )
+        if (!this.bindedTo) return
+
+        const velocityY = this.node.getComponent(RigidBody2D).linearVelocity.y
+        if (!fuzzyEqual(velocityY, 0, 1)) {
+            const player = this.bindedTo.getComponent(Player)
+            if (player) this.onEndInteract(player)
         }
+        this.node.position = new Vec3(
+            this.bindedTo.position.x + this.bindOffsetX,
+            this.node.position.y,
+            this.node.position.z,
+        )
     }
 
     public showPrompt(): void {
@@ -118,13 +131,30 @@ export class Box extends Entity {
         this.determineActive()
     }
 
+    public canInteract(player: Player, normal: Vec2): boolean {
+        return fuzzyEqual(normal.y, 0)
+    }
+
     public onBeginInteract(player: Player): void {
+        player.startMovingBox(this)
         GameManager.inst.interactPrompt.hidePrompt()
         this.bindedTo = player.node
         this.bindOffsetX = this.node.position.x - player.node.position.x
+        const collider = this.node.getComponent(Collider2D)
+        collider.density = Box.DENSITY_MOVING
+        collider.apply()
     }
 
     public onEndInteract(player: Player): void {
+        player.endMovingBox(this)
         this.bindedTo = null
+        const collider = this.node.getComponent(Collider2D)
+        collider.density = Box.DENSITY
+        collider.friction = 1000
+        collider.apply()
+        this.scheduleOnce(() => {
+            collider.friction = 0.5
+            collider.apply()
+        }, 0.2)
     }
 }

@@ -1,9 +1,9 @@
-import { _decorator, Component, KeyCode, Node } from "cc"
+import { _decorator, Component, KeyCode, Node, Vec2 } from "cc"
 import { GameManager } from "../GameManager"
 import { ColliderGroup } from "../Physics/ColliderManager"
 import { Player } from "../Player"
-import { PlayerHalo } from "./PlayerHalo"
 import { Lamp } from "./Lamp"
+import { PlayerHalo } from "./PlayerHalo"
 const { ccclass } = _decorator
 
 @ccclass("Entity")
@@ -22,6 +22,10 @@ export class Entity extends Component {
      */
     public showPrompt(): void {
         GameManager.inst.interactPrompt.hidePrompt()
+    }
+
+    public canInteract(player: Player, normal: Vec2): boolean {
+        return true
     }
 
     /**

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="11" nextobjectid="59">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="11" nextobjectid="64">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <objectgroup id="4" name="Grounds">
   <object id="1" name="Wall" x="-16" y="256" width="16" height="160"/>
@@ -112,6 +112,28 @@
     <property name="color" value="green"/>
    </properties>
   </object>
+  <object id="59" name="Lamp" type="lamp" x="624.351" y="272.019">
+   <properties>
+    <property name="angle" type="float" value="180"/>
+    <property name="class" value="lamp"/>
+    <property name="radius" type="float" value="100"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="61" name="Lamp" type="lamp" x="623.787" y="399.924">
+   <properties>
+    <property name="angle" type="float" value="0"/>
+    <property name="class" value="lamp"/>
+    <property name="radius" type="float" value="100"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="63" name="Stone" type="stone" x="538.387" y="67.704" width="32" height="32">
+   <properties>
+    <property name="class" value="stone"/>
+   </properties>
+   <ellipse/>
+  </object>
  </objectgroup>
  <objectgroup id="8" name="Bricks">
   <object id="33" name="Red" type="red" x="384" y="336" width="32" height="32">
@@ -131,13 +153,13 @@
   </object>
  </objectgroup>
  <objectgroup id="9" name="Start">
-  <object id="45" name="Start" x="577.046" y="390.052">
+  <object id="45" name="Start" x="572.589" y="394.426">
    <point/>
   </object>
  </objectgroup>
  <layer id="1" name="Tiles" width="60" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu1XQQ6DMAzrf9geAIP7XrTzTryb9IBgQdWamqiCGimHlsaOnSqCIYTvwKAHvAOXvwMBeEpmAECXTLXUkQTJeGHhWc9mwJqPWOowg+8SLDzUizj9m2vxHWG18LC/iNPl/S3pEZJznsoNCanHO7c1vd5+Ep//Rne/A28ZGi2Fx4wkJh3wcuAjwDq8uIh7dKCTredx+7Qd3du4rvn0Qv6qWYAzt+6n1qvfo+XU7u+qbxYhMVJrVGdu/kMOesYk+OOO49/as5Y4N+T7sZmIc4N67+tBi/1dAEbU0yIgHAAA
+   H4sIAAAAAAAAE+1XQQ6DMAzrf9geAIP7XrTzTryb9IBgQdWamqiCGimHlsaOnSqCIYTvwKAHvAOXvwMBeEpmAECXTLXUkQTJeGHhWc9mwJqPWOowg+8SLDzUizj9m2vxHWG18LC/iNPl/S3pEZJznsoNCanHO7c1vd5+Ep//Rne/A28ZGi2Fx4wkJh3wcuAjwDq8uIh7dKCTredx+7Qd3du4rvn0Qv6qWYAzt+6n1qvfo+XU7u+qbxYhMVJrVGdu/kMOesYk+OOO49/as5Y4N+T7sZmIc4N67+tBi/1dAEbU0yIgHAAA
   </data>
  </layer>
 </map>

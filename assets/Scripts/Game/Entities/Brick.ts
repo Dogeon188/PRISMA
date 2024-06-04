@@ -10,14 +10,14 @@ import {
 } from "cc"
 import { ColliderGroup } from "../Physics/ColliderManager"
 import { Entity } from "./Entity"
-import { PlayerHalo } from "./PlayerHalo"
 import { Lamp } from "./Lamp"
+import { PlayerHalo } from "./PlayerHalo"
 const { ccclass, property } = _decorator
 
 @ccclass("Brick")
 export class Brick extends Entity {
     @property({ type: ColliderGroup })
-    private color: number = ColliderGroup.RED
+    protected color: number = ColliderGroup.RED
 
     private collidedHaloSet: Set<string> = new Set()
 
