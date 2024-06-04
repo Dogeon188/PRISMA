@@ -599,7 +599,7 @@
     "_string": "dialog text.",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 40,
+    "_actualFontSize": 43,
     "_fontSize": 40,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -1228,7 +1228,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 12.639999389648438,
+      "width": 12.63999761537064,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -1261,7 +1261,7 @@
     "_string": "5",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 40,
+    "_actualFontSize": 43,
     "_fontSize": 40,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -1363,7 +1363,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 13.279998779296875,
+      "width": 13.27998671420785,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -1396,7 +1396,7 @@
     "_string": "3",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 40,
+    "_actualFontSize": 43,
     "_fontSize": 40,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -1498,7 +1498,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 11,
+      "width": 10.999997161155523,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -1531,7 +1531,7 @@
     "_string": "1",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 40,
+    "_actualFontSize": 43,
     "_fontSize": 40,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -1684,7 +1684,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -59.359962463378906,
+      "x": -59.35997541560684,
       "y": 0,
       "z": 0
     },
@@ -1804,7 +1804,7 @@
     "_string": "A",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 40,
+    "_actualFontSize": 43,
     "_fontSize": 40,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -1999,7 +1999,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 98.71992492675781,
+      "width": 98.71995083121367,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -2032,7 +2032,7 @@
     "_string": "Interact",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 40,
+    "_actualFontSize": 43,
     "_fontSize": 40,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -2086,7 +2086,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 165.6730499267578,
+      "width": 165.67307583121368,
       "height": 45
     },
     "_anchorPoint": {
@@ -4060,6 +4060,10 @@
       "__uuid__": "85325c4f-b32f-4c61-9599-a50744f1a734",
       "__expectedType__": "cc.Prefab"
     },
+    "stonePrefab": {
+      "__uuid__": "7a922cc9-a668-4187-a795-2bdb02e8b384",
+      "__expectedType__": "cc.Prefab"
+    },
     "platePrefab": {
       "__uuid__": "079d0f4f-242a-4f4c-9947-74258693a585",
       "__expectedType__": "cc.Prefab"
@@ -4082,6 +4086,10 @@
     },
     "gemBluePrefab": {
       "__uuid__": "5b09e807-4770-4eb3-8156-73ed25210060",
+      "__expectedType__": "cc.Prefab"
+    },
+    "lampPrefab": {
+      "__uuid__": "c41a67a1-2c7b-4a38-acd2-887201cdc8c7",
       "__expectedType__": "cc.Prefab"
     },
     "_id": "fbn3AT2dlF04P7hsIrqAl/"
