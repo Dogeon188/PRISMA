@@ -1,13 +1,12 @@
 import {
     Animation,
+    BoxCollider2D,
     Collider2D,
     Component,
     Contact2DType,
     EventKeyboard,
-    Game,
     IPhysics2DContact,
     Input,
-    Node,
     Quat,
     RigidBody2D,
     Sprite,
@@ -139,9 +138,14 @@ export class Player extends Component {
         this.updateAnimation(dt)
     }
 
-    public initialize(gameManager: GameManager, spawnPoint: Vec3): void {
+    public initialize(gameManager: GameManager, spawnPoint: Vec2): void {
         this.gameManager = gameManager
-        this.spawnPoint = spawnPoint
+        this.spawnPoint = new Vec3(
+            spawnPoint.x,
+            spawnPoint.y + this.getComponent(BoxCollider2D).size.height / 2,
+            this.node.position.z,
+        )
+        this.node.setPosition(this.spawnPoint)
     }
 
     //#endregion
@@ -192,12 +196,15 @@ export class Player extends Component {
     ): void {
         const normal = getCorrectNormal(self, other, contact)
         const isOnTop = fuzzyEqual(normal.y, NormalDirection.ON_TOP)
+        const isAbove = normal.y > 0
 
         switch (other.tag) {
             case ColliderType.ONEWAY:
                 if (!isOnTop) contact.disabled = true // Disable collision if not on top
-            case ColliderType.GROUND: // Fall through
                 if (isOnTop) this.standingOn.add(other.uuid)
+                break
+            case ColliderType.GROUND:
+                if (isAbove) this.standingOn.add(other.uuid)
                 break
             case ColliderType.SPIKE:
                 this.hurt()
@@ -207,7 +214,7 @@ export class Player extends Component {
                 this.recentCollidedWith = other.getComponent(Entity)
                 contact.disabled = true
                 break
-            case ColliderType.OBJECT:
+            case ColliderType.BOX:
                 this.recentCollidedWith = other.getComponent(Entity)
             case ColliderType.BRICK: // Fall through
                 if (isOnTop) this.standingOn.add(other.uuid)
@@ -232,7 +239,7 @@ export class Player extends Component {
             case ColliderType.ONEWAY:
                 this.standingOn.delete(other.uuid)
                 break
-            case ColliderType.OBJECT:
+            case ColliderType.BOX:
                 GameManager.inst.interactPrompt.hidePrompt()
             case ColliderType.BRICK:
                 this.standingOn.delete(other.uuid)

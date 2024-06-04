@@ -1,9 +1,17 @@
-import { AudioClip, Component, Node, Prefab, _decorator } from "cc"
+import {
+    AudioClip,
+    Component,
+    Node,
+    Prefab,
+    TiledObjectGroup,
+    Vec2,
+    _decorator,
+} from "cc"
 import { AudioManager } from "../AudioManager"
 import { DialogBox } from "../Interface/DialogBox"
+import { InteractPrompt } from "../Interface/InteractPrompt"
 import { SceneManager } from "../SceneManager"
 import { Player } from "./Player"
-import { InteractPrompt } from "../Interface/InteractPrompt"
 const { ccclass, property } = _decorator
 
 @ccclass("GameManager")
@@ -39,11 +47,12 @@ export class GameManager extends Component {
     objectsNode: Node = null
 
     @property({
-        type: Node,
+        type: TiledObjectGroup,
         group: "References",
-        tooltip: "Player will be spawned at its position",
+        tooltip:
+            "The tiled object group containing the start node. It should only have one object.",
     })
-    startNode: Node = null
+    startObjectGroup: TiledObjectGroup = null
 
     @property({
         type: DialogBox,
@@ -72,7 +81,8 @@ export class GameManager extends Component {
 
     protected onLoad(): void {
         AudioManager.inst.fadeInBGM(this.bgm, 1)
-        this.player.initialize(this, this.startNode.position)
+        const startObject = this.startObjectGroup.getObjects()[0]
+        this.player.initialize(this, new Vec2(startObject.x, startObject.y))
     }
 
     backToStart(): void {

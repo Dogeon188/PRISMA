@@ -1,10 +1,12 @@
-import { _decorator, Component, Node } from "cc"
+import { _decorator, Node, Sprite, SpriteFrame } from "cc"
+import { EDITOR_NOT_IN_PREVIEW } from "cc/env"
+import { ColliderGroup } from "../Physics/ColliderManager"
 import { Entity } from "./Entity"
 import { PlayerHalo } from "./PlayerHalo"
-import { ColliderGroup } from "../Physics/ColliderManager"
-const { ccclass, property } = _decorator
+const { ccclass, property, executeInEditMode } = _decorator
 
 @ccclass("Gem")
+@executeInEditMode
 export class Gem extends Entity {
     @property({ type: ColliderGroup })
     private color: number = ColliderGroup.GREEN

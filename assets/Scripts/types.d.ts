@@ -12,4 +12,6 @@ interface UserData {
     volumeBGM: number
 }
 
+type Uuid = string
+
 declare const firebase: any
