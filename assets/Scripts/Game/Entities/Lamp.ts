@@ -48,8 +48,6 @@ export class Lamp extends Entity {
             this.node
                 .getChildByName("Halo")
                 .getComponent(UITransform).contentSize = new Size(0, 0)
-            haloCollider.radius = 0
-            haloCollider.apply()
         }, 0)
     }
 
@@ -78,34 +76,19 @@ export class Lamp extends Entity {
     }
 
     private changeColor(player: Player): void {
-        this.collidedSet.forEach((entity) => {
-            entity.onLeaveLampHalo(this)
-            entity.onEnterLampHalo(this)
-        })
         if (this.color === null) {
             this.color = player.node.getComponent(PlayerHalo).color
             this.drawColor()
             tween(this.node.getChildByName("Halo").getComponent(UITransform))
-                .to(5, {
+                .to(0.5, {
                     width: 401.8,
                     height: 401.8,
-                })
-                .start()
-            tween(
-                this.node.getChildByName("Halo").getComponent(CircleCollider2D),
-            )
-                .to(5, { radius: 200.9 })
-                .call(() => {
-                    this.node
-                        .getChildByName("Halo")
-                        .getComponent(CircleCollider2D)
-                        .apply()
                 })
                 .start()
         } else {
             this.color = null
             tween(this.node.getChildByName("Halo").getComponent(UITransform))
-                .to(5, {
+                .to(0.5, {
                     width: 0,
                     height: 0,
                 })
@@ -113,18 +96,13 @@ export class Lamp extends Entity {
                     this.drawColor()
                 })
                 .start()
-            tween(
-                this.node.getChildByName("Halo").getComponent(CircleCollider2D),
-            )
-                .to(5, { radius: 0 })
-                .call(() => {
-                    this.node
-                        .getChildByName("Halo")
-                        .getComponent(CircleCollider2D)
-                        .apply()
-                })
-                .start()
         }
+        this.node.getChildByName("Halo").scale = new Vec3(-1, 1, 1)
+        this.node.getChildByName("Halo").scale = new Vec3(1, 1, 1)
+        this.collidedSet.forEach((entity) => {
+            entity.onLeaveLampHalo(this)
+            entity.onEnterLampHalo(this)
+        })
     }
 
     public onBeginInteract(player: Player): void {
@@ -140,7 +118,6 @@ export class Lamp extends Entity {
         contact: IPhysics2DContact,
     ): void {
         const entity = other.node.getComponent(Entity)
-        console.log(other.node)
         if (entity) {
             entity.onEnterLampHalo(this)
             this.collidedSet.add(entity)

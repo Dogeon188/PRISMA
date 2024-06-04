@@ -97,9 +97,7 @@ export class Box extends Entity {
     }
 
     public onLeaveHalo(playerHalo: PlayerHalo, force: boolean = false): void {
-        if (force || playerHalo.color === this.color) {
-            this.collidedHaloSet.delete(playerHalo.node.uuid)
-        }
+        this.collidedHaloSet.delete(playerHalo.node.uuid)
         this.determineActive()
     }
 
@@ -111,9 +109,8 @@ export class Box extends Entity {
     }
 
     public onLeaveLampHalo(lamp: Lamp, force: boolean = false): void {
-        if (force || lamp.color === this.color) {
-            this.collidedHaloSet.delete(lamp.node.uuid)
-        }
+        this.collidedHaloSet.delete(lamp.node.uuid)
+        this.determineActive()
     }
 
     public onBeginInteract(player: Player): void {
