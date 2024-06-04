@@ -81,11 +81,16 @@ export class Box extends Entity {
 
     private determineActive(): void {
         if (this.collidedHaloSet.size === 0) {
-            this.node.getComponent(Sprite).enabled = true
-            this.node.getComponent(Collider2D).group = ColliderGroup.ACTIVE
+            this.scheduleOnce(() => {
+                this.node.getComponent(Sprite).enabled = true
+                this.node.getComponent(Collider2D).group = ColliderGroup.ACTIVE
+            }, 0)
         } else {
-            this.node.getComponent(Sprite).enabled = false
-            this.node.getComponent(Collider2D).group = ColliderGroup.INACTIVE
+            this.scheduleOnce(() => {
+                this.node.getComponent(Sprite).enabled = false
+                this.node.getComponent(Collider2D).group =
+                    ColliderGroup.INACTIVE
+            }, 0)
         }
     }
 

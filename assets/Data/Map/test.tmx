@@ -90,7 +90,7 @@
    </properties>
    <point/>
   </object>
-  <object id="40" name="Gem" type="gem" x="351.025" y="351.256">
+  <object id="40" name="Gem" type="gem" x="587.692" y="389.923">
    <properties>
     <property name="class" value="gem"/>
     <property name="color" value="green"/>
@@ -136,7 +136,7 @@
   </object>
  </objectgroup>
  <objectgroup id="9" name="Start">
-  <object id="45" name="Start" x="64" y="400">
+  <object id="45" name="Start" x="566.909" y="388">
    <point/>
   </object>
  </objectgroup>

@@ -76,6 +76,7 @@ export class Lamp extends Entity {
     }
 
     private changeColor(player: Player): void {
+        console.log(this.collidedSet)
         if (this.color === null) {
             this.color = player.node.getComponent(PlayerHalo).color
             this.drawColor()
@@ -97,8 +98,8 @@ export class Lamp extends Entity {
                 })
                 .start()
         }
-        this.node.getChildByName("Halo").scale = new Vec3(-1, 1, 1)
-        this.node.getChildByName("Halo").scale = new Vec3(1, 1, 1)
+        // this.node.getChildByName("Halo").scale = new Vec3(-1, 1, 1)
+        // this.node.getChildByName("Halo").scale = new Vec3(1, 1, 1)
         this.collidedSet.forEach((entity) => {
             entity.onLeaveLampHalo(this)
             entity.onEnterLampHalo(this)
@@ -107,6 +108,9 @@ export class Lamp extends Entity {
 
     public onBeginInteract(player: Player): void {
         GameManager.inst.interactPrompt.hidePrompt()
+        player.collidedHaloNodeSet.forEach((node) => {
+            this.collidedSet.add(node)
+        })
         this.changeColor(player)
     }
 
