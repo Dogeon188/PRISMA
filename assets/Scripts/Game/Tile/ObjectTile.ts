@@ -1,6 +1,5 @@
 import {
     _decorator,
-    BoxCollider2D,
     Component,
     instantiate,
     Node,
@@ -15,6 +14,7 @@ import { Box } from "../Entities/Box"
 import { Dialog } from "../Entities/Dialog"
 import { Entity } from "../Entities/Entity"
 import { Gate } from "../Entities/Gate"
+import { Lamp } from "../Entities/Lamp"
 import { Laser } from "../Entities/Laser"
 import { Plate, PlateTriggerable } from "../Entities/Plate"
 import { Portal, PortalType } from "../Entities/Portal"
@@ -73,6 +73,12 @@ type TileObjectTypes = {
         class: "gem"
         color: RGBString
     }
+    /** Lamp that emits light */
+    lamp: {
+        class: "lamp"
+        angle: number
+        radius: number
+    }
     /** Dummy object just for reference */
     dummy: {
         class: "dummy"
@@ -113,6 +119,9 @@ export class ObjectTile extends Component {
 
     @property({ type: Prefab, group: "Prefabs" })
     private gemBluePrefab: Prefab = null
+
+    @property({ type: Prefab, group: "Prefabs" })
+    private lampPrefab: Prefab = null
 
     protected onLoad(): void {
         // Cocos resets anchor and position everytime Tiled file reloaded
@@ -160,6 +169,10 @@ export class ObjectTile extends Component {
                 case "gem":
                     const gem = this.createGem(object)
                     objectNodes.set(object.id, gem)
+                    break
+                case "lamp":
+                    const lamp = this.createLamp(object)
+                    objectNodes.set(object.id, lamp)
                     break
                 case "dummy":
                     objectNodes.set(object.id, this.createDummy(object))
@@ -268,11 +281,13 @@ export class ObjectTile extends Component {
     private createLaser(object: TileObject<"laser">): Node {
         const laserNode = instantiate(this.laserPrefab)
         laserNode.name = object.name
-        laserNode.getComponent(Laser)!.initialize(
-            ColorStringToGroupMap[object.color],
-            new Vec2(object.x, object.y),
-            new Size(object.width, object.height),
-        )
+        laserNode
+            .getComponent(Laser)!
+            .initialize(
+                ColorStringToGroupMap[object.color],
+                new Vec2(object.x, object.y),
+                new Size(object.width, object.height),
+            )
         this.node.addChild(laserNode)
         return laserNode
     }
@@ -297,6 +312,20 @@ export class ObjectTile extends Component {
         gemNode.setPosition(object.x, object.y)
         this.node.addChild(gemNode)
         return gemNode
+    }
+
+    private createLamp(object: TileObject<"lamp">): Node {
+        const lampNode = instantiate(this.lampPrefab)
+        lampNode.name = object.name
+        lampNode
+            .getComponent(Lamp)
+            .initialize(
+                new Vec2(object.x, object.y),
+                object.radius,
+                object.angle,
+            )
+        this.node.addChild(lampNode)
+        return lampNode
     }
 
     private createDummy(object: TileObject<"dummy">): Node {

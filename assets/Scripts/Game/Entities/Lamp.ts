@@ -7,6 +7,7 @@ import {
     IPhysics2DContact,
     math,
     Node,
+    Quat,
     Size,
     Sprite,
     SpriteFrame,
@@ -50,8 +51,11 @@ export class Lamp extends Entity {
     }
 
     protected onLoad(): void {
-        this.haloNode = this.node.getChildByName("Halo")
-        this.gemNode = this.node.getChildByName("Gem")
+        this.initialize(
+            new Vec2(this.node.position.x, this.node.position.y),
+            this.haloRadius,
+            null,
+        )
 
         const haloCollider = this.haloNode.getComponent(CircleCollider2D)
         haloCollider.on(
@@ -63,12 +67,17 @@ export class Lamp extends Entity {
         this.scheduleOnce(() => {
             this.haloNode.getComponent(UITransform).contentSize = new Size(0, 0)
         }, 0)
+        this.drawColor()
     }
 
-    public initialize(position: Vec2, radius: number): void {
-        this.drawColor()
+    public initialize(position: Vec2, radius: number, angle: number): void {
+        this.haloNode = this.node.getChildByName("Halo")
+        this.gemNode = this.node.getChildByName("Gem")
+        this.node.setPosition(position.x, position.y)
         this.haloRadius = radius
         this.haloNode.getComponent(CircleCollider2D).radius = radius
+        if (angle !== null)
+            this.node.setRotation(Quat.fromAngleZ(new Quat(), angle))
     }
 
     public showPrompt(): void {
