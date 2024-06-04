@@ -25,6 +25,8 @@ const { ccclass, property } = _decorator
 export class Lamp extends Entity {
     public color: number = null
 
+    private collidedSet: Set<Entity> = new Set()
+
     private static readonly COLOR_MAP = {
         [ColliderGroup.RED]: Color.RED,
         [ColliderGroup.GREEN]: Color.GREEN,
@@ -42,11 +44,13 @@ export class Lamp extends Entity {
             this,
         )
         haloCollider.on(Contact2DType.END_CONTACT, this.onEndContactHalo, this)
-        haloCollider.radius = 0
-        this.node
-            .getChildByName("Halo")
-            .getComponent(UITransform)
-            .setContentSize(new Size(0, 0))
+        this.scheduleOnce(() => {
+            this.node
+                .getChildByName("Halo")
+                .getComponent(UITransform).contentSize = new Size(0, 0)
+            haloCollider.radius = 0
+            haloCollider.apply()
+        }, 0)
     }
 
     public onCollide(other: Node): void {}
@@ -74,27 +78,53 @@ export class Lamp extends Entity {
     }
 
     private changeColor(player: Player): void {
+        this.collidedSet.forEach((entity) => {
+            entity.onLeaveLampHalo(this)
+            entity.onEnterLampHalo(this)
+        })
         if (this.color === null) {
             this.color = player.node.getComponent(PlayerHalo).color
             this.drawColor()
+            tween(this.node.getChildByName("Halo").getComponent(UITransform))
+                .to(5, {
+                    width: 401.8,
+                    height: 401.8,
+                })
+                .start()
+            tween(
+                this.node.getChildByName("Halo").getComponent(CircleCollider2D),
+            )
+                .to(5, { radius: 200.9 })
+                .call(() => {
+                    this.node
+                        .getChildByName("Halo")
+                        .getComponent(CircleCollider2D)
+                        .apply()
+                })
+                .start()
         } else {
             this.color = null
-            this.drawColor()
+            tween(this.node.getChildByName("Halo").getComponent(UITransform))
+                .to(5, {
+                    width: 0,
+                    height: 0,
+                })
+                .call(() => {
+                    this.drawColor()
+                })
+                .start()
+            tween(
+                this.node.getChildByName("Halo").getComponent(CircleCollider2D),
+            )
+                .to(5, { radius: 0 })
+                .call(() => {
+                    this.node
+                        .getChildByName("Halo")
+                        .getComponent(CircleCollider2D)
+                        .apply()
+                })
+                .start()
         }
-        // use twin to make radius grow from 0 to 200.9 with animation
-        // tween(this.node.getChildByName("Halo").getComponent(CircleCollider2D))
-        //     .to(5, { radius: this.color ? 200.9 : 0 })
-        //     .start()
-        const nextColor = player.node.getComponent(PlayerHalo).color
-        tween(this.node.getChildByName("Halo").getComponent(UITransform))
-            .to(5, {
-                width: nextColor ? 401.8 : 0,
-                height: this.color ? 401.8 : 0,
-            })
-            .call(() => {
-                this.drawColor()
-            })
-            .start()
     }
 
     public onBeginInteract(player: Player): void {
@@ -113,6 +143,7 @@ export class Lamp extends Entity {
         console.log(other.node)
         if (entity) {
             entity.onEnterLampHalo(this)
+            this.collidedSet.add(entity)
         }
     }
 
@@ -124,6 +155,7 @@ export class Lamp extends Entity {
         const entity = other.node.getComponent(Entity)
         if (entity) {
             entity.onLeaveLampHalo(this)
+            this.collidedSet.delete(entity)
         }
     }
 }
