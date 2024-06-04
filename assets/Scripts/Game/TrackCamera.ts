@@ -27,10 +27,11 @@ export class TrackCamera extends Component {
 
     @property({ type: Node, tooltip: "The node to focus on" })
     private focus: Node = null
+    
     private cameraSize: Size = new Size(0, 0)
     private target: Vec3 = new Vec3(0, 0, 0)
 
-    onLoad(): void {
+    protected onLoad(): void {
         this.cameraSize = screen.resolution.lerp(
             Size.ZERO,
             1 - 1 / screen.devicePixelRatio,
@@ -47,11 +48,20 @@ export class TrackCamera extends Component {
      */
     focusOn(node: Node): void {
         this.focus = node
+        this.scheduleOnce(() => {
+            this.node.setPosition(this.getTargetPosition())
+        }, 0)
     }
 
     protected update(deltaTime: number): void {
         if (!this.focus) return
 
+        this.getTargetPosition()
+
+        this.node.setPosition(this.target.lerp(this.node.getPosition(), 0.9))
+    }
+
+    private getTargetPosition(): Vec3 {
         this.focus.getWorldPosition(this.target)
 
         this.target.x = clamp(
@@ -66,6 +76,6 @@ export class TrackCamera extends Component {
         )
         this.target.z = this.node.getPosition().z
 
-        this.node.setPosition(this.target.lerp(this.node.getPosition(), 0.9))
+        return this.target
     }
 }

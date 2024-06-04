@@ -5,10 +5,9 @@ import {
     Node,
     PhysicsSystem2D,
     Prefab,
-    _decorator,
     TiledObjectGroup,
     Vec2,
-    spriteAssembler,
+    _decorator,
 } from "cc"
 import { PREVIEW } from "cc/env"
 import { AudioManager } from "../AudioManager"
@@ -16,6 +15,7 @@ import { DialogBox } from "../Interface/DialogBox"
 import { InteractPrompt } from "../Interface/InteractPrompt"
 import { SceneManager } from "../SceneManager"
 import { Player } from "./Player"
+import { TrackCamera } from "./TrackCamera"
 const { ccclass, property } = _decorator
 
 @ccclass("GameManager")
@@ -81,6 +81,9 @@ export class GameManager extends Component {
 
     @property({ type: Node})
     background: Node = null
+    
+    @property({ type: TrackCamera, group: "References" })
+    camera: TrackCamera = null
 
     //#endregion
 
@@ -91,6 +94,7 @@ export class GameManager extends Component {
         const startObject = this.startObjectGroup.getObjects()[0]
         this.player.initialize(this, new Vec2(startObject.x, startObject.y))
         this.background.setSiblingIndex(0);
+        this.camera.focusOn(this.player.node)
     }
 
     protected start(): void {
