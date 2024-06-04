@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="150" height="150" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="151">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="150" height="150" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="153">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <objectgroup id="7" name="Grounds">
   <object id="14" name="Ground" x="1391.5" y="1808.5" width="240.5" height="79.5"/>
@@ -86,6 +86,7 @@
   <object id="116" name="RedZone" x="537" y="1791">
    <properties>
     <property name="class" value="scenePortal"/>
+    <property name="scene" value="LevelRedZone"/>
    </properties>
    <point/>
   </object>
@@ -172,6 +173,13 @@
    </properties>
    <point/>
   </object>
+  <object id="152" name="Exit" x="1465" y="1498.33">
+   <properties>
+    <property name="class" value="scenePortal"/>
+    <property name="scene" value="Start"/>
+   </properties>
+   <point/>
+  </object>
  </objectgroup>
  <objectgroup id="3" name="Bricks">
   <object id="121" name="RedBlock" x="1824" y="1472.09" width="32.1818" height="31.9091">
@@ -206,7 +214,7 @@
   </object>
  </objectgroup>
  <objectgroup id="2" name="Start">
-  <object id="1" name="Start" x="1560.32" y="1498.89">
+  <object id="1" name="Start" x="619.32" y="1794.64">
    <point/>
   </object>
  </objectgroup>
