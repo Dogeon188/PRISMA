@@ -115,7 +115,6 @@ export class PlayerHalo extends Component {
             return
         }
         var flag = false
-        console.log(this.node.getComponent(Player).collidedHaloNodeSet)
         this.node.getComponent(Player).collidedHaloNodeSet.forEach((node) => {
             if (
                 node.getComponent(Collider2D).tag === ColliderType.BOX ||
