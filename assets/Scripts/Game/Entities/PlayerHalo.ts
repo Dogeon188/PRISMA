@@ -152,6 +152,11 @@ export class PlayerHalo extends Component {
             node.onLeaveHalo(this, true)
             node.onEnterHalo(this)
         })
+        const player = this.node.getComponent(Player)
+        if (player.interactingWith) {
+            player.interactingWith.onEndInteract(this.node.getComponent(Player))
+            player.interactingWith = null
+        }
     }
 
     private onMouseDown(): void {

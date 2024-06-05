@@ -109,12 +109,16 @@ export class Box extends Entity {
 
     public onEnterHalo(playerHalo: PlayerHalo): void {
         if (playerHalo.color === this.color) {
+            console.log("Box collided with player halo")
             this.collidedHaloSet.add(playerHalo.node.uuid)
         }
         this.determineActive()
     }
 
     public onLeaveHalo(playerHalo: PlayerHalo, force: boolean = false): void {
+        if (this.color === playerHalo.color) {
+            return
+        }
         this.collidedHaloSet.delete(playerHalo.node.uuid)
         this.determineActive()
     }

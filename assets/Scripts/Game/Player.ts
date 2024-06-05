@@ -63,7 +63,7 @@ export class Player extends Component {
     private recentCollidedWith: Entity
 
     /** Entity that the player is currently interacting with */
-    private interactingWith: Entity
+    public interactingWith: Entity
 
     /**
      * Whether the player is currently moving a box
