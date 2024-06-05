@@ -1,4 +1,12 @@
-import { _decorator, Collider2D, Color, Size, Sprite, Vec2 } from "cc"
+import {
+    _decorator,
+    CircleCollider2D,
+    Collider2D,
+    Color,
+    Size,
+    Sprite,
+    Vec2,
+} from "cc"
 import { ColliderGroup } from "../Physics/ColliderManager"
 import { Brick } from "./Brick"
 const { ccclass, property } = _decorator
@@ -24,5 +32,13 @@ export class Stone extends Brick {
         this.node.getComponent(Sprite).color = COLOR_MAP[this.color]
         // Set the collision group of the collider
         this.node.getComponent(Collider2D).group = ColliderGroup.ACTIVE
+    }
+    @property
+    private radius: number = 10
+
+    protected start(): void {
+        // change radius
+        this.node.getComponent(CircleCollider2D).radius = this.radius
+        this.node.getComponent(CircleCollider2D).apply()
     }
 }
