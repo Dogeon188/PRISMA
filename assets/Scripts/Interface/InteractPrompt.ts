@@ -1,4 +1,4 @@
-import { _decorator, Component, KeyCode, Label, log } from "cc"
+import { _decorator, Component, KeyCode, Label, log, tween, UIOpacity } from "cc"
 import { getKeyCodeName } from "../Scene/Settings"
 const { ccclass, property } = _decorator
 
@@ -21,13 +21,24 @@ export class InteractPrompt extends Component {
         if (!this.isPlaying) {
             this.node.active = true
             this.isPlaying = true
+        }else{
+            log("is already playing")
         }
+       
     }
-
+    /**
+     * Will hide the prompt with easing effect
+     */
     hidePrompt(): void {
         if (this.isPlaying) {
-            this.node.active = false
-            this.isPlaying = false
+            const uiOpacity = this.node.getComponent(UIOpacity)
+            tween(uiOpacity)
+            .to(0.2, { opacity: 0 })
+            .call(() => {
+                this.node.active = false
+                this.isPlaying = false
+                uiOpacity.opacity = 255
+            }).start()
         }
     }
 
