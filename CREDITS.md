@@ -4,6 +4,7 @@
 
 - [Dragonheart Tileset](https://opengameart.org/content/dungeon-tileset-rougelike-16x16) by g4mersylver
 - [1-BIT 16x16 2D Platformer Starter Tileset](https://am-projects.itch.io/1-bit-16x16-2d-platformer-starter-tileset) by AM-Projects
+- [Gem Icons](https://opengameart.org/content/gem-icons) by Clint Bellanger
 
 ## Music
 
