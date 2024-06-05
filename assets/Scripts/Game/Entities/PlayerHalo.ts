@@ -238,6 +238,11 @@ export class PlayerHalo extends Component {
             this.node.getChildByName("Halo").getComponent(Sprite).color =
                 new Color(0, 0, 0, 0)
             this.color = null
+            this.node
+                .getComponent(Player)
+                .collidedHaloNodeSet.forEach((node) => {
+                    node.onLeaveLampHalo(this)
+                })
         } else {
             this.addGem(color)
         }

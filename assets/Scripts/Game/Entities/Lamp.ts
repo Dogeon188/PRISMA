@@ -81,6 +81,9 @@ export class Lamp extends Entity {
 
     private changeColor(player: Player): void {
         if (this.color === null) {
+            if (player.node.getComponent(PlayerHalo).color === null) {
+                return
+            }
             this.color = player.node.getComponent(PlayerHalo).color
             this.drawColor()
             tween(this.node.getChildByName("Halo").getComponent(UITransform))
