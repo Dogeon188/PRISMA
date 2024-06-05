@@ -22,6 +22,7 @@ export const ColliderGroup = Enum({
 })
 
 export const ColorStringToGroupMap = {
+    default: ColliderGroup.DEFAULT,
     red: ColliderGroup.RED,
     green: ColliderGroup.GREEN,
     blue: ColliderGroup.BLUE,
