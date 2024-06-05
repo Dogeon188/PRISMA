@@ -13,7 +13,7 @@ import {
 } from "cc"
 import { Settings } from "../../Scene/Settings"
 import { GameManager } from "../GameManager"
-import { ColliderGroup } from "../Physics/ColliderManager"
+import { ColliderGroup, ColorMap } from "../Physics/ColliderManager"
 import { fuzzyEqual } from "../Physics/PhysicsFixer"
 import { Player } from "../Player"
 import { Entity } from "./Entity"
@@ -34,12 +34,6 @@ export class Box extends Entity {
     private static readonly GRAVITY: number = 5
 
     private collidedHaloSet: Set<string> = new Set()
-
-    private static readonly COLOR_MAP = {
-        [ColliderGroup.RED]: Color.RED,
-        [ColliderGroup.GREEN]: Color.GREEN,
-        [ColliderGroup.BLUE]: Color.BLUE,
-    }
 
     protected onLoad(): void {
         this.initialize(
@@ -63,7 +57,7 @@ export class Box extends Entity {
 
         // Set the color of the box
         this.color = color
-        this.node.getComponent(Sprite).color = Box.COLOR_MAP[this.color]
+        this.node.getComponent(Sprite).color = ColorMap[this.color]
         // Set the group of the collider
         const collider = this.node.getComponent(Collider2D)
         collider.group = ColliderGroup.ACTIVE

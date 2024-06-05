@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="12" nextobjectid="67">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="12" nextobjectid="74">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <tileset firstgid="253" source="amproject.tsx"/>
  <layer id="11" name="Back" width="60" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAE+3QgQAAAADDoPlTH+SFUGHAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAwMvAABJEFQYgHAAA
+   H4sIAAAAAAAAE+3RwQkAIAwEwbMTfWn/FZoqBMkcpICdJEaAAAECBAgQIECAAAECBAgQIECAAAECrwTmSFZdl+1qPY16u/xVJwECfwtcDzLPGiAcAAA=
   </data>
  </layer>
  <objectgroup id="4" name="Grounds">
@@ -66,20 +66,20 @@
    </properties>
    <point/>
   </object>
-  <object id="16" name="SecretOutDest" type="dummy" x="688" y="384">
+  <object id="16" name="SecretOutDest" type="dummy" x="77.0582" y="386.902">
    <properties>
     <property name="class" value="dummy"/>
    </properties>
    <point/>
   </object>
-  <object id="14" name="SecretOut" type="nodePortal" x="813.448" y="174.395">
+  <object id="14" name="SecretOut" type="nodePortal" x="591.419" y="-50.5361">
    <properties>
     <property name="class" value="nodePortal"/>
     <property name="destination" type="object" value="16"/>
    </properties>
    <point/>
   </object>
-  <object id="13" name="SecretInDest" type="dummy" x="519.199" y="93.5486">
+  <object id="13" name="SecretInDest" type="dummy" x="406.857" y="-60.3449">
    <properties>
     <property name="class" value="dummy"/>
    </properties>
@@ -155,6 +155,30 @@
    </properties>
    <point/>
   </object>
+  <object id="67" name="BlueBox" type="box" x="392.587" y="-37.5451" width="32" height="32">
+   <properties>
+    <property name="class" value="box"/>
+    <property name="color" value="blue"/>
+   </properties>
+  </object>
+  <object id="68" name="GreenBox" type="box" x="439.525" y="-38.3146" width="32" height="32">
+   <properties>
+    <property name="class" value="box"/>
+    <property name="color" value="green"/>
+   </properties>
+  </object>
+  <object id="69" name="BlueBox" type="box" x="496.465" y="-73.1426" width="32" height="64">
+   <properties>
+    <property name="class" value="box"/>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="70" name="BlueBox" type="box" x="571.104" y="-43.7008" width="32" height="32">
+   <properties>
+    <property name="class" value="box"/>
+    <property name="color" value="default"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="8" name="Bricks">
   <object id="33" name="Red" type="red" x="384" y="336" width="32" height="32">
@@ -172,15 +196,30 @@
     <property name="color" value="blue"/>
    </properties>
   </object>
+  <object id="71" name="Green" type="green" x="434.348" y="-221.735" width="64" height="32">
+   <properties>
+    <property name="color" value="green"/>
+   </properties>
+  </object>
+  <object id="72" name="Green" type="green" x="342.21" y="-169.896" width="32" height="64">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="73" name="Green" type="green" x="539.845" y="-205.535" width="96" height="96">
+   <properties>
+    <property name="color" value="blue"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="9" name="Start">
-  <object id="45" name="Start" x="66.4422" y="382.901">
+  <object id="45" name="Start" x="448.868" y="-68.7764">
    <point/>
   </object>
  </objectgroup>
  <layer id="1" name="Front" width="60" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAE+2XTQ/CMAiGa6InNX572ElPevD//zuNENNkIR1CGYs2LOFAuwLvQ7d1KcUVBNok0M1SqjUtkScsqM3FrXsJCzmCVsu1V6635huqVVqHNb80T67Tmi/0fghIuVt5S/Pkvhxg/6+IncA/K58L2mdpHVPrpXWijwzmYBbd/6S33/ta3VK9mIvuL41f6pd1rKbfGr3W+rzWa3S3oJfuc27fLYzvO6+eRdwg4EGAO3u3OOfBMGIGAS8CG/gebXu2i++TF+pi3CXwXjsy/7X+4nnP+i9WBKkYvEANVyfmtJ9UL51XlF28VdLfG2i9O+nN+h4QH23ILxbvMMidvceYw/M7/svmWN/8MXJyMRwQRsggEAQmIvAGir3EMiAcAAA=
+   H4sIAAAAAAAAE+1X2w7CIAzFRJ+c8e7DvsH//zuNbQzJ0jAsnFVx65I+AOvlnMNG6VYhdAuy4M9iGOhpX9daKUkPcqjNlfN7Kgu5EFbkORX6o/nGatXWgebX5ol1ovkc75sBLe8o39o8UZdz4gy80tyt8LuQOmvr+DZeWSePmYM1GYL7n/AOta/FrcXLuZA+K6UXOlejdwletD4r/xLcc8Ar93luH27A/52VZh7XGbBgINd7z3HNgkOP6QxYMbCn8+gwsKOfT1ZUJ+Nuie+dIeet6cv9HnoXSxLZyKTUU+KV62jZv9Y34ruTrmxjYxSn1j/Xe0+xxv0732VjrE/jKXLmYmh58fecAWegPQZeB455hyAcAAA=
   </data>
  </layer>
 </map>

@@ -1,5 +1,6 @@
 import {
     Collider2D,
+    Color,
     Component,
     ERigidBody2DType,
     Enum,
@@ -26,6 +27,13 @@ export const ColorStringToGroupMap = {
     red: ColliderGroup.RED,
     green: ColliderGroup.GREEN,
     blue: ColliderGroup.BLUE,
+}
+
+export const ColorMap = {
+    [ColliderGroup.DEFAULT]: new Color(255, 255, 255),
+    [ColliderGroup.RED]: new Color(200, 50, 50),
+    [ColliderGroup.GREEN]: new Color(50, 200, 50),
+    [ColliderGroup.BLUE]: new Color(0, 128, 255),
 }
 
 /**
