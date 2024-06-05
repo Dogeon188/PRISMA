@@ -10,7 +10,7 @@ export class StoneGenerator extends Component {
     @property({ type: Prefab })
     stone: Prefab = null
 
-    start() {
+    protected start() {
         this.timePassed = 0
     }
 
