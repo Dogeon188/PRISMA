@@ -1,5 +1,6 @@
 import {
     _decorator,
+    Collider2D,
     Color,
     Component,
     director,
@@ -8,6 +9,7 @@ import {
     input,
     Label,
     Node,
+    RigidBody2D,
     screen,
     Size,
     Sprite,
@@ -107,6 +109,19 @@ export class PlayerHalo extends Component {
         if (this.color === color || this.colorNumDict[color] === 0) {
             return
         }
+        var flag = false
+        this.node.getComponent(Player).collidedHaloNodeSet.forEach((node) => {
+            const dx = Math.abs(node.node.position.x - this.node.position.x)
+            const dy = Math.abs(node.node.position.y - this.node.position.y)
+            if (dx < 8 && dy < 12) {
+                flag = true
+                return
+            }
+        })
+        if (flag) {
+            return
+        }
+
         this.color = color
         const target_color = PlayerHalo.COLOR_MAP[this.color]
         this.node.getChildByName("Halo").getComponent(Sprite).color = new Color(
