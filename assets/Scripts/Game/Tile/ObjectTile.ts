@@ -16,13 +16,14 @@ import { Entity } from "../Entities/Entity"
 import { Gate } from "../Entities/Gate"
 import { Lamp } from "../Entities/Lamp"
 import { Laser } from "../Entities/Laser"
+import { MovingPlatform } from "../Entities/MovingPlatform"
 import { Plate, PlateTriggerable } from "../Entities/Plate"
 import { Portal, PortalType } from "../Entities/Portal"
 import { ColorStringToGroupMap } from "../Physics/ColliderManager"
 const { ccclass, property, requireComponent } = _decorator
 
 type ObjectId = string | number
-type RGBString = "red" | "green" | "blue"
+type RGBString = "red" | "green" | "blue" | "default"
 
 type TileObjectTypes = {
     /** Shows dialog when touched */
@@ -54,6 +55,18 @@ type TileObjectTypes = {
      */
     stone: {
         class: "stone"
+    }
+    /**
+     * Moving platform. Moves between initial position and destination.
+     */
+    movingPlatform: {
+        class: "moving"
+        /** The color of the platform */
+        color: RGBString
+        /** The object id (in Tiled) of the destination */
+        moveTo: ObjectId
+        /** The duration of the transition */
+        duration: number
     }
     /** Pressure plate, should always be 5px in height */
     plate: {
@@ -113,6 +126,9 @@ export class ObjectTile extends Component {
     private stonePrefab: Prefab = null
 
     @property({ type: Prefab, group: "Prefabs" })
+    private movingPlatformPrefab: Prefab = null
+
+    @property({ type: Prefab, group: "Prefabs" })
     private platePrefab: Prefab = null
 
     @property({ type: Prefab, group: "Prefabs" })
@@ -145,6 +161,7 @@ export class ObjectTile extends Component {
         const objectNodes: Map<ObjectId, Node> = new Map()
         const nodePortals: Map<ObjectId, ObjectId> = new Map() // <portal, destination>
         const triggerables: Map<ObjectId, ObjectId> = new Map() // <triggered, trigger>
+        const movingPlatforms: Map<ObjectId, ObjectId> = new Map() // <platform, destination>
 
         for (const object of objects) {
             switch (object.class) {
@@ -166,6 +183,11 @@ export class ObjectTile extends Component {
                 case "stone":
                     const stone = this.createStone(object)
                     objectNodes.set(object.id, stone)
+                    break
+                case "moving":
+                    const movingPlatform = this.createMovingPlatform(object)
+                    objectNodes.set(object.id, movingPlatform)
+                    movingPlatforms.set(object.id, object.moveTo)
                     break
                 case "plate":
                     const plate = this.createPlate(object)
@@ -216,6 +238,15 @@ export class ObjectTile extends Component {
                     .addConnectedEntity(
                         triggeredNode.getComponent(Entity) as TriggerableType,
                     )
+            }
+        }
+
+        for (const [platform, destination] of movingPlatforms) {
+            const platformNode = objectNodes.get(platform)
+            const destinationNode = objectNodes.get(destination)
+            if (platformNode && destinationNode) {
+                platformNode.getComponent(MovingPlatform)!.moveToNode =
+                    destinationNode
             }
         }
     }
@@ -271,6 +302,22 @@ export class ObjectTile extends Component {
         stoneNode.setPosition(object.x, object.y)
         this.node.addChild(stoneNode)
         return stoneNode
+    }
+
+    private createMovingPlatform(object: TileObject<"movingPlatform">): Node {
+        const movingNode = instantiate(this.movingPlatformPrefab)
+        movingNode.name = object.name
+        movingNode.setPosition(object.x, object.y)
+        movingNode
+            .getComponent(MovingPlatform)!
+            .initialize(
+                ColorStringToGroupMap[object.color],
+                new Vec2(object.x, object.y),
+                new Size(object.width, object.height),
+            )
+        movingNode.getComponent(MovingPlatform)!.durationValue = object.duration
+        this.node.addChild(movingNode)
+        return movingNode
     }
 
     private createPlate(object: TileObject<"plate">): Node {

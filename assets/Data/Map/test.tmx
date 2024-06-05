@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="11" nextobjectid="64">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="11" nextobjectid="67">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <objectgroup id="4" name="Grounds">
   <object id="1" name="Wall" x="-16" y="256" width="16" height="160"/>
@@ -21,6 +21,7 @@
   <object id="57" x="560.193" y="100.274">
    <polygon points="0,0 238.082,89.6308 -2.80096,90.191"/>
   </object>
+  <object id="64" x="0" y="0" width="960" height="16"/>
  </objectgroup>
  <objectgroup id="5" name="Spikes">
   <object id="21" x="480" y="395" width="32" height="5"/>
@@ -72,7 +73,7 @@
    </properties>
    <point/>
   </object>
-  <object id="13" name="SecretInDest" type="dummy" x="528.699" y="95.391">
+  <object id="13" name="SecretInDest" type="dummy" x="79.2176" y="-23.7024">
    <properties>
     <property name="class" value="dummy"/>
    </properties>
@@ -134,6 +135,20 @@
    </properties>
    <ellipse/>
   </object>
+  <object id="65" name="Moving" type="moving" x="164.234" y="-35.5359" width="150.788" height="18.2482">
+   <properties>
+    <property name="class" value="moving"/>
+    <property name="color" value="red"/>
+    <property name="duration" type="float" value="3"/>
+    <property name="moveTo" type="object" value="66"/>
+   </properties>
+  </object>
+  <object id="66" name="MovingTo" type="dummy" x="94.1222" y="-131.579">
+   <properties>
+    <property name="class" value="dummy"/>
+   </properties>
+   <point/>
+  </object>
  </objectgroup>
  <objectgroup id="8" name="Bricks">
   <object id="33" name="Red" type="red" x="384" y="336" width="32" height="32">
@@ -153,7 +168,7 @@
   </object>
  </objectgroup>
  <objectgroup id="9" name="Start">
-  <object id="45" name="Start" x="572.589" y="394.426">
+  <object id="45" name="Start" x="66.4422" y="382.901">
    <point/>
   </object>
  </objectgroup>
