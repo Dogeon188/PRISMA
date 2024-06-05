@@ -1,5 +1,5 @@
-import { Director, Scene, UIOpacity, _decorator, director, tween } from "cc"
-
+import { Director, Scene, UIOpacity, _decorator, director, tween, log } from "cc"
+import { BlackMaskManager } from "./Interface/BlackMaskManager"
 export class SceneManager {
     private static _getOrAddOpacity(scene: Scene): UIOpacity {
         const canvas = scene.getChildByName("Canvas")!
@@ -27,30 +27,23 @@ export class SceneManager {
     ): void {
         const nextIn: Director.OnSceneLaunched = (_, scene) => {
             const opacity = SceneManager._getOrAddOpacity(scene)
-            tween(opacity)
-                .set({ opacity: 0 })
-                .to(inDuration, { opacity: 255 }, { easing: "cubicIn" })
-                .start()
+            BlackMaskManager.fadeOut(inDuration)
         }
 
         const loadOut: Director.OnSceneLoaded = (_, __) => {
             const opacity = SceneManager._getOrAddOpacity(director.getScene())
-
-            tween(opacity)
-                .set({ opacity: 255 })
-                .to(loadDuration, { opacity: 0 }, { easing: "cubicOut" })
-                .call(() => director.loadScene(sceneName, nextIn))
-                .start()
+            const load = () => {
+                director.loadScene(sceneName, nextIn)
+            }
+            BlackMaskManager.fadeIn(loadDuration, load)
         }
 
         const loadIn: Director.OnSceneLaunched = (_, scene) => {
             const opacity = SceneManager._getOrAddOpacity(scene)
-
-            tween(opacity)
-                .set({ opacity: 0 })
-                .to(loadDuration, { opacity: 255 }, { easing: "cubicIn" })
-                .call(() => director.preloadScene(sceneName, loadOut))
-                .start()
+            const preload = () =>{
+                director.preloadScene(sceneName, loadOut)
+            }
+            BlackMaskManager.fadeOut(loadDuration, preload)
         }
 
         const prevOpacity = SceneManager._getOrAddOpacity(director.getScene())

@@ -31,7 +31,6 @@ export class InteractPrompt extends Component {
      */
     hidePrompt(): void {
         if (this.isPlaying) {
-            log("is hiding")
             const uiOpacity = this.node.getComponent(UIOpacity)
             tween(uiOpacity)
             .to(0.2, { opacity: 0 })
@@ -39,7 +38,6 @@ export class InteractPrompt extends Component {
                 this.node.active = false
                 this.isPlaying = false
                 uiOpacity.opacity = 255
-                log("InteractPrompt is hidden")
             }).start()
         }
     }

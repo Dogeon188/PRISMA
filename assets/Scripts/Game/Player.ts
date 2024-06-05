@@ -29,6 +29,7 @@ import {
     getCorrectNormal,
 } from "./Physics/PhysicsFixer"
 import { Movement } from "./Physics/PlayerMovement"
+import { BlackMaskManager } from "../Interface/BlackMaskManager"
 
 const { ccclass, property, requireComponent } = _decorator
 
@@ -338,7 +339,12 @@ export class Player extends Component {
                     Player.HURT_QUATS[this.sprite.node.scale.x > 0 ? 1 : -1],
             })
             .delay(2)
-            .call(() => this.respawn())
+            .call(() => {
+                console.log("Player died")
+                BlackMaskManager.fadeIn(2, () => {
+                    this.respawn()
+                })
+            })
             .start()
     }
 
