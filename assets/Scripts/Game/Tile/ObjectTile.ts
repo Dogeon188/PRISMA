@@ -19,6 +19,7 @@ import { Laser } from "../Entities/Laser"
 import { MovingPlatform } from "../Entities/MovingPlatform"
 import { Plate, PlateTriggerable } from "../Entities/Plate"
 import { Portal, PortalType } from "../Entities/Portal"
+import { Stone } from "../Entities/Stone"
 import { ColorStringToGroupMap } from "../Physics/ColliderManager"
 const { ccclass, property, requireComponent } = _decorator
 
@@ -55,6 +56,7 @@ type TileObjectTypes = {
      */
     stone: {
         class: "stone"
+        color: RGBString
     }
     /**
      * Moving platform. Moves between initial position and destination.
@@ -299,7 +301,12 @@ export class ObjectTile extends Component {
 
     private createStone(object: TileObject<"stone">): Node {
         const stoneNode = instantiate(this.stonePrefab)
-        stoneNode.setPosition(object.x, object.y)
+        stoneNode.name = object.name
+        stoneNode.getComponent(Stone).initialize(
+            ColorStringToGroupMap[object.color],
+            new Vec2(object.x, object.y),
+            new Size(object.width, object.height),
+        )
         this.node.addChild(stoneNode)
         return stoneNode
     }

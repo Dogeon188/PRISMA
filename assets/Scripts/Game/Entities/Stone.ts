@@ -5,17 +5,12 @@ import {
     Color,
     Size,
     Sprite,
+    UITransform,
     Vec2,
 } from "cc"
-import { ColliderGroup } from "../Physics/ColliderManager"
+import { ColliderGroup, ColorMap } from "../Physics/ColliderManager"
 import { Brick } from "./Brick"
 const { ccclass, property } = _decorator
-
-const COLOR_MAP = {
-    [ColliderGroup.RED]: Color.RED,
-    [ColliderGroup.GREEN]: Color.GREEN,
-    [ColliderGroup.BLUE]: Color.BLUE,
-}
 
 @ccclass("Stone")
 export class Stone extends Brick {
@@ -26,10 +21,13 @@ export class Stone extends Brick {
             position.x + size.width / 4,
             position.y - size.height / 4,
         )
-
+        // set size
+        this.radius = size.width / 2
+        this.node.getComponent(UITransform).setContentSize(size)
+        
         // Set the color of the box
         this.color = color
-        this.node.getComponent(Sprite).color = COLOR_MAP[this.color]
+        this.node.getComponent(Sprite).color = ColorMap[this.color]
         // Set the collision group of the collider
         this.node.getComponent(Collider2D).group = ColliderGroup.ACTIVE
     }
