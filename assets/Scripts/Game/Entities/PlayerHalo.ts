@@ -13,9 +13,14 @@ import {
     screen,
     Size,
     Sprite,
+    UITransform,
     Vec3,
 } from "cc"
-import { ColliderGroup } from "../Physics/ColliderManager"
+import {
+    ColliderGroup,
+    ColliderManager,
+    ColliderType,
+} from "../Physics/ColliderManager"
 import { Player } from "../Player"
 const { ccclass, property } = _decorator
 
@@ -110,12 +115,22 @@ export class PlayerHalo extends Component {
             return
         }
         var flag = false
+        console.log(this.node.getComponent(Player).collidedHaloNodeSet)
         this.node.getComponent(Player).collidedHaloNodeSet.forEach((node) => {
-            const dx = Math.abs(node.node.position.x - this.node.position.x)
-            const dy = Math.abs(node.node.position.y - this.node.position.y)
-            if (dx < 8 && dy < 12) {
-                flag = true
-                return
+            if (
+                node.getComponent(Collider2D).tag === ColliderType.BOX ||
+                node.getComponent(Collider2D).tag === ColliderType.BRICK ||
+                node.getComponent(Collider2D).tag === ColliderType.STONE
+            ) {
+                const dx = Math.abs(node.node.position.x - this.node.position.x)
+                const dy = Math.abs(node.node.position.y - this.node.position.y)
+                if (
+                    dx < 8 + node.node.getComponent(UITransform).width / 2 &&
+                    dy < 12 + node.node.getComponent(UITransform).height / 2
+                ) {
+                    flag = true
+                    return
+                }
             }
         })
         if (flag) {
