@@ -7,6 +7,7 @@ import {
     EventKeyboard,
     IPhysics2DContact,
     Input,
+    KeyCode,
     Quat,
     RigidBody2D,
     Sprite,
@@ -421,6 +422,9 @@ export class Player extends Component {
                     this.interactingWith = this.recentCollidedWith
                     this.interactingWith.onBeginInteract(this)
                 }
+                break
+            case KeyCode.ESCAPE:
+                this.hurt()
                 break
         }
     }
