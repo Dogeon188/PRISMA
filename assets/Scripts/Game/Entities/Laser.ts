@@ -3,9 +3,7 @@ import {
     BoxCollider2D,
     Collider2D,
     Color,
-    EPhysics2DDrawFlags,
     ParticleSystem2D,
-    PhysicsSystem2D,
     Size,
     Vec2,
 } from "cc"
@@ -26,7 +24,6 @@ export class Laser extends Entity {
     }
 
     protected onLoad(): void {
-        PhysicsSystem2D.instance.debugDrawFlags = EPhysics2DDrawFlags.Aabb
         this.initialize(
             this.color,
             new Vec2(this.node.position.x, this.node.position.y),

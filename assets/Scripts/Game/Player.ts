@@ -17,6 +17,7 @@ import {
     input,
     tween,
 } from "cc"
+import { BlackMaskManager } from "../Interface/BlackMaskManager"
 import { Settings } from "../Scene/Settings"
 import { Box } from "./Entities/Box"
 import { Entity } from "./Entities/Entity"
@@ -29,7 +30,6 @@ import {
     getCorrectNormal,
 } from "./Physics/PhysicsFixer"
 import { Movement } from "./Physics/PlayerMovement"
-import { BlackMaskManager } from "../Interface/BlackMaskManager"
 
 const { ccclass, property, requireComponent } = _decorator
 
@@ -187,7 +187,7 @@ export class Player extends Component {
             clamp(
                 this.rigidBody.linearVelocity.x,
                 -this.movementSpeed,
-                this.movementSpeed
+                this.movementSpeed,
             ),
             this.rigidBody.linearVelocity.y,
         )
@@ -248,7 +248,11 @@ export class Player extends Component {
 
     private attemptRegisterInteractable(other: Collider2D, normal: Vec2): void {
         const entity = other.getComponent(Entity)
-        if (entity && entity.canInteract(this, normal) && !this.interactingWith) {
+        if (
+            entity &&
+            entity.canInteract(this, normal) &&
+            !this.interactingWith
+        ) {
             this.recentCollidedWith = entity
             entity.showPrompt()
         }
@@ -364,6 +368,7 @@ export class Player extends Component {
         [-1]: Quat.fromEuler(new Quat(), 0, 0, 90),
     }
     private hurt(): void {
+        if (this.dead) return
         // TODO play animation & sound
         this.dead = true
         tween(this.node)
@@ -372,12 +377,7 @@ export class Player extends Component {
                     Player.HURT_QUATS[this.sprite.node.scale.x > 0 ? 1 : -1],
             })
             .delay(2)
-            .call(() => {
-                console.log("Player died")
-                BlackMaskManager.fadeIn(2, () => {
-                    this.respawn()
-                })
-            })
+            .call(() => BlackMaskManager.fadeIn(2, () => this.respawn()))
             .start()
     }
 
@@ -385,7 +385,7 @@ export class Player extends Component {
         this.node.rotation = Quat.IDENTITY
         this.node.setPosition(this.spawnPoint)
         this.rigidBody.applyLinearImpulseToCenter(new Vec2(0, 0), true) // wake up rigid body, update collisions
-        this.dead = false
+        BlackMaskManager.fadeOut(2, () => (this.dead = false))
     }
 
     public startMovingBox(box: Box) {
