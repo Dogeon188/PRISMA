@@ -40,6 +40,12 @@ export class GameManager extends Component {
 
     //#region Properties
 
+    @property
+    private debugMode: boolean = false
+
+    @property
+    private levelName: string = ""
+
     @property(AudioClip)
     bgm: AudioClip = null
 
@@ -98,7 +104,7 @@ export class GameManager extends Component {
     }
 
     protected start(): void {
-        if (PREVIEW) {
+        if (PREVIEW && this.debugMode) {
             PhysicsSystem2D.instance.debugDrawFlags = EPhysics2DDrawFlags.Aabb
         }
     }

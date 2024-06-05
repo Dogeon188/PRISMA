@@ -1,31 +1,19 @@
 import {
     _decorator,
-    Camera,
-    CircleCollider2D,
-    Collider2D,
     Color,
     Component,
-    Contact2DType,
     director,
-    EventKeyboard,
     EventMouse,
-    find,
     Input,
     input,
-    IPhysics2DContact,
-    KeyCode,
     Label,
     Node,
-    PhysicsSystem2D,
     screen,
     Size,
     Sprite,
-    UITransform,
     Vec3,
 } from "cc"
-import { getCorrectNormal } from "../Physics/PhysicsFixer"
-import { ColliderGroup, ColliderType } from "../Physics/ColliderManager"
-import { Box } from "./Box"
+import { ColliderGroup } from "../Physics/ColliderManager"
 import { Player } from "../Player"
 const { ccclass, property } = _decorator
 
