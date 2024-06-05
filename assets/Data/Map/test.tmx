@@ -66,7 +66,7 @@
    </properties>
    <point/>
   </object>
-  <object id="16" name="SecretOutDest" type="dummy" x="77.0582" y="386.902">
+  <object id="16" name="SecretOutDest" type="dummy" x="252.014" y="396.622">
    <properties>
     <property name="class" value="dummy"/>
    </properties>
@@ -79,13 +79,13 @@
    </properties>
    <point/>
   </object>
-  <object id="13" name="SecretInDest" type="dummy" x="406.857" y="-60.3449">
+  <object id="13" name="SecretInDest" type="dummy" x="84.4851" y="153.49">
    <properties>
     <property name="class" value="dummy"/>
    </properties>
    <point/>
   </object>
-  <object id="12" name="SecretIn" type="nodePortal" x="153.016" y="383.371">
+  <object id="12" name="SecretIn" type="nodePortal" x="357.131" y="383.371">
    <properties>
     <property name="class" value="nodePortal"/>
     <property name="destination" type="object" value="13"/>
@@ -213,7 +213,7 @@
   </object>
  </objectgroup>
  <objectgroup id="9" name="Start">
-  <object id="45" name="Start" x="448.868" y="-68.7764">
+  <object id="45" name="Start" x="68.1775" y="397.771">
    <point/>
   </object>
  </objectgroup>
