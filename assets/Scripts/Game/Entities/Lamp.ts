@@ -101,8 +101,18 @@ export class Lamp extends Entity {
         )
     }
 
-    private changeColor(player: Player): void {
+    private changeColor(player: Player): boolean {
         if (this.color === null) {
+            if (player.node.getComponent(PlayerHalo).color === null) {
+                GameManager.inst.interactPrompt.showPrompt(
+                    Settings.keybinds.interact,
+                    "Make sure you have light to give.",
+                )
+                this.scheduleOnce(() => {
+                    this.showPrompt()
+                }, 2)
+                return false
+            }
             this.color = player.node.getComponent(PlayerHalo).color
             // Set the gem color
             switch (this.color) {
@@ -140,6 +150,7 @@ export class Lamp extends Entity {
             entity.onLeaveLampHalo(this)
             entity.onEnterLampHalo(this)
         })
+        return true
     }
 
     public canInteract(player: Player, normal: math.Vec2): boolean {
@@ -167,8 +178,9 @@ export class Lamp extends Entity {
             }
             this.collidedSet.add(node)
         })
-        this.changeColor(player)
+        const ret = this.changeColor(player)
         player.node.getComponent(PlayerHalo).interactWithLamp(target_color)
+        if (ret) this.showPrompt()
     }
 
     private onBeginContactHalo(

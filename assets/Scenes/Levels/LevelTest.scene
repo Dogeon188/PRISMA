@@ -136,7 +136,6 @@
     "player": {
       "__id__": 70
     },
-    "background": null,
     "camera": {
       "__id__": 56
     },
@@ -3806,6 +3805,10 @@
     },
     "stonePrefab": {
       "__uuid__": "7a922cc9-a668-4187-a795-2bdb02e8b384",
+      "__expectedType__": "cc.Prefab"
+    },
+    "movingPlatformPrefab": {
+      "__uuid__": "7d70b346-15b0-4afc-a092-7f6a772b714b",
       "__expectedType__": "cc.Prefab"
     },
     "platePrefab": {
