@@ -1,90 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="100" height="120" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="68">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="86" height="109" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="68">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <tileset firstgid="253" source="amproject.tsx"/>
  <objectgroup id="3" name="Objects">
-  <object id="39" name="MovingVerti" x="176" y="1551.63" width="48.25" height="8.5"/>
-  <object id="44" name="RedBox" x="671.5" y="890" width="36.0682" height="38">
+  <object id="39" name="MovingVerti" x="64" y="1487.63" width="48.25" height="8.5"/>
+  <object id="44" name="RedBox" x="559.5" y="826" width="36.0682" height="38">
    <properties>
     <property name="class" value="box"/>
     <property name="color" value="red"/>
    </properties>
   </object>
-  <object id="46" name="Lamp" x="1016.5" y="1530.5">
+  <object id="46" name="Lamp" x="904.5" y="1466.5">
    <properties>
     <property name="class" value="lamp"/>
    </properties>
    <point/>
   </object>
-  <object id="47" name="Lamp" x="184" y="1546.88">
+  <object id="47" name="Lamp" x="72" y="1482.88">
    <properties>
     <property name="class" value="lamp"/>
    </properties>
    <point/>
   </object>
-  <object id="48" name="M3InOut" x="144.727" y="266.909">
+  <object id="48" name="M3InOut" x="32.727" y="202.909">
    <properties>
     <property name="class" value="nodePortal"/>
     <property name="destination" type="object" value="49"/>
    </properties>
    <point/>
   </object>
-  <object id="49" name="M3InIn" x="982.773" y="841.636">
+  <object id="49" name="M3InIn" x="870.773" y="777.636">
    <properties>
     <property name="class" value="nodePortal"/>
     <property name="destination" type="object" value="48"/>
    </properties>
    <point/>
   </object>
-  <object id="50" name="M3OutOut" x="949.333" y="408">
+  <object id="50" name="M3OutOut" x="837.333" y="344">
    <properties>
     <property name="class" value="nodePortal"/>
     <property name="destination" type="object" value="51"/>
    </properties>
    <point/>
   </object>
-  <object id="51" name="M3OutIn" x="856" y="1526">
+  <object id="51" name="M3OutIn" x="744" y="1462">
    <properties>
     <property name="class" value="nodePortal"/>
     <property name="destination" type="object" value="50"/>
    </properties>
    <point/>
   </object>
-  <object id="52" name="M4InIn" x="988" y="1382.67">
+  <object id="52" name="M4InIn" x="876" y="1318.67">
    <properties>
     <property name="class" value="nodePortal"/>
     <property name="destination" type="object" value="53"/>
    </properties>
    <point/>
   </object>
-  <object id="53" name="M4InOut" x="1213" y="347.667">
+  <object id="53" name="M4InOut" x="1101" y="283.667">
    <properties>
     <property name="class" value="nodePortal"/>
     <property name="destination" type="object" value="52"/>
    </properties>
    <point/>
   </object>
-  <object id="54" name="StageComplete" x="1424.5" y="248.5">
+  <object id="54" name="StageComplete" x="1312.5" y="184.5">
    <properties>
     <property name="class" value="scenePortal"/>
     <property name="scene" value="LevelLobby"/>
    </properties>
    <point/>
   </object>
-  <object id="56" name="Exit" x="990.182" y="1780.73">
+  <object id="56" name="Exit" x="878.182" y="1716.73">
    <properties>
     <property name="class" value="scenePortal"/>
     <property name="scene" value="LevelLobby"/>
    </properties>
    <point/>
   </object>
-  <object id="57" name="RedBox" x="911.75" y="1504" width="32.5" height="32">
+  <object id="57" name="RedBox" x="799.75" y="1440" width="32.5" height="32">
    <properties>
     <property name="class" value="box"/>
     <property name="color" value="red"/>
    </properties>
   </object>
-  <object id="58" name="RedGem" x="688" y="917.25">
+  <object id="58" name="RedGem" x="576" y="853.25">
    <properties>
     <property name="class" value="gem"/>
     <property name="color" value="red"/>
@@ -93,22 +93,22 @@
   </object>
  </objectgroup>
  <objectgroup id="4" name="Start">
-  <object id="55" name="Start" x="1188.47" y="320.288">
+  <object id="55" name="Start" x="1076.47" y="256.288">
    <point/>
   </object>
  </objectgroup>
  <objectgroup id="5" name="Bricks">
-  <object id="41" name="RedBlock" x="1152" y="288" width="112" height="16">
+  <object id="41" name="RedBlock" x="1040" y="224" width="112" height="16">
    <properties>
     <property name="color" value="red"/>
    </properties>
   </object>
-  <object id="42" name="RedBlock" x="1264" y="303.636" width="15.8182" height="80.1818">
+  <object id="42" name="RedBlock" x="1152" y="239.636" width="15.8182" height="80.1818">
    <properties>
     <property name="color" value="red"/>
    </properties>
   </object>
-  <object id="43" name="RedBlock" x="192.25" y="127.75" width="143.75" height="32.5">
+  <object id="43" name="RedBlock" x="80.25" y="63.75" width="143.75" height="32.5">
    <properties>
     <property name="color" value="red"/>
    </properties>
@@ -116,61 +116,61 @@
  </objectgroup>
  <objectgroup id="6" name="OneWays"/>
  <objectgroup id="7" name="Spikes">
-  <object id="38" name="M3Spike" x="447.333" y="490.667" width="258.667" height="6.66667"/>
+  <object id="38" name="M3Spike" x="335.333" y="426.667" width="258.667" height="6.66667"/>
  </objectgroup>
  <objectgroup id="8" name="Grounds">
-  <object id="1" name="M1Floor" x="568" y="1791.79" width="466" height="7.54545"/>
-  <object id="2" name="M1Right" x="1024.29" y="61.9167" width="8.375" height="1737.42"/>
-  <object id="3" name="M1" x="831" y="1536" width="212" height="64"/>
-  <object id="4" name="M1" x="911" y="1596" width="49.3333" height="116.333"/>
-  <object id="5" name="M1" x="953" y="1657.33" width="89.3333" height="7.33333"/>
-  <object id="6" name="M1Platform" x="591.667" y="1680" width="224.333" height="32.2121"/>
-  <object id="7" name="M12F" x="768" y="1391.67" width="267.667" height="80"/>
-  <object id="8" name="M13F" x="498.667" y="1314.17" width="567.333" height="13.8333"/>
-  <object id="9" name="M11FStairsLeftBound" x="574" y="1792.33">
+  <object id="1" name="M1Floor" x="456" y="1727.79" width="466" height="7.54545"/>
+  <object id="2" name="M1Right" x="912.29" y="-2.0833" width="8.375" height="1737.42"/>
+  <object id="3" name="M1" x="719" y="1472" width="212" height="64"/>
+  <object id="4" name="M1" x="799" y="1532" width="49.3333" height="116.333"/>
+  <object id="5" name="M1" x="841" y="1593.33" width="89.3333" height="7.33333"/>
+  <object id="6" name="M1Platform" x="479.667" y="1616" width="224.333" height="32.2121"/>
+  <object id="7" name="M12F" x="656" y="1327.67" width="267.667" height="80"/>
+  <object id="8" name="M13F" x="386.667" y="1250.17" width="567.333" height="13.8333"/>
+  <object id="9" name="M11FStairsLeftBound" x="462" y="1728.33">
    <polygon points="0,0 0,-16.3333 -47.4576,-16 -47.4576,-48.3333 -96.2427,-48 -94.9152,-79.6667 -144.696,-79.3333 -144.032,-112.667 -190.826,-111.667 -191.49,-143.667 -239.279,-143.667 -238.947,-176 -288.064,-176 -286.737,-208.333 -430.437,-208.667 -427.45,-1159 -446.035,-1160.33 -454,-12.3333"/>
   </object>
-  <object id="10" name="M1" x="137.333" y="1063.33" width="293.333" height="8"/>
-  <object id="11" name="M1" x="400.667" y="1066" width="6" height="160"/>
-  <object id="13" name="M1" x="506" y="1035.33" width="6.66667" height="292.667"/>
-  <object id="14" name="M1" x="256.5" y="1200" width="256" height="127.5"/>
-  <object id="15" name="M2Floor" x="132" y="928" width="774" height="9"/>
-  <object id="18" name="M2Platform" x="592" y="864.012" width="191.977" height="15.9882"/>
-  <object id="22" name="M3Slide" x="129" y="272.5">
+  <object id="10" name="M1" x="25.333" y="999.33" width="293.333" height="8"/>
+  <object id="11" name="M1" x="288.667" y="1002" width="6" height="160"/>
+  <object id="13" name="M1" x="394" y="971.33" width="6.66667" height="292.667"/>
+  <object id="14" name="M1" x="144.5" y="1136" width="256" height="127.5"/>
+  <object id="15" name="M2Floor" x="20" y="864" width="774" height="9"/>
+  <object id="18" name="M2Platform" x="480" y="800.012" width="191.977" height="15.9882"/>
+  <object id="22" name="M3Slide" x="17" y="208.5">
    <polygon points="0,0 318,160 0.5,162"/>
   </object>
-  <object id="23" name="M3Pit" x="443.625" y="432.625">
+  <object id="23" name="M3Pit" x="331.625" y="368.625">
    <polygon points="0,0 4.375,0.125 4.375,63.75 260.625,63.625 260.375,-0.625 262.875,-0.5 262.375,66.75 1.125,65.625"/>
   </object>
-  <object id="24" name="M3Floor" x="704.091" y="431.909" width="326.273" height="2.27273"/>
-  <object id="26" name="M3Left" x="126" y="148.667" width="2.33333" height="123.667"/>
-  <object id="28" name="M3Ceiling" x="126.545" y="159.818">
+  <object id="24" name="M3Floor" x="592.091" y="367.909" width="326.273" height="2.27273"/>
+  <object id="26" name="M3Left" x="14" y="84.667" width="2.33333" height="123.667"/>
+  <object id="28" name="M3Ceiling" x="14.545" y="95.818">
    <polygon points="0,0 65.2727,0.181818 65.6364,-79.8182 209.818,-79.8182 209.455,0 902.121,-0.484848 898.455,272.182 914.455,271.182 911.455,-56.8182 55.4545,-108.818"/>
   </object>
-  <object id="29" name="M4Floor" x="1139.33" y="1232.67" width="347.333" height="12"/>
-  <object id="31" name="M4Right" x="1472" y="139.333" width="8.66667" height="1108"/>
-  <object id="32" name="M4Ceiling" x="1147.33" y="140" width="328" height="4"/>
-  <object id="33" name="M4Left" x="1140.67" y="141.333" width="11.5152" height="1112.48"/>
-  <object id="34" name="M42FFloor" x="1263.75" y="192">
+  <object id="29" name="M4Floor" x="1027.33" y="1168.67" width="347.333" height="12"/>
+  <object id="31" name="M4Right" x="1360" y="75.333" width="8.66667" height="1108"/>
+  <object id="32" name="M4Ceiling" x="1035.33" y="76" width="328" height="4"/>
+  <object id="33" name="M4Left" x="1028.67" y="77.333" width="11.5152" height="1112.48"/>
+  <object id="34" name="M42FFloor" x="1151.75" y="128">
    <polygon points="0,0 48.25,-0.5 48.25,63.5 210.75,64.25 210.5,112.5 0,112"/>
   </object>
-  <object id="60" name="M2Stairs" x="832.068" y="911.438" width="83.75" height="19.9261"/>
-  <object id="61" name="M2Stairs" x="911.585" y="849.045" width="115.506" height="64.9545"/>
-  <object id="62" name="M2Stairs" x="415.75" y="895.75" width="38.25" height="32.125"/>
-  <object id="63" name="M2Stairs" x="447.875" y="864" width="48.125" height="66.125"/>
-  <object id="64" name="M4Slides" x="1149.5" y="335">
+  <object id="60" name="M2Stairs" x="720.068" y="847.438" width="83.75" height="19.9261"/>
+  <object id="61" name="M2Stairs" x="799.585" y="785.045" width="115.506" height="64.9545"/>
+  <object id="62" name="M2Stairs" x="303.75" y="831.75" width="38.25" height="32.125"/>
+  <object id="63" name="M2Stairs" x="335.875" y="800" width="48.125" height="66.125"/>
+  <object id="64" name="M4Slides" x="1037.5" y="271">
    <polygon points="0,0 257,128.5 -2,258.5"/>
   </object>
-  <object id="65" name="M4Slides" x="1478" y="557.5">
+  <object id="65" name="M4Slides" x="1366" y="493.5">
    <polygon points="0,0 -180.5,178.5 -2,356"/>
   </object>
-  <object id="67" name="M4Slides" x="1149.5" y="833">
+  <object id="67" name="M4Slides" x="1037.5" y="769">
    <polygon points="0,0 176.5,172.5 -2,355"/>
   </object>
  </objectgroup>
- <layer id="2" name="Tiles" width="100" height="120">
+ <layer id="2" name="Tiles" width="86" height="109">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu2dS47UMBCGu1kgECAeA0gwsOMGsGIHJ2HB/c+ArZGl4Hbq4arKVJK/pWiUuJyy/6/Kj3Q0fXe9XO5wQAPEAGIAMYAYCI6Bz+X+3IH5aJs5+X1hIfm8C44J8H7gDR7bxL003s7G42cZDKTaPIbd2XhUjbm5UltuHcuX/u6F88engH5o+y21p+JaGn+SObXZWHhEtEfT9i1sKX0i+k/5o2KjlkW0ZwuNNT4ofSL6T/kDj8uF0ofj8aLE7MtyvBKO4zVOKH/gQevD8WjacnbLfAUPevSi9OF0lvD4Xtz/WDSB8of8iM+PX4XFb/Cgk0KojzQ/alzXeURycDnAlWvnK7EQSQyp8UPDg9PRu1yzhkgitagZFh4z+15PLkdkYuEhAt4ZUf5mWB2NCaUPN15l4FEZHokJxaP29UM5Pir2exwjzt9MjhyJiVQfLy5SfzNcjpAnWn2sXLT+tFzamnuvbGb1meUy60/Lpdrvca9i1UfLxerv6Fy89JFy8fI3y2X5DMFjTGvPuCXPJiQ2M/2i6nBcHpNH326P9Xym/vT9W56vccnU/jPx+FLm06+DfUs2Ht+ulz+WI1N/RvmxxqHtE7O1XzKmUzYjDTJc4zhk5ZFBO882SDmAR+y7hVoO4BHDY5YDePjysHKoPK5lveU5Vp7xXh4cwMInDj32S2Dhw6KOBR48MEbl4RHFQvru/h7tqDnRkh9RLCxtamu8zH+p5xezfY9i4TWGnolHJAvw0EVSNAvwkPPYggV4yHhsxQI8ZDyebfgcZHaNIevJ41t5ra+2YgIe8pjZggl4yHlUy2gm4KHjEc0EPPQ8IpmcmUddXz4ZvLMjJRQxdh2BB/VOI/U8sZVlYuLNQ/I/DZ6Wd7Q0Bxev1JpWwiNTnnjzaNp435di4sEjCxMv3VpetHj0ui/FoZV58cjAxEu3XhOv+/Y8RnOFdEyS2lnmk14Hqc+lHfX+prRs5FdaV2M38hNxbZaJB4+I/hzhnjNMwMPv/YZRDGmZgEcsj8pIwwQ84nlomIDHNjyeC5+rgEc8DymLujYHj1geGhZePKzvHY7WJUe4pmXhwcNjH33EHJ1hAR4xY9UsC/Dw52FhAR6+PKwswMOPhwcL8PDh4cUCPOw8PFmAh42Hx1q/Mlh+rGt/rk2j7+P674/2uvfj+t5rLTmP5mG9f2ZW4GEbXyLY9rluPbe2kYuRI+eHVbuI+uCRK2fBAzy0eZ79dzS1/aHsufyY+Q0M6/cpnvWpvmcs43hI1tyZbfa2HgGPfc0fmWNf0jbkh0Sl7WzAw1dryfMzak+dcc6m2pR9/thbfFNaS8rAA/O5ZkSLzg9NWyS2khygbLLnh3U/SvW9lnl/OH9ceXYeVr24/LLev6/P6c2Vg0evqO2c05srBw+b/n1tTm+uHDx6RW3nnN5c+d54aPeHXP9t6t/W5vxx5User8t640053gasO25bPneFm5+5/vblc61Yr9XfX3u+t/w4Oo/Kj3r+U8s8fldwPaJ0JaP9iDYGl/Y677y1pS3SutlzyJIzvMI6C6mmVruWQ5lypSl1Rh6NZ8ZcOTOP5XyTJVeWPPp3IbhxQTca8dacv8jyLLnSeIzaw+UOr7DOIlJvyb1n5hXtno5b44HH7Xc4o9hci6zRmrUfZ/rze2KP2u43sjlbfixzaCZX1ph5XT8zj4xrMPB4GMuy5Ap4/D+3aOYVrzFqeR/wuJ3rt8qVvwOg4HHLYzTnc88wvcq5NfsAoekS5w/ldHyYxB9Uht603pw+A0lNlzh/KKd5mcQfVIbetN6cPgNJTZc4fyineZnEH1SG3rTenD4DSU2XOH8op3mZxB9U5vT+B1h/cHqAuwAA
+   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
   </data>
  </layer>
 </map>
