@@ -43,7 +43,7 @@ export class PlayerHalo extends Component {
 
     private colorNumDict = {
         [ColliderGroup.RED]: 1,
-        [ColliderGroup.GREEN]: 0,
+        [ColliderGroup.GREEN]: 1,
         [ColliderGroup.BLUE]: 1,
     }
 
