@@ -8,7 +8,7 @@ import {
     UITransform,
     Vec2,
 } from "cc"
-import { ColliderGroup } from "../Physics/ColliderManager"
+import { ColliderGroup, ColorMap } from "../Physics/ColliderManager"
 import { Entity } from "./Entity"
 import { Lamp } from "./Lamp"
 import { PlayerHalo } from "./PlayerHalo"
@@ -20,12 +20,6 @@ export class Brick extends Entity {
     protected color: number = ColliderGroup.RED
 
     private collidedHaloSet: Set<string> = new Set()
-
-    private static readonly COLOR_MAP = {
-        [ColliderGroup.RED]: Color.RED,
-        [ColliderGroup.GREEN]: Color.GREEN,
-        [ColliderGroup.BLUE]: Color.BLUE,
-    }
 
     protected onLoad(): void {
         this.initialize(
@@ -49,7 +43,7 @@ export class Brick extends Entity {
 
         // Set the color of the box
         this.color = color
-        this.node.getComponent(Sprite).color = Brick.COLOR_MAP[this.color]
+        this.node.getComponent(Sprite).color = ColorMap[this.color]
         // Set the collision group of the collider
         this.node.getComponent(Collider2D).group = ColliderGroup.ACTIVE
     }
