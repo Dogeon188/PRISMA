@@ -241,7 +241,7 @@ export class PlayerHalo extends Component {
             this.node
                 .getComponent(Player)
                 .collidedHaloNodeSet.forEach((node) => {
-                    node.onLeaveLampHalo(this)
+                    node.onLeaveHalo(this)
                 })
         } else {
             this.addGem(color)

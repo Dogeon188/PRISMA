@@ -58,10 +58,17 @@ export class Lamp extends Entity {
     public onCollide(other: Node): void {}
 
     public showPrompt(): void {
-        GameManager.inst.interactPrompt.showPrompt(
-            Settings.keybinds.interact,
-            "Interact",
-        )
+        if (this.color === null) {
+            GameManager.inst.interactPrompt.showPrompt(
+                Settings.keybinds.interact,
+                "Interact to give the light to the lamp.",
+            )
+        } else {
+            GameManager.inst.interactPrompt.showPrompt(
+                Settings.keybinds.interact,
+                "Interact to take back the light.",
+            )
+        }
     }
 
     private drawColor(): void {
@@ -79,10 +86,17 @@ export class Lamp extends Entity {
         )
     }
 
-    private changeColor(player: Player): void {
+    private changeColor(player: Player): boolean {
         if (this.color === null) {
             if (player.node.getComponent(PlayerHalo).color === null) {
-                return
+                GameManager.inst.interactPrompt.showPrompt(
+                    Settings.keybinds.interact,
+                    "Make sure you have light to give.",
+                )
+                this.scheduleOnce(() => {
+                    this.showPrompt()
+                }, 2)
+                return false
             }
             this.color = player.node.getComponent(PlayerHalo).color
             this.drawColor()
@@ -110,11 +124,12 @@ export class Lamp extends Entity {
             entity.onLeaveLampHalo(this)
             entity.onEnterLampHalo(this)
         })
+        return true
     }
 
     public onBeginInteract(player: Player): void {
         const target_color = this.color
-        GameManager.inst.interactPrompt.hidePrompt()
+        // GameManager.inst.interactPrompt.hidePrompt()
         player.collidedHaloNodeSet.forEach((node) => {
             // check if node position is in the lamp's halo
             // dont change readonly vec3
@@ -127,8 +142,9 @@ export class Lamp extends Entity {
             }
             this.collidedSet.add(node)
         })
-        this.changeColor(player)
+        const ret = this.changeColor(player)
         player.node.getComponent(PlayerHalo).interactWithLamp(target_color)
+        if (ret) this.showPrompt()
     }
 
     public onEndInteract(player: Player): void {}
