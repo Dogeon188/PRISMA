@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="11" nextobjectid="67">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="12" nextobjectid="67">
  <tileset firstgid="1" source="dragonheart.tsx"/>
+ <tileset firstgid="253" source="amproject.tsx"/>
+ <layer id="11" name="Back" width="60" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAE+3QgQAAAADDoPlTH+SFUGHAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAwMvAABJEFQYgHAAA
+  </data>
+ </layer>
  <objectgroup id="4" name="Grounds">
   <object id="1" name="Wall" x="-16" y="256" width="16" height="160"/>
   <object id="2" name="Ground1" x="-16" y="400" width="976" height="16"/>
@@ -13,13 +19,13 @@
   <object id="18" name="SecretWall" x="32" y="64" width="16" height="96"/>
   <object id="19" name="SecretWall" x="288" y="64" width="16" height="96"/>
   <object id="20" name="SecretCeil" x="48" y="48" width="240" height="16"/>
-  <object id="52" x="496.56" y="100" width="64" height="16"/>
+  <object id="52" x="495.59" y="111.917" width="64" height="16"/>
   <object id="53" x="477.674" y="62.7907" width="18.6047" height="131.628"/>
   <object id="54" x="494.884" y="42.3256" width="349.767" height="21.8605"/>
   <object id="55" x="832.093" y="46.5116" width="22.7907" height="157.674"/>
   <object id="56" x="488.643" y="192.798" width="349.584" height="19.9446"/>
   <object id="57" x="560.193" y="100.274">
-   <polygon points="0,0 238.082,89.6308 -2.80096,90.191"/>
+   <polygon points="-1.04782,11.526 160.194,91.7264 -0.00678585,91.2388"/>
   </object>
   <object id="64" x="0" y="0" width="960" height="16"/>
  </objectgroup>
@@ -73,7 +79,7 @@
    </properties>
    <point/>
   </object>
-  <object id="13" name="SecretInDest" type="dummy" x="79.2176" y="-23.7024">
+  <object id="13" name="SecretInDest" type="dummy" x="519.199" y="93.5486">
    <properties>
     <property name="class" value="dummy"/>
    </properties>
@@ -172,9 +178,9 @@
    <point/>
   </object>
  </objectgroup>
- <layer id="1" name="Tiles" width="60" height="30">
+ <layer id="1" name="Front" width="60" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAE+1XQQ6DMAzrf9geAIP7XrTzTryb9IBgQdWamqiCGimHlsaOnSqCIYTvwKAHvAOXvwMBeEpmAECXTLXUkQTJeGHhWc9mwJqPWOowg+8SLDzUizj9m2vxHWG18LC/iNPl/S3pEZJznsoNCanHO7c1vd5+Ep//Rne/A28ZGi2Fx4wkJh3wcuAjwDq8uIh7dKCTredx+7Qd3du4rvn0Qv6qWYAzt+6n1qvfo+XU7u+qbxYhMVJrVGdu/kMOesYk+OOO49/as5Y4N+T7sZmIc4N67+tBi/1dAEbU0yIgHAAA
+   H4sIAAAAAAAAE+2XTQ/CMAiGa6IXP+L3Dp70pP///2mEmCYL6RDKWLRhCQfaFXgfuq1LKa4g0CaByyylWtMSecKC2lzcupewkBNotVwH5XprvqFapXVY80vz5Dqt+ULvh4CUu5W3NE/uyxH2/5rYGfxO+VzQPkvrmFovrRN9ZDAHs+j+J7393tfqlurFXHR/afxSv6xjNf3W6LXW57Veo7sFvXSfc/tuYXzfefUs4gYBDwLc2bvFOQ+GETMIeBHYwvdo17N9fJ+8UBfjroD3xpH5r/UXz3vWf7EiSMXgFWq4OTGn/aR66byi7OKtkv7eQevDSW/Wt4T4aEN+sXiHQe7sPcYcnt/xXzbH+uaPkZOL4YAwQgaBIDARgTd+sxaLIBwAAA==
   </data>
  </layer>
 </map>
