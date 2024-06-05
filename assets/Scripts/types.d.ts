@@ -10,6 +10,8 @@ interface UserData {
     keybinds: KeyBind
     volumeSFX: number
     volumeBGM: number
+    stage: number
+    savepoint: number
 }
 
 type Uuid = string
