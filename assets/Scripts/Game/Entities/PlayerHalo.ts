@@ -22,6 +22,7 @@ import {
     ColliderType,
 } from "../Physics/ColliderManager"
 import { Player } from "../Player"
+import { PlayPauseButton } from "../../PlayPauseButton"
 const { ccclass, property } = _decorator
 
 @ccclass("PlayerHalo")
@@ -34,6 +35,9 @@ export class PlayerHalo extends Component {
 
     @property(Node)
     private palette: Node = null
+
+    @property(Node)
+    private pausePlayButton: Node = null
 
     private RedSector: Node = null
     private GreenSector: Node = null
@@ -148,9 +152,17 @@ export class PlayerHalo extends Component {
             node.onLeaveHalo(this, true)
             node.onEnterHalo(this)
         })
+        const player = this.node.getComponent(Player)
+        if (player.interactingWith) {
+            player.interactingWith.onEndInteract(this.node.getComponent(Player))
+            player.interactingWith = null
+        }
     }
 
     private onMouseDown(): void {
+        if (!this.pausePlayButton.getComponent(PlayPauseButton).isPlay) {
+            return
+        }
         for (const sprite of this.palette.getComponentsInChildren(Sprite)) {
             sprite.enabled = true
         }
@@ -163,6 +175,9 @@ export class PlayerHalo extends Component {
     }
 
     private onMouseUp(): void {
+        if (!this.pausePlayButton.getComponent(PlayPauseButton).isPlay) {
+            return
+        }
         for (const sprite of this.palette.getComponentsInChildren(Sprite)) {
             sprite.enabled = false
         }
@@ -180,6 +195,9 @@ export class PlayerHalo extends Component {
     }
 
     private onMouseMove(event: EventMouse): void {
+        if (!this.pausePlayButton.getComponent(PlayPauseButton).isPlay) {
+            return
+        }
         if (this.mouseDown) {
             const cameraSize = screen.resolution.lerp(
                 Size.ZERO,

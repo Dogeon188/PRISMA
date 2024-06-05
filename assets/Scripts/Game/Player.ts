@@ -7,6 +7,7 @@ import {
     EventKeyboard,
     IPhysics2DContact,
     Input,
+    KeyCode,
     Quat,
     RigidBody2D,
     Sprite,
@@ -62,7 +63,7 @@ export class Player extends Component {
     private recentCollidedWith: Entity
 
     /** Entity that the player is currently interacting with */
-    private interactingWith: Entity
+    public interactingWith: Entity
 
     /**
      * Whether the player is currently moving a box
@@ -421,6 +422,9 @@ export class Player extends Component {
                     this.interactingWith = this.recentCollidedWith
                     this.interactingWith.onBeginInteract(this)
                 }
+                break
+            case KeyCode.ESCAPE:
+                this.hurt()
                 break
         }
     }
