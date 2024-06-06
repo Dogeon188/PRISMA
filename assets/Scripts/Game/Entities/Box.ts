@@ -24,7 +24,7 @@ const { ccclass, property } = _decorator
 @ccclass("Box")
 export class Box extends Entity {
     @property({ type: ColliderGroup })
-    private color: number = ColliderGroup.RED
+    public color: number = ColliderGroup.RED
 
     private bindedTo: Node | null = null
     private bindOffsetX: number = 0
@@ -62,6 +62,8 @@ export class Box extends Entity {
         const collider = this.node.getComponent(Collider2D)
         collider.group = ColliderGroup.ACTIVE
         collider.density = Box.DENSITY
+
+        this.node.getComponent(RigidBody2D).gravityScale = Box.GRAVITY
     }
 
     protected update(deltaTime: number) {

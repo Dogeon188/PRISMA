@@ -8,6 +8,7 @@ import {
     IPhysics2DContact,
     Input,
     KeyCode,
+    Node,
     Quat,
     RigidBody2D,
     Sprite,
@@ -19,6 +20,7 @@ import {
     tween,
 } from "cc"
 import { BlackMaskManager } from "../Interface/BlackMaskManager"
+import { PlayPauseButton } from "../PlayPauseButton"
 import { Settings } from "../Scene/Settings"
 import { Box } from "./Entities/Box"
 import { Entity } from "./Entities/Entity"
@@ -80,11 +82,15 @@ export class Player extends Component {
     private spawnPoint: Vec3
 
     private dead: boolean = false
+    private respawning: boolean = false
 
     private movement: Movement = new Movement()
 
     @property({ type: Sprite, tooltip: "Reference to sprite node" })
     private sprite: Sprite = null
+
+    @property(Node)
+    private pausePlayButton: Node = null
 
     //#endregion
 
@@ -223,6 +229,16 @@ export class Player extends Component {
                 contact.disabled = true
                 break
             case ColliderType.BOX:
+                // check if the box has velocity
+                const boxMoving =
+                    other.getComponent(RigidBody2D).linearVelocity.length() > 2
+
+                if (
+                    boxMoving &&
+                    fuzzyEqual(normal.y, NormalDirection.FROM_BOTTOM)
+                ) {
+                    this.hurt()
+                }
                 this.attemptRegisterInteractable(other, normal)
             case ColliderType.BRICK: // Fall through
                 if (isOnTop) this.standingOn.add(other.uuid)
@@ -323,18 +339,40 @@ export class Player extends Component {
     //#region Animation
 
     private updateAnimation(dt: number): void {
-        if (this.dead) {
-            // this.changeAnimation("Hurt")
+        if (this.respawning) {
+            this.changeAnimation("PlayerRespawn")
             return
         }
+        if (this.dead) {
+            this.changeAnimation("PlayerDie")
+            return
+        }
+
         if (this.movement.left) {
             this.sprite.node.setScale(-1, 1)
-            // this.changeAnimation("Walk")
         } else if (this.movement.right) {
             this.sprite.node.setScale(1, 1)
-            // this.changeAnimation("Walk")
-        } else if (this.movement.static) {
-            // this.changeAnimation("Idle")
+        }
+
+        if (!this.onGround) {
+            this.changeAnimation("PlayerJump")
+            return
+        }
+
+        if (this.isMovingBox && !this.movement.static) {
+            this.changeAnimation("PlayerPush")
+            return
+        }
+
+        if (
+            this.movement.static ||
+            this.rigidBody.linearVelocity.length() < 1
+        ) {
+            this.changeAnimation("PlayerIdle")
+        } else if (this.movement.left || this.movement.right) {
+            this.changeAnimation("PlayerWalk")
+        } else {
+            this.changeAnimation("PlayerIdle")
         }
     }
 
@@ -368,25 +406,25 @@ export class Player extends Component {
         [1]: Quat.fromEuler(new Quat(), 0, 0, -90),
         [-1]: Quat.fromEuler(new Quat(), 0, 0, 90),
     }
-    private hurt(): void {
+    public hurt(): void {
         if (this.dead) return
         // TODO play animation & sound
         this.dead = true
-        tween(this.node)
-            .to(0.5, {
-                rotation:
-                    Player.HURT_QUATS[this.sprite.node.scale.x > 0 ? 1 : -1],
-            })
-            .delay(2)
-            .call(() => BlackMaskManager.fadeIn(2, () => this.respawn()))
-            .start()
+        this.scheduleOnce(
+            () => BlackMaskManager.fadeIn(2, () => this.respawn()),
+            2,
+        )
     }
 
     private respawn(): void {
+        this.respawning = true
         this.node.rotation = Quat.IDENTITY
         this.node.setPosition(this.spawnPoint)
         this.rigidBody.applyLinearImpulseToCenter(new Vec2(0, 0), true) // wake up rigid body, update collisions
-        BlackMaskManager.fadeOut(2, () => (this.dead = false))
+        BlackMaskManager.fadeOut(2, () => {
+            this.dead = false
+            this.respawning = false
+        })
     }
 
     public startMovingBox(box: Box) {
@@ -404,6 +442,12 @@ export class Player extends Component {
     //#region Input
 
     private onKeyDown(event: EventKeyboard): void {
+        if (
+            !this.pausePlayButton.getComponent(PlayPauseButton).isPlay ||
+            this.dead
+        ) {
+            return
+        }
         switch (event.keyCode) {
             case Settings.keybinds.jump:
                 this.movement.up = true
@@ -430,6 +474,9 @@ export class Player extends Component {
     }
 
     onKeyUp(event: EventKeyboard): void {
+        // if (!this.pausePlayButton.getComponent(PlayPauseButton).isPlay) {
+        //     return
+        // }
         switch (event.keyCode) {
             case Settings.keybinds.jump:
                 this.movement.up = false

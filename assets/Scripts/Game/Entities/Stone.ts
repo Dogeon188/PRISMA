@@ -3,6 +3,7 @@ import {
     CircleCollider2D,
     Collider2D,
     Color,
+    RigidBody2D,
     Size,
     Sprite,
     UITransform,
@@ -30,6 +31,7 @@ export class Stone extends Brick {
         this.node.getComponent(Sprite).color = ColorMap[this.color]
         // Set the collision group of the collider
         this.node.getComponent(Collider2D).group = ColliderGroup.ACTIVE
+        this.node.getComponent(RigidBody2D).gravityScale = 5
     }
     @property
     private radius: number = 10

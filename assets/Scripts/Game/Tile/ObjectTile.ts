@@ -20,6 +20,8 @@ import { MovingPlatform } from "../Entities/MovingPlatform"
 import { Plate, PlateTriggerable } from "../Entities/Plate"
 import { Portal, PortalType } from "../Entities/Portal"
 import { Stone } from "../Entities/Stone"
+import { StoneDestroyer } from "../Entities/StoneDestroyer"
+import { StoneGenerator } from "../Entities/StoneGenerator"
 import { ColorStringToGroupMap } from "../Physics/ColliderManager"
 const { ccclass, property, requireComponent } = _decorator
 
@@ -57,6 +59,25 @@ type TileObjectTypes = {
     stone: {
         class: "stone"
         color: RGBString
+    }
+    /**
+     * Stone generator. Generates stone every few seconds.
+     */
+    stoneGenerator: {
+        class: "stoneGenerator"
+        /** The interval to generate stone */
+        interval: number
+        /**
+         * The pattern of stone color to generate. Loops indefinitely.
+         * Use it like this: "red,green,blue" to generate stones in that order.
+         */
+        pattern: string
+    }
+    /**
+     * Stone destroyer. Destroys stone when touched.
+     */
+    stoneDestroyer: {
+        class: "stoneDestroyer"
     }
     /**
      * Moving platform. Moves between initial position and destination.
@@ -128,6 +149,12 @@ export class ObjectTile extends Component {
     private stonePrefab: Prefab = null
 
     @property({ type: Prefab, group: "Prefabs" })
+    private stoneGeneratorPrefab: Prefab = null
+
+    @property({ type: Prefab, group: "Prefabs" })
+    private stoneDestroyerPrefab: Prefab = null
+
+    @property({ type: Prefab, group: "Prefabs" })
     private movingPlatformPrefab: Prefab = null
 
     @property({ type: Prefab, group: "Prefabs" })
@@ -185,6 +212,18 @@ export class ObjectTile extends Component {
                 case "stone":
                     const stone = this.createStone(object)
                     objectNodes.set(object.id, stone)
+                    break
+                case "stoneGenerator":
+                    objectNodes.set(
+                        object.id,
+                        this.createStoneGenerator(object),
+                    )
+                    break
+                case "stoneDestroyer":
+                    objectNodes.set(
+                        object.id,
+                        this.createStoneDestroyer(object),
+                    )
                     break
                 case "moving":
                     const movingPlatform = this.createMovingPlatform(object)
@@ -302,13 +341,43 @@ export class ObjectTile extends Component {
     private createStone(object: TileObject<"stone">): Node {
         const stoneNode = instantiate(this.stonePrefab)
         stoneNode.name = object.name
-        stoneNode.getComponent(Stone).initialize(
-            ColorStringToGroupMap[object.color],
-            new Vec2(object.x, object.y),
-            new Size(object.width, object.height),
-        )
+        stoneNode
+            .getComponent(Stone)
+            .initialize(
+                ColorStringToGroupMap[object.color],
+                new Vec2(object.x, object.y),
+                new Size(object.width, object.height),
+            )
         this.node.addChild(stoneNode)
         return stoneNode
+    }
+
+    private createStoneGenerator(object: TileObject<"stoneGenerator">): Node {
+        const stoneGenNode = instantiate(this.stoneGeneratorPrefab)
+        stoneGenNode.name = object.name
+        stoneGenNode
+            .getComponent(StoneGenerator)
+            .initialize(
+                new Vec2(object.x, object.y),
+                new Size(object.width, object.height),
+                object.interval,
+                object.pattern,
+            )
+        this.node.addChild(stoneGenNode)
+        return stoneGenNode
+    }
+
+    private createStoneDestroyer(object: TileObject<"stoneDestroyer">): Node {
+        const stoneDestroyerNode = instantiate(this.stoneDestroyerPrefab)
+        stoneDestroyerNode.name = object.name
+        stoneDestroyerNode
+            .getComponent(StoneDestroyer)
+            .initialize(
+                new Vec2(object.x, object.y),
+                new Size(object.width, object.height),
+            )
+        this.node.addChild(stoneDestroyerNode)
+        return stoneDestroyerNode
     }
 
     private createMovingPlatform(object: TileObject<"movingPlatform">): Node {
