@@ -62,6 +62,8 @@ export class Box extends Entity {
         const collider = this.node.getComponent(Collider2D)
         collider.group = ColliderGroup.ACTIVE
         collider.density = Box.DENSITY
+
+        this.node.getComponent(RigidBody2D).gravityScale = Box.GRAVITY
     }
 
     protected update(deltaTime: number) {

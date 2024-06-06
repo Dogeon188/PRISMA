@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="12" nextobjectid="84">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="12" nextobjectid="87">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <tileset firstgid="253" source="amproject.tsx"/>
  <layer id="11" name="Back" width="60" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3RwQkAIAwEwbMTfWn/FZoqBMkcpICdJEaAAAECBAgQIECAAAECBAgQIECAAAECrwTmSFZdl+1qPY16u/xVJwECfwtcDzLPGiAcAAA=
+   H4sIAAAAAAAAE+3RwQkAIAwEwbMTfWn/FZoqBMkcpICdJEaAAAECBAgQIECAAAECBAgQIECAAAECrwTmSFZdl+1qPY16u/xVJwECfwtcDzLPGiAcAAA=
   </data>
  </layer>
  <objectgroup id="4" name="Grounds">
@@ -206,6 +206,19 @@
     <property name="color" value="blue"/>
    </properties>
   </object>
+  <object id="85" name="StoneDestroyer" x="-112.922" y="208.335" width="144.47" height="23.0667">
+   <properties>
+    <property name="class" value="stoneDestroyer"/>
+   </properties>
+  </object>
+  <object id="86" name="StoneGenerator" x="-66.47" y="100.365" width="32" height="32">
+   <properties>
+    <property name="class" value="stoneGenerator"/>
+    <property name="interval" type="float" value="3"/>
+    <property name="pattern" value="red,blue,green"/>
+   </properties>
+   <ellipse/>
+  </object>
  </objectgroup>
  <objectgroup id="8" name="Bricks">
   <object id="33" name="Red" type="red" x="384" y="336" width="32" height="32">
@@ -245,13 +258,13 @@
   </object>
  </objectgroup>
  <objectgroup id="9" name="Start">
-  <object id="45" name="Start" x="68.1775" y="397.771">
+  <object id="45" name="Start" x="66.9635" y="159.82">
    <point/>
   </object>
  </objectgroup>
  <layer id="1" name="Front" width="60" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu1X2w7CIAzFRJ+c8e7DvsH//zuNbQzJ0jAsnFVx65I+AOvlnMNG6VYhdAuy4M9iGOhpX9daKUkPcqjNlfN7Kgu5EFbkORX6o/nGatXWgebX5ol1ovkc75sBLe8o39o8UZdz4gy80tyt8LuQOmvr+DZeWSePmYM1GYL7n/AOta/FrcXLuZA+K6UXOlejdwletD4r/xLcc8Ar93luH27A/52VZh7XGbBgINd7z3HNgkOP6QxYMbCn8+gwsKOfT1ZUJ+Nuie+dIeet6cv9HnoXSxLZyKTUU+KV62jZv9Y34ruTrmxjYxSn1j/Xe0+xxv0732VjrE/jKXLmYmh58fecAWegPQZeB455hyAcAAA=
+   H4sIAAAAAAAAE+1X2w7CIAzFRJ+c8e7DvsH//zuNbQzJ0jAsnFVx65I+AOvlnMNG6VYhdAuy4M9iGOhpX9daKUkPcqjNlfN7Kgu5EFbkORX6o/nGatXWgebX5ol1ovkc75sBLe8o39o8UZdz4gy80tyt8LuQOmvr+DZeWSePmYM1GYL7n/AOta/FrcXLuZA+K6UXOlejdwletD4r/xLcc8Ar93luH27A/52VZh7XGbBgINd7z3HNgkOP6QxYMbCn8+gwsKOfT1ZUJ+Nuie+dIeet6cv9HnoXSxLZyKTUU+KV62jZv9Y34ruTrmxjYxSn1j/Xe0+xxv0732VjrE/jKXLmYmh58fecAWegPQZeB455hyAcAAA=
   </data>
  </layer>
 </map>
