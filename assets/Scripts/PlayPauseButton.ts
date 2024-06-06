@@ -7,6 +7,7 @@ import {
     Sprite,
     SpriteFrame,
 } from "cc"
+import { GameManager } from "./Game/GameManager"
 import { Player } from "./Game/Player"
 const { ccclass, property } = _decorator
 
@@ -36,7 +37,7 @@ export class PlayPauseButton extends Component {
         director.resume()
     }
 
-    private pausePlayButton(): void {
+    protected pausePlayButton(): void {
         if (this.isPlay) {
             this.pauseGame()
             this.isPlay = false
@@ -56,8 +57,8 @@ export class PlayPauseButton extends Component {
         }
     }
 
-    private leaveGame(): void {
-        this.player.getComponent(Player).hurt()
+    protected leaveGame(): void {
         this.pausePlayButton()
+        GameManager.inst.backToStart()
     }
 }
