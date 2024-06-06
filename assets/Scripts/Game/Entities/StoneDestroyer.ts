@@ -8,7 +8,6 @@ import {
     Size,
     Vec2,
     log,
-    Node,
 } from "cc"
 
 import { ColliderGroup, ColliderType } from "../Physics/ColliderManager"
@@ -45,7 +44,6 @@ export class StoneDestroyer extends Component {
             this.scheduleOnce(() => {
                 const stoneGen = other.node.parent.getComponent(StoneGenerator)
                 if (stoneGen) {
-                    log("Recycle stone")
                     stoneGen.recycleStone(other.node)
                 }else{
                     other.node.destroy()

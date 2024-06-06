@@ -1,4 +1,4 @@
-import { _decorator, Component, instantiate, Prefab, Size, Vec2, Node } from "cc"
+import { _decorator, Component, instantiate, Prefab, Size, Vec2, Node, log } from "cc"
 import { ColorStringToGroupMap } from "../Physics/ColliderManager"
 import { Stone } from "./Stone"
 const { ccclass, property } = _decorator
