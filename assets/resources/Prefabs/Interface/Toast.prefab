@@ -42,8 +42,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -61.768,
-      "y": 300.018,
+      "x": 0,
+      "y": 300,
       "z": 0
     },
     "_lrot": {
@@ -92,8 +92,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 63.033,
-      "y": -12.355,
+      "x": 0,
+      "y": 0,
       "z": 0
     },
     "_lrot": {
@@ -133,7 +133,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 400,
+      "width": 550,
       "height": 80
     },
     "_anchorPoint": {
@@ -164,10 +164,10 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 100
+      "r": 34,
+      "g": 34,
+      "b": 34,
+      "a": 150
     },
     "_spriteFrame": {
       "__uuid__": "7d8f9b89-4fd1-4c9f-a3ab-38ec7cded7ca@f9941",
@@ -228,8 +228,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 65.299,
-      "y": -12.353,
+      "x": 0,
+      "y": 0,
       "z": 0
     },
     "_lrot": {
@@ -269,8 +269,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 350,
-      "height": 37.8
+      "width": 500,
+      "height": 50.4
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -308,10 +308,10 @@
     "_string": "asdadasas",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 40,
-    "_fontSize": 40,
+    "_actualFontSize": 32.25,
+    "_fontSize": 30,
     "_fontFamily": "Arial",
-    "_lineHeight": 30,
+    "_lineHeight": 40,
     "_overflow": 3,
     "_enableWrapText": true,
     "_font": {
@@ -441,6 +441,7 @@
       "__id__": 0
     },
     "fileId": "f33p5JzslPaqH0quoIdp9R",
+    "instance": null,
     "targetOverrides": null
   }
 ]
