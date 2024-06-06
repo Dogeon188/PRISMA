@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="100" height="86" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="153">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="100" height="86" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="155">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <tileset firstgid="253" source="amproject.tsx"/>
  <objectgroup id="7" name="Grounds" locked="1">
@@ -139,7 +139,14 @@
    </properties>
    <point/>
   </object>
-  <object id="137" name="MovingVerti" x="1088" y="928" width="48" height="8"/>
+  <object id="137" name="MovingVerti" x="1088" y="928" width="48" height="8">
+   <properties>
+    <property name="class" value="moving"/>
+    <property name="color" value="default"/>
+    <property name="duration" type="float" value="3"/>
+    <property name="moveTo" type="object" value="153"/>
+   </properties>
+  </object>
   <object id="139" name="GreenGem" x="1128" y="816">
    <properties>
     <property name="class" value="gem"/>
@@ -147,19 +154,14 @@
    </properties>
    <point/>
   </object>
-  <object id="144" name="Lamp" x="1128" y="874">
+  <object id="144" name="Lamp" x="1136" y="848">
    <properties>
+    <property name="angle" type="float" value="90"/>
     <property name="class" value="lamp"/>
    </properties>
    <point/>
   </object>
   <object id="148" name="GreenLaser" x="1088" y="908" width="48" height="4">
-   <properties>
-    <property name="class" value="laser"/>
-    <property name="color" value="green"/>
-   </properties>
-  </object>
-  <object id="149" name="GreenLaser" x="1088" y="892" width="48" height="4">
    <properties>
     <property name="class" value="laser"/>
     <property name="color" value="green"/>
@@ -176,6 +178,12 @@
    <properties>
     <property name="class" value="scenePortal"/>
     <property name="scene" value="Start"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="153" name="Vert1Tar" x="1112" y="832">
+   <properties>
+    <property name="class" value="dummy"/>
    </properties>
    <point/>
   </object>
@@ -213,7 +221,7 @@
   </object>
  </objectgroup>
  <objectgroup id="2" name="Start" locked="1">
-  <object id="1" name="Start" x="1512" y="1072">
+  <object id="1" name="Start" x="941.333" y="931.333">
    <point/>
   </object>
  </objectgroup>
