@@ -115,6 +115,13 @@ export class AudioManager {
     }
 
     /**
+     * Remove the reference of the current background music.
+     */
+    clearBGM(): void {
+        this._audioSource.clip = null
+    }
+
+    /**
      * Pause the current background music. \
      * Call {@linkcode AudioManager.resumeBGM} to resume.
      */

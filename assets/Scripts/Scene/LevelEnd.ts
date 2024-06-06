@@ -61,29 +61,41 @@ export class LevelEnd extends Component {
         tween(this.node)
             .call(() => {
                 // initialize
+                for (const node of this.hideNodes) {
+                    node.active = false
+                }
                 GameManager.inst.canAct = false
+
                 AudioManager.inst.fadeOutBGM(2)
+
                 this.camera.damping = 0.98
                 tween(this.camera.getComponent(Camera))
                     .to(2, { orthoHeight: 480 }, { easing: "sineOut" })
                     .start()
                 this.camera.focusOn(this.coreNode, false)
-                for (const node of this.hideNodes) {
-                    node.active = false
-                }
             })
             .delay(4)
             .call(() => AudioManager.inst.fadeInBGM(this.endBGM, 20))
             .delay(2)
-            .call(() =>
-                GameManager.inst.dialogBox.playDialog(
-                    this.dummyDialog.entries,
-                ),
-            )
+            .call(() => {
+                GameManager.inst.dialogBox.playDialog(this.dummyDialog.entries)
+            })
+            .delay(5)
+            .call(() => {
+                this.camera.shake = 2
+            })
+            .delay(5)
+            .call(() => {
+                this.camera.shake = 8
+            })
+            .delay(5)
             .call(() => {
                 // finish
                 GameManager.inst.canAct = true
-                // SceneManager.loadScene("Splash")
+                this.camera.shake = 0
+                AudioManager.inst.stopBGM()
+                AudioManager.inst.clearBGM()
+                SceneManager.loadScene("Splash")
             })
             .start()
     }
