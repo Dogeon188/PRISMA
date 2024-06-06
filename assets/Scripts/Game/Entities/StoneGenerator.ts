@@ -1,4 +1,13 @@
-import { _decorator, Component, instantiate, Prefab, Size, Vec2, Node, log } from "cc"
+import {
+    Component,
+    Node,
+    Prefab,
+    Size,
+    Vec2,
+    _decorator,
+    instantiate,
+    log,
+} from "cc"
 import { ColorStringToGroupMap } from "../Physics/ColliderManager"
 import { Stone } from "./Stone"
 const { ccclass, property } = _decorator
@@ -53,9 +62,15 @@ export class StoneGenerator extends Component {
 
     private createStone() {
         // create a stone using the prefab called stone
-        const stoneNode = this.stonePool.pop() 
-            
-        stoneNode.getComponent(Stone).initialize(
+        let stoneNode = this.stonePool.pop()
+        if (!stoneNode) {
+            stoneNode = instantiate(this.stone)
+            return
+        }
+
+        stoneNode
+            .getComponent(Stone)
+            .initialize(
                 this.pattern[this.patternIndex++ % this.pattern.length],
                 new Vec2(0, 0),
                 this.stoneSize,
