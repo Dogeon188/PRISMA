@@ -78,10 +78,6 @@ export class GameManager extends Component {
     })
     interactPrompt: InteractPrompt = null
 
-    @property({ type: Prefab, group: "Prefabs" })
-    playerPrefab: Prefab = null
-
-    /** @deprecated Only for test purpose. Please use {@linkcode playerPrefab} instead. */
     @property(Player)
     player: Player = null
 
