@@ -229,6 +229,16 @@ export class Player extends Component {
                 contact.disabled = true
                 break
             case ColliderType.BOX:
+                // check if the box has velocity
+                const boxMoving =
+                    other.getComponent(RigidBody2D).linearVelocity.length() > 2
+
+                if (
+                    boxMoving &&
+                    fuzzyEqual(normal.y, NormalDirection.FROM_BOTTOM)
+                ) {
+                    this.hurt()
+                }
                 this.attemptRegisterInteractable(other, normal)
             case ColliderType.BRICK: // Fall through
                 if (isOnTop) this.standingOn.add(other.uuid)
@@ -432,7 +442,10 @@ export class Player extends Component {
     //#region Input
 
     private onKeyDown(event: EventKeyboard): void {
-        if (!this.pausePlayButton.getComponent(PlayPauseButton).isPlay) {
+        if (
+            !this.pausePlayButton.getComponent(PlayPauseButton).isPlay ||
+            this.dead
+        ) {
             return
         }
         switch (event.keyCode) {
