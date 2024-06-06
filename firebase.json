@@ -3,7 +3,7 @@
     "rules": "database.rules.json"
   },
   "hosting": {
-    "public": "build/web-desktop-001",
+    "public": "build/web-desktop",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
   }
 }

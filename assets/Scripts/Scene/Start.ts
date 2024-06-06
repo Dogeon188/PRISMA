@@ -1,8 +1,7 @@
-import { _decorator, AudioClip, Button, Component, director, find } from "cc"
+import { _decorator, AudioClip, Button, Component } from "cc"
 import { AudioManager } from "../AudioManager"
-import { SceneManager } from "../SceneManager"
 import { Auth } from "../Auth"
-import { ToastManager } from "../Interface/ToastManager"
+import { SceneManager } from "../SceneManager"
 const { ccclass, property } = _decorator
 
 @ccclass("Start")
@@ -19,7 +18,11 @@ export class Start extends Component {
     protected onLoad(): void {
         AudioManager.inst.fadeInBGM(this.bgm, 1)
         this.startButton.node.on(Button.EventType.CLICK, this.startGame, this)
-        this.settingsButton.node.on(Button.EventType.CLICK, this.openSettings, this)
+        this.settingsButton.node.on(
+            Button.EventType.CLICK,
+            this.openSettings,
+            this,
+        )
     }
 
     protected startGame(): void {
