@@ -10,14 +10,13 @@ import {
     Quat,
     Size,
     Sprite,
-    SpriteFrame,
     tween,
     UITransform,
     Vec2,
 } from "cc"
 import { Settings } from "../../Scene/Settings"
 import { GameManager } from "../GameManager"
-import { ColliderGroup } from "../Physics/ColliderManager"
+import { ColliderGroup, ColorMap } from "../Physics/ColliderManager"
 import { Player } from "../Player"
 import { Entity } from "./Entity"
 import { PlayerHalo } from "./PlayerHalo"
@@ -34,15 +33,6 @@ export class Lamp extends Entity {
 
     @property
     private haloRadius: number = 200
-
-    @property(SpriteFrame)
-    private redGem: SpriteFrame = null
-
-    @property(SpriteFrame)
-    private greenGem: SpriteFrame = null
-
-    @property(SpriteFrame)
-    private blueGem: SpriteFrame = null
 
     private static readonly COLOR_MAP = {
         [ColliderGroup.RED]: Color.RED,
@@ -73,6 +63,7 @@ export class Lamp extends Entity {
     public initialize(position: Vec2, radius: number, angle: number): void {
         this.haloNode = this.node.getChildByName("Halo")
         this.gemNode = this.node.getChildByName("Gem")
+        this.gemNode.getComponent(Sprite).enabled = false
         this.node.setPosition(position.x, position.y)
         this.haloRadius = radius
         this.haloNode.getComponent(CircleCollider2D).radius = radius
@@ -115,18 +106,8 @@ export class Lamp extends Entity {
             }
             this.color = player.node.getComponent(PlayerHalo).color
             // Set the gem color
-            switch (this.color) {
-                case ColliderGroup.RED:
-                    this.gemNode.getComponent(Sprite).spriteFrame = this.redGem
-                    break
-                case ColliderGroup.GREEN:
-                    this.gemNode.getComponent(Sprite).spriteFrame =
-                        this.greenGem
-                    break
-                case ColliderGroup.BLUE:
-                    this.gemNode.getComponent(Sprite).spriteFrame = this.blueGem
-                    break
-            }
+            this.gemNode.getComponent(Sprite).enabled = true
+            this.gemNode.getComponent(Sprite).color = ColorMap[this.color]
 
             this.drawColor()
             tween(this.haloNode.getComponent(UITransform))
@@ -138,7 +119,7 @@ export class Lamp extends Entity {
                 .start()
         } else {
             this.color = null
-            this.gemNode.getComponent(Sprite).spriteFrame = null
+            this.gemNode.getComponent(Sprite).enabled = false
             tween(this.haloNode.getComponent(UITransform))
                 .to(0.5, { width: 0, height: 0 }, { easing: "sineIn" })
                 .call(() => {

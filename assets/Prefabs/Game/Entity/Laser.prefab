@@ -62,7 +62,7 @@
       "z": 1
     },
     "_mobility": 0,
-    "_layer": 1073741824,
+    "_layer": 33554432,
     "_euler": {
       "__type__": "cc.Vec3",
       "x": 0,
@@ -283,7 +283,7 @@
       "__uuid__": "f097c86d-4cdc-4c18-96eb-9c1dd866435f@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
-    "_totalParticles": 1500,
+    "_totalParticles": 500,
     "_startColor": {
       "__type__": "cc.Color",
       "r": 51,
@@ -328,6 +328,7 @@
       "__id__": 0
     },
     "fileId": "e2iKxGSXJMoJh9vPfiZdvp",
+    "instance": null,
     "targetOverrides": null
   }
 ]

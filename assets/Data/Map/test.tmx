@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="11" nextobjectid="67">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#000000" nextlayerid="12" nextobjectid="80">
  <tileset firstgid="1" source="dragonheart.tsx"/>
+ <tileset firstgid="253" source="amproject.tsx"/>
+ <layer id="11" name="Back" width="60" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3RwQkAIAwEwbMTfWn/FZoqBMkcpICdJEaAAAECBAgQIECAAAECBAgQIECAAAECrwTmSFZdl+1qPY16u/xVJwECfwtcDzLPGiAcAAA=
+  </data>
+ </layer>
  <objectgroup id="4" name="Grounds">
   <object id="1" name="Wall" x="-16" y="256" width="16" height="160"/>
   <object id="2" name="Ground1" x="-16" y="400" width="976" height="16"/>
@@ -13,13 +19,13 @@
   <object id="18" name="SecretWall" x="32" y="64" width="16" height="96"/>
   <object id="19" name="SecretWall" x="288" y="64" width="16" height="96"/>
   <object id="20" name="SecretCeil" x="48" y="48" width="240" height="16"/>
-  <object id="52" x="496.56" y="100" width="64" height="16"/>
+  <object id="52" x="495.59" y="111.917" width="64" height="16"/>
   <object id="53" x="477.674" y="62.7907" width="18.6047" height="131.628"/>
   <object id="54" x="494.884" y="42.3256" width="349.767" height="21.8605"/>
   <object id="55" x="832.093" y="46.5116" width="22.7907" height="157.674"/>
   <object id="56" x="488.643" y="192.798" width="349.584" height="19.9446"/>
   <object id="57" x="560.193" y="100.274">
-   <polygon points="0,0 238.082,89.6308 -2.80096,90.191"/>
+   <polygon points="-1.04782,11.526 160.194,91.7264 -0.00678585,91.2388"/>
   </object>
   <object id="64" x="0" y="0" width="960" height="16"/>
  </objectgroup>
@@ -60,36 +66,29 @@
    </properties>
    <point/>
   </object>
-  <object id="16" name="SecretOutDest" type="dummy" x="688" y="384">
+  <object id="16" name="SecretOutDest" type="dummy" x="252.014" y="396.622">
    <properties>
     <property name="class" value="dummy"/>
    </properties>
    <point/>
   </object>
-  <object id="14" name="SecretOut" type="nodePortal" x="813.448" y="174.395">
+  <object id="14" name="SecretOut" type="nodePortal" x="591.419" y="-50.5361">
    <properties>
     <property name="class" value="nodePortal"/>
     <property name="destination" type="object" value="16"/>
    </properties>
    <point/>
   </object>
-  <object id="13" name="SecretInDest" type="dummy" x="79.2176" y="-23.7024">
+  <object id="13" name="SecretInDest" type="dummy" x="548.064" y="-217.973">
    <properties>
     <property name="class" value="dummy"/>
    </properties>
    <point/>
   </object>
-  <object id="12" name="SecretIn" type="nodePortal" x="153.016" y="383.371">
+  <object id="12" name="SecretIn" type="nodePortal" x="106.008" y="385.675">
    <properties>
     <property name="class" value="nodePortal"/>
     <property name="destination" type="object" value="13"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="40" name="Gem" type="gem" x="105.247" y="388.66">
-   <properties>
-    <property name="class" value="gem"/>
-    <property name="color" value="green"/>
    </properties>
    <point/>
   </object>
@@ -149,6 +148,58 @@
    </properties>
    <point/>
   </object>
+  <object id="67" name="BlueBox" type="box" x="392.587" y="-37.5451" width="32" height="32">
+   <properties>
+    <property name="class" value="box"/>
+    <property name="color" value="blue"/>
+   </properties>
+  </object>
+  <object id="68" name="GreenBox" type="box" x="439.525" y="-38.3146" width="32" height="32">
+   <properties>
+    <property name="class" value="box"/>
+    <property name="color" value="green"/>
+   </properties>
+  </object>
+  <object id="69" name="BlueBox" type="box" x="496.465" y="-73.1426" width="32" height="64">
+   <properties>
+    <property name="class" value="box"/>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="70" name="BlueBox" type="box" x="571.104" y="-43.7008" width="32" height="32">
+   <properties>
+    <property name="class" value="box"/>
+    <property name="color" value="default"/>
+   </properties>
+  </object>
+  <object id="76" name="Stone" type="stone" x="420" y="-257" width="32" height="32">
+   <properties>
+    <property name="class" value="stone"/>
+    <property name="color" value="blue"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="77" name="Stone" type="stone" x="464" y="-259" width="32" height="32">
+   <properties>
+    <property name="class" value="stone"/>
+    <property name="color" value="green"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="78" name="Stone" type="stone" x="339" y="-209" width="32" height="32">
+   <properties>
+    <property name="class" value="stone"/>
+    <property name="color" value="default"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="79" name="Stone" type="stone" x="593" y="-250" width="32" height="32">
+   <properties>
+    <property name="class" value="stone"/>
+    <property name="color" value="red"/>
+   </properties>
+   <ellipse/>
+  </object>
  </objectgroup>
  <objectgroup id="8" name="Bricks">
   <object id="33" name="Red" type="red" x="384" y="336" width="32" height="32">
@@ -166,15 +217,30 @@
     <property name="color" value="blue"/>
    </properties>
   </object>
+  <object id="71" name="Green" type="green" x="434.348" y="-221.735" width="64" height="32">
+   <properties>
+    <property name="color" value="green"/>
+   </properties>
+  </object>
+  <object id="72" name="Green" type="green" x="342.21" y="-169.896" width="32" height="64">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="73" name="Green" type="green" x="539.845" y="-205.535" width="96" height="96">
+   <properties>
+    <property name="color" value="blue"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="9" name="Start">
-  <object id="45" name="Start" x="66.4422" y="382.901">
+  <object id="45" name="Start" x="68.1775" y="397.771">
    <point/>
   </object>
  </objectgroup>
- <layer id="1" name="Tiles" width="60" height="30">
+ <layer id="1" name="Front" width="60" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAE+1XQQ6DMAzrf9geAIP7XrTzTryb9IBgQdWamqiCGimHlsaOnSqCIYTvwKAHvAOXvwMBeEpmAECXTLXUkQTJeGHhWc9mwJqPWOowg+8SLDzUizj9m2vxHWG18LC/iNPl/S3pEZJznsoNCanHO7c1vd5+Ep//Rne/A28ZGi2Fx4wkJh3wcuAjwDq8uIh7dKCTredx+7Qd3du4rvn0Qv6qWYAzt+6n1qvfo+XU7u+qbxYhMVJrVGdu/kMOesYk+OOO49/as5Y4N+T7sZmIc4N67+tBi/1dAEbU0yIgHAAA
+   H4sIAAAAAAAACu1X2w7CIAzFRJ+c8e7DvsH//zuNbQzJ0jAsnFVx65I+AOvlnMNG6VYhdAuy4M9iGOhpX9daKUkPcqjNlfN7Kgu5EFbkORX6o/nGatXWgebX5ol1ovkc75sBLe8o39o8UZdz4gy80tyt8LuQOmvr+DZeWSePmYM1GYL7n/AOta/FrcXLuZA+K6UXOlejdwletD4r/xLcc8Ar93luH27A/52VZh7XGbBgINd7z3HNgkOP6QxYMbCn8+gwsKOfT1ZUJ+Nuie+dIeet6cv9HnoXSxLZyKTUU+KV62jZv9Y34ruTrmxjYxSn1j/Xe0+xxv0732VjrE/jKXLmYmh58fecAWegPQZeB455hyAcAAA=
   </data>
  </layer>
 </map>

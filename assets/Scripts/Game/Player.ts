@@ -229,7 +229,7 @@ export class Player extends Component {
                 break
             case ColliderType.STONE:
                 if (isOnTop) this.standingOn.add(other.uuid)
-                if (isOnTop) {
+                if (isAbove) {
                     this.standingOn.add(other.uuid)
                 } else {
                     // check if the stone has velocity

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="16" height="35" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="40">
+ <tileset firstgid="1" source="amproject.tsx"/>
+ <tileset firstgid="50" source="dragonheart.tsx"/>
+ <objectgroup id="8" name="Grounds">
+  <object id="27" name="Floor" x="25.5" y="529.5" width="219" height="7"/>
+  <object id="28" name="Right" x="226" y="25" width="6.5" height="519.5"/>
+  <object id="29" name="P1" x="192.25" y="336.25" width="42.5" height="31.25"/>
+  <object id="30" name="Left" x="21.3333" y="10.6667" width="8.66667" height="527.333"/>
+  <object id="32" name="Ceiling" x="25.3333" y="22.6667" width="212.667" height="8.33333"/>
+  <object id="33" x="26.7273" y="208.364" width="68.5455" height="31.2727"/>
+  <object id="35" x="17.6364" y="236.182" width="45.8182" height="19.6364"/>
+  <object id="36" x="128" y="464" width="32" height="32"/>
+  <object id="37" x="64" y="464" width="32" height="32"/>
+  <object id="38" x="64" y="400" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="7" name="OneWays"/>
+ <objectgroup id="2" name="Start">
+  <object id="25" name="Start" x="195.614" y="523.364">
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="4" name="Spikes"/>
+ <objectgroup id="5" name="Objects">
+  <object id="26" name="NextStage" x="48.5" y="198">
+   <properties>
+    <property name="class" value="scenePortal"/>
+    <property name="scene" value="LevelGreenZoneM4"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="6" name="Bricks">
+  <object id="14" name="R" x="96" y="496.25" width="32" height="32">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="15" name="R" x="64" y="432" width="32" height="32">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="16" name="G" x="128" y="432" width="32" height="32">
+   <properties>
+    <property name="color" value="green"/>
+   </properties>
+  </object>
+  <object id="17" name="R" x="128" y="368" width="32" height="32">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="18" name="R" x="64" y="304" width="32" height="32">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="19" name="R" x="128" y="272" width="32" height="32">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="20" name="R" x="192" y="208" width="32" height="32">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="21" name="R" x="96" y="208" width="32" height="32">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="22" name="G" x="128" y="304" width="32" height="32">
+   <properties>
+    <property name="color" value="green"/>
+   </properties>
+  </object>
+  <object id="23" name="G" x="160" y="240" width="32" height="32">
+   <properties>
+    <property name="color" value="green"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer id="1" name="Tiles" width="16" height="35">
+  <data encoding="csv">
+7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,
+7,23,30,30,30,30,30,30,30,30,30,30,30,30,23,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,23,16,16,16,17,0,0,0,0,0,0,0,0,22,7,
+7,23,23,23,30,31,0,0,0,0,0,0,0,0,22,7,
+7,23,30,31,0,0,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,0,0,0,0,0,0,0,0,15,16,23,7,
+7,24,0,0,0,0,0,0,0,0,0,0,29,30,23,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,15,17,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,29,31,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,15,17,0,0,15,17,0,0,0,0,22,7,
+7,24,0,0,29,31,0,0,29,31,0,0,0,0,22,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,
+7,23,16,16,16,16,16,16,16,16,16,16,16,16,23,7,
+7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
+</data>
+ </layer>
+</map>
