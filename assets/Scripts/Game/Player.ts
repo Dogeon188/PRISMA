@@ -8,6 +8,7 @@ import {
     IPhysics2DContact,
     Input,
     KeyCode,
+    Node,
     Quat,
     RigidBody2D,
     Sprite,
@@ -31,6 +32,7 @@ import {
     getCorrectNormal,
 } from "./Physics/PhysicsFixer"
 import { Movement } from "./Physics/PlayerMovement"
+import { PlayPauseButton } from "../PlayPauseButton"
 
 const { ccclass, property, requireComponent } = _decorator
 
@@ -85,6 +87,9 @@ export class Player extends Component {
 
     @property({ type: Sprite, tooltip: "Reference to sprite node" })
     private sprite: Sprite = null
+
+    @property(Node)
+    private pausePlayButton: Node = null
 
     //#endregion
 
@@ -368,7 +373,7 @@ export class Player extends Component {
         [1]: Quat.fromEuler(new Quat(), 0, 0, -90),
         [-1]: Quat.fromEuler(new Quat(), 0, 0, 90),
     }
-    private hurt(): void {
+    public hurt(): void {
         if (this.dead) return
         // TODO play animation & sound
         this.dead = true
@@ -404,6 +409,9 @@ export class Player extends Component {
     //#region Input
 
     private onKeyDown(event: EventKeyboard): void {
+        if (!this.pausePlayButton.getComponent(PlayPauseButton).isPlay) {
+            return
+        }
         switch (event.keyCode) {
             case Settings.keybinds.jump:
                 this.movement.up = true
@@ -430,6 +438,9 @@ export class Player extends Component {
     }
 
     onKeyUp(event: EventKeyboard): void {
+        // if (!this.pausePlayButton.getComponent(PlayPauseButton).isPlay) {
+        //     return
+        // }
         switch (event.keyCode) {
             case Settings.keybinds.jump:
                 this.movement.up = false
