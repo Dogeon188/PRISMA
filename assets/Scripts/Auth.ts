@@ -23,8 +23,8 @@ export class Auth {
         },
         volumeSFX: 1,
         volumeBGM: 1,
-        stage: 0,
-        savepoint: 0,
+        stage: 1,
+        savepoint: 1,
     }
 
     public static get data(): UserData {
