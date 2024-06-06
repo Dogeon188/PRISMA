@@ -1,21 +1,14 @@
 import {
     Canvas,
     Component,
-    ImageAsset,
     Label,
-    Layers,
     Node,
-    Sprite,
-    SpriteFrame,
-    Texture2D,
+    UIOpacity,
     UITransform,
     Vec3,
     _decorator,
-    director,
-    easing,
     log,
     tween,
-    UIOpacity,
 } from "cc"
 
 const { ccclass, property } = _decorator
@@ -41,7 +34,6 @@ export class Toast extends Component {
         this.toastUiTransform = this.toastText.getComponent(UITransform)
         this.backgroundUiTransform = this.background.getComponent(UITransform)
         this._lineHeight = this.toastText.getComponent(Label).lineHeight
-        this._textSize = this.toastText.getComponent(Label).fontSize
         this.node.active = false
     }
     /**
@@ -67,8 +59,6 @@ export class Toast extends Component {
     setText(text: string): void {
         if (this.toastText == null) {
             this.toastText = this.node.getChildByName("ToastText")
-            log("toastText is null")
-            log(this.toastText)
         }
         this.toastText.getComponent(Label).string = text
     }
@@ -76,38 +66,37 @@ export class Toast extends Component {
      * show the toast with easing effect
      * @param duration the duration of the toast
      */
-    show(duration: number = 2): void {
+    show(duration: number = 2, then?: () => void): void {
         this.setOverFlow()
-        this.node.setPosition(-60, 300)
+        this.node.setPosition(0, 400)
         this._duration = duration
         this.node.active = true
         const uiOpacity = this.node.getComponent(UIOpacity)
-        log("showing toast")
-        tween(uiOpacity)
-            .to(0.5, {opacity: 255 }, {easing: "sineOut"})
-            .delay(1)
+        uiOpacity.opacity = 255
+        tween(this.node)
+            .to(0.5, { position: new Vec3(0, 300) }, { easing: "elasticOut" })
+            .delay(this._duration)
             .call(() => {
-                log("hiding toast")
                 tween(uiOpacity)
-                    .to(0.5, {opacity: 0}, {easing: "sineIn"})
+                    .to(0.5, { opacity: 0 }, { easing: "sineIn" })
                     .call(() => {
                         this.node.active = false
+                        if (then) then()
                     })
                     .start()
             })
             .start()
-        log("toast shown")
     }
 
     private setOverFlow(): void {
-        const maxWidth = 350
+        // const maxWidth = 350
         const text = this.toastText.getComponent(Label).string
-        const textWidth =
-            this.toastText.getComponent(Label).string.length * this._textSize
-        if (textWidth > maxWidth) {
-            const textCount = Math.floor(maxWidth / this._textSize)
-            const truncatedText = text.slice(0, textCount - 3) + "..."
-            this.toastText.getComponent(Label).string = truncatedText
-        }
+        // const textWidth =
+        //     this.toastText.getComponent(Label).string.length * this._textSize
+        // if (textWidth > maxWidth) {
+        //     const textCount = Math.floor(maxWidth / this._textSize)
+        //     const truncatedText = text.slice(0, textCount - 3) + "..."
+        //     }
+        this.toastText.getComponent(Label).string = text
     }
 }

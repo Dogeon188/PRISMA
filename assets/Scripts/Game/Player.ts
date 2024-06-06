@@ -20,6 +20,7 @@ import {
     tween,
 } from "cc"
 import { BlackMaskManager } from "../Interface/BlackMaskManager"
+import { PlayPauseButton } from "../PlayPauseButton"
 import { Settings } from "../Scene/Settings"
 import { Box } from "./Entities/Box"
 import { Entity } from "./Entities/Entity"
@@ -32,7 +33,6 @@ import {
     getCorrectNormal,
 } from "./Physics/PhysicsFixer"
 import { Movement } from "./Physics/PlayerMovement"
-import { PlayPauseButton } from "../PlayPauseButton"
 
 const { ccclass, property, requireComponent } = _decorator
 
@@ -82,6 +82,7 @@ export class Player extends Component {
     private spawnPoint: Vec3
 
     private dead: boolean = false
+    private respawning: boolean = false
 
     private movement: Movement = new Movement()
 
@@ -328,18 +329,40 @@ export class Player extends Component {
     //#region Animation
 
     private updateAnimation(dt: number): void {
-        if (this.dead) {
-            // this.changeAnimation("Hurt")
+        if (this.respawning) {
+            this.changeAnimation("PlayerRespawn")
             return
         }
+        if (this.dead) {
+            this.changeAnimation("PlayerDie")
+            return
+        }
+
         if (this.movement.left) {
             this.sprite.node.setScale(-1, 1)
-            // this.changeAnimation("Walk")
         } else if (this.movement.right) {
             this.sprite.node.setScale(1, 1)
-            // this.changeAnimation("Walk")
-        } else if (this.movement.static) {
-            // this.changeAnimation("Idle")
+        }
+
+        if (!this.onGround) {
+            this.changeAnimation("PlayerJump")
+            return
+        }
+
+        if (this.isMovingBox && !this.movement.static) {
+            this.changeAnimation("PlayerPush")
+            return
+        }
+
+        if (
+            this.movement.static ||
+            this.rigidBody.linearVelocity.length() < 1
+        ) {
+            this.changeAnimation("PlayerIdle")
+        } else if (this.movement.left || this.movement.right) {
+            this.changeAnimation("PlayerWalk")
+        } else {
+            this.changeAnimation("PlayerIdle")
         }
     }
 
@@ -377,21 +400,21 @@ export class Player extends Component {
         if (this.dead) return
         // TODO play animation & sound
         this.dead = true
-        tween(this.node)
-            .to(0.5, {
-                rotation:
-                    Player.HURT_QUATS[this.sprite.node.scale.x > 0 ? 1 : -1],
-            })
-            .delay(2)
-            .call(() => BlackMaskManager.fadeIn(2, () => this.respawn()))
-            .start()
+        this.scheduleOnce(
+            () => BlackMaskManager.fadeIn(2, () => this.respawn()),
+            2,
+        )
     }
 
     private respawn(): void {
+        this.respawning = true
         this.node.rotation = Quat.IDENTITY
         this.node.setPosition(this.spawnPoint)
         this.rigidBody.applyLinearImpulseToCenter(new Vec2(0, 0), true) // wake up rigid body, update collisions
-        BlackMaskManager.fadeOut(2, () => (this.dead = false))
+        BlackMaskManager.fadeOut(2, () => {
+            this.dead = false
+            this.respawning = false
+        })
     }
 
     public startMovingBox(box: Box) {
