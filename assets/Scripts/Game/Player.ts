@@ -20,6 +20,7 @@ import {
     tween,
 } from "cc"
 import { BlackMaskManager } from "../Interface/BlackMaskManager"
+import { PlayPauseButton } from "../PlayPauseButton"
 import { Settings } from "../Scene/Settings"
 import { Box } from "./Entities/Box"
 import { Entity } from "./Entities/Entity"
@@ -32,7 +33,6 @@ import {
     getCorrectNormal,
 } from "./Physics/PhysicsFixer"
 import { Movement } from "./Physics/PlayerMovement"
-import { PlayPauseButton } from "../PlayPauseButton"
 
 const { ccclass, property, requireComponent } = _decorator
 
@@ -334,12 +334,12 @@ export class Player extends Component {
         }
         if (this.movement.left) {
             this.sprite.node.setScale(-1, 1)
-            // this.changeAnimation("Walk")
+            this.changeAnimation("PlayerWalk")
         } else if (this.movement.right) {
             this.sprite.node.setScale(1, 1)
-            // this.changeAnimation("Walk")
+            this.changeAnimation("PlayerWalk")
         } else if (this.movement.static) {
-            // this.changeAnimation("Idle")
+            this.changeAnimation("PlayerIdle")
         }
     }
 
