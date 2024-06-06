@@ -135,18 +135,23 @@ export class Lamp extends Entity {
     }
 
     public canInteract(player: Player, normal: math.Vec2): boolean {
+        return true
         return (
             this.color !== null ||
             player.node.getComponent(PlayerHalo).color !== null
         )
     }
 
-    public onBeginInteract(player: Player): void {
-        const target_color = this.color
-        GameManager.inst.interactPrompt.hidePrompt()
+    public onCollide(other: Node): void {
+        const player = other.getComponent(Player)
         this.scheduleOnce(() => {
             if (this.canInteract(player, null)) this.showPrompt()
         }, 0)
+    }
+
+    public onBeginInteract(player: Player): void {
+        const target_color = this.color
+        GameManager.inst.interactPrompt.hidePrompt()
         player.collidedHaloNodeSet.forEach((node) => {
             // check if node position is in the lamp's halo
             // dont change readonly vec3
@@ -161,7 +166,9 @@ export class Lamp extends Entity {
         })
         const ret = this.changeColor(player)
         player.node.getComponent(PlayerHalo).interactWithLamp(target_color)
-        if (ret) this.showPrompt()
+        if (ret){
+            this.showPrompt()
+        } 
     }
 
     private onBeginContactHalo(
