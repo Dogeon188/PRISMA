@@ -24,7 +24,7 @@ const { ccclass, property } = _decorator
 @ccclass("Box")
 export class Box extends Entity {
     @property({ type: ColliderGroup })
-    private color: number = ColliderGroup.RED
+    public color: number = ColliderGroup.RED
 
     private bindedTo: Node | null = null
     private bindOffsetX: number = 0
