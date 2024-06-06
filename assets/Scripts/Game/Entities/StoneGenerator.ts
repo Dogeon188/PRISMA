@@ -1,4 +1,4 @@
-import { _decorator, Component, instantiate, Prefab, Size, Vec2 } from "cc"
+import { _decorator, Component, instantiate, Prefab, Size, Vec2, Node } from "cc"
 import { ColorStringToGroupMap } from "../Physics/ColliderManager"
 import { Stone } from "./Stone"
 const { ccclass, property } = _decorator
@@ -10,12 +10,17 @@ export class StoneGenerator extends Component {
     private stoneSize: Size = new Size(0, 0)
     private pattern: number[] = []
     private patternIndex = 0
+    private stonePool: Node[] = []
 
     @property({ type: Prefab })
     stone: Prefab = null
 
     protected start() {
         this.timePassed = 0
+        for (let i = 0; i < 20; i++) {
+            const stone = instantiate(this.stone)
+            this.stonePool.push(stone)
+        }
     }
 
     public initialize(
@@ -48,15 +53,18 @@ export class StoneGenerator extends Component {
 
     private createStone() {
         // create a stone using the prefab called stone
-        const stoneNode = instantiate(this.stone)
-        stoneNode
-            .getComponent(Stone)
-            .initialize(
+        const stoneNode = this.stonePool.pop() 
+            
+        stoneNode.getComponent(Stone).initialize(
                 this.pattern[this.patternIndex++ % this.pattern.length],
                 new Vec2(0, 0),
                 this.stoneSize,
             )
+        stoneNode.parent = this.node
+    }
 
-        this.node.addChild(stoneNode)
+    recycleStone(stone: Node) {
+        this.stonePool.push(stone)
+        this.node.removeChild(stone)
     }
 }
