@@ -1,0 +1,21 @@
+{
+  "$schema": "./_schema.json",
+  "once": true,
+  "entries": [
+    {
+        "text": "Hello, world!",
+        "duration": 2,
+        "postDelay": 2
+    },
+    {
+        "text": "This is a test of the emergency broadcast system.",
+        "duration": 2,
+        "postDelay": 2
+    },
+    {
+        "text": "This is only a test.",
+        "duration": 2,
+        "postDelay": 2
+    }
+  ]
+}

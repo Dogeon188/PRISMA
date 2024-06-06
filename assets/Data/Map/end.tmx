@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="37">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="39">
  <tileset firstgid="1" source="amproject.tsx"/>
  <layer id="1" name="Tiles" width="60" height="30">
   <data encoding="base64" compression="gzip">
@@ -36,6 +36,13 @@
     <property name="angle" type="float" value="180"/>
     <property name="class" value="lamp"/>
     <property name="radius" type="float" value="150"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="38" name="EndDialog" x="199.686" y="718.553">
+   <properties>
+    <property name="class" value="dialog"/>
+    <property name="dialog" value="Dialog/end"/>
    </properties>
    <point/>
   </object>

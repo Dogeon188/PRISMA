@@ -81,9 +81,6 @@ export class Player extends Component {
 
     private spawnPoint: Vec3
 
-    private dead: boolean = false
-    private respawning: boolean = false
-
     private movement: Movement = new Movement()
 
     @property({ type: Sprite, tooltip: "Reference to sprite node" })
@@ -99,6 +96,10 @@ export class Player extends Component {
     private get onGround(): boolean {
         return this.standingOn.size > 0
     }
+
+    private dead: boolean = false
+    private respawning: boolean = false
+    public canAct: boolean = true
 
     /** Name of current animation being played */
     private currentAnimation: string
@@ -444,7 +445,8 @@ export class Player extends Component {
     private onKeyDown(event: EventKeyboard): void {
         if (
             !this.pausePlayButton.getComponent(PlayPauseButton).isPlay ||
-            this.dead
+            this.dead ||
+            !this.canAct
         ) {
             return
         }
@@ -474,9 +476,6 @@ export class Player extends Component {
     }
 
     onKeyUp(event: EventKeyboard): void {
-        // if (!this.pausePlayButton.getComponent(PlayPauseButton).isPlay) {
-        //     return
-        // }
         switch (event.keyCode) {
             case Settings.keybinds.jump:
                 this.movement.up = false
