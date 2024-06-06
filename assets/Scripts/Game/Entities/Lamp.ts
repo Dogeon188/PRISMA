@@ -131,6 +131,7 @@ export class Lamp extends Entity {
             entity.onLeaveLampHalo(this)
             entity.onEnterLampHalo(this)
         })
+        this.node.emit("changeColor", this.uuid, this.color)
         return true
     }
 
