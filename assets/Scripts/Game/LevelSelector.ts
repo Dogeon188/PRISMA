@@ -26,6 +26,7 @@ export class LevelSelector {
         Blue1: "BlueZoneM1",
         Blue2: "BlueZoneM2",
         Blue3: "BlueZoneM3",
+        End: "End",
     }
 
     gotoLevel(level: string) {
