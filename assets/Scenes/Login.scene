@@ -196,7 +196,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 553.4883720930233,
+    "_orthoHeight": 360,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -506,7 +506,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 140.39992221566135,
+      "width": 140.3999715776586,
       "height": 75.6
     }
   },
@@ -1148,7 +1148,7 @@
     "_string": "EMAIL",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 43,
+    "_actualFontSize": 44.66666666666667,
     "_fontSize": 40,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -1784,7 +1784,7 @@
     "_string": "PASSWORD",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 43,
+    "_actualFontSize": 44.66666666666667,
     "_fontSize": 40,
     "_fontFamily": "Arial",
     "_lineHeight": 40,
@@ -2091,7 +2091,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 98.93996127816133,
+      "width": 98.93997420125933,
       "height": 75.6
     }
   },
@@ -2343,7 +2343,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 140.69994549418604,
+      "width": 140.6999502609025,
       "height": 75.6
     }
   },

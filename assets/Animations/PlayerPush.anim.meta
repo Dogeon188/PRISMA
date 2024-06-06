@@ -2,12 +2,12 @@
   "ver": "2.0.3",
   "importer": "animation-clip",
   "imported": true,
-  "uuid": "10b04e60-0d28-4d2f-9f36-7248d3225409",
+  "uuid": "3bf72e2f-b05b-43d4-b693-3187c46b540c",
   "files": [
     ".cconb"
   ],
   "subMetas": {},
   "userData": {
-    "name": "PlayerIdle"
+    "name": "PlayerPush"
   }
 }

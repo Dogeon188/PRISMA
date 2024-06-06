@@ -2,12 +2,12 @@
   "ver": "2.0.3",
   "importer": "animation-clip",
   "imported": true,
-  "uuid": "10b04e60-0d28-4d2f-9f36-7248d3225409",
+  "uuid": "8cdc4b9f-afab-48af-8fa5-82e2ff2de0e5",
   "files": [
     ".cconb"
   ],
   "subMetas": {},
   "userData": {
-    "name": "PlayerIdle"
+    "name": "PlayerJump"
   }
 }

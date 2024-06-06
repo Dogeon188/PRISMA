@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.AnimationClip",
-    "_name": "PlayerIdle",
+    "_name": "PlayerJump",
     "_objFlags": 0,
     "__editorExtras__": {
       "embeddedPlayerGroups": []
@@ -68,7 +68,7 @@
     ],
     "_values": [
       {
-        "__uuid__": "cf2b8c24-2ee8-4247-9985-e564e4a8d18c@8bfd7",
+        "__uuid__": "cf2b8c24-2ee8-4247-9985-e564e4a8d18c@def00",
         "__expectedType__": "cc.SpriteFrame"
       }
     ]
@@ -113,35 +113,20 @@
   {
     "__type__": "cc.RealCurve",
     "_times": [
-      0,
-      0.016666666666666666
+      0
     ],
     "_values": [
       {
         "__type__": "cc.RealKeyframeValue",
         "interpolationMode": 0,
         "tangentWeightMode": 0,
-        "value": 7,
+        "value": 18,
         "rightTangent": 0,
         "rightTangentWeight": 1,
         "leftTangent": 0,
         "leftTangentWeight": 1,
         "easingMethod": 0,
         "__editorExtras__": null
-      },
-      {
-        "__type__": "cc.RealKeyframeValue",
-        "interpolationMode": 0,
-        "tangentWeightMode": 0,
-        "value": 8,
-        "rightTangent": 0,
-        "rightTangentWeight": 1,
-        "leftTangent": 0,
-        "leftTangentWeight": 1,
-        "easingMethod": 0,
-        "__editorExtras__": {
-          "tangentMode": 0
-        }
       }
     ],
     "preExtrapolation": 1,
@@ -156,22 +141,9 @@
   {
     "__type__": "cc.RealCurve",
     "_times": [
-      0,
-      0.016666666666666666
+      0
     ],
     "_values": [
-      {
-        "__type__": "cc.RealKeyframeValue",
-        "interpolationMode": 0,
-        "tangentWeightMode": 0,
-        "value": 22,
-        "rightTangent": 0,
-        "rightTangentWeight": 1,
-        "leftTangent": 0,
-        "leftTangentWeight": 1,
-        "easingMethod": 0,
-        "__editorExtras__": null
-      },
       {
         "__type__": "cc.RealKeyframeValue",
         "interpolationMode": 0,
@@ -182,9 +154,7 @@
         "leftTangent": 0,
         "leftTangentWeight": 1,
         "easingMethod": 0,
-        "__editorExtras__": {
-          "tangentMode": 0
-        }
+        "__editorExtras__": null
       }
     ],
     "preExtrapolation": 1,
