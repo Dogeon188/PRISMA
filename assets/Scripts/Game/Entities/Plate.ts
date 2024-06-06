@@ -11,7 +11,7 @@ import {
     Vec2,
     Vec3,
 } from "cc"
-import { ColliderType } from "../Physics/ColliderManager"
+import { ColliderGroup, ColliderType } from "../Physics/ColliderManager"
 import { Entity } from "./Entity"
 const { ccclass, property } = _decorator
 
@@ -34,15 +34,13 @@ export class Plate extends Entity {
         const collider = this.getComponent(Collider2D)!
         collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this)
         collider.on(Contact2DType.END_CONTACT, this.onEndContact, this)
+        collider.group = ColliderGroup.ACTIVE
     }
 
     public initialize(position: Vec2, size: Size): void {
         // set position
         // need to shift the position by half of the size
-        this.node.position.set(
-            position.x + size.x / 2,
-            position.y - size.y / 2,
-        )
+        this.node.position.set(position.x + size.x / 2, position.y - size.y / 2)
 
         // set size
         this.node.getComponent(UITransform).setContentSize(size)
@@ -102,8 +100,6 @@ export class Plate extends Entity {
 
     private release(): void {
         this.connectedEntities.forEach((entity) => entity.onReleased())
-        tween(this.sprite.node)
-            .to(1, { position: Vec3.ZERO })
-            .start()
+        tween(this.sprite.node).to(1, { position: Vec3.ZERO }).start()
     }
 }
