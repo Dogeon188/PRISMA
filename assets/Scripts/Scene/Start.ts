@@ -41,6 +41,23 @@ export class Start extends Component {
         switch (Auth.data.stage) {
             case -1: // debug
                 SceneManager.loadScene("LevelTest")
+                break
+            case 1:
+                SceneManager.loadScene("LevelLobby")
+                break
+            case 2:
+                SceneManager.loadScene("LevelRedZone")
+                break
+            case 3:
+                if(Auth.data.savepoint < 1 || Auth.data.savepoint > 4)
+                    Auth.data.savepoint = 1
+                SceneManager.loadScene(`LevelGreenZoneM${Auth.data.savepoint}`)
+                break
+            case 4:
+                if(Auth.data.savepoint < 1 || Auth.data.savepoint > 3)
+                    Auth.data.savepoint = 1
+                SceneManager.loadScene(`LevelBlueZoneM${Auth.data.savepoint}`)
+                break
             default: // normal
                 SceneManager.loadScene("LevelLobby")
                 break

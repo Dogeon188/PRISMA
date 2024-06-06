@@ -2443,10 +2443,12 @@
   },
   {
     "__type__": "cc.ClickEvent",
-    "target": null,
+    "target": {
+      "__id__": 91
+    },
     "component": "",
-    "_componentId": "",
-    "handler": "",
+    "_componentId": "7f96fiMc09PErWWZqiBvANb",
+    "handler": "pausePlayButton",
     "customEventData": ""
   },
   {
@@ -2892,7 +2894,7 @@
     },
     "component": "",
     "_componentId": "7f96fiMc09PErWWZqiBvANb",
-    "handler": "resumeGame",
+    "handler": "pausePlayButton",
     "customEventData": ""
   },
   {

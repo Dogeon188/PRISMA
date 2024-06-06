@@ -7,8 +7,12 @@ import {
     IPhysics2DContact,
     Size,
     Vec2,
+    log,
 } from "cc"
-import { ColliderType } from "../Physics/ColliderManager"
+
+import { ColliderGroup, ColliderType } from "../Physics/ColliderManager"
+import { StoneGenerator } from "./StoneGenerator"
+
 const { ccclass, property } = _decorator
 
 @ccclass("StoneDestroyer")
@@ -38,7 +42,12 @@ export class StoneDestroyer extends Component {
         // destroy the stone when it collides with the ground
         if (other.tag === ColliderType.STONE) {
             this.scheduleOnce(() => {
-                other.node.destroy()
+                const stoneGen = other.node.parent.getComponent(StoneGenerator)
+                if (stoneGen) {
+                    stoneGen.recycleStone(other.node)
+                }else{
+                    other.node.destroy()
+                }
             }, 0.1)
         }
     }
