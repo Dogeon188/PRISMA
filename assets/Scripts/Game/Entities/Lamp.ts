@@ -13,6 +13,7 @@ import {
     tween,
     UITransform,
     Vec2,
+    AudioClip,
 } from "cc"
 import { Settings } from "../../Scene/Settings"
 import { GameManager } from "../GameManager"
@@ -20,6 +21,7 @@ import { ColliderGroup, ColorMap } from "../Physics/ColliderManager"
 import { Player } from "../Player"
 import { Entity } from "./Entity"
 import { PlayerHalo } from "./PlayerHalo"
+import { AudioManager } from "../../AudioManager"
 const { ccclass, property } = _decorator
 
 @ccclass("Lamp")
@@ -33,6 +35,9 @@ export class Lamp extends Entity {
 
     @property
     private haloRadius: number = 200
+
+    @property(AudioClip)
+    private gemSound: AudioClip = null
 
     private static readonly COLOR_MAP = {
         [ColliderGroup.RED]: Color.RED,
@@ -93,6 +98,7 @@ export class Lamp extends Entity {
     }
 
     private changeColor(player: Player): boolean {
+        AudioManager.inst.playOneShot(this.gemSound)
         if (this.color === null) {
             if (player.node.getComponent(PlayerHalo).color === null) {
                 GameManager.inst.interactPrompt.showPrompt(
@@ -131,6 +137,7 @@ export class Lamp extends Entity {
             entity.onLeaveLampHalo(this)
             entity.onEnterLampHalo(this)
         })
+        this.node.emit("changeColor", this.uuid, this.color)
         return true
     }
 

@@ -84,6 +84,17 @@ export class GameManager extends Component {
     @property({ type: TrackCamera, group: "References" })
     camera: TrackCamera = null
 
+    private _canAct: boolean = true
+
+    public get canAct(): boolean {
+        return this._canAct
+    }
+
+    public set canAct(value: boolean) {
+        this._canAct = value
+        this.player.canAct = value
+    }
+
     //#endregion
 
     //#region Callbacks
@@ -101,10 +112,12 @@ export class GameManager extends Component {
         }
     }
 
-    backToStart(): void {
+    public backToStart(): void {
         AudioManager.inst.fadeOutBGM(1)
         SceneManager.loadScene("Start")
     }
+
+    
 
     //#endregion
 }

@@ -1,0 +1,50 @@
+{
+  "$schema": "./_schema.json",
+  "once": true,
+  "entries": [
+    {
+      "text": "All the works... All the journeys...",
+      "duration": 3,
+      "postDelay": 3
+    },
+    {
+      "text": "I'm here, witnessing this miracle!",
+      "duration": 3,
+      "postDelay": 3
+    },
+    {
+      "text": "Look at these colors! These beautiful colors!",
+      "duration": 3,
+      "postDelay": 3
+    },
+    {
+      "text": "My dream, it's coming true!",
+      "duration": 2,
+      "postDelay": 4
+    },
+    { "text": " ", "duration": 0, "postDelay": 1 },
+    {
+      "text": "Activation countdown. 3...",
+      "duration": 0,
+      "postDelay": 1
+    },
+    { "text": " ", "duration": 0, "postDelay": 1 },
+    {
+      "text": "Activation countdown. 2...",
+      "duration": 0,
+      "postDelay": 1
+    },
+    { "text": " ", "duration": 0, "postDelay": 1 },
+    {
+      "text": "Activation countdown. 1...",
+      "duration": 0,
+      "postDelay": 1
+    },
+    { "text": " ", "duration": 3 },
+    {
+      "text": "PRISMA activated.",
+      "duration": 6,
+      "postDelay": 7
+    }
+  ]
+}
