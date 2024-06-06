@@ -419,7 +419,10 @@ export class Player extends Component {
     //#region Input
 
     private onKeyDown(event: EventKeyboard): void {
-        if (!this.pausePlayButton.getComponent(PlayPauseButton).isPlay) {
+        if (
+            !this.pausePlayButton.getComponent(PlayPauseButton).isPlay ||
+            this.dead
+        ) {
             return
         }
         switch (event.keyCode) {
