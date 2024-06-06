@@ -85,9 +85,6 @@ export class GameManager extends Component {
     @property(Player)
     player: Player = null
 
-    @property({ type: Node})
-    background: Node = null
-    
     @property({ type: TrackCamera, group: "References" })
     camera: TrackCamera = null
 
@@ -99,7 +96,6 @@ export class GameManager extends Component {
         AudioManager.inst.fadeInBGM(this.bgm, 1)
         const startObject = this.startObjectGroup.getObjects()[0]
         this.player.initialize(this, new Vec2(startObject.x, startObject.y))
-        this.background.setSiblingIndex(0);
         this.camera.focusOn(this.player.node)
     }
 
