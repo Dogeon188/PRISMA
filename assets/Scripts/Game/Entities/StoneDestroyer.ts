@@ -23,7 +23,6 @@ export class StoneDestroyer extends Component {
     ): void {
         // destroy the stone when it collides with the ground
         if (other.tag === ColliderType.STONE) {
-            // console.log(other.node)
             this.scheduleOnce(() => {
                 other.node.destroy()
             }, 0.1)

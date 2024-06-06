@@ -1,5 +1,6 @@
 import {
     _decorator,
+    Collider2D,
     Color,
     Component,
     director,
@@ -8,13 +9,20 @@ import {
     input,
     Label,
     Node,
+    RigidBody2D,
     screen,
     Size,
     Sprite,
+    UITransform,
     Vec3,
 } from "cc"
-import { ColliderGroup } from "../Physics/ColliderManager"
+import {
+    ColliderGroup,
+    ColliderManager,
+    ColliderType,
+} from "../Physics/ColliderManager"
 import { Player } from "../Player"
+import { PlayPauseButton } from "../../PlayPauseButton"
 const { ccclass, property } = _decorator
 
 @ccclass("PlayerHalo")
@@ -27,6 +35,9 @@ export class PlayerHalo extends Component {
 
     @property(Node)
     private palette: Node = null
+
+    @property(Node)
+    private pausePlayButton: Node = null
 
     private RedSector: Node = null
     private GreenSector: Node = null
@@ -107,6 +118,28 @@ export class PlayerHalo extends Component {
         if (this.color === color || this.colorNumDict[color] === 0) {
             return
         }
+        var flag = false
+        this.node.getComponent(Player).collidedHaloNodeSet.forEach((node) => {
+            if (
+                node.getComponent(Collider2D).tag === ColliderType.BOX ||
+                node.getComponent(Collider2D).tag === ColliderType.BRICK ||
+                node.getComponent(Collider2D).tag === ColliderType.STONE
+            ) {
+                const dx = Math.abs(node.node.position.x - this.node.position.x)
+                const dy = Math.abs(node.node.position.y - this.node.position.y)
+                if (
+                    dx < 8 + node.node.getComponent(UITransform).width / 2 &&
+                    dy < 12 + node.node.getComponent(UITransform).height / 2
+                ) {
+                    flag = true
+                    return
+                }
+            }
+        })
+        if (flag) {
+            return
+        }
+
         this.color = color
         const target_color = PlayerHalo.COLOR_MAP[this.color]
         this.node.getChildByName("Halo").getComponent(Sprite).color = new Color(
@@ -119,9 +152,17 @@ export class PlayerHalo extends Component {
             node.onLeaveHalo(this, true)
             node.onEnterHalo(this)
         })
+        const player = this.node.getComponent(Player)
+        if (player.interactingWith) {
+            player.interactingWith.onEndInteract(this.node.getComponent(Player))
+            player.interactingWith = null
+        }
     }
 
     private onMouseDown(): void {
+        if (!this.pausePlayButton.getComponent(PlayPauseButton).isPlay) {
+            return
+        }
         for (const sprite of this.palette.getComponentsInChildren(Sprite)) {
             sprite.enabled = true
         }
@@ -134,6 +175,9 @@ export class PlayerHalo extends Component {
     }
 
     private onMouseUp(): void {
+        if (!this.pausePlayButton.getComponent(PlayPauseButton).isPlay) {
+            return
+        }
         for (const sprite of this.palette.getComponentsInChildren(Sprite)) {
             sprite.enabled = false
         }
@@ -151,6 +195,9 @@ export class PlayerHalo extends Component {
     }
 
     private onMouseMove(event: EventMouse): void {
+        if (!this.pausePlayButton.getComponent(PlayPauseButton).isPlay) {
+            return
+        }
         if (this.mouseDown) {
             const cameraSize = screen.resolution.lerp(
                 Size.ZERO,
