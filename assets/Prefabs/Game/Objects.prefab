@@ -136,6 +136,14 @@
       "__uuid__": "7a922cc9-a668-4187-a795-2bdb02e8b384",
       "__expectedType__": "cc.Prefab"
     },
+    "stoneGeneratorPrefab": {
+      "__uuid__": "884aad1d-f918-4582-962c-5fde116e60b1",
+      "__expectedType__": "cc.Prefab"
+    },
+    "stoneDestroyerPrefab": {
+      "__uuid__": "89f82b29-542c-4bbb-8f19-62b6d710dc44",
+      "__expectedType__": "cc.Prefab"
+    },
     "movingPlatformPrefab": {
       "__uuid__": "7d70b346-15b0-4afc-a092-7f6a772b714b",
       "__expectedType__": "cc.Prefab"
