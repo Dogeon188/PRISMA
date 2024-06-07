@@ -177,6 +177,16 @@ export class PlayerHalo extends Component {
         if (!this.pausePlayButton.getComponent(PlayPauseButton).isPlay) {
             return
         }
+        this.node.getChildByName("Halo").getComponent(Sprite).color = new Color(
+            0,
+            0,
+            0,
+            0,
+        )
+        this.node.getComponent(Player).collidedHaloNodeSet.forEach((node) => {
+            const tmp = node.node.getComponent(Sprite)
+            if (tmp) tmp.enabled = true
+        })
         for (const sprite of this.palette.getComponentsInChildren(Sprite)) {
             sprite.enabled = true
         }
@@ -184,7 +194,6 @@ export class PlayerHalo extends Component {
             label.enabled = true
         }
         this.mouseDown = true
-        // director.stopAnimation()
         director.pause()
     }
 
@@ -192,6 +201,15 @@ export class PlayerHalo extends Component {
         if (!this.pausePlayButton.getComponent(PlayPauseButton).isPlay) {
             return
         }
+        this.node.getComponent(Player).collidedHaloNodeSet.forEach((node) => {
+            if (
+                node.node.getComponent(Collider2D).group ===
+                ColliderGroup.INACTIVE
+            ) {
+                const tmp = node.node.getComponent(Sprite)
+                if (tmp) tmp.enabled = false
+            }
+        })
         for (const sprite of this.palette.getComponentsInChildren(Sprite)) {
             sprite.enabled = false
         }
@@ -204,7 +222,13 @@ export class PlayerHalo extends Component {
             this.changeColor(this.targetColor)
             this.targetColor = null
         }
-        // director.startAnimation()
+        const target_color = PlayerHalo.COLOR_MAP[this.color]
+        this.node.getChildByName("Halo").getComponent(Sprite).color = new Color(
+            target_color.r,
+            target_color.g,
+            target_color.b,
+            66,
+        )
         director.resume()
     }
 

@@ -15,8 +15,16 @@ import {
 } from "cc"
 import { Settings } from "../../Scene/Settings"
 import { GameManager } from "../GameManager"
-import { ColliderGroup, ColliderType, ColorMap } from "../Physics/ColliderManager"
-import { fuzzyEqual, getCorrectNormal, NormalDirection } from "../Physics/PhysicsFixer"
+import {
+    ColliderGroup,
+    ColliderType,
+    ColorMap,
+} from "../Physics/ColliderManager"
+import {
+    fuzzyEqual,
+    getCorrectNormal,
+    NormalDirection,
+} from "../Physics/PhysicsFixer"
 import { Player } from "../Player"
 import { Entity } from "./Entity"
 import { Lamp } from "./Lamp"
@@ -36,8 +44,6 @@ export class Box extends Entity {
     private static readonly GRAVITY: number = 5
 
     private collidedHaloSet: Set<string> = new Set()
-
-
 
     protected onLoad(): void {
         this.initialize(
