@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="100" height="86" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="173">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="100" height="86" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="217">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <tileset firstgid="253" source="amproject.tsx"/>
  <layer id="1" name="Tiles" width="100" height="86">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <objectgroup id="7" name="Grounds">
@@ -60,9 +60,6 @@
    <polygon points="0,0 -96,192 0,192"/>
   </object>
   <object id="143" name="L2" x="1136" y="784" width="32" height="144"/>
-  <object id="145" x="809.33" y="108">
-   <point/>
-  </object>
  </objectgroup>
  <objectgroup id="8" name="Spikes">
   <object id="112" name="L1" x="751.33" y="1322" width="226" height="6.33333"/>
@@ -99,16 +96,60 @@
   <object id="170" x="592" y="1215.94" width="16" height="6.9375"/>
   <object id="171" x="592" y="1232.06" width="16" height="6.8125"/>
   <object id="172" x="592" y="1247.94" width="16" height="7.0625" visible="0"/>
+  <object id="173" x="112" y="495.75" width="16" height="7.25"/>
+  <object id="174" x="112" y="512.25" width="16" height="6.5"/>
+  <object id="175" x="112" y="528" width="16" height="7"/>
+  <object id="176" x="112" y="544" width="16" height="6.75"/>
+  <object id="177" x="112" y="559.875" width="16" height="7"/>
+  <object id="178" x="112" y="575.875" width="16" height="7.125"/>
+  <object id="179" x="112" y="591.875" width="16" height="6.75"/>
+  <object id="180" x="112" y="608.125" width="16" height="6.875"/>
+  <object id="181" x="112" y="623.875" width="16" height="6.75"/>
+  <object id="182" x="144" y="784.091" width="16" height="6.90909"/>
+  <object id="183" x="144" y="800" width="16" height="6.81818"/>
+  <object id="184" x="144" y="816.091" width="16" height="6.81818"/>
+  <object id="185" x="144" y="832" width="16" height="7"/>
+  <object id="186" x="144" y="848" width="16" height="6.90909"/>
+  <object id="187" x="144" y="864.273" width="16" height="6.63636"/>
+  <object id="188" x="144" y="880.091" width="16" height="6.81818"/>
+  <object id="189" x="144" y="895.818" width="16" height="6.90909"/>
+  <object id="190" x="144" y="912.182" width="16" height="6.54545"/>
+  <object id="191" x="144" y="928" width="16" height="6.72727"/>
+  <object id="192" x="144" y="944.091" width="16" height="6.63636"/>
+  <object id="193" x="1328" y="783.875" width="16" height="6.875"/>
+  <object id="194" x="1328" y="800.125" width="16" height="6.625"/>
+  <object id="195" x="1328" y="816.125" width="16" height="6.875"/>
+  <object id="196" x="1328" y="832.125" width="16" height="6.625"/>
+  <object id="197" x="1328" y="848.5" width="16" height="6.125"/>
+  <object id="198" x="704" y="511.636" width="16" height="7.27273"/>
+  <object id="199" x="704" y="528.182" width="16" height="6.72727"/>
+  <object id="200" x="704" y="544.545" width="16" height="6.54545"/>
+  <object id="201" x="704" y="560.182" width="16" height="6.72727"/>
+  <object id="202" x="704" y="576" width="16" height="6.90909"/>
+  <object id="203" x="704" y="592" width="16" height="7.09091"/>
+  <object id="204" x="704" y="607.818" width="16" height="7.27273"/>
+  <object id="205" x="704" y="624" width="16" height="7.09091"/>
+  <object id="206" x="704" y="640.182" width="16" height="7.09091"/>
+  <object id="207" x="704" y="656" width="16" height="7.09091"/>
+  <object id="208" x="704" y="672.182" width="16" height="6.72727"/>
+  <object id="209" x="704" y="687.818" width="16" height="6.72727"/>
+  <object id="210" x="704" y="704" width="16" height="6.72727"/>
  </objectgroup>
  <objectgroup id="4" name="Objects">
-  <object id="114" name="MovingVerti" x="288" y="800" width="144" height="8">
+  <object id="114" name="MovingVerti" x="288" y="840" width="144" height="8">
    <properties>
     <property name="class" value="moving"/>
+    <property name="color" value="default"/>
+    <property name="duration" type="float" value="5"/>
+    <property name="moveTo" type="object" value="213"/>
    </properties>
   </object>
-  <object id="115" name="MovingHori" x="592" y="752" width="48" height="8">
+  <object id="115" name="MovingHori" x="480" y="752" width="80" height="8">
    <properties>
     <property name="class" value="moving"/>
+    <property name="color" value="default"/>
+    <property name="duration" type="float" value="8"/>
+    <property name="moveTo" type="object" value="214"/>
    </properties>
   </object>
   <object id="116" name="RedZone" x="120" y="1248">
@@ -118,7 +159,7 @@
    </properties>
    <point/>
   </object>
-  <object id="118" name="BlueZone" x="864" y="192">
+  <object id="118" name="BlueZone" x="80" y="448">
    <properties>
     <property name="class" value="scenePortal"/>
     <property name="scene" value="LevelBlueZoneM1"/>
@@ -132,7 +173,7 @@
    </properties>
    <point/>
   </object>
-  <object id="128" name="RedBox" x="1216" y="928" width="32" height="32">
+  <object id="128" name="RedBox" x="1216" y="930.5" width="32" height="29.5">
    <properties>
     <property name="class" value="box"/>
     <property name="color" value="red"/>
@@ -144,13 +185,13 @@
     <property name="color" value="blue"/>
    </properties>
   </object>
-  <object id="133" name="RedBox" x="1088" y="1232" width="32" height="32">
+  <object id="133" name="RedBox" x="1088" y="1232" width="32" height="32" visible="0">
    <properties>
     <property name="class" value="box"/>
     <property name="color" value="red"/>
    </properties>
   </object>
-  <object id="134" name="RedBox" x="1376" y="720" width="32" height="32">
+  <object id="134" name="RedBox" x="976" y="720" width="32" height="32">
    <properties>
     <property name="class" value="box"/>
     <property name="color" value="red"/>
@@ -185,13 +226,6 @@
    </properties>
    <point/>
   </object>
-  <object id="144" name="Lamp" x="1136" y="848">
-   <properties>
-    <property name="angle" type="float" value="90"/>
-    <property name="class" value="lamp"/>
-   </properties>
-   <point/>
-  </object>
   <object id="148" name="GreenLaser" x="1088" y="908" width="48" height="4">
    <properties>
     <property name="class" value="laser"/>
@@ -215,6 +249,33 @@
   <object id="153" name="Vert1Tar" x="1112" y="832" rotation="-180">
    <properties>
     <property name="class" value="dummy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="213" name="Veri2Tar" x="360" y="756">
+   <properties>
+    <property name="class" value="dummy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="214" name="Hori1Tar" x="840" y="756">
+   <properties>
+    <property name="class" value="dummy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="215" name="Lamp" x="1440" y="912">
+   <properties>
+    <property name="angle" type="float" value="90"/>
+    <property name="class" value="lamp"/>
+    <property name="radius" type="float" value="16.5"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="216" name="Ending" x="864" y="192">
+   <properties>
+    <property name="class" value="scenePortal"/>
+    <property name="scene" value="LevelEnd"/>
    </properties>
    <point/>
   </object>
@@ -250,9 +311,14 @@
     <property name="color" value="red"/>
    </properties>
   </object>
+  <object id="212" name="RedBlock" x="1312" y="752" width="48" height="16.25">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="2" name="Start">
-  <object id="1" name="Start" x="1313" y="962">
+  <object id="1" name="Start" x="1520" y="1072">
    <point/>
   </object>
  </objectgroup>

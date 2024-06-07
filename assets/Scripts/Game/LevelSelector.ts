@@ -12,13 +12,13 @@
 import { director, find } from "cc"
 import { EDITOR_NOT_IN_PREVIEW } from "cc/env"
 import { SceneManager } from "../SceneManager"
-import { GameManager } from "./GameManager"
 import { PlayerHalo } from "./Entities/PlayerHalo"
-import { ColliderGroup } from "./Physics/ColliderManager"
+import { GameManager } from "./GameManager"
 
 export class LevelSelector {
     private static readonly LEVELS = {
         Test: "Test",
+        Opening: "Opening",
         Lobby: "Lobby",
         Red: "RedZone",
         Green1: "GreenZoneM1",
