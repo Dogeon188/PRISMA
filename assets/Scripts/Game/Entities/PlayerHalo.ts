@@ -342,8 +342,8 @@ export class PlayerHalo extends Component {
     }
 
     private loadGemOnUserData(): void {
-        this.colorNumDict[ColliderGroup.RED] = Auth.data.gemNum.red
-        this.colorNumDict[ColliderGroup.GREEN] = Auth.data.gemNum.green
-        this.colorNumDict[ColliderGroup.BLUE] = Auth.data.gemNum.blue
+        this.colorNumDict[ColliderGroup.RED] = 2 //Auth.data.gemNum.red
+        this.colorNumDict[ColliderGroup.GREEN] = 2 //Auth.data.gemNum.green
+        this.colorNumDict[ColliderGroup.BLUE] = 2 //Auth.data.gemNum.blue
     }
 }
