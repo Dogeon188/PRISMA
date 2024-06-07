@@ -7,6 +7,7 @@ import {
     log,
     tween,
 } from "cc"
+import { GameManager } from "./Game/GameManager"
 import { BlackMaskManager } from "./Interface/BlackMaskManager"
 export class SceneManager {
     private static _getOrAddOpacity(scene: Scene): UIOpacity {
@@ -35,11 +36,13 @@ export class SceneManager {
     ): void {
         const nextIn: Director.OnSceneLaunched = (_, scene) => {
             BlackMaskManager.fadeOut(inDuration)
-            const opacity = SceneManager._getOrAddOpacity(scene)
-            tween(opacity)
-                .set({ opacity: 0 })
-                .to(inDuration, { opacity: 255 }, { easing: "cubicIn" })
-                .start()
+            if (!GameManager.inst) {
+                const opacity = SceneManager._getOrAddOpacity(scene)
+                tween(opacity)
+                    .set({ opacity: 0 })
+                    .to(inDuration, { opacity: 255 }, { easing: "cubicIn" })
+                    .start()
+            }
         }
 
         const loadOut: Director.OnSceneLoaded = (_, __) => {
@@ -48,11 +51,15 @@ export class SceneManager {
             }
             BlackMaskManager.fadeIn(loadDuration, load)
 
-            const opacity = SceneManager._getOrAddOpacity(director.getScene())
-            tween(opacity)
-                .set({ opacity: 255 })
-                .to(loadDuration, { opacity: 0 }, { easing: "cubicOut" })
-                .start()
+            if (!GameManager.inst) {
+                const opacity = SceneManager._getOrAddOpacity(
+                    director.getScene(),
+                )
+                tween(opacity)
+                    .set({ opacity: 255 })
+                    .to(loadDuration, { opacity: 0 }, { easing: "cubicOut" })
+                    .start()
+            }
         }
 
         const loadIn: Director.OnSceneLaunched = (_, scene) => {
@@ -61,24 +68,24 @@ export class SceneManager {
             }
             BlackMaskManager.fadeOut(loadDuration, preload)
 
-            const opacity = SceneManager._getOrAddOpacity(scene)
-            tween(opacity)
-                .set({ opacity: 0 })
-                .to(loadDuration, { opacity: 255 }, { easing: "cubicIn" })
+            if (!GameManager.inst) {
+                const opacity = SceneManager._getOrAddOpacity(scene)
+                tween(opacity)
+                    .set({ opacity: 0 })
+                    .to(loadDuration, { opacity: 255 }, { easing: "cubicIn" })
+                    .start()
+            }
+        }
+
+        if (!GameManager.inst) {
+            const prevOpacity = SceneManager._getOrAddOpacity(
+                director.getScene(),
+            )
+            tween(prevOpacity)
+                .to(outDuration, { opacity: 0 }, { easing: "cubicOut" })
                 .start()
         }
 
-        const prevOpacity = SceneManager._getOrAddOpacity(director.getScene())
-
-        tween(prevOpacity)
-            .to(outDuration, { opacity: 0 }, { easing: "cubicOut" })
-            .call(() => {
-                if (noLoading) {
-                    director.loadScene(sceneName, nextIn)
-                    return
-                }
-            })
-            .start()
         BlackMaskManager.fadeIn(outDuration, () => {
             if (noLoading) {
                 director.loadScene(sceneName, nextIn)

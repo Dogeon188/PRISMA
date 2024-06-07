@@ -55,7 +55,7 @@
   </object>
  </objectgroup>
  <objectgroup id="3" name="Start">
-  <object id="1" name="Start" x="656" y="272">
+  <object id="1" name="Start" x="704" y="272">
    <point/>
   </object>
  </objectgroup>
