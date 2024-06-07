@@ -186,6 +186,8 @@ export class PlayerHalo extends Component {
         this.node.getComponent(Player).collidedHaloNodeSet.forEach((node) => {
             const tmp = node.node.getComponent(Sprite)
             if (tmp) tmp.enabled = true
+            const tmp2 = node.node.getChildByName("Stick")
+            if (tmp2) tmp2.getComponent(Sprite).enabled = true
         })
         for (const sprite of this.palette.getComponentsInChildren(Sprite)) {
             sprite.enabled = true
@@ -209,6 +211,8 @@ export class PlayerHalo extends Component {
                 const tmp = node.node.getComponent(Sprite)
                 if (tmp) tmp.enabled = false
             }
+            const tmp2 = node.node.getChildByName("Stick")
+            if (tmp2) tmp2.getComponent(Sprite).enabled = false
         })
         for (const sprite of this.palette.getComponentsInChildren(Sprite)) {
             sprite.enabled = false
@@ -222,13 +226,11 @@ export class PlayerHalo extends Component {
             this.changeColor(this.targetColor)
             this.targetColor = null
         }
-        const target_color = PlayerHalo.COLOR_MAP[this.color]
-        this.node.getChildByName("Halo").getComponent(Sprite).color = new Color(
-            target_color.r,
-            target_color.g,
-            target_color.b,
-            66,
-        )
+        if (this.color !== null) {
+            const target_color = PlayerHalo.COLOR_MAP[this.color]
+            this.node.getChildByName("Halo").getComponent(Sprite).color =
+                new Color(target_color.r, target_color.g, target_color.b, 66)
+        }
         director.resume()
     }
 

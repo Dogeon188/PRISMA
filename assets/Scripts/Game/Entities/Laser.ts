@@ -5,6 +5,7 @@ import {
     Color,
     ParticleSystem2D,
     Size,
+    Sprite,
     Vec2,
 } from "cc"
 import { ColliderGroup } from "../Physics/ColliderManager"
@@ -29,6 +30,9 @@ export class Laser extends Entity {
             new Vec2(this.node.position.x, this.node.position.y),
             this.getComponent(BoxCollider2D).size,
         )
+        this.node.getChildByName("Stick").getComponent(Sprite).enabled = false
+        this.node.getChildByName("Stick").getComponent(Sprite).color =
+            Laser.COLOR_MAP[this.color]
     }
 
     public initialize(color: number, position: Vec2, size: Size): void {
