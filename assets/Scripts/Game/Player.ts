@@ -25,6 +25,7 @@ import { PlayPauseButton } from "../PlayPauseButton"
 import { Settings } from "../Scene/Settings"
 import { Box } from "./Entities/Box"
 import { Entity } from "./Entities/Entity"
+import { Lamp } from "./Entities/Lamp"
 import { PlayerHalo } from "./Entities/PlayerHalo"
 import { GameManager } from "./GameManager"
 import { ColliderGroup, ColliderType } from "./Physics/ColliderManager"
@@ -308,8 +309,10 @@ export class Player extends Component {
         }
         // FIXME problematic when player is touching multiple objects
         // could fix by using a set of collided objects
-        if (other.getComponent(Entity))
+        if (other.node.getComponent(Lamp)) {
+            console.log("end contact lamp")
             GameManager.inst.interactPrompt.hidePrompt()
+        }
     }
 
     private onBeginContactHalo(
@@ -413,13 +416,19 @@ export class Player extends Component {
         // TODO play animation & sound
         this.dead = true
         this.scheduleOnce(
-            () => BlackMaskManager.fadeIn(2, () => { this.respawn() }, false),
+            () =>
+                BlackMaskManager.fadeIn(
+                    2,
+                    () => {
+                        this.respawn()
+                    },
+                    false,
+                ),
             2,
         )
     }
 
     private respawn(): void {
-        log("respawning")
         this.respawning = true
         this.node.rotation = Quat.IDENTITY
         this.node.setPosition(this.spawnPoint)

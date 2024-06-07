@@ -2,33 +2,33 @@
   "ver": "1.0.2",
   "importer": "particle",
   "imported": true,
-  "uuid": "066f80d8-e783-418b-9c21-4290a3300a2b",
+  "uuid": "3157e9a5-b545-4ea5-a69d-cfbaeb7964f2",
   "files": [
     ".json",
     ".plist"
   ],
   "subMetas": {},
   "userData": {
-    "totalParticles": 500,
+    "totalParticles": 289,
     "life": 1.1,
     "lifeVar": 0.4,
-    "emissionRate": 300,
+    "emissionRate": 262.7272727272727,
     "duration": -1,
     "srcBlendFactor": 770,
     "dstBlendFactor": 1,
     "startColor": {
-      "_val": 4294967295,
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "_val": 4289685043,
+      "r": 51,
+      "g": 102,
+      "b": 175.95,
       "a": 255
     },
     "startColorVar": {
-      "_val": 420417295,
-      "r": 71,
-      "g": 71,
-      "b": 71,
-      "a": 25
+      "_val": 422772736,
+      "r": 0,
+      "g": 0,
+      "b": 51,
+      "a": 25.5
     },
     "endColor": {
       "_val": 4278190080,
@@ -44,42 +44,42 @@
       "b": 0,
       "a": 0
     },
-    "startSize": 2,
-    "startSizeVar": 2,
-    "endSize": 30,
-    "endSizeVar": 10,
+    "startSize": 111,
+    "startSizeVar": 10,
+    "endSize": 40,
+    "endSizeVar": 0,
     "positionType": 0,
     "sourcePos": {
       "x": 0,
       "y": 0
     },
     "posVar": {
-      "x": 360,
-      "y": 360
+      "x": 432,
+      "y": 74
     },
-    "angle": 0,
-    "angleVar": 180,
-    "startSpin": 43,
-    "startSpinVar": 741,
+    "angle": 88,
+    "angleVar": 50,
+    "startSpin": 720,
+    "startSpinVar": 0,
     "endSpin": 0,
     "endSpinVar": 0,
-    "emitterMode": 1,
+    "emitterMode": 0,
     "gravity": {
-      "x": 40,
-      "y": 40
+      "x": -11,
+      "y": -480
     },
-    "speed": 0,
+    "speed": 600,
     "speedVar": 5,
-    "radialAccel": -500,
-    "radialAccelVar": 100,
-    "tangentialAccel": 0,
+    "radialAccel": 241,
+    "radialAccelVar": 0,
+    "tangentialAccel": -276,
     "tangentialAccelVar": 0,
     "rotationIsDir": false,
-    "startRadius": 400,
+    "startRadius": 0,
     "startRadiusVar": 0,
     "endRadius": 0,
     "endRadiusVar": 0,
-    "rotatePerS": 20,
+    "rotatePerS": 0,
     "rotatePerSVar": 0,
     "spriteFrameUuid": ""
   }

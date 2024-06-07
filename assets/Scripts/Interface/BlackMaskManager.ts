@@ -93,15 +93,15 @@ export class BlackMaskManager {
     }
 
     private _fadeIn(duration: number, callback: Function = () => { }, isChangeScene: boolean = true): void {
-        log("fade in")
+        // log("fade in")
         this._initMask()
         tween(this.maskUIOpacity)
             .to(duration, { opacity: 255 }, { easing: "sineInOut" })
             .call(() => {
-                log("fade in complete")
-                log(`opacity: ${this.maskUIOpacity.opacity}`)
+                // log("fade in complete")
+                // log(`opacity: ${this.maskUIOpacity.opacity}`)
                 if (!isChangeScene) {
-                    log("fade in complete, remove mask")
+                    // log("fade in complete, remove mask")
                     this.mask.destroy()
                     }  
             })
@@ -110,15 +110,15 @@ export class BlackMaskManager {
     }
 
     private _fadeOut(duration: number, callback: Function = () => { }, isChangeScene: boolean = true): void {
-        log("fade out")
+        // log("fade out")
         this._initMask(true)
         tween(this.maskUIOpacity)
             .to(duration, { opacity: 0 }, { easing: "cubicOut" })
             .call(() => {
-                log("fade out complete")
-                log(`opacity: ${this.maskUIOpacity.opacity}`)
+                // log("fade out complete")
+                // log(`opacity: ${this.maskUIOpacity.opacity}`)
                 if (!isChangeScene) {
-                    log("fade out complete, remove mask")
+                    // log("fade out complete, remove mask")
                     this.mask.destroy()
                     }   
                 })

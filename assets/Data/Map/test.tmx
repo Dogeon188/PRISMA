@@ -59,13 +59,6 @@
    </properties>
    <point/>
   </object>
-  <object id="11" name="Exit" type="scenePortal" x="32" y="384">
-   <properties>
-    <property name="class" value="scenePortal"/>
-    <property name="scene" value="Start"/>
-   </properties>
-   <point/>
-  </object>
   <object id="16" name="SecretOutDest" type="dummy" x="252.014" y="396.622">
    <properties>
     <property name="class" value="dummy"/>
@@ -85,7 +78,7 @@
    </properties>
    <point/>
   </object>
-  <object id="12" name="SecretIn" type="nodePortal" x="106.008" y="385.675">
+  <object id="12" name="SecretIn" type="nodePortal" x="32.935" y="383.914">
    <properties>
     <property name="class" value="nodePortal"/>
     <property name="destination" type="object" value="13"/>

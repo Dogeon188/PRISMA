@@ -1,0 +1,152 @@
+CCEffect %{
+techniques:
+  - passes:
+      - vert: vs
+        frag: fs
+        pass: post-process
+        rasterizerState:
+          cullMode: none
+        depthStencilState:
+          depthTest: false
+          depthWrite: false
+        blendState:
+          targets:
+            - blend: true
+              blendSrc: one
+              blendDst: one_minus_src_alpha
+              blendSrcAlpha: one
+              blendDstAlpha: zero
+        properties:
+          color: { value: [1.0, 1.0, 1.0, 0.5], editor: { type: color } }
+          pauseCenter:
+            {
+              value: [1208, 654],
+              editor: { type: vec2, min: [0, 0], max: [1280, 720] },
+            }
+          pauseRadius:
+            { value: 35, editor: { type: number, min: 0, max: 1000 } }
+          timerCenter:
+            {
+              value: [1106, 654],
+              editor: { type: vec2, min: [0, 0], max: [1280, 720] },
+            }
+          timerRadius:
+            { value: 35, editor: { type: number, min: 0, max: 1000 } }
+          centersX:
+            {
+              value: [-1000, -1000, -1000, -1000],
+              editor:
+                {
+                  type: vec4,
+                  min: [0, 0, 0, 0],
+                  max: [1280, 1280, 1280, 1280],
+                },
+            }
+          centersY:
+            {
+              value: [-1000, -1000, -1000, -1000],
+              editor:
+                { type: vec4, min: [0, 0, 0, 0], max: [720, 720, 720, 720] },
+            }
+          radii:
+            {
+              value: [0, 0, 0, 0],
+              editor:
+                {
+                  type: vec4,
+                  min: [0, 0, 0, 0],
+                  max: [1000, 1000, 1000, 1000],
+                },
+            }
+
+}%
+
+
+CCProgram vs %{
+precision highp float;
+
+#include <legacy/decode-standard>
+#include <builtin/uniforms/cc-global>
+#include <common/common-define>
+
+out vec2 v_uv;
+
+void main() {
+  StandardVertInput In;
+  CCDecode(In);
+  CC_HANDLE_GET_CLIP_FLIP(In.position.xy);
+  gl_Position = In.position;
+  
+  v_uv = a_texCoord;
+}
+}%
+
+
+CCProgram fs %{
+precision highp float;
+
+in vec2 v_uv;
+
+uniform UBO {
+  vec4 inputViewPort;
+  vec4 color;
+  vec4 centersX;
+  vec4 centersY;
+  vec4 radii;
+};
+uniform CONSTS {
+  vec2 pauseCenter;
+  vec2 timerCenter;
+  float pauseRadius;
+  float timerRadius;
+};
+
+#pragma rate inputTexture pass
+uniform sampler2D inputTexture;
+
+layout(location = 0)out vec4 fragColor;
+const vec3 black = vec3(0.0, 0.0, 0.0);
+const vec2 screenSize = vec2(1280, 720);
+const float blur = 10.0;
+
+float sigmoid(in float t) {
+  return 1.0 / (1.0 + exp(-t));
+}
+
+vec4 sigmoid(in vec4 t) {
+  return vec4(sigmoid(t.x), sigmoid(t.y), sigmoid(t.z), sigmoid(t.w));
+}
+
+vec4 colorize(in vec4 color, in vec4 multiplier) {
+  float whiteDist = length(cross(vec3(1, 1, 1), fragColor.rgb)) / length(fragColor.rgb);
+  float alpha = exp(-whiteDist);
+  vec4 destColor = color * multiplier;
+  return mix(color, destColor, alpha);
+}
+
+vec3 gradient(in vec3 color, in vec2 uv) {
+  vec4 dists;
+  vec2 screenPos = v_uv * screenSize;
+  float pauseDist = distance(screenPos, pauseCenter) - pauseRadius;
+  float timerDist = distance(screenPos, timerCenter) - timerRadius;
+  dists.x = distance(screenPos, vec2(centersX.x, centersY.x)) - radii.x;
+  dists.y = distance(screenPos, vec2(centersX.y, centersY.y)) - radii.y;
+  dists.z = distance(screenPos, vec2(centersX.z, centersY.z)) - radii.z;
+  dists.w = distance(screenPos, vec2(centersX.w, centersY.w)) - radii.w;
+  vec4 alphas = sigmoid(dists / blur);
+  float pauseAlpha = sigmoid(pauseDist / blur);
+  float timerAlpha = sigmoid(timerDist / blur);
+  float alpha = min(
+    min(min(alphas.x, alphas.y), alphas.z),
+    min(min(alphas.w, pauseAlpha), timerAlpha)
+  );
+  return mix(color, black, alpha);
+}
+
+void main() {
+  fragColor = texture(inputTexture, v_uv);
+  // fragColor = colorize(fragColor, color);
+  fragColor.rgb = gradient(fragColor.rgb, v_uv);
+}
+}%
+

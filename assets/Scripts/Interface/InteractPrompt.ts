@@ -22,13 +22,14 @@ export class InteractPrompt extends Component {
             this.node.active = true
             this.isPlaying = true
         } else {
-            console.debug("prompt is already playing")
+            // console.debug("prompt is already playing")
         }
     }
     /**
      * Will hide the prompt with easing effect
      */
     hidePrompt(): void {
+        // FIXME not hiding properly
         if (this.isPlaying) {
             const uiOpacity = this.node.getComponent(UIOpacity)
             tween(uiOpacity)
@@ -36,7 +37,6 @@ export class InteractPrompt extends Component {
                 .call(() => {
                     this.node.active = false
                     this.isPlaying = false
-                    uiOpacity.opacity = 255
                 })
                 .start()
         }

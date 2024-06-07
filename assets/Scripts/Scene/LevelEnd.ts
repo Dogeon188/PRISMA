@@ -61,14 +61,9 @@ export class LevelEnd extends Component {
     private onLampChangeColor(uuid: string, color: number): void {
         this.lampColors.set(uuid, color)
         const colors = new Set(this.lampColors.values())
-        // if (
-        //     colors.has(ColliderGroup.RED) &&
-        //     colors.has(ColliderGroup.GREEN) &&
-        //     colors.has(ColliderGroup.BLUE)
-        // ) {
         if (
-            colors.has(ColliderGroup.RED) ||
-            colors.has(ColliderGroup.GREEN) ||
+            colors.has(ColliderGroup.RED) &&
+            colors.has(ColliderGroup.GREEN) &&
             colors.has(ColliderGroup.BLUE)
         ) {
             this.startEndSequence()

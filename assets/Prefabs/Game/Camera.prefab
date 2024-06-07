@@ -28,17 +28,23 @@
         "__id__": 169
       },
       {
-        "__id__": 171
-      },
-      {
         "__id__": 173
       },
       {
         "__id__": 175
+      },
+      {
+        "__id__": 177
+      },
+      {
+        "__id__": 171
+      },
+      {
+        "__id__": 179
       }
     ],
     "_prefab": {
-      "__id__": 177
+      "__id__": 182
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -3430,7 +3436,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "ffQe/78t5MubSC/HSDQt3o"
+    "fileId": "45ui+P7SNKRo+oH5wLDXEC"
   },
   {
     "__type__": "cc.Label",
@@ -3501,7 +3507,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "b3nouwoupIoakGKHNgtkns"
+    "fileId": "04+HTZwW5M6oqoCwRDOIYe"
   },
   {
     "__type__": "cabb6IUFwhJHbErjF+l1qgC",
@@ -3519,7 +3525,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "410w+DK/JP8LzYMj7+UlOB"
+    "fileId": "0f1lofMzBPIbe+dTbttrYf"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -3529,7 +3535,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "867AGDMnVHLp73wh5VMw8b",
+    "fileId": "ff3WB80BREbYlMlXr6rECW",
     "instance": null,
     "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
@@ -3653,8 +3659,10 @@
     "_screenScale": 1,
     "_visibility": 1108344832,
     "_targetTexture": null,
-    "_postProcess": null,
-    "_usePostProcess": false,
+    "_postProcess": {
+      "__id__": 171
+    },
+    "_usePostProcess": true,
     "_cameraType": -1,
     "_trackingType": 0,
     "_id": ""
@@ -3662,6 +3670,27 @@
   {
     "__type__": "cc.CompPrefabInfo",
     "fileId": "2eE2VNCsdMVKWSp5fULVPX"
+  },
+  {
+    "__type__": "cc.PostProcess",
+    "_name": "",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 172
+    },
+    "global": true,
+    "_shadingScale": 1,
+    "enableShadingScaleInEditor": false,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "8cmW72OEFIAZkhMWylunZb"
   },
   {
     "__type__": "2c260V3WwZBUqixb4joLu6y",
@@ -3673,7 +3702,7 @@
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 172
+      "__id__": 174
     },
     "min": {
       "__type__": "cc.Vec2",
@@ -3702,7 +3731,7 @@
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 174
+      "__id__": 176
     },
     "_contentSize": {
       "__type__": "cc.Size",
@@ -3730,7 +3759,7 @@
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 176
+      "__id__": 178
     },
     "_alignFlags": 45,
     "_target": null,
@@ -3757,6 +3786,43 @@
     "fileId": "87VgBPZzNJw6B+4k2wGEra"
   },
   {
+    "__type__": "cc.BlitScreen",
+    "_name": "",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 180
+    },
+    "_activeMaterials": [
+      {
+        "__uuid__": "7a95b44d-40cc-487d-80d7-8e7217d9da04",
+        "__expectedType__": "cc.Material"
+      }
+    ],
+    "_materials": [
+      {
+        "__id__": 181
+      }
+    ],
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "99dueBvwVEAKFiPyaILxDA"
+  },
+  {
+    "__type__": "cc.BlitScreenMaterial",
+    "_material": {
+      "__uuid__": "7a95b44d-40cc-487d-80d7-8e7217d9da04",
+      "__expectedType__": "cc.Material"
+    },
+    "enable": true
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -3768,10 +3834,10 @@
     "instance": null,
     "targetOverrides": [
       {
-        "__id__": 178
+        "__id__": 183
       },
       {
-        "__id__": 181
+        "__id__": 186
       }
     ],
     "nestedPrefabInstanceRoots": [
@@ -3789,7 +3855,7 @@
       "__id__": 117
     },
     "sourceInfo": {
-      "__id__": 179
+      "__id__": 184
     },
     "propertyPath": [
       "_target"
@@ -3798,7 +3864,7 @@
       "__id__": 117
     },
     "targetInfo": {
-      "__id__": 180
+      "__id__": 185
     }
   },
   {
@@ -3819,7 +3885,7 @@
       "__id__": 134
     },
     "sourceInfo": {
-      "__id__": 182
+      "__id__": 187
     },
     "propertyPath": [
       "_target"
@@ -3828,7 +3894,7 @@
       "__id__": 134
     },
     "targetInfo": {
-      "__id__": 183
+      "__id__": 188
     }
   },
   {

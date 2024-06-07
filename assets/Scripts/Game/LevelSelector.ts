@@ -9,10 +9,12 @@
  *    teleport(0, 0)        // Teleport the player to the origin
  */
 
-import { director } from "cc"
+import { director, find } from "cc"
 import { EDITOR_NOT_IN_PREVIEW } from "cc/env"
 import { SceneManager } from "../SceneManager"
 import { GameManager } from "./GameManager"
+import { PlayerHalo } from "./Entities/PlayerHalo"
+import { ColliderGroup } from "./Physics/ColliderManager"
 
 export class LevelSelector {
     private static readonly LEVELS = {
@@ -49,10 +51,16 @@ export class LevelSelector {
         gameManager.player.node.setPosition(x, y)
     }
 
+    setStoneCount(count: number) {
+        const tmp = find("Canvas/Map/Entities/Player").getComponent(PlayerHalo)
+        tmp.setGemNum(count)
+    }
+
     static initialize() {
         globalThis.Levels = LevelSelector.LEVELS
         globalThis.level = LevelSelector.prototype.gotoLevel
         globalThis.teleport = LevelSelector.prototype.gotoPosition
+        globalThis.stone = LevelSelector.prototype.setStoneCount
     }
 }
 

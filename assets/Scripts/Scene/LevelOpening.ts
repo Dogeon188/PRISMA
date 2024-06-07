@@ -31,12 +31,12 @@ export class LevelOpening extends Component {
             .getComponent(Dialog)
 
         this.scheduleOnce(() => {
-            log(this.dummyDialog)
-            log("Opening dialog")
+            // log(this.dummyDialog)
+            // log("Opening dialog")
             GameManager.inst.dialogBox.playDialog(
                 this.dummyDialog.entries,
                 () => {
-                    log("Opening dialog done")
+                    // log("Opening dialog done")
                 },
             )
         }, 4)

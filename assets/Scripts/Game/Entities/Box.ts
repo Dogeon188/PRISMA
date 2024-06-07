@@ -67,6 +67,7 @@ export class Box extends Entity {
             // if (collider.tag === ColliderType.BOX) {
             // }
         }
+        this.node.getChildByName("Particle2D").active = false
     }
 
     public initialize(color: number, position: Vec2, size: Size): void {
@@ -217,6 +218,10 @@ export class Box extends Entity {
                     })
                     .start()
                 AudioManager.inst.playOneShot(this.boxHitGround)
+                this.node.getChildByName("Particle2D").active = true
+                this.scheduleOnce(() => {
+                    this.node.getChildByName("Particle2D").active = false
+                }, 0.8)
                 break
             case ColliderType.BOX:
                 // log("box drop on BOX")

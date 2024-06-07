@@ -9,24 +9,19 @@ import {
     input,
     Label,
     Node,
-    RigidBody2D,
     screen,
     Size,
     Sprite,
     UITransform,
     Vec3,
 } from "cc"
-import {
-    ColliderGroup,
-    ColliderManager,
-    ColliderType,
-} from "../Physics/ColliderManager"
-import { Player } from "../Player"
-import { PlayPauseButton } from "../../PlayPauseButton"
-import { Plate } from "./Plate"
-import { Lamp } from "./Lamp"
-import { GameManager } from "../GameManager"
 import { Auth } from "../../Auth"
+import { PlayPauseButton } from "../../PlayPauseButton"
+import { GameManager } from "../GameManager"
+import { ColliderGroup, ColliderType } from "../Physics/ColliderManager"
+import { Player } from "../Player"
+import { Lamp } from "./Lamp"
+import { Plate } from "./Plate"
 const { ccclass, property } = _decorator
 
 @ccclass("PlayerHalo")
@@ -302,6 +297,18 @@ export class PlayerHalo extends Component {
             this.colorNumDict[ColliderGroup.BLUE].toString()
     }
 
+    public setGemNum(count: number): void {
+        this.colorNumDict[ColliderGroup.RED] = count
+        this.colorNumDict[ColliderGroup.GREEN] = count
+        this.colorNumDict[ColliderGroup.BLUE] = count
+        this.RedNum.getComponent(Label).string =
+            this.colorNumDict[ColliderGroup.RED].toString()
+        this.GreenNum.getComponent(Label).string =
+            this.colorNumDict[ColliderGroup.GREEN].toString()
+        this.BlueNum.getComponent(Label).string =
+            this.colorNumDict[ColliderGroup.BLUE].toString()
+    }
+
     public interactWithLamp(color: number): void {
         if (color === null) {
             // minus 1 of the color
@@ -347,8 +354,8 @@ export class PlayerHalo extends Component {
     }
 
     private loadGemOnUserData(): void {
-        this.colorNumDict[ColliderGroup.RED] = Auth.data.gemNum.red
-        this.colorNumDict[ColliderGroup.GREEN] = Auth.data.gemNum.green
-        this.colorNumDict[ColliderGroup.BLUE] = Auth.data.gemNum.blue
+        this.colorNumDict[ColliderGroup.RED] = 1 //Auth.data.gemNum.red
+        this.colorNumDict[ColliderGroup.GREEN] = 1 //Auth.data.gemNum.green
+        this.colorNumDict[ColliderGroup.BLUE] = 1 //Auth.data.gemNum.blue
     }
 }
