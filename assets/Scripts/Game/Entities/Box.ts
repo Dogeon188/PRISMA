@@ -17,6 +17,7 @@ import {
     Vec2,
     Vec3,
 } from "cc"
+import { AudioManager } from "../../AudioManager"
 import { Settings } from "../../Scene/Settings"
 import { GameManager } from "../GameManager"
 import {
@@ -33,7 +34,6 @@ import { Player } from "../Player"
 import { Entity } from "./Entity"
 import { Lamp } from "./Lamp"
 import { PlayerHalo } from "./PlayerHalo"
-import { AudioManager } from "../../AudioManager"
 const { ccclass, property } = _decorator
 
 @ccclass("Box")
@@ -111,7 +111,7 @@ export class Box extends Entity {
     public showPrompt(): void {
         GameManager.inst.interactPrompt.showPrompt(
             Settings.keybinds.interact,
-            "Interact",
+            "Push/Pull",
         )
     }
 
