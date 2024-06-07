@@ -132,6 +132,7 @@ export class Player extends Component {
                     this,
                 )
                 collider.on(Contact2DType.END_CONTACT, this.onEndContact, this)
+                collider.on(Contact2DType.PRE_SOLVE, this.onPreSolve, this) // for ladder
             } else if (collider.tag === ColliderType.HALO) {
                 collider.on(
                     Contact2DType.BEGIN_CONTACT,
@@ -205,6 +206,21 @@ export class Player extends Component {
         }
     }
 
+    private onPreSolve(
+        self: Collider2D,
+        other: Collider2D,
+        contact: IPhysics2DContact,
+    ): void {
+        const normal = getCorrectNormal(self, other, contact)
+        const isOnTop = fuzzyEqual(normal.y, NormalDirection.ON_TOP)
+        const isAbove = normal.y > 0
+        switch (other.tag) {
+            case ColliderType.ONEWAY:
+                if(this.movement.down) contact.disabled = true
+                break
+        }
+    }
+    
     private onBeginContact(
         self: Collider2D,
         other: Collider2D,
@@ -218,6 +234,7 @@ export class Player extends Component {
             case ColliderType.ONEWAY:
                 if (!isOnTop) contact.disabled = true // Disable collision if not on top
                 if (isOnTop) this.standingOn.add(other.uuid)
+                if(this.movement.down) contact.disabled = true
                 break
             case ColliderType.GROUND:
                 if (isAbove) this.standingOn.add(other.uuid)

@@ -1,5 +1,7 @@
-import { Node, Vec3, _decorator, tween } from "cc"
+import { Collider2D, Contact2DType, IPhysics2DContact, Node, RigidBody2D, Vec2, Vec3, _decorator, tween } from "cc"
 import { Brick } from "./Brick"
+import { NormalDirection, fuzzyEqual, getCorrectNormal } from "../Physics/PhysicsFixer"
+import { ColliderType } from "../Physics/ColliderManager"
 const { ccclass, property } = _decorator
 
 @ccclass("MovingPlatform")
@@ -12,6 +14,9 @@ export class MovingPlatform extends Brick {
 
     private originalPosition: Vec3 = new Vec3()
     private moveToPosition: Vec3 = new Vec3()
+
+    private velocity: Vec3 = new Vec3()
+    private previousMomentPosition: Vec3 = new Vec3()
 
     protected onLoad(): void {
         super.onLoad()
@@ -30,7 +35,6 @@ export class MovingPlatform extends Brick {
     public set durationValue(value: number) {
         this.duration = value
     }
-
     protected start(): void {
         tween(this.node)
             .to(

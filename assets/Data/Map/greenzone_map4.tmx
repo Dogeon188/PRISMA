@@ -121,7 +121,7 @@
    </properties>
    <point/>
   </object>
-  <object id="10" name="RedBox" x="288" y="1456" width="32" height="48">
+  <object id="10" name="GreenBox" x="288" y="1456" width="32" height="48">
    <properties>
     <property name="class" value="box"/>
     <property name="color" value="green"/>
