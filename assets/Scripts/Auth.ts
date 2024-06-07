@@ -66,7 +66,7 @@ export class Auth {
     }
 
     public static async updateUserData(data: Partial<UserData>): Promise<void> {
-        log("update user data")
+        // log("update user data")
         this.userDataRef.update(data)
         this._userData = { ...this._userData, ...data }
     }
