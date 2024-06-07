@@ -14,6 +14,14 @@ export class Start extends Component {
         AudioManager.inst.fadeInBGM(this.bgm, 1)
     }
 
+    protected start(): void {
+        if (firebase.auth().currentUser) {
+            Auth.loadUserData()
+            SceneManager.loadScene("Start", true)
+            return
+        }
+    }
+
     protected startGame(): void {
         AudioManager.inst.fadeOutBGM(1)
         this.loadStageOnUserData()
