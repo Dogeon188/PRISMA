@@ -58,7 +58,7 @@ export class ToastManager {
     private _show(message: string, duration: number = Toast.LENGTH_SHORT): void {
         let toast = this.toastPool.shift()
         if (toast == null) {
-            log("Toast pool is empty, instantiate a new toast")
+            // log("Toast pool is empty, instantiate a new toast")
             toast = instantiate(this.toastPrefab)
         }
         const canvas = director.getScene().getChildByName("Canvas")
