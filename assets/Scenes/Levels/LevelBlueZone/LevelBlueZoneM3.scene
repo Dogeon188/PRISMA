@@ -11,7 +11,7 @@
   },
   {
     "__type__": "cc.Scene",
-    "_name": "LevelGreenZoneM3",
+    "_name": "LevelBlueZoneM3",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": null,
@@ -427,7 +427,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 12.639999389648438,
+      "width": 12.639996439053867,
       "height": 50.4
     }
   },
@@ -447,7 +447,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 13.279998779296875,
+      "width": 13.279995575794198,
       "height": 50.4
     }
   },
@@ -467,7 +467,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 11,
+      "width": 10.999991906940608,
       "height": 50.4
     }
   },
@@ -487,7 +487,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 98.71992492675781,
+      "width": 98.71994777279005,
       "height": 50.4
     }
   },
@@ -507,7 +507,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 165.6730499267578,
+      "width": 165.67307277279005,
       "height": 45
     }
   },
@@ -527,7 +527,7 @@
     ],
     "value": {
       "__type__": "cc.Vec3",
-      "x": -59.359962463378906,
+      "x": -59.359973886395025,
       "y": 0,
       "z": 0
     }
