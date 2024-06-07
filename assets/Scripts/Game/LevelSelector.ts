@@ -53,9 +53,7 @@ export class LevelSelector {
 
     setStoneCount(count: number) {
         const tmp = find("Canvas/Map/Entities/Player").getComponent(PlayerHalo)
-        tmp.colorNumDict[ColliderGroup.RED] = count
-        tmp.colorNumDict[ColliderGroup.GREEN] = count
-        tmp.colorNumDict[ColliderGroup.BLUE] = count
+        tmp.setGemNum(count)
     }
 
     static initialize() {

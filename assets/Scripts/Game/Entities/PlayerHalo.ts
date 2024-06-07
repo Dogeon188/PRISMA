@@ -302,6 +302,18 @@ export class PlayerHalo extends Component {
             this.colorNumDict[ColliderGroup.BLUE].toString()
     }
 
+    public setGemNum(count: number): void {
+        this.colorNumDict[ColliderGroup.RED] = count
+        this.colorNumDict[ColliderGroup.GREEN] = count
+        this.colorNumDict[ColliderGroup.BLUE] = count
+        this.RedNum.getComponent(Label).string =
+            this.colorNumDict[ColliderGroup.RED].toString()
+        this.GreenNum.getComponent(Label).string =
+            this.colorNumDict[ColliderGroup.GREEN].toString()
+        this.BlueNum.getComponent(Label).string =
+            this.colorNumDict[ColliderGroup.BLUE].toString()
+    }
+
     public interactWithLamp(color: number): void {
         if (color === null) {
             // minus 1 of the color
