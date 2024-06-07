@@ -17,8 +17,6 @@ export class Start extends Component {
     protected start(): void {
         if (firebase.auth().currentUser) {
             Auth.loadUserData()
-            SceneManager.loadScene("Start", true)
-            return
         }
     }
 
