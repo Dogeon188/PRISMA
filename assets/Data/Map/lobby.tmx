@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="100" height="86" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="229">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="100" height="86" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="237">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <tileset firstgid="253" source="amproject.tsx"/>
  <layer id="1" name="Tiles" width="100" height="86">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <objectgroup id="7" name="Grounds">
@@ -60,6 +60,7 @@
    <polygon points="0,0 -96,192 0,192"/>
   </object>
   <object id="143" name="L2" x="1136" y="784" width="32" height="144"/>
+  <object id="236" x="560" y="96" width="48" height="208"/>
  </objectgroup>
  <objectgroup id="8" name="Spikes">
   <object id="112" name="L1" x="751.33" y="1322" width="226" height="6.33333"/>
@@ -204,13 +205,6 @@
    </properties>
    <point/>
   </object>
-  <object id="136" name="BlueGem" x="184" y="448">
-   <properties>
-    <property name="class" value="gem"/>
-    <property name="color" value="blue"/>
-   </properties>
-   <point/>
-  </object>
   <object id="137" name="MovingVerti" x="1088" y="928" width="48" height="8">
    <properties>
     <property name="class" value="moving"/>
@@ -269,6 +263,22 @@
    <properties>
     <property name="class" value="gem"/>
     <property name="color" value="red"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="232" x="592" y="288">
+   <properties>
+    <property name="angle" type="float" value="90"/>
+    <property name="class" value="lamp"/>
+    <property name="radius" type="float" value="20"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="233" x="592" y="288">
+   <properties>
+    <property name="angle" type="float" value="90"/>
+    <property name="class" value="lamp"/>
+    <property name="radius" type="float" value="20"/>
    </properties>
    <point/>
   </object>
@@ -354,9 +364,19 @@
     <property name="color" value="red"/>
    </properties>
   </object>
+  <object id="229" x="560" y="304" width="48" height="16">
+   <properties>
+    <property name="color" value="blue"/>
+   </properties>
+  </object>
+  <object id="230" x="560" y="320" width="48" height="16">
+   <properties>
+    <property name="color" value="green"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="2" name="Start">
-  <object id="1" name="Start" x="1520" y="1072">
+  <object id="234" name="Start" x="512" y="320">
    <point/>
   </object>
  </objectgroup>
