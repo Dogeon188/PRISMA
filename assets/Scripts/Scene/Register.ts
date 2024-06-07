@@ -1,4 +1,11 @@
-import { _decorator, AudioClip, Component, director, EditBox } from "cc"
+import {
+    _decorator,
+    AudioClip,
+    Component,
+    director,
+    EditBox,
+    KeyCode,
+} from "cc"
 import { AudioManager } from "../AudioManager"
 import { Auth } from "../Auth"
 import { ToastManager } from "../Interface/ToastManager"
@@ -45,6 +52,15 @@ export class Register extends Component {
                 })
                 // console.log(Auth.data)
                 Auth.updateUserData({
+                    keybinds: {
+                        jump: KeyCode.KEY_W,
+                        down: KeyCode.KEY_S,
+                        left: KeyCode.KEY_A,
+                        right: KeyCode.KEY_D,
+                        interact: KeyCode.KEY_E,
+                    },
+                    volumeSFX: 1,
+                    volumeBGM: 1,
                     stage: 0,
                     savepoint: 1,
                     haloColor: 0,
