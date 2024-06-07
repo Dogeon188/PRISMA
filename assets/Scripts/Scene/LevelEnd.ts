@@ -12,6 +12,7 @@ import {
 } from "cc"
 import { AudioManager } from "../AudioManager"
 import { Dialog } from "../Game/Entities/Dialog"
+import { PlayerHalo } from "../Game/Entities/PlayerHalo"
 import { GameManager } from "../Game/GameManager"
 import { ColliderGroup } from "../Game/Physics/ColliderManager"
 import { TrackCamera } from "../Game/TrackCamera"
@@ -25,6 +26,9 @@ export class LevelEnd extends Component {
 
     @property(Node)
     private coreNode: Node = null
+
+    @property(UIOpacity)
+    private coreColoredOpacity: UIOpacity = null
 
     @property(Node)
     private finalWords1: Node = null
@@ -64,6 +68,16 @@ export class LevelEnd extends Component {
             .getComponent(Dialog)
         this.coreParticles = this.coreNode.getComponent(ParticleSystem2D)
         this.overlayOpacity.node.setSiblingIndex(0)
+        const colorDict =
+            GameManager.inst.player.getComponent(PlayerHalo).colorNumDict
+        if (
+            colorDict[ColliderGroup.RED] > 0 &&
+            colorDict[ColliderGroup.GREEN] > 0 &&
+            colorDict[ColliderGroup.BLUE] > 0
+        ) {
+            const returnPortal = this.objectsNode.getChildByName("ReturnPortal")
+            returnPortal.active = false
+        }
     }
 
     private onLampChangeColor(uuid: string, color: number): void {
@@ -120,8 +134,9 @@ export class LevelEnd extends Component {
                 this.camera.shake = 0
                 AudioManager.inst.stopBGM()
                 AudioManager.inst.clearBGM()
-                SceneManager.loadScene("Splash", true, 0.1, 10)
             })
+            .delay(5)
+            .call(() => SceneManager.loadScene("Splash", true, 0.1, 10))
 
         tween(this.node)
             .call(() => {
@@ -151,11 +166,17 @@ export class LevelEnd extends Component {
                     afterLight.start.bind(afterLight),
                 )
                 tween(this.overlayOpacity)
-                    .to(30, { opacity: 60 }, { easing: "cubicIn" })
+                    .to(40, { opacity: 100 }, { easing: "cubicIn" })
                     .start()
             })
             .delay(12)
             .call(() => {
+                tween(this.coreColoredOpacity)
+                    .to(30, { opacity: 255 }, { easing: "cubicInOut" })
+                    .start()
+                tween(this.coreNode.getComponent(UIOpacity))
+                    .to(30, { opacity: 0 }, { easing: "cubicInOut" })
+                    .start()
                 // "Look at these colors!"
                 this.coreParticles.emissionRate = 100
                 this.coreParticles.resetSystem()

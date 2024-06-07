@@ -175,7 +175,10 @@ export class PlayerHalo extends Component {
     }
 
     private onMouseDown(): void {
-        if (!this.pausePlayButton.getComponent(PlayPauseButton).isPlay) {
+        if (
+            !GameManager.inst.canAct ||
+            !this.pausePlayButton.getComponent(PlayPauseButton).isPlay
+        ) {
             return
         }
         this.node.getChildByName("Halo").getComponent(Sprite).color = new Color(
