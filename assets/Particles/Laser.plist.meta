@@ -9,10 +9,10 @@
   ],
   "subMetas": {},
   "userData": {
-    "totalParticles": 500,
+    "totalParticles": 200,
     "life": 0.8,
     "lifeVar": 0.4,
-    "emissionRate": 1250,
+    "emissionRate": 500,
     "duration": -1,
     "srcBlendFactor": 770,
     "dstBlendFactor": 1,

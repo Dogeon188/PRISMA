@@ -39,9 +39,9 @@
     <key>gravityy</key>
     <integer>0</integer>
     <key>maxParticles</key>
-    <integer>500</integer>
+    <integer>200</integer>
     <key>maxRadius</key>
-    <integer>100</integer>
+    <integer>0</integer>
     <key>maxRadiusVariance</key>
     <integer>0</integer>
     <key>minRadius</key>
@@ -109,7 +109,7 @@
     <key>minRadiusVariance</key>
     <integer>0</integer>
     <key>emissionRate</key>
-    <integer>1250</integer>
+    <integer>500</integer>
     <key>spriteFrameUuid</key>
     <string>f097c86d-4cdc-4c18-96eb-9c1dd866435f@f9941</string>
   </dict>
