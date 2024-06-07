@@ -101,6 +101,7 @@ export class Box extends Entity {
             const player = this.bindedTo.getComponent(Player)
             if (player) this.onEndInteract(player)
         }
+        if (!this.bindedTo) return
         this.node.position = new Vec3(
             this.bindedTo.position.x + this.bindOffsetX,
             this.node.position.y,
