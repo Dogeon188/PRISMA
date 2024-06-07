@@ -115,9 +115,7 @@ export class GameManager extends Component {
     public backToStart(): void {
         AudioManager.inst.fadeOutBGM(1)
         SceneManager.loadScene("Start")
-    }
-
-    
+    }    
 
     //#endregion
 }

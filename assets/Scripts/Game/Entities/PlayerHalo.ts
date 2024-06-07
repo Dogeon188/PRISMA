@@ -24,6 +24,8 @@ import {
 import { Player } from "../Player"
 import { PlayPauseButton } from "../../PlayPauseButton"
 import { Plate } from "./Plate"
+import { Lamp } from "./Lamp"
+import { GameManager } from "../GameManager"
 const { ccclass, property } = _decorator
 
 @ccclass("PlayerHalo")
@@ -154,6 +156,14 @@ export class PlayerHalo extends Component {
             node.onEnterHalo(this)
             if (node.node.getComponent(Plate)) {
                 node.node.getComponent(Plate).checkPressedBy(this.color)
+            }
+            if (node.node.getComponent(Lamp)) {
+                GameManager.inst.interactPrompt.hidePrompt()
+                this.scheduleOnce(() => {
+                    node.node
+                        .getComponent(Lamp)
+                        .showPrompt(this.node.getComponent(Player))
+                }, 0.5)
             }
         })
         const player = this.node.getComponent(Player)
