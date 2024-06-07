@@ -1194,7 +1194,7 @@
     "propertyPath": [
       "_usePostProcess"
     ],
-    "value": false
+    "value": true
   },
   {
     "__type__": "cc.TargetInfo",
