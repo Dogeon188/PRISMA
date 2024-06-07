@@ -19,7 +19,8 @@ export class Gem extends Entity {
     }
 
     zoneMap: Map<string, number> = new Map([
-        ["LevelTest", 0],
+        ["LevelTest", -1],
+        ["LevelOpening", 0],
         ["LevelLobby", 1],
         ["LevelRedZone", 2],
         ["LevelGreenZoneM1", 3],
@@ -32,16 +33,17 @@ export class Gem extends Entity {
     ])
 
     stageAndPointMap: Map<[number, number], number> = new Map([
-        [[-1, 1], 0],
-        [[0, 1], 1],
-        [[1, 1], 2],
-        [[2, 1], 3],
-        [[2, 2], 4],
-        [[2, 3], 5],
-        [[2, 4], 6],
-        [[3, 1], 7],
-        [[3, 2], 8],
-        [[3, 3], 9],
+        [[-1, 1], -1],
+        [[0, 1], 0],
+        [[1, 1], 1],
+        [[2, 1], 2],
+        [[3, 1], 3],
+        [[3, 2], 4],
+        [[3, 3], 5],
+        [[3, 4], 6],
+        [[4, 1], 7],
+        [[4, 2], 8],
+        [[4, 3], 9],
     ])
 
     onLoad(): void {

@@ -14,7 +14,8 @@ const { ccclass, property } = _decorator
 @ccclass("LeaderBoard")
 export class LeaderBoard extends Component {
     private zoneMap: Map<number, string> = new Map([
-        [0, "LevelTest"],
+        [-1, "LevelTest"],
+        [0, "LevelOpening"],
         [1, "LevelLobby"],
         [2, "LevelRedZone"],
         [3, "LevelGreenZoneM1"],
