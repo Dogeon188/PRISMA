@@ -232,7 +232,7 @@
    </properties>
    <point/>
   </object>
-  <object id="213" name="Veri2Tar" x="360" y="756">
+  <object id="213" name="Veri2Tar" x="360" y="755">
    <properties>
     <property name="class" value="dummy"/>
    </properties>
