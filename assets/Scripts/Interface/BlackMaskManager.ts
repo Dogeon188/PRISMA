@@ -54,11 +54,6 @@ export class BlackMaskManager {
                 return
             }
             this.maskPrefab = prefab
-            this.mask = instantiate(this.maskPrefab)
-            this.maskSprite = this.mask.getComponent(Sprite)
-            this.maskUITransform = this.mask.getComponent(UITransform)
-            this.maskUIOpacity = this.mask.getComponent(UIOpacity)
-            this.mask.parent = this.maskContainer
         })
         director.addPersistRootNode(this.maskContainer)
     }
@@ -70,11 +65,14 @@ export class BlackMaskManager {
         this.currentCamera = director.getScene().getChildByPath("Canvas/Camera")
         // set a high sibling index to make sure the mask is on top of everything
         this.currentCamera.setSiblingIndex(20)
-        this.mask = instantiate(this.maskPrefab)
-        this.maskSprite = this.mask.getComponent(Sprite)
-        this.maskUITransform = this.mask.getComponent(UITransform)
-        this.maskUIOpacity = this.mask.getComponent(UIOpacity)
+        if (!this.mask) {
+            this.mask = instantiate(this.maskPrefab)
+            this.maskSprite = this.mask.getComponent(Sprite)
+            this.maskUITransform = this.mask.getComponent(UITransform)
+            this.maskUIOpacity = this.mask.getComponent(UIOpacity)
+        }
         this.mask.parent = this.currentCamera
+
         let cameraUITransform = this.currentCamera.getComponent(UITransform)
         //if the camera doesn't have a UITransform component, add one
         if (cameraUITransform === null) {
@@ -83,6 +81,7 @@ export class BlackMaskManager {
             const canvasUITransform = canvas.getComponent(UITransform)
             cameraUITransform.setContentSize(canvasUITransform.contentSize)
         }
+
         const size = cameraUITransform.contentSize
         this.mask.setPosition(0, 0, 0)
         this.maskUITransform.setContentSize(size)
@@ -94,9 +93,7 @@ export class BlackMaskManager {
         this._initMask()
         tween(this.maskUIOpacity)
             .to(duration, { opacity: 255 }, { easing: "sineInOut" })
-            .call(() => {
-                callback()
-            })
+            .call(callback)
             .start()
     }
 
@@ -104,9 +101,7 @@ export class BlackMaskManager {
         this._initMask(true)
         tween(this.maskUIOpacity)
             .to(duration, { opacity: 0 }, { easing: "cubicOut" })
-            .call(() => {
-                callback()
-            })
+            .call(callback)
             .start()
     }
     /**

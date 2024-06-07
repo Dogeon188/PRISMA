@@ -1,12 +1,4 @@
-import {
-    _decorator,
-    Component,
-    KeyCode,
-    Label,
-    log,
-    tween,
-    UIOpacity,
-} from "cc"
+import { _decorator, Component, KeyCode, Label, tween, UIOpacity } from "cc"
 import { getKeyCodeName } from "../Scene/Settings"
 const { ccclass, property } = _decorator
 
@@ -30,7 +22,7 @@ export class InteractPrompt extends Component {
             this.node.active = true
             this.isPlaying = true
         } else {
-            log("is already playing")
+            console.debug("prompt is already playing")
         }
     }
     /**
@@ -61,6 +53,7 @@ export class InteractPrompt extends Component {
     }
 
     private setText(keyCode: KeyCode, text: string): void {
+        this.keyCode.node.parent.active = keyCode !== null
         this.keyCode.string = getKeyCodeName(keyCode)
         this.rightDescription.string = text
     }

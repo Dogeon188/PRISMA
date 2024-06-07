@@ -272,7 +272,7 @@ export class Player extends Component {
             !this.interactingWith
         ) {
             this.recentCollidedWith = entity
-            entity.showPrompt()
+            entity.showPrompt(this)
         }
     }
 
