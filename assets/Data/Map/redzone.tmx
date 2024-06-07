@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="86" height="109" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="144">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="86" height="109" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="161">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <tileset firstgid="253" source="amproject.tsx"/>
  <objectgroup id="3" name="Objects">
   <object id="39" name="MovingVerti" x="64" y="1487.63" width="48.25" height="8.5">
    <properties>
     <property name="class" value="moving"/>
+    <property name="color" value="default"/>
+    <property name="duration" type="float" value="1"/>
+    <property name="moveTo" type="object" value="158"/>
    </properties>
   </object>
   <object id="44" name="RedBox" x="559.5" y="826" width="36.0682" height="38">
@@ -15,12 +18,6 @@
    </properties>
   </object>
   <object id="46" name="Lamp" x="904.5" y="1466.5">
-   <properties>
-    <property name="class" value="lamp"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="47" name="Lamp" x="78.4545" y="1486.24">
    <properties>
     <property name="class" value="lamp"/>
    </properties>
@@ -75,7 +72,7 @@
    </properties>
    <point/>
   </object>
-  <object id="56" name="Exit" x="887.432" y="1717.23">
+  <object id="56" name="Exit" x="896" y="1712">
    <properties>
     <property name="class" value="scenePortal"/>
     <property name="scene" value="LevelLobby"/>
@@ -95,7 +92,7 @@
    </properties>
    <point/>
   </object>
-  <object id="68" name="Lamp" x="792.25" y="1726">
+  <object id="68" name="Lamp" x="820.25" y="1726">
    <properties>
     <property name="angle" type="float" value="0"/>
     <property name="class" value="lamp"/>
@@ -103,9 +100,64 @@
    </properties>
    <point/>
   </object>
+  <object id="148" x="80" y="25.92" width="36.1667" height="36.1667">
+   <properties>
+    <property name="class" value="stone"/>
+    <property name="color" value="default"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="149" x="116.167" y="25.92" width="36.1667" height="36.1667">
+   <properties>
+    <property name="class" value="stone"/>
+    <property name="color" value="default"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="150" x="152.333" y="25.92" width="36.1667" height="36.1667">
+   <properties>
+    <property name="class" value="stone"/>
+    <property name="color" value="default"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="151" x="188.5" y="25.92" width="36.1667" height="36.1667">
+   <properties>
+    <property name="class" value="stone"/>
+    <property name="color" value="default"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="157" x="1076.83" y="184.455" width="52.4167" height="52.4167">
+   <properties>
+    <property name="class" value="stone"/>
+    <property name="color" value="default"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="158" x="88" y="1144">
+   <properties>
+    <property name="class" value="dummy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="159" name="M2InIn" x="242" y="1124.5">
+   <properties>
+    <property name="class" value="nodePortal"/>
+    <property name="destination" type="object" value="160"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="160" name="M2InOut" x="112.667" y="849.333">
+   <properties>
+    <property name="class" value="nodePortal"/>
+    <property name="destination" type="object" value="159"/>
+   </properties>
+   <point/>
+  </object>
  </objectgroup>
  <objectgroup id="4" name="Start">
-  <object id="55" name="Start" x="815.75" y="1718.54">
+  <object id="55" name="Start" x="864" y="1728">
    <point/>
   </object>
  </objectgroup>
@@ -223,12 +275,6 @@
   <object id="14" name="M1" x="144.5" y="1136" width="256" height="127.5"/>
   <object id="15" name="M2Floor" x="20" y="864" width="774" height="9"/>
   <object id="18" name="M2Platform" x="480" y="800.012" width="191.977" height="15.9882"/>
-  <object id="22" name="M3Slide" x="17" y="208.5">
-   <polygon points="0,0 318,160 0.5,162"/>
-  </object>
-  <object id="23" name="M3Pit" x="331.625" y="368.625">
-   <polygon points="0,0 4.375,0.125 4.375,63.75 260.625,63.625 260.375,-0.625 262.875,-0.5 262.375,66.75 1.125,65.625"/>
-  </object>
   <object id="24" name="M3Floor" x="592.091" y="367.909" width="326.273" height="2.27273"/>
   <object id="26" name="M3Left" x="14" y="84.667" width="2.33333" height="123.667"/>
   <object id="28" name="M3Ceiling" x="14.545" y="95.818">
@@ -254,10 +300,17 @@
   <object id="67" name="M4Slides" x="1037.5" y="769">
    <polygon points="0,0 176.5,172.5 -2,355"/>
   </object>
+  <object id="152" x="591.75" y="368.25" width="2" height="72.5"/>
+  <object id="153" x="345.667" y="432.333" width="255.333" height="6.33333"/>
+  <object id="154" x="347" y="367.333" width="4.66667" height="66.3333"/>
+  <object id="155" x="32" y="209.5">
+   <polygon points="0,0 318,158 16.5,157.5"/>
+  </object>
+  <object id="156" x="15" y="209" width="18.6667" height="11"/>
  </objectgroup>
  <layer id="2" name="Tiles" width="86" height="109">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
 </map>
