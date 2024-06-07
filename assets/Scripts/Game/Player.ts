@@ -17,6 +17,7 @@ import {
     _decorator,
     clamp,
     input,
+    log,
     tween,
 } from "cc"
 import { BlackMaskManager } from "../Interface/BlackMaskManager"
@@ -412,20 +413,23 @@ export class Player extends Component {
         // TODO play animation & sound
         this.dead = true
         this.scheduleOnce(
-            () => BlackMaskManager.fadeIn(2, () => this.respawn()),
+            () => BlackMaskManager.fadeIn(2, () => { this.respawn() }, false),
             2,
         )
     }
 
     private respawn(): void {
+        log("respawning")
         this.respawning = true
         this.node.rotation = Quat.IDENTITY
         this.node.setPosition(this.spawnPoint)
         this.rigidBody.applyLinearImpulseToCenter(new Vec2(0, 0), true) // wake up rigid body, update collisions
-        BlackMaskManager.fadeOut(2, () => {
-            this.dead = false
-            this.respawning = false
-        })
+        this.dead = false
+        this.respawning = false
+        // BlackMaskManager.fadeOut(2, () => {
+        //     this.dead = false
+        //     this.respawning = false
+        // }, false)
     }
 
     public startMovingBox(box: Box) {

@@ -31,6 +31,9 @@
       },
       {
         "__id__": 8
+      },
+      {
+        "__id__": 8
       }
     ],
     "_prefab": {
@@ -191,7 +194,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "4dluB8ZdVPOJgS55EHlQBN"
+    "fileId": "d227+7K7RDTLQRaCtIy62P"
   },
   {
     "__type__": "cc.PrefabInfo",

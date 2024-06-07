@@ -78,8 +78,16 @@
   <object id="111" name="L1" x="800" y="1056" width="80" height="8"/>
  </objectgroup>
  <objectgroup id="4" name="Objects" locked="1">
-  <object id="114" name="MovingVerti" x="288" y="800" width="144" height="8"/>
-  <object id="115" name="MovingHori" x="592" y="752" width="48" height="8"/>
+  <object id="114" name="MovingVerti" x="288" y="800" width="144" height="8">
+   <properties>
+    <property name="class" value="moving"/>
+   </properties>
+  </object>
+  <object id="115" name="MovingHori" x="592" y="752" width="48" height="8">
+   <properties>
+    <property name="class" value="moving"/>
+   </properties>
+  </object>
   <object id="116" name="RedZone" x="120" y="1248">
    <properties>
     <property name="class" value="scenePortal"/>
