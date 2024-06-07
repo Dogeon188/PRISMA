@@ -1,4 +1,4 @@
-import { KeyCode } from "cc"
+import { KeyCode, log } from "cc"
 import { Settings } from "./Scene/Settings"
 
 export class Auth {
@@ -65,6 +65,7 @@ export class Auth {
     }
 
     public static async updateUserData(data: Partial<UserData>): Promise<void> {
+        log("update user data")
         this.userDataRef.update(data)
         this._userData = { ...this._userData, ...data }
     }

@@ -191,7 +191,7 @@
 </data>
  </layer>
  <objectgroup id="6" name="Objects">
-  <object id="87" name="NextStage" x="2496" y="1360">
+  <object id="87" name="NextStage" x="2496" y="1376">
    <properties>
     <property name="class" value="scenePortal"/>
     <property name="scene" value="LevelLobby"/>
