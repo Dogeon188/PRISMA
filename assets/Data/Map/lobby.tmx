@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="100" height="86" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="238">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="100" height="86" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="240">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <tileset firstgid="253" source="amproject.tsx"/>
  <layer id="1" name="Tiles" width="100" height="86">
@@ -368,7 +368,7 @@
   </object>
  </objectgroup>
  <objectgroup id="2" name="Start">
-  <object id="237" name="Start" x="1520" y="1072">
+  <object id="239" name="Start" x="1520" y="1072">
    <point/>
   </object>
  </objectgroup>
