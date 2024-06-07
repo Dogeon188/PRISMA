@@ -219,11 +219,11 @@ export class Player extends Component {
         const isAbove = normal.y > 0
         switch (other.tag) {
             case ColliderType.ONEWAY:
-                if(this.movement.down) contact.disabled = true
+                if (this.movement.down) contact.disabled = true
                 break
         }
     }
-    
+
     private onBeginContact(
         self: Collider2D,
         other: Collider2D,
@@ -237,7 +237,7 @@ export class Player extends Component {
             case ColliderType.ONEWAY:
                 if (!isOnTop) contact.disabled = true // Disable collision if not on top
                 if (isOnTop) this.standingOn.add(other.uuid)
-                if(this.movement.down) contact.disabled = true
+                if (this.movement.down) contact.disabled = true
                 break
             case ColliderType.GROUND:
                 if (isAbove) this.standingOn.add(other.uuid)
@@ -290,7 +290,8 @@ export class Player extends Component {
         if (
             entity &&
             entity.canInteract(this, normal) &&
-            !this.interactingWith
+            !this.interactingWith &&
+            !this.dead
         ) {
             this.recentCollidedWith = entity
             entity.showPrompt(this)
@@ -382,7 +383,10 @@ export class Player extends Component {
             this.sprite.node.setScale(1, 1)
         }
 
-        if (!this.onGround && !fuzzyEqual(this.rigidBody.linearVelocity.y, 0, 10)) {
+        if (
+            !this.onGround &&
+            !fuzzyEqual(this.rigidBody.linearVelocity.y, 0, 10)
+        ) {
             this.changeAnimation("PlayerJump")
             return
         }
