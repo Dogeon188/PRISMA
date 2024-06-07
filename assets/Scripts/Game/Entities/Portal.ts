@@ -1,13 +1,13 @@
 import { Enum, Node, _decorator, find } from "cc"
+import { Auth } from "../../Auth"
 import { Settings } from "../../Scene/Settings"
 import { SceneManager } from "../../SceneManager"
 import { GameManager } from "../GameManager"
-import { Player } from "../Player"
-import { Entity } from "./Entity"
-import { Auth } from "../../Auth"
-import { PlayerHalo } from "./PlayerHalo"
 import { ColliderGroup } from "../Physics/ColliderManager"
+import { Player } from "../Player"
 import { Timer } from "../Timer"
+import { Entity } from "./Entity"
+import { PlayerHalo } from "./PlayerHalo"
 const { ccclass, property } = _decorator
 
 export const PortalType = Enum({
@@ -29,21 +29,27 @@ export const StageMap: Map<string, [number, number]> = new Map([
     ["LevelBlueZoneM1", [4, 1]],
     ["LevelBlueZoneM2", [4, 2]],
     ["LevelBlueZoneM3", [4, 3]],
+    ["LevelEnd", [5, 1]],
 ])
 
 @ccclass("Portal")
 export class Portal extends Entity {
-    private stageAndPointMap: Map<[number, number], number> = new Map([
-        [[-1, 1], 0],
-        [[0, 1], 1],
-        [[1, 1], 2],
-        [[2, 1], 3],
-        [[2, 2], 4],
-        [[2, 3], 5],
-        [[2, 4], 6],
-        [[3, 1], 7],
-        [[3, 2], 8],
-        [[3, 3], 9],
+    private stageAndPointMap: Map<string, number> = new Map([
+        ["-1,1", 0],
+        ["0,1", 1],
+        ["1,1", 2],
+        ["2,1", 3],
+        ["2,2", 4],
+        ["2,3", 5],
+        ["2,4", 6],
+        ["3,1", 7],
+        ["3,2", 8],
+        ["3,3", 9],
+        ["3,4", 10],
+        ["4,1", 11],
+        ["4,2", 12],
+        ["4,3", 13],
+        ["5,1", 14],
     ])
 
     @property({ type: PortalType, visible: true })
@@ -107,11 +113,14 @@ export class Portal extends Entity {
                 },
                 time: find("Canvas/Camera/HUD/Timer").getComponent(Timer).time,
             })
+            console.log(StageMap.get(this._toScene))
+            console.log(this.stageAndPointMap)
+            console.log(this.stageAndPointMap.get(StageMap.get(this._toScene).join(",")))
             Auth.updateLeaderboardData({
                 username: firebase.auth().currentUser.displayName,
                 time: find("Canvas/Camera/HUD/Timer").getComponent(Timer).time,
                 gameProgress: this.stageAndPointMap.get(
-                    StageMap.get(this._toScene),
+                    StageMap.get(this._toScene).join(","),
                 ),
             })
             SceneManager.loadScene(this._toScene)

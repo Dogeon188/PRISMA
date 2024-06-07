@@ -3,7 +3,10 @@
     ".read": false,
     ".write": false,
     "leaderboard": {
-      ".read": true
+      ".read": true,
+      "$uid": {
+        ".write": "$uid === auth.uid"
+      }
     },
     "users": {
       "$uid": {
