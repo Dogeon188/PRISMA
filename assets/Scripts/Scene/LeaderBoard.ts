@@ -26,6 +26,7 @@ export class LeaderBoard extends Component {
         [7, "LevelBlueZoneM1"],
         [8, "LevelBlueZoneM2"],
         [9, "LevelBlueZoneM3"],
+        [10, "LevelEnd"],
     ])
 
     @property({ type: Prefab })
@@ -75,7 +76,11 @@ export class LeaderBoard extends Component {
                     .getChildByName("Time")
                     .getComponent(Label).string = `${Math.floor(
                     sortedData[i].time / 60,
-                )} : ${(sortedData[i].time % 60).toString()}`
+                )
+                    .toString()
+                    .padStart(2, "0")} : ${Math.floor(sortedData[i].time % 60)
+                    .toString()
+                    .padStart(2, "0")}`
                 record.position = new Vec3(0, -(i + 0.5) * 100, 0)
             }
             this.node.getComponent(UITransform).contentSize = new Size(

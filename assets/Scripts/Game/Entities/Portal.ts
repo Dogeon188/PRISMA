@@ -35,21 +35,18 @@ export const StageMap: Map<string, [number, number]> = new Map([
 @ccclass("Portal")
 export class Portal extends Entity {
     private stageAndPointMap: Map<string, number> = new Map([
-        ["-1,1", 0],
-        ["0,1", 1],
-        ["1,1", 2],
-        ["2,1", 3],
-        ["2,2", 4],
-        ["2,3", 5],
-        ["2,4", 6],
-        ["3,1", 7],
-        ["3,2", 8],
-        ["3,3", 9],
-        ["3,4", 10],
-        ["4,1", 11],
-        ["4,2", 12],
-        ["4,3", 13],
-        ["5,1", 14],
+        ["-1,1", -1],
+        ["0,1", 0],
+        ["1,1", 1],
+        ["2,1", 2],
+        ["3,1", 3],
+        ["3,2", 4],
+        ["3,3", 5],
+        ["3,4", 6],
+        ["4,1", 7],
+        ["4,2", 8],
+        ["4,3", 9],
+        ["5,1", 10],
     ])
 
     @property({ type: PortalType, visible: true })

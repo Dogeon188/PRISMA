@@ -78,6 +78,12 @@ export class Lamp extends Entity {
         this.node.setPosition(position.x, position.y)
         this.haloRadius = radius
         this.haloNode.getComponent(CircleCollider2D).radius = radius
+        this.haloNode
+            .getChildByName("glow_circle")
+            .getComponent(UITransform).width = 0
+        this.haloNode
+            .getChildByName("glow_circle")
+            .getComponent(UITransform).height = 0
         if (angle !== null)
             this.node.setRotation(Quat.fromAngleZ(new Quat(), angle))
     }
@@ -129,6 +135,20 @@ export class Lamp extends Entity {
                     { easing: "sineOut" },
                 )
                 .start()
+            tween(
+                this.haloNode
+                    .getChildByName("glow_circle")
+                    .getComponent(UITransform),
+            )
+                .to(
+                    0.5,
+                    {
+                        width: this.haloRadius * 2 + 50,
+                        height: this.haloRadius * 2 + 50,
+                    },
+                    { easing: "sineOut" },
+                )
+                .start()
         } else {
             this.color = null
             this.gemNode.getComponent(Sprite).enabled = false
@@ -137,6 +157,20 @@ export class Lamp extends Entity {
                 .call(() => {
                     this.drawColor()
                 })
+                .start()
+            tween(
+                this.haloNode
+                    .getChildByName("glow_circle")
+                    .getComponent(UITransform),
+            )
+                .to(
+                    0.5,
+                    {
+                        width: 0,
+                        height: 0,
+                    },
+                    { easing: "sineOut" },
+                )
                 .start()
         }
         this.collidedSet.forEach((entity) => {
