@@ -13,9 +13,11 @@ export class Timer extends Component {
     protected update(dt: number): void {
         this.time += dt
         const ceilTime = Math.floor(this.time)
-        this.node.getComponent(Label).string = `${Math.floor(
-            ceilTime / 60,
-        )} : ${(ceilTime % 60).toString()}`
+        this.node.getComponent(Label).string = `${Math.floor(ceilTime / 60)
+            .toString()
+            .padEnd(2, "0")} : ${Math.floor(ceilTime % 60)
+            .toString()
+            .padEnd(2, "0")}`
     }
 
     private loadTimeOnUserData(): void {
