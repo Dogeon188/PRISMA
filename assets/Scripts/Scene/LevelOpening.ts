@@ -1,16 +1,4 @@
-import {
-    _decorator,
-    AudioClip,
-    Camera,
-    Component,
-    log,
-    Node,
-    ParticleSystem2D,
-    tween,
-    UIOpacity,
-    UITransform,
-} from "cc"
-import { AudioManager } from "../AudioManager"
+import { _decorator, Component, Node } from "cc"
 import { Dialog } from "../Game/Entities/Dialog"
 import { GameManager } from "../Game/GameManager"
 const { ccclass, property } = _decorator
@@ -20,10 +8,26 @@ export class LevelOpening extends Component {
     @property(Node)
     private objectsNode: Node = null
 
-    @property({ type: AudioClip, group: "Audio" })
-    private openingBGM: AudioClip = null
-
     private dummyDialog: Dialog = null
+
+    private openingFinished: boolean = false
+
+    protected warpBack() {
+        if (!this.openingFinished) {
+            const playerNode = GameManager.inst.player.node
+            const cameraNode = GameManager.inst.camera.node
+            this.scheduleOnce(() => {
+                playerNode.setPosition(
+                    playerNode.position.x - 256 * 2,
+                    playerNode.position.y + 256,
+                )
+                cameraNode.setPosition(
+                    cameraNode.position.x - 256 * 2 * 2.5,
+                    cameraNode.position.y + 256 * 2.5,
+                )
+            }, 0)
+        }
+    }
 
     protected start(): void {
         this.dummyDialog = this.objectsNode
@@ -31,18 +35,10 @@ export class LevelOpening extends Component {
             .getComponent(Dialog)
 
         this.scheduleOnce(() => {
-            // log(this.dummyDialog)
-            // log("Opening dialog")
             GameManager.inst.dialogBox.playDialog(
                 this.dummyDialog.entries,
-                () => {
-                    // log("Opening dialog done")
-                },
+                () => (this.openingFinished = true),
             )
         }, 4)
     }
-
-    
-
-    
 }
