@@ -16,15 +16,16 @@ export const PortalType = Enum({
 
 export const StageMap: Map<string,[number, number] > = new Map([
     ["LevelTest", [-1, 1]],
-    ["LevelLobby", [0, 1]],
-    ["LevelRedZone", [1, 1]],
-    ["LevelGreenZoneM1", [2, 1]],
-    ["LevelGreenZoneM2", [2, 2]],
-    ["LevelGreenZoneM3", [2, 3]],
-    ["LevelGreenZoneM4", [2, 4]],
-    ["LevelBlueZoneM1", [3, 1]],
-    ["LevelBlueZoneM2", [3, 2]],
-    ["LevelBlueZoneM3", [3, 3]],
+    ["LevelOpening", [0, 1]],
+    ["LevelLobby", [1, 1]],
+    ["LevelRedZone", [2, 1]],
+    ["LevelGreenZoneM1", [3, 1]],
+    ["LevelGreenZoneM2", [3, 2]],
+    ["LevelGreenZoneM3", [3, 3]],
+    ["LevelGreenZoneM4", [3, 4]],
+    ["LevelBlueZoneM1", [4, 1]],
+    ["LevelBlueZoneM2", [4, 2]],
+    ["LevelBlueZoneM3", [4, 3]],
 ])
 
 @ccclass("Portal")

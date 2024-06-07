@@ -42,6 +42,9 @@ export class Start extends Component {
             case -1: // debug
                 SceneManager.loadScene("LevelTest")
                 break
+            case 0: // debug
+                SceneManager.loadScene("LevelOpening")
+                break
             case 1:
                 SceneManager.loadScene("LevelLobby")
                 break

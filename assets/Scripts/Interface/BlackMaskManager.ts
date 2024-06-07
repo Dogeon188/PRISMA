@@ -65,6 +65,7 @@ export class BlackMaskManager {
         this.currentCamera = director.getScene().getChildByPath("Canvas/Camera")
         // set a high sibling index to make sure the mask is on top of everything
         this.currentCamera.setSiblingIndex(20)
+        this.mask = null
         if (!this.mask) {
             this.mask = instantiate(this.maskPrefab)
             this.maskSprite = this.mask.getComponent(Sprite)
