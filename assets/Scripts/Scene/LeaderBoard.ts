@@ -9,6 +9,7 @@ import {
     UITransform,
     Vec3,
 } from "cc"
+import { AudioManager } from "../AudioManager"
 import { SceneManager } from "../SceneManager"
 const { ccclass, property } = _decorator
 
@@ -36,7 +37,8 @@ export class LeaderBoard extends Component {
         this.initialize()
     }
 
-    private goBack(): void {
+    protected goBack(): void {
+        AudioManager.inst.doNotReplayNextTime()
         SceneManager.loadScene("Start", true)
     }
 

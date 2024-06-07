@@ -105,13 +105,13 @@ export class GameManager extends Component {
     //#region Callbacks
 
     protected onLoad(): void {
-        AudioManager.inst.fadeInBGM(this.bgm, 1)
         const startObject = this.startObjectGroup.getObjects()[0]
         this.player.initialize(this, new Vec2(startObject.x, startObject.y))
         this.camera.focusOn(this.player.node)
     }
 
     protected start(): void {
+        if (this.bgm) AudioManager.inst.fadeInBGM(this.bgm, 1)
         this.initializeShader()
         if (PREVIEW && this.debugMode) {
             PhysicsSystem2D.instance.debugDrawFlags = EPhysics2DDrawFlags.Aabb
