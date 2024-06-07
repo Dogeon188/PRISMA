@@ -2,10 +2,13 @@
   "rules": {
     ".read": false,
     ".write": false,
+    "leaderboard": {
+      ".read": true
+    },
     "users": {
       "$uid": {
-        ".read": "$uid === auth.uid",
-        ".write": "$uid === auth.uid"
+        ".read": "!data.exists() || $uid === auth.uid",
+        ".write": "!data.exists() || $uid === auth.uid"
       }
     }
   }

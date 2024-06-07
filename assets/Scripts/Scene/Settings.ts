@@ -188,13 +188,15 @@ export class Settings extends Component {
     }
 
     private saveAndLeave(): void {
-        Auth.updateUserData({
-            keybinds: Settings.keybinds,
-            volumeSFX: Settings.volumeSFX,
-            volumeBGM: Settings.volumeBGM,
-        })
-        AudioManager.inst.doNotReplayNextTime()
-        SceneManager.loadScene("Start", true)
+        this.scheduleOnce(async () => {
+            await Auth.updateUserData({
+                keybinds: Settings.keybinds,
+                volumeSFX: Settings.volumeSFX,
+                volumeBGM: Settings.volumeBGM,
+            })
+            AudioManager.inst.doNotReplayNextTime()
+            SceneManager.loadScene("Start", true)
+        }, 0.5)
     }
 
     //#endregion
