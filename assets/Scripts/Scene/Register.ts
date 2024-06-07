@@ -43,6 +43,9 @@ export class Register extends Component {
                 await auth.currentUser.updateProfile({
                     displayName: username.toUpperCase(),
                 })
+                console.log(Auth.data)
+                Auth.updateUserData({})
+                console.log("TTT")
 
                 ToastManager.show("Successfully registered!")
                 SceneManager.loadScene("Start", true)

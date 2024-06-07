@@ -23,6 +23,10 @@ export class Start extends Component {
         SceneManager.loadScene("Settings", true)
     }
 
+    protected loadLeaderboard(): void {
+        SceneManager.loadScene("LeaderBoard", true)
+    }
+
     protected logOut(): void {
         firebase
             .auth()
