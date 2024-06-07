@@ -4,7 +4,7 @@
  <tileset firstgid="253" source="amproject.tsx"/>
  <layer id="2" name="Tiles" width="86" height="109">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3da4rUQBAH8F0XRFFBfIGugoKg3/UCepI92h7VLnYKe3q7q6uqH0ln/gNhZpJOJvmlUv1IVm+ur65uoult+PxJMVG5eD18lj3eBS/N6w1cTXEFVznuvNclXOHqjR1PfaKpc7gM5ci0nrpV5tePirrNsi8jy0p1rPb61NQ5XIZcR2zXsg8zykp1bHz8r6+v7ml/wvtdy37B9TyuyDVMcFUGlSVeU9cXwfllmF4p8yPtEuK1Hq98Tiz5Eq59XH+FGP0dXTtw7eP6J5j+hetZ/zNtD6T5lfMAtdUoz2omKsvl34fPHwy5WVll7KJYS70lravtl5DxEX0lm1q8evo/pX7I0XxbXLUXXNynkH6PYvwovtJxWtpPknHcp5B+Lx2bWDk/SMfZK3Y8rmzcax+k8z5imeTK12XrsbW4rupbc42Py+vbw3U1X61ri29P11V8ra4e3xGue/f1ulp8R7ryfrS2XXhsTtNn1JQptdN5f7XvtJ1S/l3BtTW+tE4t5VJfuPa530qun8P05TSmMsv1e7hH5J32Gq+cB2JPbm/PcKXf1+S9Uple+bDlOo/XlTxnuvY6nq23o/GEqy2vpvmz1r+ekQe2jjPv71viM3WG6+O4bfFMfa9PbVzvuT3KetbrPXWMv7MpzTuKj/c4qG9I1zBZhPc7yU1aFpvC9eE+d5wbJbvSstS01ZXzkjdW9rAex2uwdcVrzpRdyWfkc5Jbb5uOr3QOW1xLpuzaOv5Uuj72Ml/qF3tdJVO4+vJrzRSudleNKVxtrlpTuOpdLaZw1bs+O/VPtXUxtT/QHtD9XYHFFq4P/Vhtv0BrC1ebK+UBjS1c7a4aW7j6XGu2l+5KYwdPwuR9lXLCUVylZ2SkcRc6/hG2I1w1f6P3NIwhW6ZaPEljK3SMtam37QhXOkbaz5nt4lbX3nHb05XjlMe7V3PtadvTleN0tGsul9ZyaC0PxMs9OSG+R8bXDm2n9EyPZT57xu+W9bVlexqWvK22eH6gXoextcUWrnpXS76Fq81VawtXu6vGFq5+1+dCfxeudleqvyRT6guOcOV2VanNsvJ8jWnJldZtfSZlRpty9vnRmpZce/Q3e/TPZ7tJv2cxhasut1pN4Vp39ZjCVXb1msK17NpiCte8a6spXB+79jCF62PXHm1Mr2tufD4dg6bzLrUH97psS9ejtfnjc9zLlWKWX+xV2/aRXek6S6+91u987V6KaxxToz/TNQHX/spw7W9KW4Trdq6efwO1dTy35/pcj4wRzG9VE6/5NdeZy+2ZmXsM1zHacIWrVwB5IC+nGZ+Q+kiot/675p57bB27yZ+1MXP3ml9HPOcwRjC/VbjmXVrnruDa2i9Bfj3PryEXuP4tmzTW0B6AaxoTvb/H9VbrthGviNfWGKqtL8WrtZ+AeksXr977bbVz2XP5Cu2s9HhXcdXck7T8P5+pg+e7lAdy7VnN8wue/fCuo+1z1+4ten+/tJ7kmltHE8O59UbN07rGMT07djXHvqpr7D87di/FdY+xy/FK+5bec9yqnaXNBblyW8Zubow2tz9b9bdyXtp53ti1tu3pfkCa13NjtEdx9ebdXFspvX7T77fBNn7Frry9tAyVXzFeY1dv7GrqpVwZbVtsdVdv7ObMNPMu0XVG7F6i64zYlVy/hlz87ZSPj5QHtsy7lEN+BNOfB3ctGUvPUvRctkW/4B9eydwSeJIAAA==
+   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
   </data>
  </layer>
  <objectgroup id="3" name="Objects">
@@ -22,9 +22,11 @@
     <property name="color" value="red"/>
    </properties>
   </object>
-  <object id="46" name="Lamp" x="904.5" y="1466.5">
+  <object id="46" name="Lamp" x="912" y="1456">
    <properties>
+    <property name="angle" type="float" value="90"/>
     <property name="class" value="lamp"/>
+    <property name="radius" type="float" value="10"/>
    </properties>
    <point/>
   </object>
