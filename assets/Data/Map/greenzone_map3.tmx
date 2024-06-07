@@ -21,8 +21,8 @@
   </object>
  </objectgroup>
  <objectgroup id="4" name="Spikes" locked="1"/>
- <objectgroup id="5" name="Objects" locked="1">
-  <object id="26" name="NextStage" x="48.5" y="198">
+ <objectgroup id="5" name="Objects">
+  <object id="26" name="NextStage" x="48" y="192">
    <properties>
     <property name="class" value="scenePortal"/>
     <property name="scene" value="LevelGreenZoneM4"/>
