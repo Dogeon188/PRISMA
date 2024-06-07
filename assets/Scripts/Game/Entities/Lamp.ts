@@ -143,8 +143,8 @@ export class Lamp extends Entity {
                 .to(
                     0.5,
                     {
-                        width: this.haloRadius * 2 + 50,
-                        height: this.haloRadius * 2 + 50,
+                        width: this.haloRadius * 3,
+                        height: this.haloRadius * 3,
                     },
                     { easing: "sineOut" },
                 )
