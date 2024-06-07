@@ -43,6 +43,7 @@ export class Auth {
             blue: 0,
         },
         time: 0,
+        stoneList: [],
     }
 
     public static get data(): UserData {
