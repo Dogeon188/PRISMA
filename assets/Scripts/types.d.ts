@@ -21,6 +21,7 @@ interface UserData {
     haloColor: number
     gemNum: GemNum
     time: number
+    stoneList: string[]
 }
 
 interface leaderboardData {

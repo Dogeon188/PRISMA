@@ -99,7 +99,14 @@ export class Portal extends Entity {
             Auth.updateUserData({
                 stage: StageMap.get(this._toScene)[0],
                 savepoint: StageMap.get(this._toScene)[1],
-                haloColor: player.getComponent(PlayerHalo).color,
+                haloColor:
+                    player.getComponent(PlayerHalo).color === null
+                        ? 0
+                        : player.getComponent(PlayerHalo).color === 2
+                        ? 1
+                        : player.getComponent(PlayerHalo).color === 4
+                        ? 2
+                        : 3,
                 gemNum: {
                     red: player.getComponent(PlayerHalo).colorNumDict[
                         ColliderGroup.RED
@@ -115,7 +122,11 @@ export class Portal extends Entity {
             })
             console.log(StageMap.get(this._toScene))
             console.log(this.stageAndPointMap)
-            console.log(this.stageAndPointMap.get(StageMap.get(this._toScene).join(",")))
+            console.log(
+                this.stageAndPointMap.get(
+                    StageMap.get(this._toScene).join(","),
+                ),
+            )
             Auth.updateLeaderboardData({
                 username: firebase.auth().currentUser.displayName,
                 time: find("Canvas/Camera/HUD/Timer").getComponent(Timer).time,
