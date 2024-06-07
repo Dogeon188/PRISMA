@@ -54,7 +54,7 @@ export class Box extends Entity {
         )
 
         for (const collider of this.node.getComponents(Collider2D)) {
-            log(`box collider tag: ${collider.tag}`)
+            // log(`box collider tag: ${collider.tag}`)
             collider.on(
                 Contact2DType.BEGIN_CONTACT,
                 this.onBeginContact,

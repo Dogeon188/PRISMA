@@ -2,6 +2,7 @@ import {
     Color,
     Node,
     Prefab,
+    Size,
     Sprite,
     UIOpacity,
     UITransform,
@@ -9,8 +10,11 @@ import {
     director,
     instantiate,
     log,
+    math,
     resources,
+    size,
     tween,
+    v2,
 } from "cc"
 import { EDITOR_NOT_IN_PREVIEW } from "cc/env"
 const { ccclass, property } = _decorator
@@ -65,21 +69,20 @@ export class BlackMaskManager {
         this.currentCamera = director.getScene().getChildByPath("Canvas/Camera")
         // set a high sibling index to make sure the mask is on top of everything
         this.currentCamera.setSiblingIndex(20)
-        if (!this.mask) {
-            this.mask = instantiate(this.maskPrefab)
-            this.maskSprite = this.mask.getComponent(Sprite)
-            this.maskUITransform = this.mask.getComponent(UITransform)
-            this.maskUIOpacity = this.mask.getComponent(UIOpacity)
-        }
+        this.mask = null
+        this.mask = instantiate(this.maskPrefab)
+        this.maskSprite = this.mask.getComponent(Sprite)
+        this.maskUITransform = this.mask.getComponent(UITransform)
+        this.maskUIOpacity = this.mask.getComponent(UIOpacity)
+
         this.mask.parent = this.currentCamera
 
         let cameraUITransform = this.currentCamera.getComponent(UITransform)
         //if the camera doesn't have a UITransform component, add one
         if (cameraUITransform === null) {
             cameraUITransform = this.currentCamera.addComponent(UITransform)
-            const canvas = this.currentCamera.parent
-            const canvasUITransform = canvas.getComponent(UITransform)
-            cameraUITransform.setContentSize(canvasUITransform.contentSize)
+            const size = new Size(1280, 720)
+            cameraUITransform.setContentSize(size)
         }
 
         const size = cameraUITransform.contentSize
@@ -89,20 +92,38 @@ export class BlackMaskManager {
         this.maskUIOpacity.opacity = fadeOut ? 255 : 0
     }
 
-    private _fadeIn(duration: number, callback: Function = () => {}): void {
+    private _fadeIn(duration: number, callback: Function = () => { }, isChangeScene: boolean = true): void {
+        log("fade in")
         this._initMask()
         tween(this.maskUIOpacity)
             .to(duration, { opacity: 255 }, { easing: "sineInOut" })
+            .call(() => {
+                log("fade in complete")
+                log(`opacity: ${this.maskUIOpacity.opacity}`)
+                if (!isChangeScene) {
+                    log("fade in complete, remove mask")
+                    this.mask.destroy()
+                    }  
+            })
             .call(callback)
             .start()
     }
 
-    private _fadeOut(duration: number, callback: Function = () => {}): void {
+    private _fadeOut(duration: number, callback: Function = () => { }, isChangeScene: boolean = true): void {
+        log("fade out")
         this._initMask(true)
         tween(this.maskUIOpacity)
             .to(duration, { opacity: 0 }, { easing: "cubicOut" })
+            .call(() => {
+                log("fade out complete")
+                log(`opacity: ${this.maskUIOpacity.opacity}`)
+                if (!isChangeScene) {
+                    log("fade out complete, remove mask")
+                    this.mask.destroy()
+                    }   
+                })
             .call(callback)
-            .start()
+            .start()    
     }
     /**
      * Increase the opacity of the mask to 255 \
@@ -110,8 +131,8 @@ export class BlackMaskManager {
      * @param duration
      * @param callback callback function after the mask is fully visible
      */
-    static fadeIn(duration: number = 1, callback: Function = () => {}): void {
-        BlackMaskManager.inst._fadeIn(duration, callback)
+    static fadeIn(duration: number = 1, callback: Function = () => { }, isChangeScene: boolean = true): void {
+        BlackMaskManager.inst._fadeIn(duration, callback, isChangeScene)
     }
     /**
      * Decrease the opacity of the mask to 0 \
@@ -119,8 +140,8 @@ export class BlackMaskManager {
      * @param duration
      * @param callback callback function after the mask is fully invisible
      */
-    static fadeOut(duration: number = 1, callback: Function = () => {}): void {
-        BlackMaskManager.inst._fadeOut(duration, callback)
+    static fadeOut(duration: number = 1, callback: Function = () => { }, isChangeScene: boolean = true): void {
+        BlackMaskManager.inst._fadeOut(duration, callback, isChangeScene)
     }
 }
 
