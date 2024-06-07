@@ -126,6 +126,7 @@ export class ColliderManager extends Component {
                     break
                 case ColliderType.BOX:
                     rigidBody.type = ERigidBody2DType.Dynamic
+                    rigidBody.enabledContactListener = true
                     rigidBody.fixedRotation = true
                     break
                 case ColliderType.STONE:
