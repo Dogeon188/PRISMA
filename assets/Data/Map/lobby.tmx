@@ -189,10 +189,10 @@
   <object id="133" name="RedBox" x="1088" y="1232" width="32" height="32">
    <properties>
     <property name="class" value="box"/>
-    <property name="color" value="red"/>
+    <property name="color" value="default"/>
    </properties>
   </object>
-  <object id="134" name="RedBox" x="976" y="720" width="32" height="32">
+  <object id="134" name="RedBox" x="1424" y="720" width="32" height="32">
    <properties>
     <property name="class" value="box"/>
     <property name="color" value="red"/>
