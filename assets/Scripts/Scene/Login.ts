@@ -39,7 +39,11 @@ export class Login extends Component {
                 ToastManager.show(
                     `Welcome back, ${auth.currentUser.displayName}!`,
                 )
-                SceneManager.loadScene("Start", true)
+                AudioManager.inst.doNotReplayNextTime()
+                this.scheduleOnce(
+                    () => SceneManager.loadScene("Start", true),
+                    2,
+                )
             })
             .catch((error: any) => {
                 console.error(error)

@@ -75,7 +75,11 @@ export class Register extends Component {
                 // console.log("TTT")
 
                 ToastManager.show("Successfully registered!")
-                SceneManager.loadScene("Start", true)
+                AudioManager.inst.doNotReplayNextTime()
+                this.scheduleOnce(
+                    () => SceneManager.loadScene("Start", true),
+                    2,
+                )
             })
             .catch((error: any) => {
                 console.error(error)

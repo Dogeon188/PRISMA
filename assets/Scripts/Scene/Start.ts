@@ -37,7 +37,10 @@ export class Start extends Component {
         firebase
             .auth()
             .signOut()
-            .then(() => SceneManager.loadScene("Splash", true))
+            .then(() => {
+                AudioManager.inst.fadeOutBGM(1)
+                SceneManager.loadScene("Splash", true)
+            })
             .catch((error) => {
                 ToastManager.show("Sign-out failed.")
                 console.error(error)
@@ -48,6 +51,7 @@ export class Start extends Component {
      * Load the stage based on the stored user data.
      */
     private loadStageOnUserData(): void {
+        AudioManager.inst.fadeOutBGM(1)
         switch (Auth.data.stage) {
             case -1: // debug
                 SceneManager.loadScene("LevelTest")

@@ -60,8 +60,11 @@ export class InteractPrompt extends Component {
     }
 
     private setText(keyCode: KeyCode, text: string): void {
-        this.keyCode.node.parent.active = keyCode !== null
-        this.keyCode.string = getKeyCodeName(keyCode)
-        this.rightDescription.string = text
+        this.scheduleOnce(() => {
+            this.keyCode.node.parent.active =
+                keyCode !== null && keyCode !== undefined
+            this.keyCode.string = getKeyCodeName(keyCode)
+            this.rightDescription.string = text
+        })
     }
 }
