@@ -1,30 +1,30 @@
 import {
-    _decorator,
+    AudioClip,
     CircleCollider2D,
     Collider2D,
     Color,
     Contact2DType,
     IPhysics2DContact,
-    math,
+    Intersection2D,
     Node,
+    PhysicsSystem2D,
     Quat,
+    RigidBody,
     Size,
     Sprite,
-    tween,
     UITransform,
     Vec2,
-    AudioClip,
-    Intersection2D,
-    RigidBody,
-    PhysicsSystem2D,
+    _decorator,
+    math,
+    tween,
 } from "cc"
+import { AudioManager } from "../../AudioManager"
 import { Settings } from "../../Scene/Settings"
 import { GameManager } from "../GameManager"
 import { ColliderGroup, ColorMap } from "../Physics/ColliderManager"
 import { Player } from "../Player"
 import { Entity } from "./Entity"
 import { PlayerHalo } from "./PlayerHalo"
-import { AudioManager } from "../../AudioManager"
 const { ccclass, property } = _decorator
 
 @ccclass("Lamp")
@@ -38,6 +38,10 @@ export class Lamp extends Entity {
 
     @property
     private haloRadius: number = 200
+
+    public get radius(): number {
+        return this.haloRadius
+    }
 
     @property(AudioClip)
     private gemSound: AudioClip = null

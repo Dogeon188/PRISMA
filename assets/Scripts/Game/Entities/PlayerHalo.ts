@@ -9,23 +9,18 @@ import {
     input,
     Label,
     Node,
-    RigidBody2D,
     screen,
     Size,
     Sprite,
     UITransform,
     Vec3,
 } from "cc"
-import {
-    ColliderGroup,
-    ColliderManager,
-    ColliderType,
-} from "../Physics/ColliderManager"
-import { Player } from "../Player"
 import { PlayPauseButton } from "../../PlayPauseButton"
-import { Plate } from "./Plate"
-import { Lamp } from "./Lamp"
 import { GameManager } from "../GameManager"
+import { ColliderGroup, ColliderType } from "../Physics/ColliderManager"
+import { Player } from "../Player"
+import { Lamp } from "./Lamp"
+import { Plate } from "./Plate"
 const { ccclass, property } = _decorator
 
 @ccclass("PlayerHalo")

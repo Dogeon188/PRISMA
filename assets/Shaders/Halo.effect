@@ -27,7 +27,7 @@ techniques:
             { value: 35, editor: { type: number, min: 0, max: 1000 } }
           centersX:
             {
-              value: [640, 640, 640, 640],
+              value: [-1000, -1000, -1000, -1000],
               editor:
                 {
                   type: vec4,
@@ -37,13 +37,13 @@ techniques:
             }
           centersY:
             {
-              value: [360, 360, 360, 360],
+              value: [-1000, -1000, -1000, -1000],
               editor:
                 { type: vec4, min: [0, 0, 0, 0], max: [720, 720, 720, 720] },
             }
           radii:
             {
-              value: [100, 100, 100, 100],
+              value: [0, 0, 0, 0],
               editor:
                 {
                   type: vec4,
@@ -85,8 +85,7 @@ uniform UBO {
   vec4 color;
   vec2 pauseCenter;
   float pauseRadius;
-};
-uniform CENTERS {
+  float _padding;
   vec4 centersX;
   vec4 centersY;
   vec4 radii;
