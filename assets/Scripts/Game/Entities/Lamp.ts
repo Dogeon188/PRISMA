@@ -79,10 +79,17 @@ export class Lamp extends Entity {
             this.node.setRotation(Quat.fromAngleZ(new Quat(), angle))
     }
 
-    public showPrompt(): void {
+    public showPrompt(player: Player): void {
         GameManager.inst.interactPrompt.showPrompt(
-            Settings.keybinds.interact,
-            this.color === null ? "Light Up" : "Pick Up",
+            this.color === null &&
+                player.node.getComponent(PlayerHalo).color === null
+                ? null
+                : Settings.keybinds.interact,
+            this.color === null
+                ? player.node.getComponent(PlayerHalo).color === null
+                    ? "Make sure you have light to give."
+                    : "Light Up"
+                : "Pick Up",
         )
     }
 
@@ -101,17 +108,9 @@ export class Lamp extends Entity {
     }
 
     private changeColor(player: Player): boolean {
-        console.log(this.collidedSet)
         AudioManager.inst.playOneShot(this.gemSound)
         if (this.color === null) {
             if (player.node.getComponent(PlayerHalo).color === null) {
-                GameManager.inst.interactPrompt.showPrompt(
-                    Settings.keybinds.interact,
-                    "Make sure you have light to give.",
-                )
-                this.scheduleOnce(() => {
-                    this.showPrompt()
-                }, 2)
                 return false
             }
             this.color = player.node.getComponent(PlayerHalo).color
@@ -155,15 +154,15 @@ export class Lamp extends Entity {
 
     public onCollide(other: Node): void {
         const player = other.getComponent(Player)
+        GameManager.inst.interactPrompt.hidePrompt()
         this.scheduleOnce(() => {
-            if (this.canInteract(player, null)) this.showPrompt()
-        }, 0)
+            if (this.canInteract(player, null)) this.showPrompt(player)
+        }, 0.5)
     }
 
     public onBeginInteract(player: Player): void {
         const target_color = this.color
-        GameManager.inst.interactPrompt.hidePrompt()
-        console.log(player.collidedHaloNodeSet)
+        // GameManager.inst.interactPrompt.hidePrompt()
         player.collidedHaloNodeSet.forEach((node) => {
             // check if node position is in the lamp's halo
             // dont change readonly vec3
@@ -181,7 +180,6 @@ export class Lamp extends Entity {
             )
 
             // const colliderList = PhysicsSystem2D.instance.testAABB(target_rect)
-            // console.log(colliderList)
 
             const circleCenter = new Vec2(
                 this.node.position.x,
@@ -197,7 +195,10 @@ export class Lamp extends Entity {
         const ret = this.changeColor(player)
         player.node.getComponent(PlayerHalo).interactWithLamp(target_color)
         if (ret) {
-            this.showPrompt()
+            GameManager.inst.interactPrompt.hidePrompt()
+            this.scheduleOnce(() => {
+                this.showPrompt(player)
+            }, 0.5)
         }
     }
 
