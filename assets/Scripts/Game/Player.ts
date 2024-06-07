@@ -365,7 +365,7 @@ export class Player extends Component {
             this.sprite.node.setScale(1, 1)
         }
 
-        if (!this.onGround) {
+        if (!this.onGround && !fuzzyEqual(this.rigidBody.linearVelocity.y, 0, 10)) {
             this.changeAnimation("PlayerJump")
             return
         }
