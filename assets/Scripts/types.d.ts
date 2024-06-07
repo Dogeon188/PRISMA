@@ -12,6 +12,7 @@ interface UserData {
     volumeBGM: number
     stage: number
     savepoint: number
+    haloColor: number
 }
 
 type Uuid = string

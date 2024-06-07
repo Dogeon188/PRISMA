@@ -25,6 +25,7 @@ export class Auth {
         volumeBGM: 1,
         stage: 1,
         savepoint: 1,
+        haloColor: 0,
     }
 
     public static get data(): UserData {

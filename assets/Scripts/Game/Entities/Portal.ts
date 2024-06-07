@@ -5,6 +5,7 @@ import { GameManager } from "../GameManager"
 import { Player } from "../Player"
 import { Entity } from "./Entity"
 import { Auth } from "../../Auth"
+import { PlayerHalo } from "./PlayerHalo"
 const { ccclass, property } = _decorator
 
 export const PortalType = Enum({
@@ -14,7 +15,7 @@ export const PortalType = Enum({
     NODE: -1,
 })
 
-export const StageMap: Map<string,[number, number] > = new Map([
+export const StageMap: Map<string, [number, number]> = new Map([
     ["LevelTest", [-1, 1]],
     ["LevelLobby", [0, 1]],
     ["LevelRedZone", [1, 1]],
@@ -73,7 +74,11 @@ export class Portal extends Entity {
 
     public onBeginInteract(player: Player): void {
         if (this.portalType === PortalType.SCENE) {
-            Auth.updateUserData({ stage: StageMap.get(this._toScene)[0], savepoint: StageMap.get(this._toScene)[1] })
+            Auth.updateUserData({
+                stage: StageMap.get(this._toScene)[0],
+                savepoint: StageMap.get(this._toScene)[1],
+                haloColor: player.getComponent(PlayerHalo).color,
+            })
             SceneManager.loadScene(this._toScene)
         } else if (this.portalType === PortalType.NODE) {
             player.node.position = this.toNode.position

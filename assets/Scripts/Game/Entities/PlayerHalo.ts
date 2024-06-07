@@ -26,6 +26,7 @@ import { PlayPauseButton } from "../../PlayPauseButton"
 import { Plate } from "./Plate"
 import { Lamp } from "./Lamp"
 import { GameManager } from "../GameManager"
+import { Auth } from "../../Auth"
 const { ccclass, property } = _decorator
 
 @ccclass("PlayerHalo")
@@ -76,6 +77,7 @@ export class PlayerHalo extends Component {
         input.on(Input.EventType.MOUSE_DOWN, this.onMouseDown, this)
         input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this)
         input.on(Input.EventType.MOUSE_MOVE, this.onMouseMove, this)
+        this.loadColorOnUserData()
     }
 
     protected start(): void {
@@ -117,7 +119,7 @@ export class PlayerHalo extends Component {
         }
     }
 
-    private changeColor(color: number): void {
+    public changeColor(color: number): void {
         if (this.color === color || this.colorNumDict[color] === 0) {
             return
         }
@@ -320,6 +322,26 @@ export class PlayerHalo extends Component {
                 })
         } else {
             this.addGem(color)
+        }
+    }
+
+    private loadColorOnUserData(): void {
+        switch (Auth.data.haloColor) {
+            case 0:
+                this.changeColor(null)
+                break
+            case 1:
+                this.changeColor(ColliderGroup.RED)
+                break
+            case 2:
+                this.changeColor(ColliderGroup.GREEN)
+                break
+            case 3:
+                this.changeColor(ColliderGroup.BLUE)
+                break
+            default:
+                this.changeColor(null)
+                break
         }
     }
 }
