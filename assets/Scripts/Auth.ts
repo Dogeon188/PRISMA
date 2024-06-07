@@ -26,6 +26,11 @@ export class Auth {
         stage: 1,
         savepoint: 1,
         haloColor: 0,
+        gemNum: {
+            red: 0,
+            green: 0,
+            blue: 0,
+        },
     }
 
     public static get data(): UserData {

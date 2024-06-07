@@ -6,6 +6,12 @@ interface KeyBind {
     interact: import("cc").KeyCode
 }
 
+interface GemNum {
+    red: number
+    green: number
+    blue: number
+}
+
 interface UserData {
     keybinds: KeyBind
     volumeSFX: number
@@ -13,6 +19,7 @@ interface UserData {
     stage: number
     savepoint: number
     haloColor: number
+    gemNum: GemNum
 }
 
 type Uuid = string

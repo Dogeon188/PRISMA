@@ -56,7 +56,7 @@ export class PlayerHalo extends Component {
         [ColliderGroup.BLUE]: Color.BLUE,
     }
 
-    private colorNumDict = {
+    public colorNumDict = {
         [ColliderGroup.RED]: 1,
         [ColliderGroup.GREEN]: 1,
         [ColliderGroup.BLUE]: 1,
@@ -78,6 +78,7 @@ export class PlayerHalo extends Component {
         input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this)
         input.on(Input.EventType.MOUSE_MOVE, this.onMouseMove, this)
         this.loadColorOnUserData()
+        this.loadGemOnUserData()
     }
 
     protected start(): void {
@@ -343,5 +344,11 @@ export class PlayerHalo extends Component {
                 this.changeColor(null)
                 break
         }
+    }
+
+    private loadGemOnUserData(): void {
+        this.colorNumDict[ColliderGroup.RED] = Auth.data.gemNum.red
+        this.colorNumDict[ColliderGroup.GREEN] = Auth.data.gemNum.green
+        this.colorNumDict[ColliderGroup.BLUE] = Auth.data.gemNum.blue
     }
 }

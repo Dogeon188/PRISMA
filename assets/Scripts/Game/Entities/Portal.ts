@@ -6,6 +6,7 @@ import { Player } from "../Player"
 import { Entity } from "./Entity"
 import { Auth } from "../../Auth"
 import { PlayerHalo } from "./PlayerHalo"
+import { ColliderGroup } from "../Physics/ColliderManager"
 const { ccclass, property } = _decorator
 
 export const PortalType = Enum({
@@ -78,6 +79,17 @@ export class Portal extends Entity {
                 stage: StageMap.get(this._toScene)[0],
                 savepoint: StageMap.get(this._toScene)[1],
                 haloColor: player.getComponent(PlayerHalo).color,
+                gemNum: {
+                    red: player.getComponent(PlayerHalo).colorNumDict[
+                        ColliderGroup.RED
+                    ],
+                    green: player.getComponent(PlayerHalo).colorNumDict[
+                        ColliderGroup.GREEN
+                    ],
+                    blue: player.getComponent(PlayerHalo).colorNumDict[
+                        ColliderGroup.BLUE
+                    ],
+                },
             })
             SceneManager.loadScene(this._toScene)
         } else if (this.portalType === PortalType.NODE) {
