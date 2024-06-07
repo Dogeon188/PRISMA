@@ -1,8 +1,8 @@
 import { _decorator, Node } from "cc"
+import { Auth } from "../../Auth"
 import { ColliderGroup } from "../Physics/ColliderManager"
 import { Entity } from "./Entity"
 import { PlayerHalo } from "./PlayerHalo"
-import { Auth } from "../../Auth"
 const { ccclass, property, executeInEditMode } = _decorator
 
 @ccclass("Gem")
@@ -13,6 +13,10 @@ export class Gem extends Entity {
 
     @property
     private zone: string = "LevelLobby"
+
+    public setZone(zone: string): void {
+        this.zone = zone
+    }
 
     zoneMap: Map<string, number> = new Map([
         ["LevelTest", 0],
