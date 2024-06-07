@@ -1,0 +1,59 @@
+{
+    "$schema": "./_schema.json",
+    "once": true,
+    "entries": [
+      {
+        "text": "I once had a dream.",
+        "duration": 2,
+        "postDelay": 2
+      },
+      {
+        "text": "Dazzling lights, like flames, forced my eyes shut.",
+        "duration": 2,
+        "postDelay": 2
+      },
+      {
+        "text": "Azure, emerald, scarlet—unfurled before me,",
+        "duration": 2,
+        "postDelay": 2
+      },
+      {
+        "text": "Words merely from ancient legends, flowed effortlessly from my lips.",
+        "duration": 3,
+        "postDelay": 2
+      },{
+        "text": "I recounted this dream, over and over, until everyone deemed me mad.",
+        "duration": 3,
+        "postDelay": 2
+      },
+      { "text": " ", "duration": 0, "postDelay": 2 },
+      {
+        "text": "Whenever I succumbed to the colorless life,",
+        "duration": 2,
+        "postDelay": 2
+      },
+      {
+        "text": "Scenes from the dream would flash before my eyes,",
+        "duration": 2,
+        "postDelay": 2
+      },
+      {
+        "text": "As if constantly reminding me of what the world should truly be.",
+        "duration": 2,
+        "postDelay": 2
+      },
+      { "text": " ", "duration": 0, "postDelay": 2 },
+      {
+        "text": "Old stories say that the brightest fruits are often the most deadly.",
+        "duration": 3,
+        "postDelay": 2
+      },
+      {
+        "text": "And now, I am ready to embark on this deadly journey.",
+        "duration": 3,
+        "postDelay": 2
+      },
+      { "text": " ", "duration": 3 }
+    ]
+  }
+  

@@ -20,7 +20,7 @@ export class Entity extends Component {
      * Normally should be called in {@linkcode Player.onBeginContact}
      * Hides the prompt by default
      */
-    public showPrompt(): void {
+    public showPrompt(player: Player = null): void {
         GameManager.inst.interactPrompt.hidePrompt()
     }
 

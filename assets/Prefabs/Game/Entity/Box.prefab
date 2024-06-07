@@ -225,6 +225,10 @@
       "__id__": 11
     },
     "color": 2,
+    "boxHitGround": {
+      "__uuid__": "6beafa0f-dd0a-4cf8-baa8-1400f7d628c0",
+      "__expectedType__": "cc.AudioClip"
+    },
     "_id": ""
   },
   {

@@ -1,57 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="14">
  <tileset firstgid="1" source="amproject.tsx"/>
- <objectgroup id="2" name="Grounds" locked="1">
-  <object id="2" x="208" y="1584" width="224" height="8"/>
-  <object id="4" x="416" y="1472" width="96" height="128"/>
-  <object id="5" x="128" y="1472" width="96" height="128"/>
-  <object id="6" x="136" y="1328" width="8" height="160"/>
-  <object id="7" x="496" y="1328" width="8" height="160"/>
- </objectgroup>
- <objectgroup id="3" name="Spikes" locked="1"/>
- <objectgroup id="4" name="Objects" locked="1">
-  <object id="8" name="StageComplete" x="443.5" y="1462.5">
-   <properties>
-    <property name="class" value="scenePortal"/>
-    <property name="scene" value="LevelLobby"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="10" name="RedBox" x="288" y="1456" width="32" height="48">
-   <properties>
-    <property name="class" value="box"/>
-    <property name="color" value="green"/>
-   </properties>
-  </object>
-  <object id="11" name="RedBox" x="288" y="1504" width="32" height="80">
-   <properties>
-    <property name="class" value="box"/>
-    <property name="color" value="red"/>
-   </properties>
-  </object>
-  <object id="12" name="Lamp" x="344" y="1584">
-   <properties>
-    <property name="angle" type="float" value="0"/>
-    <property name="class" value="lamp"/>
-    <property name="radius" type="float" value="50"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="13" name="BlueGem" x="184" y="1462">
-   <properties>
-    <property name="class" value="gem"/>
-    <property name="color" value="blue"/>
-   </properties>
-   <point/>
-  </object>
- </objectgroup>
- <objectgroup id="5" name="Bricks" locked="1"/>
- <objectgroup id="6" name="Start" locked="1">
-  <object id="1" name="Start" x="248" y="1584">
-   <point/>
-  </object>
- </objectgroup>
- <objectgroup id="7" name="OneWays" locked="1"/>
  <layer id="1" name="Tiles" width="100" height="100" locked="1">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -144,8 +93,8 @@
 0,0,0,0,0,0,0,0,24,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,24,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,24,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,24,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,24,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,24,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,36,37,0,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,24,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,43,44,0,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,8,16,16,16,16,17,0,0,0,0,0,0,0,0,0,0,0,0,15,16,16,16,16,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,7,7,7,7,7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,7,7,7,7,7,24,0,0,0,0,0,0,0,0,0,0,0,0,22,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -156,4 +105,55 @@
 0,0,0,0,0,0,0,0,7,7,7,7,7,8,16,16,16,16,16,16,16,16,16,16,16,16,9,7,7,7,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="2" name="Grounds" locked="1">
+  <object id="2" x="208" y="1584" width="224" height="8"/>
+  <object id="4" x="416" y="1472" width="96" height="128"/>
+  <object id="5" x="128" y="1472" width="96" height="128"/>
+  <object id="6" x="136" y="1328" width="8" height="160"/>
+  <object id="7" x="496" y="1328" width="8" height="160"/>
+ </objectgroup>
+ <objectgroup id="3" name="Spikes" locked="1"/>
+ <objectgroup id="4" name="Objects" locked="1">
+  <object id="8" name="StageComplete" x="464" y="1456">
+   <properties>
+    <property name="class" value="scenePortal"/>
+    <property name="scene" value="LevelLobby"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="10" name="RedBox" x="288" y="1456" width="32" height="48">
+   <properties>
+    <property name="class" value="box"/>
+    <property name="color" value="green"/>
+   </properties>
+  </object>
+  <object id="11" name="RedBox" x="288" y="1504" width="32" height="80">
+   <properties>
+    <property name="class" value="box"/>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="12" name="Lamp" x="344" y="1584">
+   <properties>
+    <property name="angle" type="float" value="0"/>
+    <property name="class" value="lamp"/>
+    <property name="radius" type="float" value="50"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="13" name="BlueGem" x="184" y="1462">
+   <properties>
+    <property name="class" value="gem"/>
+    <property name="color" value="blue"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="5" name="Bricks" locked="1"/>
+ <objectgroup id="6" name="Start" locked="1">
+  <object id="1" name="Start" x="248" y="1584">
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="7" name="OneWays" locked="1"/>
 </map>
