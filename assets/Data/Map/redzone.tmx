@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="86" height="109" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="163">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="86" height="109" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="164">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <tileset firstgid="253" source="amproject.tsx"/>
+ <layer id="2" name="Tiles" width="86" height="109">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3da4rUQBAH8F0XRFFBfIGugoKg3/UCepI92h7VLnYKe3q7q6uqH0ln/gNhZpJOJvmlUv1IVm+ur65uoult+PxJMVG5eD18lj3eBS/N6w1cTXEFVznuvNclXOHqjR1PfaKpc7gM5ci0nrpV5tePirrNsi8jy0p1rPb61NQ5XIZcR2zXsg8zykp1bHz8r6+v7ml/wvtdy37B9TyuyDVMcFUGlSVeU9cXwfllmF4p8yPtEuK1Hq98Tiz5Eq59XH+FGP0dXTtw7eP6J5j+hetZ/zNtD6T5lfMAtdUoz2omKsvl34fPHwy5WVll7KJYS70lravtl5DxEX0lm1q8evo/pX7I0XxbXLUXXNynkH6PYvwovtJxWtpPknHcp5B+Lx2bWDk/SMfZK3Y8rmzcax+k8z5imeTK12XrsbW4rupbc42Py+vbw3U1X61ri29P11V8ra4e3xGue/f1ulp8R7ryfrS2XXhsTtNn1JQptdN5f7XvtJ1S/l3BtTW+tE4t5VJfuPa530qun8P05TSmMsv1e7hH5J32Gq+cB2JPbm/PcKXf1+S9Uple+bDlOo/XlTxnuvY6nq23o/GEqy2vpvmz1r+ekQe2jjPv71viM3WG6+O4bfFMfa9PbVzvuT3KetbrPXWMv7MpzTuKj/c4qG9I1zBZhPc7yU1aFpvC9eE+d5wbJbvSstS01ZXzkjdW9rAex2uwdcVrzpRdyWfkc5Jbb5uOr3QOW1xLpuzaOv5Uuj72Ml/qF3tdJVO4+vJrzRSudleNKVxtrlpTuOpdLaZw1bs+O/VPtXUxtT/QHtD9XYHFFq4P/Vhtv0BrC1ebK+UBjS1c7a4aW7j6XGu2l+5KYwdPwuR9lXLCUVylZ2SkcRc6/hG2I1w1f6P3NIwhW6ZaPEljK3SMtam37QhXOkbaz5nt4lbX3nHb05XjlMe7V3PtadvTleN0tGsul9ZyaC0PxMs9OSG+R8bXDm2n9EyPZT57xu+W9bVlexqWvK22eH6gXoextcUWrnpXS76Fq81VawtXu6vGFq5+1+dCfxeudleqvyRT6guOcOV2VanNsvJ8jWnJldZtfSZlRpty9vnRmpZce/Q3e/TPZ7tJv2cxhasut1pN4Vp39ZjCVXb1msK17NpiCte8a6spXB+79jCF62PXHm1Mr2tufD4dg6bzLrUH97psS9ejtfnjc9zLlWKWX+xV2/aRXek6S6+91u987V6KaxxToz/TNQHX/spw7W9KW4Trdq6efwO1dTy35/pcj4wRzG9VE6/5NdeZy+2ZmXsM1zHacIWrVwB5IC+nGZ+Q+kiot/675p57bB27yZ+1MXP3ml9HPOcwRjC/VbjmXVrnruDa2i9Bfj3PryEXuP4tmzTW0B6AaxoTvb/H9VbrthGviNfWGKqtL8WrtZ+AeksXr977bbVz2XP5Cu2s9HhXcdXck7T8P5+pg+e7lAdy7VnN8wue/fCuo+1z1+4ten+/tJ7kmltHE8O59UbN07rGMT07djXHvqpr7D87di/FdY+xy/FK+5bec9yqnaXNBblyW8Zubow2tz9b9bdyXtp53ti1tu3pfkCa13NjtEdx9ebdXFspvX7T77fBNn7Frry9tAyVXzFeY1dv7GrqpVwZbVtsdVdv7ObMNPMu0XVG7F6i64zYlVy/hlz87ZSPj5QHtsy7lEN+BNOfB3ctGUvPUvRctkW/4B9eydwSeJIAAA==
+  </data>
+ </layer>
  <objectgroup id="3" name="Objects">
   <object id="39" name="MovingVerti" x="64" y="1487.63" width="48.25" height="8.5">
    <properties>
@@ -11,7 +16,7 @@
     <property name="moveTo" type="object" value="158"/>
    </properties>
   </object>
-  <object id="44" name="RedBox" x="559.5" y="826" width="36.0682" height="38">
+  <object id="44" name="RedBox" x="560" y="817" width="32" height="47">
    <properties>
     <property name="class" value="box"/>
     <property name="color" value="red"/>
@@ -44,7 +49,7 @@
    </properties>
    <point/>
   </object>
-  <object id="51" name="M3OutIn" x="744" y="1462">
+  <object id="51" name="M3OutIn" x="752" y="1456">
    <properties>
     <property name="class" value="nodePortal"/>
     <property name="destination" type="object" value="50"/>
@@ -72,7 +77,7 @@
    </properties>
    <point/>
   </object>
-  <object id="56" name="Exit" x="896" y="1712">
+  <object id="56" name="Exit" x="880" y="1712">
    <properties>
     <property name="class" value="scenePortal"/>
     <property name="scene" value="LevelLobby"/>
@@ -92,7 +97,7 @@
    </properties>
    <point/>
   </object>
-  <object id="68" name="Lamp" x="820.25" y="1726">
+  <object id="68" name="Lamp" x="816" y="1728">
    <properties>
     <property name="angle" type="float" value="0"/>
     <property name="class" value="lamp"/>
@@ -159,6 +164,14 @@
    <properties>
     <property name="class" value="gem"/>
     <property name="color" value="green"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="163" name="Lamp" x="432" y="864">
+   <properties>
+    <property name="angle" type="float" value="0"/>
+    <property name="class" value="lamp"/>
+    <property name="radius" type="float" value="50"/>
    </properties>
    <point/>
   </object>
@@ -314,18 +327,5 @@
    <polygon points="0,0 318,158 16.5,157.5"/>
   </object>
   <object id="156" x="15" y="209" width="18.6667" height="11"/>
-  <object id="162" name="Lamp" x="224" y="864">
-   <properties>
-    <property name="angle" type="float" value="0"/>
-    <property name="class" value="lamp"/>
-    <property name="radius" type="float" value="50"/>
-   </properties>
-   <point/>
-  </object>
  </objectgroup>
- <layer id="2" name="Tiles" width="86" height="109">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3da47TMBAH8C0rIRAgIR4rwcI3bgAXgJPs0TgqHm1HuK49nhk/Eqf/SlHbxEmTXybjR7Jwf7q7u4+mj+HzV8VE5eL18Fn2+BS8NK8PcDXFFVzluPNel3CFqzd2PPWJps7hMpQj03rqUZlfvyjqNsu+jCwr1bHa61NT53AZch2xXcs+zCgr1bHx8b8/3f2l/QnvTy37BdfLuCLXMMFVGVSWeE1d3wTnt2F6p8yPtEuI13q88jmx5Eu49nH9GWL0V3TtwLWP6+9g+geuF/3PtD2Q5lfOA9RWozyrmagsl/8cPj8YcrOyythFsZZ6S1pX2y8h4yP6Sja1ePX0f0r9kKP5trhqL7i4TyH9HsX4UXyl47S0nyTjuE8h/V46NrFyfpCOs1fseFzZuNc+SOd9xDLJla/L1mNrcV3Vt+YaH5fXt4frar5a1xbfnq6r+FpdPb4jXPfu63W1+I505f1obbvw2Jymz6gpU2qn8/5q32k7pfy7gmtrfGmdWsqlvnDtc7+VXL+F6ft5TGWW649wj8g77TVeOQ/EntzenuFKv6/Je6UyvfJhy3Ueryt5znTtdTxbb0fjCVdbXk3zZ61/PSMPbB1n3t+3xGfqDNfruG3xTH1P5zau99weZT3r9Z46xt/ZlOYdxcd7HNQ3pGuYLML7k+QmLYtN4fp8nzvOjZJdaVlq2urKeckbK3tYj+M12LriNWfKruQz8jnJrbdNx1c6hy2uJVN2bR1/Kl0fe5kv9Yu9rpIpXH35tWYKV7urxhSuNletKVz1rhZTuOpdX537p9q6mNofaA/o/q7AYgvX536stl+gtYWrzZXygMYWrnZXjS1cfa4121t3pbGDF2Hyvko54Siu0jMy0rgLHf8I2xGumr/RexnGkC1TLZ6ksRU6xtrU23aEKx0j7efMdnGra++47enKccrj3au59rTt6cpxOto1l0trObSWB+LlnpwQ3yPja4e2U3qmxzKfPeN3y/rasj0NS95WWzw/UK/D2NpiC1e9qyXfwtXmqrWFq91VYwtXv+trob8LV7sr1V+SKfUFR7hyu6rUZll5vsa05Errtj6TMqNNOfv8aE1Lrj36mz3657PdpN+zmMJVl1utpnCtu3pM4Sq7ek3hWnZtMYVr3rXVFK7Xrj1M4Xrt2qON6XXNjc+nY9B03qX24F6Xbel6tDZ/fI57uVLM8ou9ats+sitdZ+m11/qdr91bcY1javRnuibg2l8Zrv1NaYtw3c7V82+gto7n9lyf65ExgvmtauI1v+Y6c7k9M3OP4TpGG65w9QogD+TlNOMTUh8J9dZ/19xzj61jN/mzNmbuXvPriOccxgjmtwrXvEvr3BVcW/slyK+X+TXkAte/ZZPGGtoDcE1jovf3uN5q3TbiFfHaGkO19aV4tfYTUG/p4tV7v612LnsuX6GdlR7vKq6ae5KW/+czdfB8l/JArj2reX7Bsx/edbR97tq9Re/vl9aTXHPraGI4t96oeVrXOKZnx67m2Fd1jf1nx+6tuO4xdjlead/Se45btbO0uSBXbsvYzY3R5vZnq/5Wzks7zxu71rY93Q9I83pujPYort68m2srpddv+v0x2Mav2JW3l5ah8ivGa+zqjV1NvZQro22Lre7qjd2cmWbeLbrOiN1bdJ0Ru7fuOiN2pbxxpPxaaqfFxtKzFD2XbdEv+Ac5R7npeJIAAA==
-  </data>
- </layer>
 </map>
