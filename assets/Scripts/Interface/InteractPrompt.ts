@@ -24,10 +24,10 @@ export class InteractPrompt extends Component {
                 this.node.active = true
                 this.isPlaying = true
                 this.node.getComponent(UIOpacity).opacity = 255
-                console.log(this.isPlaying)
+                // console.log(this.isPlaying)
             }, 0)
         } else {
-            console.log("prompt is already playing")
+            // console.log("prompt is already playing")
         }
     }
     /**
@@ -42,11 +42,10 @@ export class InteractPrompt extends Component {
                 .call(() => {
                     this.node.active = false
                     this.isPlaying = false
-                    console.log(this.isPlaying)
                 })
                 .start()
         } else {
-            console.log("prompt is already hidden")
+            // console.log("prompt is already hidden")
         }
     }
 
