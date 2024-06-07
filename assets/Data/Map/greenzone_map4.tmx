@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="14">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="17">
  <tileset firstgid="1" source="amproject.tsx"/>
  <layer id="1" name="Tiles" width="100" height="100" locked="1">
   <data encoding="csv">
@@ -149,7 +149,7 @@
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="5" name="Bricks" locked="1"/>
+ <objectgroup id="5" name="Bricks"/>
  <objectgroup id="6" name="Start" locked="1">
   <object id="1" name="Start" x="248" y="1584">
    <point/>
