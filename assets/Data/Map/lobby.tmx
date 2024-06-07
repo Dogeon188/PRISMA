@@ -4,7 +4,7 @@
  <tileset firstgid="253" source="amproject.tsx"/>
  <layer id="1" name="Tiles" width="100" height="86">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <objectgroup id="7" name="Grounds">
@@ -153,7 +153,7 @@
     <property name="moveTo" type="object" value="214"/>
    </properties>
   </object>
-  <object id="116" name="RedZone" x="120" y="1248">
+  <object id="116" name="RedZone" x="112" y="1248">
    <properties>
     <property name="class" value="scenePortal"/>
     <property name="scene" value="LevelRedZone"/>
@@ -167,7 +167,7 @@
    </properties>
    <point/>
   </object>
-  <object id="119" name="GreenZone" x="1464" y="464">
+  <object id="119" name="GreenZone" x="1456" y="464">
    <properties>
     <property name="class" value="scenePortal"/>
     <property name="scene" value="LevelGreenZoneM1"/>
