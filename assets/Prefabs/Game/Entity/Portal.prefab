@@ -86,7 +86,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 16,
-      "height": 16
+      "height": 32
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -143,15 +143,15 @@
       "a": 255
     },
     "duration": -1,
-    "emissionRate": 200,
-    "life": 3,
-    "lifeVar": 2,
-    "angle": 360,
-    "angleVar": 360,
-    "startSize": 20,
-    "startSizeVar": 5,
-    "endSize": 20,
-    "endSizeVar": 5,
+    "emissionRate": 49.473684210526315,
+    "life": 0.8,
+    "lifeVar": 0.4,
+    "angle": -30,
+    "angleVar": 50,
+    "startSize": 1,
+    "startSizeVar": 2,
+    "endSize": 6,
+    "endSizeVar": 3,
     "startSpin": 0,
     "startSpinVar": 0,
     "endSpin": 0,
@@ -163,23 +163,23 @@
     },
     "posVar": {
       "__type__": "cc.Vec2",
-      "x": 16,
-      "y": 16
+      "x": 32,
+      "y": 32
     },
-    "emitterMode": 1,
+    "emitterMode": 0,
     "gravity": {
       "__type__": "cc.Vec2",
       "x": 0,
       "y": 0
     },
-    "speed": 10,
-    "speedVar": 20,
-    "tangentialAccel": 0,
+    "speed": 0,
+    "speedVar": 0,
+    "tangentialAccel": -30,
     "tangentialAccelVar": 0,
-    "radialAccel": -671.0499877929688,
-    "radialAccelVar": 65.79000091552734,
+    "radialAccel": -100,
+    "radialAccelVar": 0,
     "rotationIsDir": false,
-    "startRadius": 3,
+    "startRadius": 24,
     "startRadiusVar": 3,
     "endRadius": 24,
     "endRadiusVar": 7,
@@ -191,41 +191,38 @@
     "preview": true,
     "_custom": true,
     "_file": {
-      "__uuid__": "e17b4526-57a2-48d3-acc9-cf09f30aa138",
+      "__uuid__": "0dbc2c21-2512-459b-9512-0ea90db6abd2",
       "__expectedType__": "cc.ParticleAsset"
     },
-    "_spriteFrame": {
-      "__uuid__": "f097c86d-4cdc-4c18-96eb-9c1dd866435f@f9941",
-      "__expectedType__": "cc.SpriteFrame"
-    },
-    "_totalParticles": 150,
+    "_spriteFrame": null,
+    "_totalParticles": 100,
     "_startColor": {
       "__type__": "cc.Color",
-      "r": 169,
-      "g": 75,
+      "r": 255,
+      "g": 255,
       "b": 255,
-      "a": 163
+      "a": 255
     },
     "_startColorVar": {
       "__type__": "cc.Color",
       "r": 0,
       "g": 0,
       "b": 0,
-      "a": 198
+      "a": 44
     },
     "_endColor": {
       "__type__": "cc.Color",
-      "r": 46,
-      "g": 46,
-      "b": 46,
-      "a": 214
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 255
     },
     "_endColorVar": {
       "__type__": "cc.Color",
       "r": 0,
       "g": 0,
       "b": 0,
-      "a": 188
+      "a": 0
     },
     "_positionType": 0,
     "_id": ""
@@ -313,7 +310,7 @@
     "_size": {
       "__type__": "cc.Size",
       "width": 16,
-      "height": 16
+      "height": 32
     },
     "_id": ""
   },

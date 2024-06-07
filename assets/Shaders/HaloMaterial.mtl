@@ -25,6 +25,11 @@
   ],
   "_props": [
     {
+      "timerCenter": {
+        "__type__": "cc.Vec2",
+        "x": 1100,
+        "y": 653
+      },
       "centersX": {
         "__type__": "cc.Vec4",
         "x": 640,
