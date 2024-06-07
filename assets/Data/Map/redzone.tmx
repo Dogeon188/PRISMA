@@ -4,7 +4,7 @@
  <tileset firstgid="253" source="amproject.tsx"/>
  <layer id="2" name="Tiles" width="86" height="109">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3da27UMBAH8JZKPARICCgSFCSQkOA7XABO0qP1qHjUHeG69vg/40fi7KwU7W7iZJNfJuNHUri6vLi4iqZ34fMnYKJy8Xr+WfZ4H7yQ11t3VcWVu8pxZ70u3dVdrbFjqU+QOofLUI5M66kbML9+BOo2zb6MLCvVsej1idQ5XIZcR2xXsw8zykp1bHz8by4v7mh/wvtty36568O4ItcwuSsYVJp4TV1fBudXYXoN5kfaJY/XerzyOdHkS3ft4/orxOjv6Npx1z6uf4LpX3d90P9M2wNpfuU8QG01yrPIRGW5/HX4/EGRm8EqYxfFWuotaV20X0LGR/SVbGrxaun/lPohR/NtcUUvuLhPIf0exfhRfKXj1LSfJOO4TyH9Xjo2sXJ+kI6zV+xYXNm41z5I533EMsmVr8vWY2txXdW35hofl9W3h+tqvqhri29P11V8ta4W3xGue/e1ump8R7ryfrS2XXhsDukzImVK7XTeX/SdtlPKvyu4tsYX6tRSLvV11z73W8n1c5i+nMZUZrl+D/eIrNNe45XzQOzJ7e0ZrvT7SN4rlemVD1uu83hdyXOma6/j2Xo7iKe76vJqmj9r/esZeWDrOLP+viY+U2d3fRy3LZ6p7+WpjWs9t0dZT3u9p47xdzaleUfxsR4H9Q3pGiaL8H4ruUnLYlN3vb/PHedGya60LDVtdeW8ZI2VPazH8RpsTfGaM2VX8hn5nOTW26bjK53DFteSKbu2jj+Vro+9zJf6xVZXydRdbfm1ZuquelfE1F11rqipu+KuGlN3xV2fn/qnaF1M7Q9vD2B/V6Cxddf7fizaL0Bt3VXnSnkAsXVXvSti664215rtubvS2MGTMFlfpZxwFFfpGRlp3IWOf4TtCFfkb/SehTHkp+AUyt7V4kkaW6FjrE29bUe40jHSfs5sF7e69o7bnq4cpzzevZprT9uerhyno11zubSWQ2t5IF5uyQnxPTK+dmg7pWd6NPPZM37XrI+W7WlY8tba+vMD9TqMrTW27oq7avKtu+pcUVt31bsitu5qd30h9HfdVe9K9ZdkSn3BEa7criq1WVaej5iWXGnd1mdSZrQpZ58f1LTk2qO/2aN/PttN+j2NqbtiuVVr6q51V4upu8quVlN3Lbu2mLpr3rXV1F0fu/YwddfHrj3amFbX3Ph8OgZN511qD+512ZauR2vzx+e4lyvFLL/Yq7btI7vSdZZee63f+do9F9c4pkZ/pmvCXfsru2t/U9qiu27navk3UFvHc3uuz/XIGMH8VpF4za+5zlxuz8zcY3cdo+2u7moV8DyQl0PGJ6Q+ktdb/11zzz22jt3kz9qYuXvNryOecxgjmN+qu+ZdWueu4NraL/H8+jC/hlxg+rds0ljz9oC7pjHR+3tcb7Vu2+PV47U1hmrrS/Gq7Sd4vYXFq/V+W+1c9ly+QjsrPd5VXJF7kpr/5zN1sHyX8kCuPYs8v2DZD+s6aJ+7dm/R+vul9STX3DpIDOfWGzUPdY1jenbsIse+qmvsPzt2z8V1j7HL8Ur7lt5z3KqdheaCXLktYzc3Rpvbn636WzkvdJ41drVte7ofkOb13BjtUVyteTfXVkqv3/T7TbCNX7Erby8tQ+VXjNfY1Rq7SL2UK4O2xVZ3tcZuzgyZd46uM2L3HF1nxK7k+jXk4m+nfHykPLBl3qUc8iOY/jy4a8lYepai57It+gX/AD019O54kgAA
+   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
   </data>
  </layer>
  <objectgroup id="3" name="Objects">
@@ -72,7 +72,7 @@
    </properties>
    <point/>
   </object>
-  <object id="54" name="StageComplete" x="1312.5" y="184.5">
+  <object id="54" name="StageComplete" x="1312" y="176">
    <properties>
     <property name="class" value="scenePortal"/>
     <property name="scene" value="LevelLobby"/>
@@ -162,7 +162,7 @@
    </properties>
    <point/>
   </object>
-  <object id="161" name="GreenGem" x="1280" y="192">
+  <object id="161" name="GreenGem" x="1280" y="176">
    <properties>
     <property name="class" value="gem"/>
     <property name="color" value="green"/>
@@ -228,13 +228,6 @@
   <object id="93" x="1081.27" y="208" width="29.4545" height="6.54545"/>
   <object id="94" x="1081.27" y="224.182" width="29.4545" height="6.36364"/>
   <object id="95" x="1081.27" y="240.182" width="29.2727" height="6.36364"/>
-  <object id="96" x="1321.27" y="256.364" width="29.4545" height="6.36364"/>
-  <object id="97" x="1321.27" y="272" width="29.2727" height="6.72727"/>
-  <object id="98" x="1321.27" y="288" width="29.4545" height="6.72727"/>
-  <object id="99" x="1320.91" y="304.364" width="29.6364" height="6.18182"/>
-  <object id="100" x="1321.45" y="320.364" width="29.0909" height="6.18182"/>
-  <object id="101" x="1321.45" y="336.182" width="29.2727" height="6.36364"/>
-  <object id="102" x="1321.27" y="352.545" width="29.4545" height="6"/>
   <object id="103" x="1320.91" y="368.182" width="29.6364" height="6.54545"/>
   <object id="104" x="1320.91" y="383.818" width="29.6364" height="6.72727"/>
   <object id="105" x="1320.91" y="400" width="30.1818" height="6.90909"/>
