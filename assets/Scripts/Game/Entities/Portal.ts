@@ -127,13 +127,6 @@ export class Portal extends Entity {
                 },
                 time: find("Canvas/Camera/HUD/Timer").getComponent(Timer).time,
             })
-            console.log(StageMap.get(this._toScene))
-            console.log(this.stageAndPointMap)
-            console.log(
-                this.stageAndPointMap.get(
-                    StageMap.get(this._toScene).join(","),
-                ),
-            )
             Auth.updateLeaderboardData({
                 username: firebase.auth().currentUser.displayName,
                 time: find("Canvas/Camera/HUD/Timer").getComponent(Timer).time,
