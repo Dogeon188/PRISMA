@@ -4,6 +4,8 @@ import { Settings } from "./Scene/Settings"
 export class Auth {
     private static _userDataRef: any = null
 
+    private static _leaderboardDataRef: any = null
+
     private static get userDataRef(): any {
         if (!this._userDataRef) {
             this._userDataRef = firebase
@@ -11,6 +13,15 @@ export class Auth {
                 .ref(`users/${firebase.auth().currentUser.uid}`)
         }
         return this._userDataRef
+    }
+
+    private static get leaderboardDataRef(): any {
+        if (!this._leaderboardDataRef) {
+            this._leaderboardDataRef = firebase
+                .database()
+                .ref(`leaderboard/${firebase.auth().currentUser.uid}`)
+        }
+        return this._leaderboardDataRef
     }
 
     private static _userData: UserData = {
@@ -31,6 +42,7 @@ export class Auth {
             green: 0,
             blue: 0,
         },
+        time: 0,
     }
 
     public static get data(): UserData {
@@ -55,5 +67,11 @@ export class Auth {
     public static async updateUserData(data: Partial<UserData>): Promise<void> {
         this.userDataRef.update(data)
         this._userData = { ...this._userData, ...data }
+    }
+
+    public static async updateLeaderboardData(
+        data: leaderboardData,
+    ): Promise<void> {
+        this.leaderboardDataRef.set(data)
     }
 }

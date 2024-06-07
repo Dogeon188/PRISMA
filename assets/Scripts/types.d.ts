@@ -20,6 +20,13 @@ interface UserData {
     savepoint: number
     haloColor: number
     gemNum: GemNum
+    time: number
+}
+
+interface leaderboardData {
+    username: string
+    time: number
+    gameProgress: number
 }
 
 type Uuid = string

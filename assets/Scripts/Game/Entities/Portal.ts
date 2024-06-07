@@ -1,4 +1,4 @@
-import { Enum, Node, _decorator } from "cc"
+import { Enum, Node, _decorator, find } from "cc"
 import { Settings } from "../../Scene/Settings"
 import { SceneManager } from "../../SceneManager"
 import { GameManager } from "../GameManager"
@@ -7,6 +7,7 @@ import { Entity } from "./Entity"
 import { Auth } from "../../Auth"
 import { PlayerHalo } from "./PlayerHalo"
 import { ColliderGroup } from "../Physics/ColliderManager"
+import { Timer } from "../Timer"
 const { ccclass, property } = _decorator
 
 export const PortalType = Enum({
@@ -31,6 +32,19 @@ export const StageMap: Map<string, [number, number]> = new Map([
 
 @ccclass("Portal")
 export class Portal extends Entity {
+    private stageAndPointMap: Map<[number, number], number> = new Map([
+        [[-1, 1], 0],
+        [[0, 1], 1],
+        [[1, 1], 2],
+        [[2, 1], 3],
+        [[2, 2], 4],
+        [[2, 3], 5],
+        [[2, 4], 6],
+        [[3, 1], 7],
+        [[3, 2], 8],
+        [[3, 3], 9],
+    ])
+
     @property({ type: PortalType, visible: true })
     private _portalType: number = PortalType.NODE
 
@@ -90,6 +104,14 @@ export class Portal extends Entity {
                         ColliderGroup.BLUE
                     ],
                 },
+                time: find("Canvas/Camera/HUD/Timer").getComponent(Timer).time,
+            })
+            Auth.updateLeaderboardData({
+                username: firebase.auth().currentUser.displayName,
+                time: find("Canvas/Camera/HUD/Timer").getComponent(Timer).time,
+                gameProgress: this.stageAndPointMap.get(
+                    StageMap.get(this._toScene),
+                ),
             })
             SceneManager.loadScene(this._toScene)
         } else if (this.portalType === PortalType.NODE) {
