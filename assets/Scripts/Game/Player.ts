@@ -28,6 +28,7 @@ import { Box } from "./Entities/Box"
 import { Entity } from "./Entities/Entity"
 import { Lamp } from "./Entities/Lamp"
 import { PlayerHalo } from "./Entities/PlayerHalo"
+import { Portal } from "./Entities/Portal"
 import { GameManager } from "./GameManager"
 import { ColliderGroup, ColliderType } from "./Physics/ColliderManager"
 import {
@@ -36,7 +37,6 @@ import {
     getCorrectNormal,
 } from "./Physics/PhysicsFixer"
 import { Movement } from "./Physics/PlayerMovement"
-import { Portal } from "./Entities/Portal"
 
 const { ccclass, property, requireComponent } = _decorator
 
@@ -160,12 +160,16 @@ export class Player extends Component {
 
     public initialize(gameManager: GameManager, spawnPoint: Vec2): void {
         this.gameManager = gameManager
+        this.setSpawnPoint(spawnPoint)
+        this.node.setPosition(this.spawnPoint)
+    }
+
+    public setSpawnPoint(spawnPoint: Vec2): void {
         this.spawnPoint = new Vec3(
             spawnPoint.x,
             spawnPoint.y + this.getComponent(BoxCollider2D).size.height / 2,
             this.node.position.z,
         )
-        this.node.setPosition(this.spawnPoint)
     }
 
     //#endregion

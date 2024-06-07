@@ -136,7 +136,7 @@ export class LevelEnd extends Component {
                 AudioManager.inst.clearBGM()
             })
             .delay(5)
-            .call(() => SceneManager.loadScene("Splash", true, 0.1, 10))
+            .call(() => SceneManager.loadScene("Splash", true))
 
         tween(this.node)
             .call(() => {

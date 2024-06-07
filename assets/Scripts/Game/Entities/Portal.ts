@@ -137,6 +137,7 @@ export class Portal extends Entity {
             SceneManager.loadScene(this._toScene)
         } else if (this.portalType === PortalType.NODE) {
             player.node.position = this.toNode.position
+            this.node.emit("teleport", this.toNode.position)
         }
     }
 
