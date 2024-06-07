@@ -5,12 +5,14 @@ import {
     Collider2D,
     Color,
     Contact2DType,
+    find,
     IPhysics2DContact,
     log,
     Node,
     RigidBody2D,
     Size,
     Sprite,
+    tween,
     UITransform,
     Vec2,
     Vec3,
@@ -193,7 +195,7 @@ export class Box extends Entity {
         // log(`velocity: x: ${vel.x}, y: ${vel.y}, other tag: ${other.tag}`)
         // log(isDropping)
 
-        if (!isOnTop || !isDropping) return
+        if (!isOnTop || !isDropping || !isAbove) return
         switch (other.tag) {
             case ColliderType.ONEWAY:
                 // log("box drop on ONEWAY")
@@ -201,6 +203,19 @@ export class Box extends Entity {
                 break
             case ColliderType.GROUND:
                 // log("box drop on GROUND")
+                tween(find("Canvas/Camera"))
+                    .to(0.02, { eulerAngles: new Vec3(0, 0, 1) })
+                    .to(0.02, { eulerAngles: new Vec3(0, 0, -1) })
+                    .union()
+                    .repeat(5)
+                    .call(() => {
+                        find("Canvas/Camera").eulerAngles = new Vec3(
+                            0,
+                            0,
+                            0,
+                        )
+                    })
+                    .start()
                 AudioManager.inst.playOneShot(this.boxHitGround)
                 break
             case ColliderType.BOX:
