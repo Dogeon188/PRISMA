@@ -9,6 +9,7 @@ import {
     UITransform,
     Vec3,
 } from "cc"
+import { SceneManager } from "../SceneManager"
 const { ccclass, property } = _decorator
 
 @ccclass("LeaderBoard")
@@ -32,6 +33,10 @@ export class LeaderBoard extends Component {
 
     protected onLoad(): void {
         this.initialize()
+    }
+
+    private goBack(): void {
+        SceneManager.loadScene("Start", true)
     }
 
     private async initialize(): Promise<void> {
