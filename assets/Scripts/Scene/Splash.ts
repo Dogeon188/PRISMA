@@ -1,4 +1,5 @@
 import { _decorator, Component, Sprite, tween, UIOpacity } from "cc"
+import { AudioManager } from "../AudioManager"
 import { Auth } from "../Auth"
 import { SceneManager } from "../SceneManager"
 const { ccclass, property } = _decorator
@@ -9,6 +10,8 @@ export class Splash extends Component {
     private logo: Sprite = null
 
     start() {
+        AudioManager.inst.stopBGM()
+        AudioManager.inst.clearBGM()
         const logoOpacity = this.logo.node.getComponent(UIOpacity)!
 
         tween(logoOpacity)
