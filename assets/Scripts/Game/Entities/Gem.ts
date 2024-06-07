@@ -47,9 +47,9 @@ export class Gem extends Entity {
     ])
 
     onLoad(): void {
-        if (!this.zoneCheck()) {
-            this.node.destroy()
-        }
+        // if (!this.zoneCheck()) {
+        //     this.node.destroy()
+        // }
     }
 
     public onCollide(other: Node): void {
