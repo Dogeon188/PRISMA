@@ -93,6 +93,16 @@ export class Portal extends Entity {
 
     public onBeginInteract(player: Player): void {
         if (this.portalType === PortalType.SCENE) {
+            // add the gem number back to the player
+            GameManager.inst.lamps.forEach((lamp) => {
+                if (lamp.color === 2) {
+                    player.getComponent(PlayerHalo).addGem(ColliderGroup.RED)
+                } else if (lamp.color === 4) {
+                    player.getComponent(PlayerHalo).addGem(ColliderGroup.GREEN)
+                } else if (lamp.color === 8) {
+                    player.getComponent(PlayerHalo).addGem(ColliderGroup.BLUE)
+                }
+            })
             Auth.updateUserData({
                 stage: StageMap.get(this._toScene)[0],
                 savepoint: StageMap.get(this._toScene)[1],

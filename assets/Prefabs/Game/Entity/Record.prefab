@@ -164,9 +164,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 209,
+      "g": 20,
+      "b": 20,
       "a": 255
     },
     "_string": "2ND",
@@ -326,9 +326,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 101,
+      "g": 230,
+      "b": 29,
       "a": 255
     },
     "_string": "USERNAMELLLLLLLLLLL",

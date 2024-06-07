@@ -142,7 +142,7 @@ export class GameManager extends Component {
         centersY: null,
         radii: null,
     }
-    private lamps: Lamp[] = []
+    public lamps: Lamp[] = []
     private lampHalos: Node[] = []
 
     private initializeShader(): void {
@@ -157,7 +157,9 @@ export class GameManager extends Component {
             )
             this.lamps = this.lamps.slice(0, 3)
         }
-        this.lampHalos = this.lamps.map((lamp) => lamp.node.getChildByName("Halo"))
+        this.lampHalos = this.lamps.map((lamp) =>
+            lamp.node.getChildByName("Halo"),
+        )
 
         // register halo radius
         const haloRadius = this.player.getComponent(CircleCollider2D).radius
