@@ -23,6 +23,7 @@ import {
 } from "../Physics/ColliderManager"
 import { Player } from "../Player"
 import { PlayPauseButton } from "../../PlayPauseButton"
+import { Plate } from "./Plate"
 const { ccclass, property } = _decorator
 
 @ccclass("PlayerHalo")
@@ -151,6 +152,9 @@ export class PlayerHalo extends Component {
         this.node.getComponent(Player).collidedHaloNodeSet.forEach((node) => {
             node.onLeaveHalo(this, true)
             node.onEnterHalo(this)
+            if (node.node.getComponent(Plate)) {
+                node.node.getComponent(Plate).checkPressedBy(this.color)
+            }
         })
         const player = this.node.getComponent(Player)
         if (player.interactingWith) {

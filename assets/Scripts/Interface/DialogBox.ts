@@ -1,4 +1,4 @@
-import { _decorator, AudioClip, Component, Label, tween, UITransform } from "cc"
+import { _decorator, AudioClip, Component, Label, tween, UIOpacity, UITransform } from "cc"
 import { AudioManager } from "../AudioManager"
 const { ccclass, property } = _decorator
 
@@ -18,9 +18,8 @@ export type DialogEntry = {
 
 @ccclass("DialogBox")
 export class DialogBox extends Component {
-    private uiTransform: UITransform = null
+    private uiOpacity: UIOpacity = null
     private queue: (DialogEntry & { _postCallback?: Function })[] = []
-    private width: number = 0
     private isPlaying: boolean = false
 
     @property(Label)
@@ -50,20 +49,19 @@ export class DialogBox extends Component {
     //#region Private Methods
 
     protected onLoad(): void {
-        this.uiTransform = this.node.getComponent(UITransform)
-        this.width = this.uiTransform.width
+        this.uiOpacity = this.node.getComponent(UIOpacity)
         this.node.active = false
         this.scheduleOnce(() => {
-            this.uiTransform.width = 0
+            this.uiOpacity.opacity = 0
             this.label.string = ""
         })
     }
 
     private startDialog(): void {
         this.node.active = true
-        tween(this.uiTransform)
-            .set({ width: 0 })
-            .to(1, { width: this.width }, { easing: "cubicInOut" })
+        tween(this.uiOpacity)
+            .set({ opacity: 0 })
+            .to(1, { opacity: 255 }, { easing: "cubicInOut" })
             .call(() => {
                 this.playNext()
                 this.isPlaying = true
@@ -75,9 +73,9 @@ export class DialogBox extends Component {
         if (this.queue.length > 0 && this.queue[0]._postCallback) {
             this.queue.shift()._postCallback()
         }
-        tween(this.uiTransform)
+        tween(this.uiOpacity)
             .call(() => (this.label.string = ""))
-            .to(1, { width: 0 }, { easing: "cubicInOut" })
+            .to(1, { opacity: 0 }, { easing: "cubicInOut" })
             .call(() => {
                 if (this.queue.length > 0) {
                     this.startDialog()

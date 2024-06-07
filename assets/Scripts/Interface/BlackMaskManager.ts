@@ -70,6 +70,10 @@ export class BlackMaskManager {
         this.currentCamera = director.getScene().getChildByPath("Canvas/Camera")
         // set a high sibling index to make sure the mask is on top of everything
         this.currentCamera.setSiblingIndex(20)
+        this.mask = instantiate(this.maskPrefab)
+        this.maskSprite = this.mask.getComponent(Sprite)
+        this.maskUITransform = this.mask.getComponent(UITransform)
+        this.maskUIOpacity = this.mask.getComponent(UIOpacity)
         this.mask.parent = this.currentCamera
         let cameraUITransform = this.currentCamera.getComponent(UITransform)
         //if the camera doesn't have a UITransform component, add one
@@ -89,11 +93,8 @@ export class BlackMaskManager {
     private _fadeIn(duration: number, callback: Function = () => {}): void {
         this._initMask()
         tween(this.maskUIOpacity)
-            .set({ opacity: 0 })
             .to(duration, { opacity: 255 }, { easing: "sineInOut" })
-            .to(0.1, { opacity: 0 }, { easing: "sineInOut" })
             .call(() => {
-                this.mask.parent = null
                 callback()
             })
             .start()
@@ -102,10 +103,8 @@ export class BlackMaskManager {
     private _fadeOut(duration: number, callback: Function = () => {}): void {
         this._initMask(true)
         tween(this.maskUIOpacity)
-            .set({ opacity: 255 })
             .to(duration, { opacity: 0 }, { easing: "cubicOut" })
             .call(() => {
-                this.mask.parent = null
                 callback()
             })
             .start()

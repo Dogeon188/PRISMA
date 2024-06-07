@@ -1,229 +1,233 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="100" height="86" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="153">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="100" height="86" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="155">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <tileset firstgid="253" source="amproject.tsx"/>
- <objectgroup id="7" name="Grounds">
-  <object id="14" name="Ground" x="975.5" y="1264.5" width="240.5" height="79.5"/>
-  <object id="15" name="Ground" x="1216.5" y="1231.5" width="54.5" height="44"/>
-  <object id="16" name="Ground" x="1263.5" y="1200.5" width="55.5" height="50.5"/>
-  <object id="17" name="Ground" x="1312" y="1168" width="73.5" height="58"/>
-  <object id="18" name="Ground" x="1360" y="1136" width="81" height="53.5"/>
-  <object id="19" name="Ground" x="1408" y="1103.5" width="73" height="46.5"/>
-  <object id="20" name="Ground" x="1456" y="1072" width="96.5" height="54.5"/>
-  <object id="27" name="Layer2LeftWall" x="1536.67" y="646" width="24.6667" height="350.667"/>
-  <object id="29" name="StartLeftWall" x="1551.33" y="1004" width="8.66667" height="154.667"/>
-  <object id="30" name="Layer4LeftWall" x="1487" y="13" width="81" height="657"/>
-  <object id="32" name="Layer4Stairs" x="1360" y="479.33" width="146" height="42.6667"/>
-  <object id="33" name="Layer4Stairs" x="1312" y="512" width="73.6667" height="41.6667"/>
-  <object id="34" name="Layer4Stairs" x="1264.33" y="544.33" width="86.3333" height="41.6667"/>
-  <object id="35" name="Layer4Stairs" x="1216" y="575" width="79.3333" height="38.6667"/>
-  <object id="36" name="Layer4Stairs" x="1152" y="607.33" width="82" height="34.6667"/>
-  <object id="37" name="Layer4Floor" x="1006.67" y="624.7" width="534" height="47.5"/>
-  <object id="39" name="Layer3Floor" x="1360" y="752" width="182" height="48.6667"/>
-  <object id="40" name="Layer3Floor" x="880" y="751.33" width="433.333" height="49.3333"/>
-  <object id="41" name="Layer4Wall" x="736" y="479.33" width="160" height="194.667"/>
-  <object id="42" name="Layer4Wall" x="882.67" y="624" width="94.6667" height="48.6667"/>
-  <object id="43" name="Layer4Wall" x="592" y="480" width="97.3333" height="194"/>
-  <object id="44" name="Layer2" x="1376" y="863" width="96.3333" height="17.6667"/>
-  <object id="46" name="Layer2" x="880" y="960" width="672" height="65"/>
-  <object id="48" name="L1" x="1104.67" y="1110.67" width="79.3333" height="42"/>
-  <object id="49" name="L1" x="1172" y="1087.33" width="60.6667" height="32"/>
-  <object id="51" name="L1" x="1264.67" y="1015.33" width="62.6667" height="40"/>
-  <object id="52" name="L1" x="1212.67" y="1046" width="67.3333" height="41.3333"/>
-  <object id="53" name="L1" x="752.33" y="1328" width="225" height="4.33333"/>
-  <object id="54" name="L1" x="688" y="974.33" width="63.6667" height="368.333"/>
-  <object id="55" name="L2" x="623.67" y="962.67" width="64.3333" height="60.67"/>
-  <object id="57" name="L2" x="69.333" y="961.33" width="506.667" height="62"/>
-  <object id="58" name="L1" x="79.333" y="1263.33" width="631.333" height="21.3333"/>
-  <object id="59" name="LeftWall" x="78" y="769.33" width="18" height="495.333"/>
-  <object id="60" name="L2" x="55.667" y="752.33" width="72" height="32.3333"/>
-  <object id="61" name="L2" x="176" y="751.33" width="112.333" height="32.6667"/>
-  <object id="63" name="LeftWall" x="56.5" y="73" width="7.5" height="685"/>
-  <object id="65" name="L3" x="57.5" y="464.5" width="39" height="47"/>
-  <object id="69" name="Ceilling" x="44" y="74" width="1477.33" height="22.6667"/>
-  <object id="70" name="L4" x="352.667" y="335.333" width="432" height="48.6667"/>
-  <object id="71" name="L4" x="304" y="367.333" width="69.3333" height="40"/>
-  <object id="72" name="L4" x="384.667" y="374.667" width="16" height="136.667"/>
-  <object id="73" name="L4" x="144.667" y="502" width="256.667" height="10"/>
-  <object id="74" name="L4" x="144.333" y="463.67" width="4.33333" height="48.3333"/>
-  <object id="75" name="L4" x="144" y="463.33" width="75.6667" height="6.33333"/>
-  <object id="76" name="L4" x="208" y="431.667" width="66" height="38"/>
-  <object id="77" name="L4" x="255.667" y="400.333" width="72.3333" height="36.3333"/>
-  <object id="99" name="L1" x="880" y="960" width="2.90909" height="237.5"/>
-  <object id="100" name="L1" x="880" y="1194.25" width="240.5" height="5.5"/>
-  <object id="101" name="L1" x="1113.25" y="1148.5" width="7" height="51.25"/>
-  <object id="103" name="L2" x="624" y="959.5" width="128.25" height="2.75"/>
-  <object id="120" name="Layer2" x="1408.13" y="880.13" width="32.125" height="48"/>
-  <object id="125" name="L2" x="432" y="751.75" width="48.5" height="176.25"/>
-  <object id="130" name="Slide" x="592.13" y="480.38">
-   <polygon points="0,0 -94.125,192.625 -0.625,192.875"/>
+ <objectgroup id="7" name="Grounds" locked="1">
+  <object id="14" name="Ground" x="976" y="1264" width="256" height="80"/>
+  <object id="15" name="Ground" x="1216" y="1232" width="64" height="48"/>
+  <object id="16" name="Ground" x="1264" y="1200" width="64" height="48"/>
+  <object id="17" name="Ground" x="1312" y="1168" width="64" height="48"/>
+  <object id="18" name="Ground" x="1360" y="1136" width="64" height="48"/>
+  <object id="19" name="Ground" x="1408" y="1104" width="64" height="48"/>
+  <object id="20" name="Ground" x="1456" y="1072" width="112" height="48"/>
+  <object id="27" name="Layer2LeftWall" x="1536" y="656" width="8" height="320"/>
+  <object id="29" name="StartLeftWall" x="1552" y="1008" width="8" height="80"/>
+  <object id="30" name="Layer4LeftWall" x="1488" y="80" width="8" height="416"/>
+  <object id="32" name="Layer4Stairs" x="1360" y="480" width="144" height="48"/>
+  <object id="33" name="Layer4Stairs" x="1312" y="512" width="64" height="48"/>
+  <object id="34" name="Layer4Stairs" x="1264" y="544" width="64" height="48"/>
+  <object id="35" name="Layer4Stairs" x="1216" y="576" width="64" height="48"/>
+  <object id="36" name="Layer4Stairs" x="1152" y="608" width="80" height="32"/>
+  <object id="37" name="Layer4Floor" x="1008" y="624" width="544" height="48"/>
+  <object id="39" name="Layer3Floor" x="1360" y="752" width="182" height="48"/>
+  <object id="40" name="Layer3Floor" x="880" y="752" width="432" height="48"/>
+  <object id="41" name="Layer4Wall" x="736" y="480" width="160" height="192"/>
+  <object id="42" name="Layer4Wall" x="880" y="624" width="96" height="48"/>
+  <object id="43" name="Layer4Wall" x="592" y="480" width="96" height="192"/>
+  <object id="44" name="Layer2" x="1376" y="864" width="96" height="32"/>
+  <object id="46" name="Layer2" x="880" y="960" width="688" height="64"/>
+  <object id="48" name="L1" x="1104" y="1104" width="80" height="48"/>
+  <object id="49" name="L1" x="1168" y="1072" width="64" height="48"/>
+  <object id="51" name="L1" x="1264" y="1008" width="64" height="48"/>
+  <object id="52" name="L1" x="1216" y="1040" width="64" height="48"/>
+  <object id="53" name="L1" x="736" y="1328" width="256" height="8"/>
+  <object id="54" name="L1" x="688" y="960" width="64" height="384"/>
+  <object id="55" name="L2" x="624" y="960" width="128" height="64"/>
+  <object id="57" name="L2" x="80" y="960" width="496" height="64"/>
+  <object id="58" name="L1" x="80" y="1264" width="624" height="8"/>
+  <object id="59" name="LeftWall" x="88" y="768" width="8" height="512"/>
+  <object id="60" name="L2" x="48" y="752" width="80" height="32"/>
+  <object id="61" name="L2" x="176" y="752" width="112" height="32"/>
+  <object id="63" name="LeftWall" x="56" y="80" width="8" height="688"/>
+  <object id="65" name="L3" x="48" y="464" width="48" height="48"/>
+  <object id="69" name="Ceilling" x="48" y="88" width="1456" height="8"/>
+  <object id="70" name="L4" x="352" y="336" width="432" height="48"/>
+  <object id="72" name="L4" x="304" y="368" width="96" height="144"/>
+  <object id="73" name="L4" x="144" y="464" width="256" height="48"/>
+  <object id="76" name="L4" x="208" y="432" width="64" height="48"/>
+  <object id="77" name="L4" x="256" y="400" width="64" height="48"/>
+  <object id="99" name="L1" x="880" y="960" width="8" height="240"/>
+  <object id="100" name="L1" x="880" y="1192" width="240" height="8"/>
+  <object id="101" name="L1" x="1112" y="1136" width="8" height="64"/>
+  <object id="120" name="Layer2" x="1408" y="864" width="32" height="64"/>
+  <object id="125" name="L2" x="432" y="752" width="48" height="176"/>
+  <object id="130" name="Slide" x="592" y="480">
+   <polygon points="0,0 -96,192 0,192"/>
   </object>
-  <object id="143" name="L2" x="1136.25" y="800.19" width="31.6875" height="127.875"/>
+  <object id="143" name="L2" x="1136" y="784" width="32" height="144"/>
   <object id="145" x="809.33" y="108">
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="8" name="Spikes">
+ <objectgroup id="8" name="Spikes" locked="1">
   <object id="112" name="L1" x="751.33" y="1322" width="226" height="6.33333"/>
  </objectgroup>
- <objectgroup id="5" name="OneWays">
-  <object id="87" name="L4" x="832.25" y="208" width="63.625" height="8"/>
-  <object id="91" name="L3" x="1504.13" y="895.38" width="33" height="8.75"/>
-  <object id="92" name="L3" x="63.75" y="656" width="96.5" height="8"/>
-  <object id="95" name="L1" x="751.25" y="959" width="48.75" height="9"/>
-  <object id="96" name="L1" x="799.5" y="991.25" width="81.75" height="8.75"/>
-  <object id="104" name="L1" x="751.75" y="1023.5" width="48.5" height="8.75"/>
-  <object id="105" name="L1" x="752" y="1087.5" width="48.5" height="8.75"/>
-  <object id="106" name="L1" x="752" y="1151.75" width="48.25" height="8.5"/>
-  <object id="107" name="L1" x="751.75" y="1215.75" width="64.5" height="8.5"/>
-  <object id="108" name="L1" x="800" y="1248" width="80.5" height="8"/>
-  <object id="109" name="L1" x="800" y="1183.75" width="80.5" height="8.5"/>
-  <object id="110" name="L1" x="800" y="1119.75" width="81" height="8.25"/>
-  <object id="111" name="L1" x="800" y="1056" width="81.75" height="8.25"/>
+ <objectgroup id="5" name="OneWays" locked="1">
+  <object id="87" name="L4" x="832" y="208" width="64" height="8"/>
+  <object id="91" name="L3" x="1504" y="896" width="32" height="8"/>
+  <object id="92" name="L3" x="64" y="656" width="96" height="8"/>
+  <object id="95" name="L1" x="752" y="960" width="80" height="8"/>
+  <object id="96" name="L1" x="800" y="992" width="80" height="8"/>
+  <object id="104" name="L1" x="752" y="1024" width="80" height="8"/>
+  <object id="105" name="L1" x="752" y="1088" width="80" height="8"/>
+  <object id="106" name="L1" x="752" y="1152" width="80" height="8"/>
+  <object id="107" name="L1" x="752" y="1216" width="80" height="8"/>
+  <object id="108" name="L1" x="800" y="1248" width="80" height="8"/>
+  <object id="109" name="L1" x="800" y="1184" width="80" height="8"/>
+  <object id="110" name="L1" x="800" y="1120" width="80" height="8"/>
+  <object id="111" name="L1" x="800" y="1056" width="80" height="8"/>
  </objectgroup>
- <objectgroup id="4" name="Objects">
-  <object id="114" name="MovingVerti" x="287.75" y="799.75" width="144.5" height="8"/>
-  <object id="115" name="MovingHori" x="591.64" y="751.64" width="48.3636" height="8"/>
-  <object id="116" name="RedZone" x="121" y="1247">
+ <objectgroup id="4" name="Objects" locked="1">
+  <object id="114" name="MovingVerti" x="288" y="800" width="144" height="8"/>
+  <object id="115" name="MovingHori" x="592" y="752" width="48" height="8"/>
+  <object id="116" name="RedZone" x="120" y="1248">
    <properties>
     <property name="class" value="scenePortal"/>
     <property name="scene" value="LevelRedZone"/>
    </properties>
    <point/>
   </object>
-  <object id="118" name="BlueZone" x="863.82" y="203.818">
+  <object id="118" name="BlueZone" x="864" y="192">
    <properties>
     <property name="class" value="scenePortal"/>
     <property name="scene" value="LevelBlueZoneM1"/>
    </properties>
    <point/>
   </object>
-  <object id="119" name="GreenZone" x="1471.5" y="473">
+  <object id="119" name="GreenZone" x="1464" y="464">
    <properties>
     <property name="class" value="scenePortal"/>
     <property name="scene" value="LevelGreenZoneM1"/>
    </properties>
    <point/>
   </object>
-  <object id="128" name="RedBox" x="1215.82" y="928.18" width="32.5455" height="32">
+  <object id="128" name="RedBox" x="1216" y="928" width="32" height="32">
    <properties>
     <property name="class" value="box"/>
     <property name="color" value="red"/>
    </properties>
   </object>
-  <object id="129" name="BlueBox" x="623.82" y="447.909" width="32.2727" height="31.9091">
+  <object id="129" name="BlueBox" x="624" y="448" width="32" height="32">
    <properties>
     <property name="class" value="box"/>
     <property name="color" value="blue"/>
    </properties>
   </object>
-  <object id="133" name="RedBox" x="1087.82" y="1231.45" width="32.3636" height="32.3636">
+  <object id="133" name="RedBox" x="1088" y="1232" width="32" height="32">
    <properties>
     <property name="class" value="box"/>
     <property name="color" value="red"/>
    </properties>
   </object>
-  <object id="134" name="RedBox" x="1376" y="719.75" width="31.875" height="32.375">
+  <object id="134" name="RedBox" x="1376" y="720" width="32" height="32">
    <properties>
     <property name="class" value="box"/>
     <property name="color" value="red"/>
    </properties>
   </object>
-  <object id="135" name="RedGem" x="1088.33" y="619.67">
+  <object id="135" name="RedGem" x="1080" y="608">
    <properties>
     <property name="class" value="gem"/>
     <property name="color" value="red"/>
    </properties>
    <point/>
   </object>
-  <object id="136" name="BlueGem" x="193.75" y="460">
+  <object id="136" name="BlueGem" x="184" y="448">
    <properties>
     <property name="class" value="gem"/>
     <property name="color" value="blue"/>
    </properties>
    <point/>
   </object>
-  <object id="137" name="MovingVerti" x="1087.81" y="927.75" width="48.25" height="8.1875"/>
-  <object id="139" name="GreenGem" x="1126.68" y="824.7">
+  <object id="137" name="MovingVerti" x="1088" y="928" width="48" height="8">
+   <properties>
+    <property name="class" value="moving"/>
+    <property name="color" value="default"/>
+    <property name="duration" type="float" value="3"/>
+    <property name="moveTo" type="object" value="153"/>
+   </properties>
+  </object>
+  <object id="139" name="GreenGem" x="1128" y="816">
    <properties>
     <property name="class" value="gem"/>
     <property name="color" value="green"/>
    </properties>
    <point/>
   </object>
-  <object id="144" name="Lamp" x="1128.64" y="873">
+  <object id="144" name="Lamp" x="1136" y="848">
    <properties>
+    <property name="angle" type="float" value="90"/>
     <property name="class" value="lamp"/>
    </properties>
    <point/>
   </object>
-  <object id="148" name="GreenLaser" x="1088" y="915.55" width="46.5455" height="3.81818">
+  <object id="148" name="GreenLaser" x="1088" y="908" width="48" height="4">
    <properties>
     <property name="class" value="laser"/>
     <property name="color" value="green"/>
    </properties>
   </object>
-  <object id="149" name="GreenLaser" x="1088" y="895.55" width="46.5455" height="3.81818">
-   <properties>
-    <property name="class" value="laser"/>
-    <property name="color" value="green"/>
-   </properties>
-  </object>
-  <object id="150" name="GreenGem" x="1184.25" y="1248.75">
+  <object id="150" name="GreenGem" x="1176" y="1248">
    <properties>
     <property name="class" value="gem"/>
     <property name="color" value="green"/>
    </properties>
    <point/>
   </object>
-  <object id="152" name="Exit" x="1049.5" y="948.83">
+  <object id="152" name="Exit" x="1048" y="944">
    <properties>
     <property name="class" value="scenePortal"/>
     <property name="scene" value="Start"/>
    </properties>
    <point/>
   </object>
- </objectgroup>
- <objectgroup id="3" name="Bricks">
-  <object id="121" name="RedBlock" x="1408" y="928.09" width="32.1818" height="31.9091">
+  <object id="153" name="Vert1Tar" x="1112" y="832">
    <properties>
-    <property name="color" value="red"/>
+    <property name="class" value="dummy"/>
    </properties>
-  </object>
-  <object id="122" name="BlueBlock" x="976.13" y="624" width="31.875" height="48.125">
-   <properties>
-    <property name="color" value="blue"/>
-   </properties>
-  </object>
-  <object id="126" name="BlueBlock" x="431.818" y="928" width="48.1818" height="31.875">
-   <properties>
-    <property name="color" value="blue"/>
-   </properties>
-  </object>
-  <object id="127" name="GreenBlock" x="95.63" y="464.13" width="48.13" height="47.75">
-   <properties>
-    <property name="color" value="green"/>
-   </properties>
-  </object>
-  <object id="132" name="GreenBlock" x="784" y="240" width="48.1818" height="8">
-   <properties>
-    <property name="color" value="green"/>
-   </properties>
-  </object>
-  <object id="138" name="RedBlock" x="1088" y="832" width="48.3636" height="32">
-   <properties>
-    <property name="color" value="red"/>
-   </properties>
-  </object>
- </objectgroup>
- <objectgroup id="2" name="Start">
-  <object id="1" name="Start" x="1509.75" y="1066.29">
    <point/>
   </object>
  </objectgroup>
- <layer id="1" name="Tiles" width="100" height="86">
+ <objectgroup id="3" name="Bricks" locked="1">
+  <object id="121" name="RedBlock" x="1408" y="928" width="32" height="32">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="122" name="BlueBlock" x="976" y="624" width="32" height="48">
+   <properties>
+    <property name="color" value="blue"/>
+   </properties>
+  </object>
+  <object id="126" name="BlueBlock" x="432" y="928" width="48" height="32">
+   <properties>
+    <property name="color" value="blue"/>
+   </properties>
+  </object>
+  <object id="127" name="GreenBlock" x="96" y="464" width="48" height="48">
+   <properties>
+    <property name="color" value="green"/>
+   </properties>
+  </object>
+  <object id="132" name="GreenBlock" x="784" y="240" width="48" height="8">
+   <properties>
+    <property name="color" value="green"/>
+   </properties>
+  </object>
+  <object id="138" name="RedBlock" x="1088" y="832" width="48" height="32">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="2" name="Start" locked="1">
+  <object id="1" name="Start" x="941.333" y="931.333">
+   <point/>
+  </object>
+ </objectgroup>
+ <layer id="1" name="Tiles" width="100" height="86" locked="1">
   <data encoding="base64" compression="gzip">
-   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
+   H4sIAAAAAAAACu2da67UMAyF5wr4BYg3ErAF/sEGYCXsfw8gGmkiRaeO7TyddIw0gqZpkp7Pp3HSudxnT7fbM/+4Bh4DHgMeAx4DHgOXiYG/t9vt68HTP2M1+HforMmhPh4s/M94Bd4rn2HOYzyL0IPzmKOzthfnoVVqTj3nMUdnbS+PxuPHIcxPrTgG9R6Nx69D498GOmu7fCQeb45c8u39827R/P2ReGhj1LLe1XlET6zqB2R/dR54v6sfPyKPlT3ziDxW9sjVeazsBSours6DuueVyyx4vDxy/1cTPq8XXWNw8WDBQ9un5r0MV2fHdwRabVrvLfXEh/s7l/D3yPeN39wfWStS3FsZZzvb+ASlE/UMqNGO8kTadk2bG0utGvpIHlLbzuOMSNIsxrNWO8kT7o8zg7SkNw9te4GLljF/B9c6q9Xv+X29gDk9riVi7kTNQVjmPM6xpOWRe26VXt/yvPr8dPtDrSOlGNFcc1ZmTAnGL47txX0tgLGLx/H7iZjTf2lYQ2BbkgKfDh44Luq5p4kRK29qxkbdI5ZZjT8yCt7IPQtxbJp7xmukWGg5n3pCG/+oPx7PHD917zlv7OAPTXyg3tKxJQ/OG6vyGOGJlJElD84bq/IY4YkVeEjeWInHaE+swEPyxko8RnvCmofGG5Y8cC3RK3dKdc/922L+0HijlkfInXEtlq4rUWusG45n6o9cZvPQeqOWB94ftjPz2UONRSoLPNLvv47+HmzwhvbdIa7za/cM0nZq29COWVOP+1nC2f6g1oSPVsZ51HnMjwbnMV9zrkfnwakz/5zzmK851yPHI74fjHm49h0Q1sv1H/N9qX6v7+Nq1hfUmqO0DO+npF/N+qb0vRTmojkeMRZm5Q1c7Em5f8l5vJ/e/WL7OX1Ly2fzaF1fhLWB5v90wXgs6Zdbf8SYqOFBrSPjejL8HX6WbDaP0njB+mG8NVpgO9yxxkujxuA8zmScx1mTXIn7I6eMTbnzsNE912sLDyrnxbw49OvPq5z65/IWHjHHSnM0zMOcx1lzrqSFR2w310bIR9Ock1vvjMqvYsxQccLpYnUujLd1rFIbls8rK11L+u21V6Pt03lolZpTT8MD9xVL99dq62P+QeUo6V5nuv6PewCpitz1tWPsfZ1mPzF8L8Pig/MWFztYl4pm7npu/lztnAWL0CdqzOmJdan9M+761TTnxqPZ09R8d6K0DuYyuE+a7oUiD2t/tGgm7fFq7pW6/9FlabyHMUrzx0x/tGgmjbOl7ZFMkIfUl3Sf3DNCcy71BHpbGlt6Xhrnjjws5o9eOl2RBxWP0n1qPIB1WjyRy7+lnLcXd0qjljJ8XlnMHy3a1MZHS58tekvXIo+S+hjnJce9PCH5IDemHXmMnD9a9Kj1RMqmpX8pZlvOz/IHriVKc6d0nqj1xI48Rs0frfHYwxM78pC8VqtLDY/entidBzV/4H6Ldv+m9PkU4qKWfW4O352H5JUR50d6Ykce0vwxgkHa5khP7MhjtN5U+7M8sTsPnD9G/e6JWZ5IeVi9r5Xehaa5fE0OFOM9t48k9R/O91hPaObw3eq08LCI8d30LR2v89D9DtxSXWvrBx7fKz/uj/4sW+Y4nwP686j1lV/nLEpi4D8d5VriYIYAAA==
   </data>
  </layer>
 </map>

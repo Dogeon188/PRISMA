@@ -33,6 +33,10 @@ export class Dialog extends Entity {
     private once: boolean = false
     private loadedEntries: DialogEntry[] = []
 
+    public get entries(): DialogEntry[] {
+        return this.loadedEntries
+    }
+
     protected onLoad() {
         const data: DialogData = this.dialogData?.json as DialogData
         if (data) this.resolveDialogData(data)

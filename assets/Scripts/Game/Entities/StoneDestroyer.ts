@@ -1,12 +1,18 @@
 import {
     _decorator,
+    BoxCollider2D,
     Collider2D,
     Component,
     Contact2DType,
     IPhysics2DContact,
-    Node,
+    Size,
+    Vec2,
+    log,
 } from "cc"
+
 import { ColliderGroup, ColliderType } from "../Physics/ColliderManager"
+import { StoneGenerator } from "./StoneGenerator"
+
 const { ccclass, property } = _decorator
 
 @ccclass("StoneDestroyer")
@@ -14,6 +20,18 @@ export class StoneDestroyer extends Component {
     protected onLoad(): void {
         const collider = this.getComponent(Collider2D)
         collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this)
+    }
+
+    public initialize(position: Vec2, size: Size): void {
+        // set position
+        // need to shift the position by quarter (why?) of the size
+        this.node.position.set(
+            position.x + size.width / 4,
+            position.y - size.height / 4,
+        )
+
+        // set size
+        this.node.getComponent(BoxCollider2D).size = size
     }
 
     private onBeginContact(
@@ -24,7 +42,12 @@ export class StoneDestroyer extends Component {
         // destroy the stone when it collides with the ground
         if (other.tag === ColliderType.STONE) {
             this.scheduleOnce(() => {
-                other.node.destroy()
+                const stoneGen = other.node.parent.getComponent(StoneGenerator)
+                if (stoneGen) {
+                    stoneGen.recycleStone(other.node)
+                }else{
+                    other.node.destroy()
+                }
             }, 0.1)
         }
     }

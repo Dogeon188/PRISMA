@@ -10,6 +10,7 @@
 
 - [Midnight](https://youtu.be/ifjR8kMxU3k) by 禊-misogi-
 - [雪中独歩](https://youtu.be/2b_nkj1PBe0) by 禊-misogi-
+- [ピアノ39](https://maou.audio/bgm_piano39/) by 魔王魂
 
 ## Sound Effects
 

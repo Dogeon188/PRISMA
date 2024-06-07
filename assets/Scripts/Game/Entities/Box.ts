@@ -3,6 +3,8 @@ import {
     BoxCollider2D,
     Collider2D,
     Color,
+    IPhysics2DContact,
+    log,
     Node,
     RigidBody2D,
     Size,
@@ -13,8 +15,8 @@ import {
 } from "cc"
 import { Settings } from "../../Scene/Settings"
 import { GameManager } from "../GameManager"
-import { ColliderGroup, ColorMap } from "../Physics/ColliderManager"
-import { fuzzyEqual } from "../Physics/PhysicsFixer"
+import { ColliderGroup, ColliderType, ColorMap } from "../Physics/ColliderManager"
+import { fuzzyEqual, getCorrectNormal, NormalDirection } from "../Physics/PhysicsFixer"
 import { Player } from "../Player"
 import { Entity } from "./Entity"
 import { Lamp } from "./Lamp"
@@ -24,7 +26,7 @@ const { ccclass, property } = _decorator
 @ccclass("Box")
 export class Box extends Entity {
     @property({ type: ColliderGroup })
-    private color: number = ColliderGroup.RED
+    public color: number = ColliderGroup.RED
 
     private bindedTo: Node | null = null
     private bindOffsetX: number = 0
@@ -34,6 +36,8 @@ export class Box extends Entity {
     private static readonly GRAVITY: number = 5
 
     private collidedHaloSet: Set<string> = new Set()
+
+
 
     protected onLoad(): void {
         this.initialize(
@@ -62,6 +66,8 @@ export class Box extends Entity {
         const collider = this.node.getComponent(Collider2D)
         collider.group = ColliderGroup.ACTIVE
         collider.density = Box.DENSITY
+
+        this.node.getComponent(RigidBody2D).gravityScale = Box.GRAVITY
     }
 
     protected update(deltaTime: number) {
@@ -154,4 +160,29 @@ export class Box extends Entity {
             collider.apply()
         }, 0.2)
     }
+
+    // private onBeginContact(
+    //     self: Collider2D,
+    //     other: Collider2D,
+    //     contact: IPhysics2DContact,
+    // ): void {
+    //     const normal = getCorrectNormal(self, other, contact)
+    //     const isOnTop = fuzzyEqual(normal.y, NormalDirection.ON_TOP)
+    //     const isAbove = normal.y > 0
+    //     // const selfRigidBody = self.getComponent(RigidBody2D)
+    //     // if (!selfRigidBody) return
+    //     // const vel = selfRigidBody.linearVelocity
+    //     // const isDropping = !fuzzyEqual(vel.y, 0)
+
+    //     // log(vel);
+
+    //     // if (!isOnTop || !isDropping) return;
+    //     // switch (other.tag) {
+    //     //     case ColliderType.ONEWAY:
+    //     //     case ColliderType.GROUND:
+    //     //     case ColliderType.BOX:
+    //     //     case ColliderType.BRICK:
+    //     //     case ColliderType.SENSOR:
+    //     // }
+    // }
 }

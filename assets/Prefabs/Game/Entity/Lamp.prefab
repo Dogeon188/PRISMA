@@ -825,6 +825,10 @@
       "__id__": 41
     },
     "haloRadius": 100,
+    "gemSound": {
+      "__uuid__": "804cab90-b27a-43b6-9094-b6c9cfa0c554",
+      "__expectedType__": "cc.AudioClip"
+    },
     "_id": ""
   },
   {

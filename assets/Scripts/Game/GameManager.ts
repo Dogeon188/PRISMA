@@ -78,15 +78,22 @@ export class GameManager extends Component {
     })
     interactPrompt: InteractPrompt = null
 
-    @property({ type: Prefab, group: "Prefabs" })
-    playerPrefab: Prefab = null
-
-    /** @deprecated Only for test purpose. Please use {@linkcode playerPrefab} instead. */
     @property(Player)
     player: Player = null
 
     @property({ type: TrackCamera, group: "References" })
     camera: TrackCamera = null
+
+    private _canAct: boolean = true
+
+    public get canAct(): boolean {
+        return this._canAct
+    }
+
+    public set canAct(value: boolean) {
+        this._canAct = value
+        this.player.canAct = value
+    }
 
     //#endregion
 
@@ -105,10 +112,12 @@ export class GameManager extends Component {
         }
     }
 
-    backToStart(): void {
+    public backToStart(): void {
         AudioManager.inst.fadeOutBGM(1)
         SceneManager.loadScene("Start")
     }
+
+    
 
     //#endregion
 }
