@@ -8,6 +8,7 @@ import {
     tween,
     UIOpacity,
     UITransform,
+    Vec3,
 } from "cc"
 import { AudioManager } from "../AudioManager"
 import { Dialog } from "../Game/Entities/Dialog"
@@ -24,6 +25,12 @@ export class LevelEnd extends Component {
 
     @property(Node)
     private coreNode: Node = null
+
+    @property(Node)
+    private finalWords1: Node = null
+
+    @property(Node)
+    private finalWords2: Node = null
 
     @property(UIOpacity)
     private overlayOpacity: UIOpacity = null
@@ -56,6 +63,7 @@ export class LevelEnd extends Component {
             .getChildByName("EndDialog")
             .getComponent(Dialog)
         this.coreParticles = this.coreNode.getComponent(ParticleSystem2D)
+        this.overlayOpacity.node.setSiblingIndex(0)
     }
 
     private onLampChangeColor(uuid: string, color: number): void {
@@ -71,6 +79,50 @@ export class LevelEnd extends Component {
     }
 
     private startEndSequence(): void {
+        const afterLight = tween(this.overlayOpacity)
+            .delay(3)
+            .to(0.5, { opacity: 255 }, { easing: "cubicInOut" })
+            .delay(2)
+            .call(() => {
+                tween(this.finalWords1.getComponent(UIOpacity))
+                    .to(2, { opacity: 255 }, { easing: "sineInOut" })
+                    .delay(1)
+                    .call(() =>
+                        tween(this.finalWords2.getComponent(UIOpacity))
+                            .to(2, { opacity: 255 }, { easing: "sineInOut" })
+                            .start(),
+                    )
+                    .start()
+                tween(this.finalWords1)
+                    .by(0, { position: new Vec3(0, -50, 0) })
+                    .by(
+                        2,
+                        { position: new Vec3(0, 50, 0) },
+                        { easing: "sineInOut" },
+                    )
+                    .delay(1)
+                    .call(() =>
+                        tween(this.finalWords2)
+                            .by(0, { position: new Vec3(0, -50, 0) })
+                            .by(
+                                2,
+                                { position: new Vec3(0, 50, 0) },
+                                { easing: "sineInOut" },
+                            )
+                            .start(),
+                    )
+                    .start()
+            })
+            .delay(7)
+            .call(() => {
+                // end
+                GameManager.inst.canAct = true
+                this.camera.shake = 0
+                AudioManager.inst.stopBGM()
+                AudioManager.inst.clearBGM()
+                SceneManager.loadScene("Splash", true, 0.1, 10)
+            })
+
         tween(this.node)
             .call(() => {
                 // initialize
@@ -96,21 +148,11 @@ export class LevelEnd extends Component {
             .call(() => {
                 GameManager.inst.dialogBox.playDialog(
                     this.dummyDialog.entries,
-                    () => {
-                        tween(this.overlayOpacity)
-                            .to(0.5, { opacity: 255 }, { easing: "cubicInOut" })
-                            .delay(10)
-                            .call(() => {
-                                // end
-                                GameManager.inst.canAct = true
-                                this.camera.shake = 0
-                                AudioManager.inst.stopBGM()
-                                AudioManager.inst.clearBGM()
-                                SceneManager.loadScene("Splash", true, 0.1, 10)
-                            })
-                            .start()
-                    },
+                    afterLight.start.bind(afterLight),
                 )
+                tween(this.overlayOpacity)
+                    .to(30, { opacity: 60 }, { easing: "cubicIn" })
+                    .start()
             })
             .delay(12)
             .call(() => {
@@ -118,6 +160,7 @@ export class LevelEnd extends Component {
                 this.coreParticles.emissionRate = 100
                 this.coreParticles.resetSystem()
                 AudioManager.inst.playOneShot(this.engineSound)
+                this.camera.node.getComponent(Camera).usePostProcess = false
             })
             .delay(13)
             .call(() => {
