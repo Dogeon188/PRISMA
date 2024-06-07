@@ -1,5 +1,3 @@
-// Copyright (c) 2017-2020 Xiamen Yaji Software Co., Ltd.
-
 CCEffect %{
 techniques:
   - passes:
@@ -20,12 +18,39 @@ techniques:
               blendDstAlpha: zero
         properties:
           color: { value: [1.0, 1.0, 1.0, 0.5], editor: { type: color } }
-          center:
+          pauseCenter:
             {
-              value: [0.5, 0.5],
-              editor: { type: vec2, min: [0, 0], max: [1, 1] },
+              value: [1208, 654],
+              editor: { type: vec2, min: [0, 0], max: [1280, 720] },
             }
-          radius: { value: 0.5, editor: { type: float, min: 0, max: 10 } }
+          pauseRadius:
+            { value: 35, editor: { type: number, min: 0, max: 1000 } }
+          centersX:
+            {
+              value: [640, 640, 640, 640],
+              editor:
+                {
+                  type: vec4,
+                  min: [0, 0, 0, 0],
+                  max: [1280, 1280, 1280, 1280],
+                },
+            }
+          centersY:
+            {
+              value: [360, 360, 360, 360],
+              editor:
+                { type: vec4, min: [0, 0, 0, 0], max: [720, 720, 720, 720] },
+            }
+          radii:
+            {
+              value: [100, 100, 100, 100],
+              editor:
+                {
+                  type: vec4,
+                  min: [0, 0, 0, 0],
+                  max: [1000, 1000, 1000, 1000],
+                },
+            }
 
 }%
 
@@ -58,24 +83,56 @@ in vec2 v_uv;
 uniform UBO {
   vec4 inputViewPort;
   vec4 color;
-  vec2 center;
-  float radius;
+  vec2 pauseCenter;
+  float pauseRadius;
 };
+uniform CENTERS {
+  vec4 centersX;
+  vec4 centersY;
+  vec4 radii;
+};
+
 #pragma rate inputTexture pass
 uniform sampler2D inputTexture;
 
 layout(location = 0)out vec4 fragColor;
+const vec3 black = vec3(0.0, 0.0, 0.0);
+const vec2 screenSize = vec2(1280, 720);
+const float blur = 10.0;
+
+float sigmoid(in float t) {
+  return 1.0 / (1.0 + exp(-t));
+}
+
+vec4 sigmoid(in vec4 t) {
+  return vec4(sigmoid(t.x), sigmoid(t.y), sigmoid(t.z), sigmoid(t.w));
+}
+
+vec4 colorize(in vec4 color, in vec4 multiplier) {
+  float whiteDist = length(cross(vec3(1, 1, 1), fragColor.rgb)) / length(fragColor.rgb);
+  float alpha = exp(-whiteDist);
+  vec4 destColor = color * multiplier;
+  return mix(color, destColor, alpha);
+}
+
+vec3 gradient(in vec3 color, in vec2 uv) {
+  vec4 dists;
+  vec2 screenPos = v_uv * screenSize;
+  float pauseDist = distance(screenPos, pauseCenter) - pauseRadius;
+  dists.x = distance(screenPos, vec2(centersX.x, centersY.x)) - radii.x;
+  dists.y = distance(screenPos, vec2(centersX.y, centersY.y)) - radii.y;
+  dists.z = distance(screenPos, vec2(centersX.z, centersY.z)) - radii.z;
+  dists.w = distance(screenPos, vec2(centersX.w, centersY.w)) - radii.w;
+  vec4 alphas = sigmoid(dists / blur);
+  float pauseAlpha = sigmoid(pauseDist / blur);
+  float alpha = min(alphas.x, min(alphas.y, min(alphas.z, min(alphas.w, pauseAlpha))));
+  return mix(color, black, alpha);
+}
 
 void main() {
   fragColor = texture(inputTexture, v_uv);
-  vec3 destColor = fragColor.rgb * color.rgb;
-  fragColor.rgb = mix(fragColor.rgb, destColor, color.a);
-
-  // fragColor = texture(inputTexture, v_uv);
-  // vec3 destColor = fragColor.rgb * color.rgb;
-  // float dist = distance(v_uv, center) - radius;
-  // // dist = clamp(dist, -0.5, 0.5) + 1.0;
-  // fragColor.rgb = mix(fragColor.rgb, destColor, dist > 0.0 ? 0.0 : 1.0);
+  fragColor = colorize(fragColor, color);
+  fragColor.rgb = gradient(fragColor.rgb, v_uv);
 }
 }%
 
