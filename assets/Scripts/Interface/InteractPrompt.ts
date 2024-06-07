@@ -18,9 +18,14 @@ export class InteractPrompt extends Component {
      */
     showPrompt(keyCode: KeyCode, text: string, then?: Function): void {
         this.setText(keyCode, text)
+
         if (!this.isPlaying) {
-            this.node.active = true
-            this.isPlaying = true
+            this.scheduleOnce(() => {
+                this.node.active = true
+                this.isPlaying = true
+                this.node.getComponent(UIOpacity).opacity = 255
+                console.log(this.isPlaying)
+            }, 0)
         } else {
             console.log("prompt is already playing")
         }
