@@ -4,7 +4,7 @@
  <tileset firstgid="253" source="amproject.tsx"/>
  <layer id="11" name="Back" width="60" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAE+3RwQkAIAwEwbMTfWn/FZoqBMkcpICdJEaAAAECBAgQIECAAAECBAgQIECAAAECrwTmSFZdl+1qPY16u/xVJwECfwtcDzLPGiAcAAA=
+   H4sIAAAAAAAACu3RwQkAIAwEwbMTfWn/FZoqBMkcpICdJEaAAAECBAgQIECAAAECBAgQIECAAAECrwTmSFZdl+1qPY16u/xVJwECfwtcDzLPGiAcAAA=
   </data>
  </layer>
  <objectgroup id="4" name="Grounds">
@@ -258,13 +258,13 @@
   </object>
  </objectgroup>
  <objectgroup id="9" name="Start">
-  <object id="45" name="Start" x="66.9635" y="159.82">
+  <object id="45" name="Start" x="71.9635" y="394.82">
    <point/>
   </object>
  </objectgroup>
  <layer id="1" name="Front" width="60" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAE+1X2w7CIAzFRJ+c8e7DvsH//zuNbQzJ0jAsnFVx65I+AOvlnMNG6VYhdAuy4M9iGOhpX9daKUkPcqjNlfN7Kgu5EFbkORX6o/nGatXWgebX5ol1ovkc75sBLe8o39o8UZdz4gy80tyt8LuQOmvr+DZeWSePmYM1GYL7n/AOta/FrcXLuZA+K6UXOlejdwletD4r/xLcc8Ar93luH27A/52VZh7XGbBgINd7z3HNgkOP6QxYMbCn8+gwsKOfT1ZUJ+Nuie+dIeet6cv9HnoXSxLZyKTUU+KV62jZv9Y34ruTrmxjYxSn1j/Xe0+xxv0732VjrE/jKXLmYmh58fecAWegPQZeB455hyAcAAA=
+   H4sIAAAAAAAACu1X2w7CIAzFRJ+c8e7DvsH//zuNbQzJ0jAsnFVx65I+AOvlnMNG6VYhdAuy4M9iGOhpX9daKUkPcqjNlfN7Kgu5EFbkORX6o/nGatXWgebX5ol1ovkc75sBLe8o39o8UZdz4gy80tyt8LuQOmvr+DZeWSePmYM1GYL7n/AOta/FrcXLuZA+K6UXOlejdwletD4r/xLcc8Ar93luH27A/52VZh7XGbBgINd7z3HNgkOP6QxYMbCn8+gwsKOfT1ZUJ+Nuie+dIeet6cv9HnoXSxLZyKTUU+KV62jZv9Y34ruTrmxjYxSn1j/Xe0+xxv0732VjrE/jKXLmYmh58fecAWegPQZeB455hyAcAAA=
   </data>
  </layer>
 </map>

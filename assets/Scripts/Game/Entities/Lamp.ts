@@ -14,6 +14,9 @@ import {
     UITransform,
     Vec2,
     AudioClip,
+    Intersection2D,
+    RigidBody,
+    PhysicsSystem2D,
 } from "cc"
 import { Settings } from "../../Scene/Settings"
 import { GameManager } from "../GameManager"
@@ -98,6 +101,7 @@ export class Lamp extends Entity {
     }
 
     private changeColor(player: Player): boolean {
+        console.log(this.collidedSet)
         AudioManager.inst.playOneShot(this.gemSound)
         if (this.color === null) {
             if (player.node.getComponent(PlayerHalo).color === null) {
@@ -159,23 +163,42 @@ export class Lamp extends Entity {
     public onBeginInteract(player: Player): void {
         const target_color = this.color
         GameManager.inst.interactPrompt.hidePrompt()
+        console.log(player.collidedHaloNodeSet)
         player.collidedHaloNodeSet.forEach((node) => {
             // check if node position is in the lamp's halo
             // dont change readonly vec3
-            const distance = node.node.position
-                .clone()
-                .subtract(this.node.position)
-                .length()
-            if (distance > this.haloRadius) {
-                return
-            }
-            this.collidedSet.add(node)
+            // const distance = node.node.position
+            //     .clone()
+            //     .subtract(this.node.position)
+            //     .length()
+
+            const target_node = node.node.getComponent(UITransform)
+            const target_rect = math.rect(
+                node.node.position.x - target_node.width / 2,
+                node.node.position.y - target_node.height / 2,
+                target_node.width,
+                target_node.height,
+            )
+
+            // const colliderList = PhysicsSystem2D.instance.testAABB(target_rect)
+            // console.log(colliderList)
+
+            const circleCenter = new Vec2(
+                this.node.position.x,
+                this.node.position.y,
+            )
+            const ans = Intersection2D.rectCircle(
+                target_rect,
+                circleCenter,
+                this.haloRadius,
+            )
+            if (ans) this.collidedSet.add(node)
         })
         const ret = this.changeColor(player)
         player.node.getComponent(PlayerHalo).interactWithLamp(target_color)
-        if (ret){
+        if (ret) {
             this.showPrompt()
-        } 
+        }
     }
 
     private onBeginContactHalo(
