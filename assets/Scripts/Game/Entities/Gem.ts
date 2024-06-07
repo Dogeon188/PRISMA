@@ -59,7 +59,7 @@ export class Gem extends Entity {
 
     public onCollide(other: Node): void {
         other.getComponent(PlayerHalo).addGem(this.color)
-        Auth.updateUserData({ stoneList: [...Auth.data.stoneList, this.uuid] })
+        // Auth.updateUserData({ stoneList: [...Auth.data.stoneList, this.uuid] })
         this.scheduleOnce(() => {
             this.node.destroy()
         }, 0.1)
