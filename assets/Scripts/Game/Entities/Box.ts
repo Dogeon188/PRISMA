@@ -115,11 +115,17 @@ export class Box extends Entity {
         )
     }
 
-    private determineActive(): void {
+    private determineActive(player: Player): void {
         if (this.collidedHaloSet.size === 0) {
             this.scheduleOnce(() => {
                 this.node.getComponent(Sprite).enabled = true
                 this.node.getComponent(Collider2D).group = ColliderGroup.ACTIVE
+                if (player.interactingWith) {
+                    player.interactingWith.onEndInteract(
+                        this.node.getComponent(Player),
+                    )
+                    player.interactingWith = null
+                }
             }, 0)
         } else {
             this.scheduleOnce(() => {
@@ -134,27 +140,31 @@ export class Box extends Entity {
         if (playerHalo.color === this.color) {
             this.collidedHaloSet.add(playerHalo.node.uuid)
         }
-        this.determineActive()
+        this.determineActive(playerHalo.node.getComponent(Player))
     }
 
     public onLeaveHalo(playerHalo: PlayerHalo, force: boolean = false): void {
-        if (this.color === playerHalo.color) {
-            return
-        }
+        // if (this.color === playerHalo.color) {
+        //     return
+        // }
         this.collidedHaloSet.delete(playerHalo.node.uuid)
-        this.determineActive()
+        this.determineActive(playerHalo.node.getComponent(Player))
     }
 
     public onEnterLampHalo(lamp: Lamp): void {
         if (lamp.color === this.color) {
             this.collidedHaloSet.add(lamp.node.uuid)
         }
-        this.determineActive()
+        this.determineActive(
+            find("Canvas/Map/Entities/Player").getComponent(Player),
+        )
     }
 
     public onLeaveLampHalo(lamp: Lamp, force: boolean = false): void {
         this.collidedHaloSet.delete(lamp.node.uuid)
-        this.determineActive()
+        this.determineActive(
+            find("Canvas/Map/Entities/Player").getComponent(Player),
+        )
     }
 
     public canInteract(player: Player, normal: Vec2): boolean {

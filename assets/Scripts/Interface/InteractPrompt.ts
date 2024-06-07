@@ -22,7 +22,7 @@ export class InteractPrompt extends Component {
             this.node.active = true
             this.isPlaying = true
         } else {
-            // console.debug("prompt is already playing")
+            console.log("prompt is already playing")
         }
     }
     /**
@@ -37,8 +37,11 @@ export class InteractPrompt extends Component {
                 .call(() => {
                     this.node.active = false
                     this.isPlaying = false
+                    console.log(this.isPlaying)
                 })
                 .start()
+        } else {
+            console.log("prompt is already hidden")
         }
     }
 

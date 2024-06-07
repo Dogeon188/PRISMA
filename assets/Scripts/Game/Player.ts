@@ -5,6 +5,7 @@ import {
     Component,
     Contact2DType,
     EventKeyboard,
+    Game,
     IPhysics2DContact,
     Input,
     KeyCode,
@@ -35,6 +36,7 @@ import {
     getCorrectNormal,
 } from "./Physics/PhysicsFixer"
 import { Movement } from "./Physics/PlayerMovement"
+import { Portal } from "./Entities/Portal"
 
 const { ccclass, property, requireComponent } = _decorator
 
@@ -310,9 +312,13 @@ export class Player extends Component {
         // FIXME problematic when player is touching multiple objects
         // could fix by using a set of collided objects
         if (other.node.getComponent(Lamp)) {
-            console.log("end contact lamp")
+            // console.log("end contact lamp")
+            GameManager.inst.interactPrompt.hidePrompt()
+        } else if (other.node.getComponent(Portal)) {
+            // console.log("end contact portal")
             GameManager.inst.interactPrompt.hidePrompt()
         }
+        // GameManager.inst.interactPrompt.hidePrompt()
     }
 
     private onBeginContactHalo(

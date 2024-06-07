@@ -156,12 +156,15 @@ export class PlayerHalo extends Component {
                 node.node.getComponent(Plate).checkPressedBy(this.color)
             }
             if (node.node.getComponent(Lamp)) {
-                GameManager.inst.interactPrompt.hidePrompt()
-                this.scheduleOnce(() => {
-                    node.node
-                        .getComponent(Lamp)
-                        .showPrompt(this.node.getComponent(Player))
-                }, 0.5)
+                // GameManager.inst.interactPrompt.hidePrompt()
+                // this.scheduleOnce(() => {
+                //     node.node
+                //         .getComponent(Lamp)
+                //         .showPrompt(this.node.getComponent(Player))
+                // }, 0.5)
+                node.node
+                    .getComponent(Lamp)
+                    .showPrompt(this.node.getComponent(Player))
             }
         })
         const player = this.node.getComponent(Player)

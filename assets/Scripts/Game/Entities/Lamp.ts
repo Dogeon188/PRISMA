@@ -157,10 +157,11 @@ export class Lamp extends Entity {
 
     public onCollide(other: Node): void {
         const player = other.getComponent(Player)
-        GameManager.inst.interactPrompt.hidePrompt()
-        this.scheduleOnce(() => {
-            if (this.canInteract(player, null)) this.showPrompt(player)
-        }, 0.5)
+        // GameManager.inst.interactPrompt.hidePrompt()
+        // this.scheduleOnce(() => {
+        //     if (this.canInteract(player, null)) this.showPrompt(player)
+        // }, 0.5)
+        this.showPrompt(player)
     }
 
     public onBeginInteract(player: Player): void {
@@ -198,10 +199,11 @@ export class Lamp extends Entity {
         const ret = this.changeColor(player)
         player.node.getComponent(PlayerHalo).interactWithLamp(target_color)
         if (ret) {
-            GameManager.inst.interactPrompt.hidePrompt()
-            this.scheduleOnce(() => {
-                this.showPrompt(player)
-            }, 0.5)
+            // GameManager.inst.interactPrompt.hidePrompt()
+            // this.scheduleOnce(() => {
+            //     this.showPrompt(player)
+            // }, 0.5)
+            this.showPrompt(player)
         }
     }
 
