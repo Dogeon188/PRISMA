@@ -188,13 +188,15 @@ export class GameManager extends Component {
             this.ubo.centersY.z =
                 this.lampHalos[2].worldPosition.y - cameraPos.y
             this.ubo.radii.z = this.lamps[2].radius * 2.5
-        } else if (this.lamps.length > 1) {
+        }
+        if (this.lamps.length > 1) {
             this.ubo.centersX.y =
                 this.lampHalos[1].worldPosition.x - cameraPos.x
             this.ubo.centersY.y =
                 this.lampHalos[1].worldPosition.y - cameraPos.y
             this.ubo.radii.y = this.lamps[1].radius * 2.5
-        } else if (this.lamps.length > 0) {
+        }
+        if (this.lamps.length > 0) {
             this.ubo.centersX.x =
                 this.lampHalos[0].worldPosition.x - cameraPos.x
             this.ubo.centersY.x =

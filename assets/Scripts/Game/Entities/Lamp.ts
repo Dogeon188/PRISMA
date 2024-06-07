@@ -7,9 +7,7 @@ import {
     IPhysics2DContact,
     Intersection2D,
     Node,
-    PhysicsSystem2D,
     Quat,
-    RigidBody,
     Size,
     Sprite,
     UITransform,
@@ -40,6 +38,7 @@ export class Lamp extends Entity {
     private haloRadius: number = 200
 
     public get radius(): number {
+        if (this.color === null) return 0
         return this.haloRadius
     }
 
