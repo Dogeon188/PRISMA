@@ -14,6 +14,7 @@ import { Box } from "../Entities/Box"
 import { Dialog } from "../Entities/Dialog"
 import { Entity } from "../Entities/Entity"
 import { Gate } from "../Entities/Gate"
+import { Gem } from "../Entities/Gem"
 import { Lamp } from "../Entities/Lamp"
 import { Laser } from "../Entities/Laser"
 import { MovingPlatform } from "../Entities/MovingPlatform"
@@ -115,6 +116,7 @@ type TileObjectTypes = {
     gem: {
         class: "gem"
         color: RGBString
+        zone: string
     }
     /** Lamp that emits light */
     lamp: {
@@ -454,6 +456,7 @@ export class ObjectTile extends Component {
         const gemNode = instantiate(gemPrefab)
         gemNode.name = object.name
         gemNode.setPosition(object.x, object.y)
+        gemNode.getComponent(Gem).setZone(object.zone)
         this.node.addChild(gemNode)
         return gemNode
     }

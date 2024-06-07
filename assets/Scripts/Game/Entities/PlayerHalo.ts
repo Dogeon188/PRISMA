@@ -26,6 +26,7 @@ import { PlayPauseButton } from "../../PlayPauseButton"
 import { Plate } from "./Plate"
 import { Lamp } from "./Lamp"
 import { GameManager } from "../GameManager"
+import { Auth } from "../../Auth"
 const { ccclass, property } = _decorator
 
 @ccclass("PlayerHalo")
@@ -55,7 +56,7 @@ export class PlayerHalo extends Component {
         [ColliderGroup.BLUE]: Color.BLUE,
     }
 
-    private colorNumDict = {
+    public colorNumDict = {
         [ColliderGroup.RED]: 1,
         [ColliderGroup.GREEN]: 1,
         [ColliderGroup.BLUE]: 1,
@@ -76,6 +77,8 @@ export class PlayerHalo extends Component {
         input.on(Input.EventType.MOUSE_DOWN, this.onMouseDown, this)
         input.on(Input.EventType.MOUSE_UP, this.onMouseUp, this)
         input.on(Input.EventType.MOUSE_MOVE, this.onMouseMove, this)
+        this.loadColorOnUserData()
+        this.loadGemOnUserData()
     }
 
     protected start(): void {
@@ -117,7 +120,7 @@ export class PlayerHalo extends Component {
         }
     }
 
-    private changeColor(color: number): void {
+    public changeColor(color: number): void {
         if (this.color === color || this.colorNumDict[color] === 0) {
             return
         }
@@ -177,6 +180,18 @@ export class PlayerHalo extends Component {
         if (!this.pausePlayButton.getComponent(PlayPauseButton).isPlay) {
             return
         }
+        this.node.getChildByName("Halo").getComponent(Sprite).color = new Color(
+            0,
+            0,
+            0,
+            0,
+        )
+        this.node.getComponent(Player).collidedHaloNodeSet.forEach((node) => {
+            const tmp = node.node.getComponent(Sprite)
+            if (tmp) tmp.enabled = true
+            const tmp2 = node.node.getChildByName("Stick")
+            if (tmp2) tmp2.getComponent(Sprite).enabled = true
+        })
         for (const sprite of this.palette.getComponentsInChildren(Sprite)) {
             sprite.enabled = true
         }
@@ -184,7 +199,6 @@ export class PlayerHalo extends Component {
             label.enabled = true
         }
         this.mouseDown = true
-        // director.stopAnimation()
         director.pause()
     }
 
@@ -192,6 +206,17 @@ export class PlayerHalo extends Component {
         if (!this.pausePlayButton.getComponent(PlayPauseButton).isPlay) {
             return
         }
+        this.node.getComponent(Player).collidedHaloNodeSet.forEach((node) => {
+            if (
+                node.node.getComponent(Collider2D).group ===
+                ColliderGroup.INACTIVE
+            ) {
+                const tmp = node.node.getComponent(Sprite)
+                if (tmp) tmp.enabled = false
+            }
+            const tmp2 = node.node.getChildByName("Stick")
+            if (tmp2) tmp2.getComponent(Sprite).enabled = false
+        })
         for (const sprite of this.palette.getComponentsInChildren(Sprite)) {
             sprite.enabled = false
         }
@@ -204,7 +229,11 @@ export class PlayerHalo extends Component {
             this.changeColor(this.targetColor)
             this.targetColor = null
         }
-        // director.startAnimation()
+        if (this.color !== null) {
+            const target_color = PlayerHalo.COLOR_MAP[this.color]
+            this.node.getChildByName("Halo").getComponent(Sprite).color =
+                new Color(target_color.r, target_color.g, target_color.b, 66)
+        }
         director.resume()
     }
 
@@ -295,5 +324,31 @@ export class PlayerHalo extends Component {
         } else {
             this.addGem(color)
         }
+    }
+
+    private loadColorOnUserData(): void {
+        switch (Auth.data.haloColor) {
+            case 0:
+                this.changeColor(null)
+                break
+            case 1:
+                this.changeColor(ColliderGroup.RED)
+                break
+            case 2:
+                this.changeColor(ColliderGroup.GREEN)
+                break
+            case 3:
+                this.changeColor(ColliderGroup.BLUE)
+                break
+            default:
+                this.changeColor(null)
+                break
+        }
+    }
+
+    private loadGemOnUserData(): void {
+        this.colorNumDict[ColliderGroup.RED] = Auth.data.gemNum.red
+        this.colorNumDict[ColliderGroup.GREEN] = Auth.data.gemNum.green
+        this.colorNumDict[ColliderGroup.BLUE] = Auth.data.gemNum.blue
     }
 }

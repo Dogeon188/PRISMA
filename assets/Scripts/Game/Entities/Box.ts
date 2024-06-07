@@ -19,8 +19,16 @@ import {
 } from "cc"
 import { Settings } from "../../Scene/Settings"
 import { GameManager } from "../GameManager"
-import { ColliderGroup, ColliderType, ColorMap } from "../Physics/ColliderManager"
-import { fuzzyEqual, getCorrectNormal, NormalDirection } from "../Physics/PhysicsFixer"
+import {
+    ColliderGroup,
+    ColliderType,
+    ColorMap,
+} from "../Physics/ColliderManager"
+import {
+    fuzzyEqual,
+    getCorrectNormal,
+    NormalDirection,
+} from "../Physics/PhysicsFixer"
 import { Player } from "../Player"
 import { Entity } from "./Entity"
 import { Lamp } from "./Lamp"
@@ -55,11 +63,7 @@ export class Box extends Entity {
 
         for (const collider of this.node.getComponents(Collider2D)) {
             // log(`box collider tag: ${collider.tag}`)
-            collider.on(
-                Contact2DType.BEGIN_CONTACT,
-                this.onBeginContact,
-                this,
-            )
+            collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this)
             // if (collider.tag === ColliderType.BOX) {
             // }
         }
@@ -209,11 +213,7 @@ export class Box extends Entity {
                     .union()
                     .repeat(5)
                     .call(() => {
-                        find("Canvas/Camera").eulerAngles = new Vec3(
-                            0,
-                            0,
-                            0,
-                        )
+                        find("Canvas/Camera").eulerAngles = new Vec3(0, 0, 0)
                     })
                     .start()
                 AudioManager.inst.playOneShot(this.boxHitGround)
