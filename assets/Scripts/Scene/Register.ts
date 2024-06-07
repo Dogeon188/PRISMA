@@ -44,7 +44,18 @@ export class Register extends Component {
                     displayName: username.toUpperCase(),
                 })
                 // console.log(Auth.data)
-                Auth.updateUserData({})
+                Auth.updateUserData({
+                    stage: 0,
+                    savepoint: 1,
+                    haloColor: 0,
+                    gemNum: {
+                        red: 0,
+                        green: 0,
+                        blue: 0,
+                    },
+                    time: 0,
+                    stoneList: [],
+                })
                 // console.log("TTT")
 
                 ToastManager.show("Successfully registered!")
