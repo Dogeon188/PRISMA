@@ -1,0 +1,81 @@
+// Copyright (c) 2017-2020 Xiamen Yaji Software Co., Ltd.
+
+CCEffect %{
+techniques:
+  - passes:
+      - vert: vs
+        frag: fs
+        pass: post-process
+        rasterizerState:
+          cullMode: none
+        depthStencilState:
+          depthTest: false
+          depthWrite: false
+        blendState:
+          targets:
+            - blend: true
+              blendSrc: one
+              blendDst: one_minus_src_alpha
+              blendSrcAlpha: one
+              blendDstAlpha: zero
+        properties:
+          color: { value: [1.0, 1.0, 1.0, 0.5], editor: { type: color } }
+          center:
+            {
+              value: [0.5, 0.5],
+              editor: { type: vec2, min: [0, 0], max: [1, 1] },
+            }
+          radius: { value: 0.5, editor: { type: float, min: 0, max: 10 } }
+
+}%
+
+
+CCProgram vs %{
+precision highp float;
+
+#include <legacy/decode-standard>
+#include <builtin/uniforms/cc-global>
+#include <common/common-define>
+
+out vec2 v_uv;
+
+void main() {
+  StandardVertInput In;
+  CCDecode(In);
+  CC_HANDLE_GET_CLIP_FLIP(In.position.xy);
+  gl_Position = In.position;
+  
+  v_uv = a_texCoord;
+}
+}%
+
+
+CCProgram fs %{
+precision highp float;
+
+in vec2 v_uv;
+
+uniform UBO {
+  vec4 inputViewPort;
+  vec4 color;
+  vec2 center;
+  float radius;
+};
+#pragma rate inputTexture pass
+uniform sampler2D inputTexture;
+
+layout(location = 0)out vec4 fragColor;
+
+void main() {
+  fragColor = texture(inputTexture, v_uv);
+  vec3 destColor = fragColor.rgb * color.rgb;
+  fragColor.rgb = mix(fragColor.rgb, destColor, color.a);
+
+  // fragColor = texture(inputTexture, v_uv);
+  // vec3 destColor = fragColor.rgb * color.rgb;
+  // float dist = distance(v_uv, center) - radius;
+  // // dist = clamp(dist, -0.5, 0.5) + 1.0;
+  // fragColor.rgb = mix(fragColor.rgb, destColor, dist > 0.0 ? 0.0 : 1.0);
+}
+}%
+
