@@ -120,18 +120,16 @@ export class Box extends Entity {
             this.scheduleOnce(() => {
                 this.node.getComponent(Sprite).enabled = true
                 this.node.getComponent(Collider2D).group = ColliderGroup.ACTIVE
-                if (player.interactingWith) {
-                    player.interactingWith.onEndInteract(
-                        this.node.getComponent(Player),
-                    )
-                    player.interactingWith = null
-                }
             }, 0)
         } else {
             this.scheduleOnce(() => {
                 this.node.getComponent(Sprite).enabled = false
                 this.node.getComponent(Collider2D).group =
                     ColliderGroup.INACTIVE
+                if (player.interactingWith) {
+                    player.interactingWith.onEndInteract(player)
+                    player.interactingWith = null
+                }
             }, 0)
         }
     }

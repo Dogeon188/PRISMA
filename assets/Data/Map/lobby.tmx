@@ -2,12 +2,12 @@
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="100" height="86" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="173">
  <tileset firstgid="1" source="dragonheart.tsx"/>
  <tileset firstgid="253" source="amproject.tsx"/>
- <layer id="1" name="Tiles" width="100" height="86" locked="1">
+ <layer id="1" name="Tiles" width="100" height="86">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAACu2dyY4UMQyGezRwAsSOBFzgBAceivd/BxAVaSKivxzbWZyl2kiloZJUFn/+EyfV0/P4cLs9+uU2cB9wH3AfcB9wH7iMD/y53W5fDp5+2drg72FnTQz14WDh/+wt8E45hzkPexahBecxxs7aVpyH1lJjyjmPMXbWtnJvPL4d6+X3hWOTe+Px42Dx03lo5Wpa7vXB4c3T9XZRJvemD1PgHSq/Oo+oiVX1gAivzgPHu/r9PfJYWTP3yGNljVydx8paoPzi6jyoMa+cNoPHiyP2fzngerXoHoPzhxk8tG1q3stwZXZ8R6C1TevYUk28P/w22DH8tHzf+NX1kZUixb2VcbaxjTMoO1FzQI3tKE2kddfUubGpVV235CHV7TzOiCSbRX/W2k7ShOvjzCBN6c1DW1/gomXMj+BauVr7PXvaL2BMj3uJGDtRaxCmOY+zL2l55Oat0udb5qtPD7ff1D5S8hHNM2fL2KSg/2Lfnj/tBdB38T5+PhFj+s8NewisS7LAx4MH9oua9zQ+Mkubmr5RY8S0Wf2PjII2cnMh9k0zZnxG8oWW/FQTWv9H++P9yP5TY89pYwd9aPwD7S3dz+TBaWNVHhaaSBnN5MFpY1UeFppYgYekjZV4WGtiBR6SNlbiYa2J2Tw02pjJA/cSvWKn1O65/89YPzTaqOURYmfci6X7SrQ1lg33I+2PXEbz0GqjlgeOD+sZOfdQfZHSAo/086/Wn4MN2tC+O8R9fu2ZQVpPbR3aPmvKcb9LOFof1J7w3tI4jTqP8d7gPMbbnGvReXDWGZ/nPMbbnGuR4xHfD8Y4XPsOCMvl2o/xvlS+1+dxNfsLas9RmobjKWlXs78pfS+FsWiOR/SFUXED53tS7F+Sj+Pp3S7Wn7NvafpoHq37i7A30HynC/pjSbvc/iP6RA0Pah8Z95PhZ/hdstE8Sv0Fy4f+1tgC6+HuNVqy6oPzOJNxHmeb5FJcHznLzEl3HnPsnmu1hQcV82JcHNr1+Spn/XN6C48YY6UxGsZhzuNscy6lhUesN1dHiEfTmJPb71jFV9FnKD/h7DIrL/S3ta9SHTPnq1l2zbVLfS9Tr7OaXJuY7jz+W2SF72XS8MBzxdLztdryGH9QMUp61pnu/+MZQOp/3PO1fez9nOY8MXwuY8aF6xbnO1gW54Fwzz3PrZ+r5c1gEdpEG3P2xLLU+Rn3/Go25/qjOdPUfHaitAzGMnhOmp6FIo/Z+mixmXTGqxkrNX7rtNTfQx+l9WOkPlpsJvWzpW5LJshDaksaJzdHaPJSTaC2pb6l+VI/d+QxY/3oZacr8qD8URqnRgNYpkUTufhbinl7cads1JKG89WM9aPFNrX+0dJmi72lZ5FHSXn085L7XpqQdJDr0448LNePFnvUaiJl09K+5LMt+aP0gXuJ0tgpXSdqNbEjD6v1o9Ufe2hiRx6S1mrtUsOjtyZ250GtH3jeoj2/KZ2fgl/Uss+t4bvzkLRikW+piR15SOuHBYO0TktN7MjD2t5U/aM0sTsPXD+s/vbEKE2kPGa9r5XehaaxfE0MFP09d44ktR/ye+wnNGv4bmVaeMzw8d3sW9pf56H7G7ildq0tH3j8qrxcH/1Ztqxxvgb051GrK3/OWZT4wD+4OTuwYIYAAA==
   </data>
  </layer>
- <objectgroup id="7" name="Grounds" locked="1">
+ <objectgroup id="7" name="Grounds">
   <object id="14" name="Ground" x="976" y="1264" width="256" height="80"/>
   <object id="15" name="Ground" x="1216" y="1232" width="64" height="48"/>
   <object id="16" name="Ground" x="1264" y="1200" width="64" height="48"/>
@@ -64,7 +64,7 @@
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="8" name="Spikes" locked="1">
+ <objectgroup id="8" name="Spikes">
   <object id="112" name="L1" x="751.33" y="1322" width="226" height="6.33333"/>
  </objectgroup>
  <objectgroup id="5" name="OneWays">
@@ -100,7 +100,7 @@
   <object id="171" x="592" y="1232.06" width="16" height="6.8125"/>
   <object id="172" x="592" y="1247.94" width="16" height="7.0625" visible="0"/>
  </objectgroup>
- <objectgroup id="4" name="Objects" locked="1">
+ <objectgroup id="4" name="Objects">
   <object id="114" name="MovingVerti" x="288" y="800" width="144" height="8">
    <properties>
     <property name="class" value="moving"/>
@@ -219,7 +219,7 @@
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="3" name="Bricks" locked="1">
+ <objectgroup id="3" name="Bricks">
   <object id="121" name="RedBlock" x="1408" y="928" width="32" height="32">
    <properties>
     <property name="color" value="red"/>
@@ -251,8 +251,8 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="2" name="Start" locked="1">
-  <object id="1" name="Start" x="944" y="960">
+ <objectgroup id="2" name="Start">
+  <object id="1" name="Start" x="1313" y="962">
    <point/>
   </object>
  </objectgroup>
