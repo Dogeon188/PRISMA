@@ -485,7 +485,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 559.7398071289062,
+      "width": 559.6985605145027,
       "height": 100.8
     },
     "_anchorPoint": {
@@ -518,7 +518,7 @@
     "_string": "To those who have dreamed.",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 60,
+    "_actualFontSize": 67.875,
     "_fontSize": 60,
     "_fontFamily": "Arial",
     "_lineHeight": 80,
@@ -673,7 +673,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 570.3998413085938,
+      "width": 570.3998510877071,
       "height": 100.8
     },
     "_anchorPoint": {
@@ -706,7 +706,7 @@
     "_string": "To the best Creators.",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 80,
+    "_actualFontSize": 90.5,
     "_fontSize": 80,
     "_fontFamily": "Arial",
     "_lineHeight": 80,
@@ -861,8 +861,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1280,
-      "height": 720
+      "width": 2560,
+      "height": 1440
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -922,16 +922,16 @@
     "__prefab": null,
     "_alignFlags": 45,
     "_target": null,
-    "_left": 0,
-    "_right": 0,
-    "_top": 0,
-    "_bottom": 0,
+    "_left": -0.5,
+    "_right": -0.5,
+    "_top": -0.5,
+    "_bottom": -0.5,
     "_horizontalCenter": 0,
     "_verticalCenter": 0,
-    "_isAbsLeft": true,
-    "_isAbsRight": true,
-    "_isAbsTop": true,
-    "_isAbsBottom": true,
+    "_isAbsLeft": false,
+    "_isAbsRight": false,
+    "_isAbsTop": false,
+    "_isAbsBottom": false,
     "_isAbsHorizontalCenter": true,
     "_isAbsVerticalCenter": true,
     "_originalWidth": 100,
@@ -1043,7 +1043,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 12.639999389648438,
+      "width": 12.639996439053867,
       "height": 50.4
     }
   },
@@ -1063,7 +1063,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 13.279998779296875,
+      "width": 13.279995575794198,
       "height": 50.4
     }
   },
@@ -1083,7 +1083,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 11,
+      "width": 10.999991906940608,
       "height": 50.4
     }
   },
@@ -1103,7 +1103,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 98.71992492675781,
+      "width": 98.71994777279005,
       "height": 50.4
     }
   },
@@ -1888,7 +1888,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 79.19996643066406,
+      "width": 79.19413361101519,
       "height": 75.6
     }
   },
@@ -1909,7 +1909,7 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 85.37995910644531,
+      "width": 85.37368352900552,
       "height": 75.6
     }
   },
@@ -2057,8 +2057,8 @@
     ],
     "value": {
       "__type__": "cc.Size",
-      "width": 71.29994201660156,
-      "height": 50.4
+      "width": 71.29680486015192,
+      "height": 50.400000000000006
     }
   },
   {
