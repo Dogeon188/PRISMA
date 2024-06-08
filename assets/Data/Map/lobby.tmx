@@ -192,7 +192,7 @@
     <property name="color" value="default"/>
    </properties>
   </object>
-  <object id="134" name="RedBoxDebug" x="896" y="720" width="32" height="32">
+  <object id="134" name="RedBox" x="1424" y="720" width="32" height="32">
    <properties>
     <property name="class" value="box"/>
     <property name="color" value="red"/>
@@ -368,7 +368,7 @@
   </object>
  </objectgroup>
  <objectgroup id="2" name="Start">
-  <object id="240" name="Start" x="1008" y="752">
+  <object id="240" name="Start" x="1504" y="1072">
    <point/>
   </object>
  </objectgroup>

@@ -106,26 +106,13 @@ export class Box extends Entity {
                 this.node.worldPosition.z,
             )
 
-            const dist = this.node.worldPosition.clone().subtract(
-                this.bindedTo.worldPosition,
-            )
-            if (dist.length() > this.bingOffsetLength + 0.1) {
+            const dist = this.node.worldPosition
+                .clone()
+                .subtract(this.bindedTo.worldPosition)
+            if (dist.length() > this.bingOffsetLength + 1) {
                 const player = this.bindedTo.getComponent(Player)
                 if (player) this.onEndInteract(player)
             }
-        }
-        if (this.node.name === "RedBoxDebug") {
-            const worldX = this.node.worldPosition.x.toFixed(2)
-            const worldY = this.node.worldPosition.y.toFixed(2)
-            const localX = (this.node.position.x * 2.5).toFixed(2)
-            const localY = (this.node.position.y * 2.5).toFixed(2)
-            const offsetX = this.bindOffsetX.toFixed(2)
-            director
-                .getScene()
-                .getChildByPath("Canvas/Camera/HUD/DebugPos")
-                .getComponent(
-                    Label,
-                ).string = `World: ${worldX}, ${worldY}\nLocal: ${localX}, ${localY}\nOffset: ${offsetX}`
         }
     }
 
@@ -196,9 +183,10 @@ export class Box extends Entity {
         this.bindedTo = player.node
         this.bindOffsetX =
             this.node.worldPosition.x - player.node.worldPosition.x
-        this.bingOffsetLength = this.node.worldPosition.clone().subtract(
-            player.node.worldPosition,
-        ).length()
+        this.bingOffsetLength = this.node.worldPosition
+            .clone()
+            .subtract(player.node.worldPosition)
+            .length()
 
         const collider = this.node.getComponent(Collider2D)
         collider.density = Box.DENSITY_MOVING
@@ -212,7 +200,7 @@ export class Box extends Entity {
         const collider = this.node.getComponent(Collider2D)
         collider.density = Box.DENSITY
         collider.friction = 1000
-        this.scheduleOnce(() => collider.apply(), 0)
+        collider.apply()
         this.scheduleOnce(() => {
             collider.friction = 0.5
             collider.apply()
