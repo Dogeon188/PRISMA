@@ -1,9 +1,16 @@
-import { Collider2D, Contact2DType, IPhysics2DContact, Node, RigidBody2D, Vec2, Vec3, _decorator, tween } from "cc"
-import { Brick } from "./Brick"
-import { NormalDirection, fuzzyEqual, getCorrectNormal } from "../Physics/PhysicsFixer"
+import {
+    Collider2D,
+    Contact2DType,
+    IPhysics2DContact,
+    Node,
+    Vec3,
+    _decorator,
+    tween,
+} from "cc"
 import { ColliderType } from "../Physics/ColliderManager"
 import { Player } from "../Player"
 import { Box } from "./Box"
+import { Brick } from "./Brick"
 const { ccclass, property } = _decorator
 
 @ccclass("MovingPlatform")
@@ -67,7 +74,10 @@ export class MovingPlatform extends Brick {
         other: Collider2D,
         contact: IPhysics2DContact,
     ): void {
-        if(other.tag === ColliderType.PLAYER || other.tag === ColliderType.BOX) {
+        if (
+            other.tag === ColliderType.PLAYER ||
+            other.tag === ColliderType.BOX
+        ) {
             other.node.setParent(this.node)
         }
     }
@@ -77,9 +87,15 @@ export class MovingPlatform extends Brick {
         other: Collider2D,
         contact: IPhysics2DContact,
     ): void {
-        if(other.tag === ColliderType.PLAYER || other.tag === ColliderType.BOX) {
-            if(other.tag === ColliderType.PLAYER) other.node.setParent(other.node.getComponent(Player).myParent)
+        if (
+            other.tag === ColliderType.PLAYER ||
+            other.tag === ColliderType.BOX
+        ) {
+            const originalWorldPos = new Vec3(other.node.worldPosition)
+            if (other.tag === ColliderType.PLAYER)
+                other.node.setParent(other.node.getComponent(Player).myParent)
             else other.node.setParent(other.node.getComponent(Box).myParent)
+            other.node.worldPosition = originalWorldPos
         }
     }
 }

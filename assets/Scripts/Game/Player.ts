@@ -5,7 +5,6 @@ import {
     Component,
     Contact2DType,
     EventKeyboard,
-    Game,
     IPhysics2DContact,
     Input,
     KeyCode,
@@ -18,8 +17,6 @@ import {
     _decorator,
     clamp,
     input,
-    log,
-    tween,
 } from "cc"
 import { BlackMaskManager } from "../Interface/BlackMaskManager"
 import { PlayPauseButton } from "../PlayPauseButton"
@@ -484,6 +481,7 @@ export class Player extends Component {
     public endMovingBox(box: Box) {
         this.isMovingBox = false
         this.movementSpeed = Player.WALK_SPEED
+        this.interactingWith = null
     }
 
     //#endregion

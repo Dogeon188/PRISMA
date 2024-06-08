@@ -3,11 +3,11 @@ import {
     AudioClip,
     BoxCollider2D,
     Collider2D,
-    Color,
     Contact2DType,
+    director,
     find,
     IPhysics2DContact,
-    log,
+    Label,
     Node,
     RigidBody2D,
     Size,
@@ -43,6 +43,7 @@ export class Box extends Entity {
 
     private bindedTo: Node | null = null
     private bindOffsetX: number = 0
+    private bingOffsetLength: number = 0
 
     private static readonly DENSITY: number = 20
     private static readonly DENSITY_MOVING: number = 0
@@ -98,19 +99,34 @@ export class Box extends Entity {
     }
 
     protected update(deltaTime: number) {
-        if (!this.bindedTo) return
+        if (this.bindedTo) {
+            this.node.worldPosition = new Vec3(
+                this.bindedTo.worldPosition.x + this.bindOffsetX,
+                this.node.worldPosition.y,
+                this.node.worldPosition.z,
+            )
 
-        const velocityY = this.node.getComponent(RigidBody2D).linearVelocity.y
-        if (!fuzzyEqual(velocityY, 0, 1)) {
-            const player = this.bindedTo.getComponent(Player)
-            if (player) this.onEndInteract(player)
+            const dist = this.node.worldPosition.clone().subtract(
+                this.bindedTo.worldPosition,
+            )
+            if (dist.length() > this.bingOffsetLength + 0.1) {
+                const player = this.bindedTo.getComponent(Player)
+                if (player) this.onEndInteract(player)
+            }
         }
-        if (!this.bindedTo) return
-        this.node.worldPosition = new Vec3(
-            this.bindedTo.worldPosition.x + this.bindOffsetX,
-            this.node.worldPosition.y,
-            this.node.worldPosition.z,
-        )
+        if (this.node.name === "RedBoxDebug") {
+            const worldX = this.node.worldPosition.x.toFixed(2)
+            const worldY = this.node.worldPosition.y.toFixed(2)
+            const localX = (this.node.position.x * 2.5).toFixed(2)
+            const localY = (this.node.position.y * 2.5).toFixed(2)
+            const offsetX = this.bindOffsetX.toFixed(2)
+            director
+                .getScene()
+                .getChildByPath("Canvas/Camera/HUD/DebugPos")
+                .getComponent(
+                    Label,
+                ).string = `World: ${worldX}, ${worldY}\nLocal: ${localX}, ${localY}\nOffset: ${offsetX}`
+        }
     }
 
     public showPrompt(): void {
@@ -178,7 +194,12 @@ export class Box extends Entity {
         player.startMovingBox(this)
         GameManager.inst.interactPrompt.hidePrompt()
         this.bindedTo = player.node
-        this.bindOffsetX = this.node.worldPosition.x - player.node.worldPosition.x
+        this.bindOffsetX =
+            this.node.worldPosition.x - player.node.worldPosition.x
+        this.bingOffsetLength = this.node.worldPosition.clone().subtract(
+            player.node.worldPosition,
+        ).length()
+
         const collider = this.node.getComponent(Collider2D)
         collider.density = Box.DENSITY_MOVING
         collider.apply()
@@ -187,10 +208,11 @@ export class Box extends Entity {
     public onEndInteract(player: Player): void {
         player.endMovingBox(this)
         this.bindedTo = null
+
         const collider = this.node.getComponent(Collider2D)
         collider.density = Box.DENSITY
         collider.friction = 1000
-        collider.apply()
+        this.scheduleOnce(() => collider.apply(), 0)
         this.scheduleOnce(() => {
             collider.friction = 0.5
             collider.apply()
@@ -210,17 +232,12 @@ export class Box extends Entity {
         const vel = selfRigidBody.linearVelocity
         const isDropping = vel.y < Box.DROP_VELOCITY
 
-        // log(`velocity: x: ${vel.x}, y: ${vel.y}, other tag: ${other.tag}`)
-        // log(isDropping)
-
         if (!isOnTop || !isDropping || !isAbove) return
         switch (other.tag) {
             case ColliderType.ONEWAY:
-                // log("box drop on ONEWAY")
                 AudioManager.inst.playOneShot(this.boxHitGround)
                 break
             case ColliderType.GROUND:
-                // log("box drop on GROUND")
                 tween(find("Canvas/Camera"))
                     .to(0.02, { eulerAngles: new Vec3(0, 0, 1) })
                     .to(0.02, { eulerAngles: new Vec3(0, 0, -1) })
@@ -237,15 +254,12 @@ export class Box extends Entity {
                 }, 0.8)
                 break
             case ColliderType.BOX:
-                // log("box drop on BOX")
                 AudioManager.inst.playOneShot(this.boxHitGround)
                 break
             case ColliderType.BRICK:
-                // log("box drop on BRICK")
                 AudioManager.inst.playOneShot(this.boxHitGround)
                 break
             case ColliderType.SENSOR:
-                // log("box drop on SENSOR")
                 AudioManager.inst.playOneShot(this.boxHitGround)
                 break
         }
