@@ -25,11 +25,18 @@
   ],
   "_props": [
     {
+      "pauseCenter": {
+        "__type__": "cc.Vec2",
+        "x": -1000,
+        "y": -1000
+      },
+      "pauseRadius": 0,
       "timerCenter": {
         "__type__": "cc.Vec2",
-        "x": 1100,
-        "y": 653
+        "x": -1000,
+        "y": -1000
       },
+      "timerRadius": 0,
       "centersX": {
         "__type__": "cc.Vec4",
         "x": 640,

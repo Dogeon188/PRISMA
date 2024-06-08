@@ -18,20 +18,6 @@ techniques:
               blendDstAlpha: zero
         properties:
           color: { value: [1.0, 1.0, 1.0, 0.5], editor: { type: color } }
-          pauseCenter:
-            {
-              value: [1208, 654],
-              editor: { type: vec2, min: [0, 0], max: [1280, 720] },
-            }
-          pauseRadius:
-            { value: 35, editor: { type: number, min: 0, max: 1000 } }
-          timerCenter:
-            {
-              value: [1106, 654],
-              editor: { type: vec2, min: [0, 0], max: [1280, 720] },
-            }
-          timerRadius:
-            { value: 35, editor: { type: number, min: 0, max: 1000 } }
           centersX:
             {
               value: [-1000, -1000, -1000, -1000],
@@ -94,12 +80,6 @@ uniform UBO {
   vec4 centersY;
   vec4 radii;
 };
-uniform CONSTS {
-  vec2 pauseCenter;
-  vec2 timerCenter;
-  float pauseRadius;
-  float timerRadius;
-};
 
 #pragma rate inputTexture pass
 uniform sampler2D inputTexture;
@@ -127,19 +107,12 @@ vec4 colorize(in vec4 color, in vec4 multiplier) {
 vec3 gradient(in vec3 color, in vec2 uv) {
   vec4 dists;
   vec2 screenPos = v_uv * screenSize;
-  float pauseDist = distance(screenPos, pauseCenter) - pauseRadius;
-  float timerDist = distance(screenPos, timerCenter) - timerRadius;
   dists.x = distance(screenPos, vec2(centersX.x, centersY.x)) - radii.x;
   dists.y = distance(screenPos, vec2(centersX.y, centersY.y)) - radii.y;
   dists.z = distance(screenPos, vec2(centersX.z, centersY.z)) - radii.z;
   dists.w = distance(screenPos, vec2(centersX.w, centersY.w)) - radii.w;
   vec4 alphas = sigmoid(dists / blur);
-  float pauseAlpha = sigmoid(pauseDist / blur);
-  float timerAlpha = sigmoid(timerDist / blur);
-  float alpha = min(
-    min(min(alphas.x, alphas.y), alphas.z),
-    min(min(alphas.w, pauseAlpha), timerAlpha)
-  );
+  float alpha = min(min(alphas.x, alphas.y), min(alphas.z, alphas.w));
   return mix(color, black, alpha);
 }
 

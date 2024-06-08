@@ -159,7 +159,7 @@
     "flags": {}
   },
   "macroConfig": {
-    "BATCHER2D_MEM_INCREMENT": 2000,
+    "BATCHER2D_MEM_INCREMENT": 1000,
     "CUSTOM_PIPELINE_NAME": "CUSTOM"
   }
 }

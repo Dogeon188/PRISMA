@@ -1,0 +1,39 @@
+{
+  "ver": "1.2.1",
+  "importer": "render-texture",
+  "imported": true,
+  "uuid": "b1060d83-72b6-4207-9fdc-8e51bb0c251d",
+  "files": [
+    ".json"
+  ],
+  "subMetas": {
+    "f9941": {
+      "importer": "rt-sprite-frame",
+      "uuid": "b1060d83-72b6-4207-9fdc-8e51bb0c251d@f9941",
+      "displayName": "PlayerCam",
+      "id": "f9941",
+      "name": "spriteFrame",
+      "userData": {
+        "imageUuidOrDatabaseUri": "b1060d83-72b6-4207-9fdc-8e51bb0c251d",
+        "width": 1280,
+        "height": 720
+      },
+      "ver": "1.0.0",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "width": 1280,
+    "height": 720,
+    "anisotropy": 0,
+    "minfilter": "nearest",
+    "magfilter": "nearest",
+    "mipfilter": "none",
+    "wrapModeS": "repeat",
+    "wrapModeT": "repeat"
+  }
+}
