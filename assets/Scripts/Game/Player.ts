@@ -87,6 +87,8 @@ export class Player extends Component {
 
     private movement: Movement = new Movement()
 
+    public myParent: Node
+
     @property({ type: Sprite, tooltip: "Reference to sprite node" })
     private sprite: Sprite = null
 
@@ -121,6 +123,8 @@ export class Player extends Component {
         this.rigidBody.gravityScale = Player.GRAVITY
 
         this.animation = this.sprite.node.getComponent(Animation)
+
+        this.myParent = this.node.parent
 
         // Register input events
         input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this)

@@ -2,6 +2,8 @@ import { Collider2D, Contact2DType, IPhysics2DContact, Node, RigidBody2D, Vec2, 
 import { Brick } from "./Brick"
 import { NormalDirection, fuzzyEqual, getCorrectNormal } from "../Physics/PhysicsFixer"
 import { ColliderType } from "../Physics/ColliderManager"
+import { Player } from "../Player"
+import { Box } from "./Box"
 const { ccclass, property } = _decorator
 
 @ccclass("MovingPlatform")
@@ -15,12 +17,19 @@ export class MovingPlatform extends Brick {
     private originalPosition: Vec3 = new Vec3()
     private moveToPosition: Vec3 = new Vec3()
 
-    private velocity: Vec3 = new Vec3()
-    private previousMomentPosition: Vec3 = new Vec3()
-
     protected onLoad(): void {
         super.onLoad()
         this.originalPosition = this.node.position.clone()
+        this.getComponent(Collider2D).on(
+            Contact2DType.BEGIN_CONTACT,
+            this.onBeginContact,
+            this,
+        )
+        this.getComponent(Collider2D).on(
+            Contact2DType.END_CONTACT,
+            this.onEndContact,
+            this,
+        )
     }
 
     public set moveToNode(value: Node) {
@@ -35,6 +44,7 @@ export class MovingPlatform extends Brick {
     public set durationValue(value: number) {
         this.duration = value
     }
+
     protected start(): void {
         tween(this.node)
             .to(
@@ -50,5 +60,26 @@ export class MovingPlatform extends Brick {
             .union()
             .repeatForever()
             .start()
+    }
+
+    private onBeginContact(
+        self: Collider2D,
+        other: Collider2D,
+        contact: IPhysics2DContact,
+    ): void {
+        if(other.tag === ColliderType.PLAYER || other.tag === ColliderType.BOX) {
+            other.node.setParent(this.node)
+        }
+    }
+
+    private onEndContact(
+        self: Collider2D,
+        other: Collider2D,
+        contact: IPhysics2DContact,
+    ): void {
+        if(other.tag === ColliderType.PLAYER || other.tag === ColliderType.BOX) {
+            if(other.tag === ColliderType.PLAYER) other.node.setParent(other.node.getComponent(Player).myParent)
+            else other.node.setParent(other.node.getComponent(Box).myParent)
+        }
     }
 }

@@ -54,12 +54,16 @@ export class Box extends Entity {
     private boxHitGround: AudioClip = null
     private static readonly DROP_VELOCITY: number = -5
 
+    public myParent: Node
+
     protected onLoad(): void {
         this.initialize(
             this.color,
             new Vec2(this.node.position.x, this.node.position.y),
             this.node.getComponent(UITransform).contentSize,
         )
+
+        this.myParent = this.node.parent
 
         for (const collider of this.node.getComponents(Collider2D)) {
             // log(`box collider tag: ${collider.tag}`)
@@ -102,10 +106,10 @@ export class Box extends Entity {
             if (player) this.onEndInteract(player)
         }
         if (!this.bindedTo) return
-        this.node.position = new Vec3(
-            this.bindedTo.position.x + this.bindOffsetX,
-            this.node.position.y,
-            this.node.position.z,
+        this.node.worldPosition = new Vec3(
+            this.bindedTo.worldPosition.x + this.bindOffsetX,
+            this.node.worldPosition.y,
+            this.node.worldPosition.z,
         )
     }
 
@@ -174,7 +178,7 @@ export class Box extends Entity {
         player.startMovingBox(this)
         GameManager.inst.interactPrompt.hidePrompt()
         this.bindedTo = player.node
-        this.bindOffsetX = this.node.position.x - player.node.position.x
+        this.bindOffsetX = this.node.worldPosition.x - player.node.worldPosition.x
         const collider = this.node.getComponent(Collider2D)
         collider.density = Box.DENSITY_MOVING
         collider.apply()
