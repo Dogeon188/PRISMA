@@ -50,7 +50,6 @@ export class Register extends Component {
                 await auth.currentUser.updateProfile({
                     displayName: username.toUpperCase(),
                 })
-                // console.log(Auth.data)
                 Auth.updateUserData({
                     keybinds: {
                         jump: KeyCode.KEY_W,
@@ -72,7 +71,6 @@ export class Register extends Component {
                     time: 0,
                     stoneList: [],
                 })
-                // console.log("TTT")
 
                 ToastManager.show("Successfully registered!")
                 AudioManager.inst.doNotReplayNextTime()

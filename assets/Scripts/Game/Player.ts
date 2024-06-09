@@ -335,10 +335,8 @@ export class Player extends Component {
         // FIXME problematic when player is touching multiple objects
         // could fix by using a set of collided objects
         if (other.node.getComponent(Lamp)) {
-            // console.log("end contact lamp")
             GameManager.inst.interactPrompt.hidePrompt()
         } else if (other.node.getComponent(Portal)) {
-            // console.log("end contact portal")
             GameManager.inst.interactPrompt.hidePrompt()
         }
         // GameManager.inst.interactPrompt.hidePrompt()
