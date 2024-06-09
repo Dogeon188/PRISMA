@@ -67,7 +67,7 @@ export class LevelEnd extends Component {
             .getChildByName("EndDialog")
             .getComponent(Dialog)
         this.coreParticles = this.coreNode.getComponent(ParticleSystem2D)
-        this.overlayOpacity.node.setSiblingIndex(0)
+        this.overlayOpacity.node.setSiblingIndex(2)
         const colorDict =
             GameManager.inst.player.getComponent(PlayerHalo).colorNumDict
         if (
@@ -181,7 +181,6 @@ export class LevelEnd extends Component {
                 this.coreParticles.emissionRate = 100
                 this.coreParticles.resetSystem()
                 AudioManager.inst.playOneShot(this.engineSound)
-                this.camera.node.getComponent(Camera).usePostProcess = false
             })
             .delay(13)
             .call(() => {

@@ -89,8 +89,8 @@ export class Player extends Component {
     @property({ type: Sprite, tooltip: "Reference to sprite node" })
     private sprite: Sprite = null
 
-    @property(Node)
-    private pausePlayButton: Node = null
+    @property(PlayPauseButton)
+    private pausePlayButton: PlayPauseButton = null
 
     //#endregion
 
@@ -490,7 +490,7 @@ export class Player extends Component {
 
     private onKeyDown(event: EventKeyboard): void {
         if (
-            !this.pausePlayButton.getComponent(PlayPauseButton).isPlay ||
+            !this.pausePlayButton.isPlay ||
             this.dead ||
             !this.canAct
         ) {

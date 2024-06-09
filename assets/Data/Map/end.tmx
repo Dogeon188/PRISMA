@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="41">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="2" width="60" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="43">
  <tileset firstgid="1" source="amproject.tsx"/>
  <layer id="1" name="Tiles" width="60" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAE+2X0WpCMQyGq1cKCoI6BxM5Or3aHqKP5qP5aP4BM+ZPjrpwtjXHFnqRnrTkyx9bk1IdNQM1A33OwApwA8wNzSFs+daXoZwNgLYGFNaO+HaMzn2Pk9EjcyvrlKEesCfwiaa1/E49rJoOZX4gPf/uItq+p5StQOZYXNBcWo5Y2+GMCPeYaLtu4W1BM5ffcIbUdcnjlraeuEvX2NLWqmGuabW5tkVjfq9/w/bW0atHxAL2vDhjeFZermGuUyudnj3WOffW9nA4kFOf9f0A62dHvLivMt6izgbuqzT7gzl2Rnx5j652c5223c2yznWP96j43mmEGLvQWLT15t0pl2ubpbHnoAjaKpdojH4hM6dV21zDsgf9Qo6grfKJxm3MnAO2lTVCr/A9dmVuoBV6+cxcbMPnBN+T6BqN9SfcfeFk/VRv/N+XHuBrRteTOatdM1AzUHYGzvQTG2cgHAAA
+   H4sIAAAAAAAAE+2XQW4CMQxFU1atVCQkKCBRVUMpKzhEjjZH42j9lnBVvjyFWlMazyRSFs44kZ+/SXBKddQM1AyMLQMrAD9gvtGcwJZvQxnK2QBoa0BhrcW3Njr3NU5Gj8ytrFOGusF+hk80reV36mHVdCjzDen5dxfRdpdStgKZY3FB88VyxNo7zohwj4m2rx28HWjm8gZnSF2XPH7S1hN36Rpb2lo1zDWtNte2aMzv9V/Y3jpae0QsYM/SGcNYebmGuU6tdHr2WOdcW/uAw56chqzvAazHnnhxX2W8Rb0N3Fdpdof55Iz4/B5d7OY67bqbZZ3rHu9R8b3TI2LsQ2PR1pt3p1yubZbGnoMiaKtcojH6hcycVm1zDcse9As5grbKJxp3MXMO2FbWCL3C99iVuYFW6OUzc7ENnxN8T6JrNNbfcA+Fk/VTvfF/X3qArxldT+asds1AzUA5GfgECy74zCAcAAA=
   </data>
  </layer>
  <objectgroup id="5" name="Oneways">
-  <object id="26" x="160" y="336" width="96" height="8"/>
-  <object id="30" x="112" y="288" width="192" height="8"/>
-  <object id="31" x="112" y="192" width="192" height="8"/>
-  <object id="33" x="64" y="240" width="80" height="8"/>
-  <object id="34" x="160" y="144" width="96" height="8"/>
-  <object id="35" x="272" y="240" width="80" height="8"/>
+  <object id="26" x="240" y="336" width="96" height="8"/>
+  <object id="30" x="192" y="288" width="192" height="8"/>
+  <object id="31" x="192" y="192" width="192" height="8"/>
+  <object id="33" x="144" y="240" width="80" height="8"/>
+  <object id="34" x="240" y="144" width="96" height="8"/>
+  <object id="35" x="352" y="240" width="80" height="8"/>
  </objectgroup>
  <objectgroup id="2" name="Objects">
-  <object id="12" name="Lamp" x="68" y="312">
+  <object id="12" name="Lamp" x="148" y="312">
    <properties>
     <property name="angle" type="float" value="-60"/>
     <property name="class" value="lamp"/>
@@ -23,7 +23,7 @@
    </properties>
    <point/>
   </object>
-  <object id="27" name="Lamp" x="348" y="312">
+  <object id="27" name="Lamp" x="428" y="312">
    <properties>
     <property name="angle" type="float" value="60"/>
     <property name="class" value="lamp"/>
@@ -31,7 +31,7 @@
    </properties>
    <point/>
   </object>
-  <object id="28" name="Lamp" x="208" y="80">
+  <object id="28" name="Lamp" x="288" y="80">
    <properties>
     <property name="angle" type="float" value="180"/>
     <property name="class" value="lamp"/>
@@ -39,68 +39,68 @@
    </properties>
    <point/>
   </object>
-  <object id="38" name="EndDialog" x="199.686" y="718.553">
-   <properties>
-    <property name="class" value="dialog"/>
-    <property name="dialog" value="Dialog/end"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="40" name="ReturnPortal" x="704" y="256">
+  <object id="40" name="ReturnPortal" x="784" y="256">
    <properties>
     <property name="class" value="scenePortal"/>
     <property name="scene" value="LevelLobby"/>
    </properties>
    <point/>
   </object>
+  <object id="42" name="EndDialog" x="101.678" y="814.859">
+   <properties>
+    <property name="class" value="dialog"/>
+    <property name="dialog" value="Dialog/end"/>
+   </properties>
+   <point/>
+  </object>
  </objectgroup>
  <objectgroup id="3" name="Start">
-  <object id="1" name="Start" x="704" y="272">
+  <object id="1" name="Start" x="784" y="272">
    <point/>
   </object>
  </objectgroup>
  <objectgroup id="4" name="Grounds">
-  <object id="2" x="368" y="272" width="400" height="16"/>
-  <object id="7" x="112" y="112">
+  <object id="2" x="448" y="272" width="400" height="16"/>
+  <object id="7" x="192" y="112">
    <polygon points="0,0 64,-32 0,-32"/>
   </object>
-  <object id="8" x="176" y="400" width="64" height="16"/>
-  <object id="9" x="32" y="208" width="16" height="64"/>
-  <object id="10" x="176" y="64" width="64" height="16"/>
-  <object id="11" x="368" y="192" width="400" height="16"/>
-  <object id="15" x="112" y="112">
+  <object id="8" x="256" y="400" width="64" height="16"/>
+  <object id="9" x="112" y="208" width="16" height="64"/>
+  <object id="10" x="256" y="64" width="64" height="16"/>
+  <object id="11" x="448" y="192" width="400" height="16"/>
+  <object id="15" x="192" y="112">
    <polygon points="0,0 -32,32 -32,0"/>
   </object>
-  <object id="16" x="48" y="208">
+  <object id="16" x="128" y="208">
    <polygon points="0,0 32,-64 0,-64"/>
   </object>
-  <object id="17" x="304" y="112">
+  <object id="17" x="384" y="112">
    <polygon points="0,0 -64,-32 0,-32"/>
   </object>
-  <object id="18" x="304" y="112">
+  <object id="18" x="384" y="112">
    <polygon points="0,0 32,32 32,0"/>
   </object>
-  <object id="19" x="368" y="208">
+  <object id="19" x="448" y="208">
    <polygon points="0,0 -32,-64 0,-64"/>
   </object>
-  <object id="20" x="304" y="368">
+  <object id="20" x="384" y="368">
    <polygon points="0,0 -64,32 0,32"/>
   </object>
-  <object id="21" x="304" y="368">
+  <object id="21" x="384" y="368">
    <polygon points="0,0 32,-32 32,0"/>
   </object>
-  <object id="22" x="368" y="272">
+  <object id="22" x="448" y="272">
    <polygon points="0,0 -32,64 0,64"/>
   </object>
-  <object id="23" x="112" y="368">
+  <object id="23" x="192" y="368">
    <polygon points="0,0 64,32 0,32"/>
   </object>
-  <object id="24" x="112" y="368">
+  <object id="24" x="192" y="368">
    <polygon points="0,0 -32,-32 -32,0"/>
   </object>
-  <object id="25" x="48" y="272">
+  <object id="25" x="128" y="272">
    <polygon points="0,0 32,64 0,64"/>
   </object>
-  <object id="36" x="768" y="208" width="16" height="64"/>
+  <object id="36" x="848" y="208" width="16" height="64"/>
  </objectgroup>
 </map>

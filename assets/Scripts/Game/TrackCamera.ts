@@ -62,6 +62,8 @@ export class TrackCamera extends Component {
         this.getTargetPosition()
 
         this.node.setPosition(this.target.lerp(this.node.getPosition(), this.damping))
+        // console.clear()
+        // console.log(this.node.getPosition())
 
         if (this.shake > 0) {
             this.node.setPosition(

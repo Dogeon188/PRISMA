@@ -120,6 +120,7 @@ void main() {
   fragColor = texture(inputTexture, v_uv);
   // fragColor = colorize(fragColor, color);
   fragColor.rgb = gradient(fragColor.rgb, v_uv);
+  fragColor.a = 1.0;
 }
 }%
 

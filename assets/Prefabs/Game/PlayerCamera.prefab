@@ -163,12 +163,12 @@
     },
     "min": {
       "__type__": "cc.Vec2",
-      "x": -500,
+      "x": 0,
       "y": 0
     },
     "max": {
       "__type__": "cc.Vec2",
-      "x": 4500,
+      "x": 4000,
       "y": 3440
     },
     "focus": null,
@@ -288,6 +288,7 @@
       "__id__": 0
     },
     "fileId": "76fPllyfJGJru4sBJRmDu3",
+    "instance": null,
     "targetOverrides": []
   }
 ]

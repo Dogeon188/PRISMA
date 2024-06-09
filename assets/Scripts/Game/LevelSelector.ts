@@ -52,7 +52,7 @@ export class LevelSelector {
     }
 
     setStoneCount(count: number) {
-        const tmp = find("Canvas/Map/Entities/Player").getComponent(PlayerHalo)
+        const tmp = GameManager.inst.player.getComponent(PlayerHalo)
         tmp.setGemNum(count)
     }
 
