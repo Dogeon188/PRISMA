@@ -1,4 +1,7 @@
 # PRISMA
+
+可在[此處](https://ss-final-prisma.web.app)體驗
+
 |**遊戲流程**|**Score**|**Check**|
 |:-:|:-:|:-:|
 |開頭動畫(Optional)|-|N|
